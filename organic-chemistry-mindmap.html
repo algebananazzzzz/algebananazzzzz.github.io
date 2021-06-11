@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <title>Algebananazzzzz</title>
+  <link rel="icon" type="image/x-icon" href="assets/chem/favicon.ico" />
+  <!-- Font Awesome icons (free version)-->
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/granim/2.0.0/granim.min.js" integrity="sha512-CmlPTWm5+a1Gt2YSNk2rGZVvbH3Zge6imS7M4/vrhC8d+A1RcehmLxWMqUdv8aEu7pwfTo74EtnrR+8Cf8KdCA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" referrerpolicy="no-referrer"></script>
+  <!-- Google fonts-->
+  <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
+  <!-- Core theme CSS (includes Bootstrap)-->
+  <link href="css/chem-styles.css" rel="stylesheet" />
+  <link href="css/styles.css" rel="stylesheet" />
+</head>
+
+<body id="page-top">
+  <!-- Navigation-->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top canvas-wrapper" id="sideNav">
+    <canvas id="canvas" width="300" height="300"></canvas>
+    <a class="navbar-brand js-scroll-trigger" href="#page-top">
+      <span class="d-block d-lg-none">Organic Chemistry</span>
+      <!-- <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="assets/img/profile.jpg" alt="..." /></span> -->
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link js-scroll-trigger" onclick="change_default_state()" onmouseover="change_default_state()" onmouseout="set_gradient_state()" href="#about">Summary</a></li>
+        <li class="nav-item"><a class="nav-link js-scroll-trigger" onclick="change_purple_state()" onmouseover="change_purple_state()" onmouseout="set_gradient_state()" href="#summary">Another Summary</a></li>
+        <li class="nav-item"><a class="nav-link js-scroll-trigger" onclick="change_dark_blue_state()" onmouseover="change_dark_blue_state()" onmouseout="set_gradient_state()" href="#anothersummary">Yet another summary</a></li>
+        <!-- <li class="nav-item"><a class="nav-link js-scroll-trigger" onclick="change_green_state()" onmouseover="change_green_state()" onmouseout="set_gradient_state()" href="#Projects">Projects</a></li>
+        <li class="nav-item"><a class="nav-link js-scroll-trigger" onclick="change_amber_state()" onmouseover="change_amber_state()" onmouseout="set_gradient_state()" href="#awards">Awards</a></li> -->
+      </ul>
+    </div>
+  </nav>
+  <!-- Page Content-->
+  <div class="container-fluid p-0">
+    <!-- About-->
+    <section class="resume-section" id="about">
+      <div class="resume-section-content">
+        <h1 class="mb-0">
+          Organic
+          <span class="text-primary">Chemistry</span>
+        </h1>
+        <div class="subheading mb-5">
+          Summary of all reactions
+        </div>
+        <p class="lead mb-5 text-justify">
+          Ok in short based on my calculations Organic Chemistry requires us to learn exactly 69 reactions ;) So I developed this static webpage to allow students to revise easier (at least it works for me) by summarising everything based on reaction
+          type and compound type and color coding... :/
+        </p>
+        <p class="mb-5 text-justify" style="font-size:0.8rem">Pardon the styling I've no time to properly design this so yea... If there's any errors feel free to raise an issue/email/if uk me just tell me yea it'll mean alot :) links r below</p>
+
+        <div class="social-icons">
+          <a class="social-icon" target="_blank" href="https://github.com/algebananazzzzz/algebananazzzzz.github.io"><i class="fab fa-github"></i></a>
+          <a class="social-icon" target="_blank" href="https://mail.google.com/mail/?view=cm&fs=1&to=daniel.zhouqx@gmail.com"><i class="fa fa-envelope"></i></a>
+        </div>
+
+      </div>
+    </section>
+    <hr class="m-0" />
+    <!-- Experience-->
+    <section class="resume-section" id="summary" style="max-width:inherit!important">
+      <div class="resume-section-content">
+        <div class="row">
+          <div class="col-xl-8 col-lg-12">
+            <h2>Summary (bubble chart)</h2>
+
+            <canvas id="bubble-chart" width="16" height="9"></canvas>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+    <hr class="m-0" />
+    <!-- Education-->
+    <section class="resume-section-grid" id="anothersummary">
+      <div class="parent">
+        <div class="div1">
+          <div class="card-grid p-3">
+            <div class="position-absolute top-50 start-50 translate-middle  text-center">
+              <h2>Summary of summary</h2>
+              <p>Summary of reactions by mechanism <br>(try to recall the reactions, then hover to comfirm your intuition)</p>
+              <p style="font-size:0.8rem"><sup>*</sup> denotes important/hard to memorize stuff</p>
+            </div>
+          </div>
+        </div>
+        <div class="div2">
+          <div class="card-grid p-3 displayed-content">
+            <div class="position-absolute top-50 start-50 translate-middle text-white text-center">
+              <h2 class="text-white">Nucleophilic Substitution</h2>
+              <p>Halogenoalkanes, Aliphatic alcohol, Carboxylic acid, Amine</p>
+            </div>
+          </div>
+          <div class="card-grid hidden-content">
+            <div class="position-absolute mx-auto w-100 h-100 text-white text-center row">
+              <div class="col my-auto">
+                <h5 class="text-white">Halogenoalkane</h5>
+                <p>Alcohol formation: NaOH(aq), heat</p>
+                <p>Amination: Excess ethanolic NH<sub>3</sub>, heat in sealed tube</p>
+                <p>Cyanine formation: Ethanolic KCN, heat</p>
+              </div>
+              <div class="col my-auto">
+                <h5 class="text-white">Aliphatic alcohol<sup>*</sup></h5>
+                <p>Substitution to halogenoalkanes <br>PCl<sub>3</sub>/PBr<sub>3</sub>/PI<sub>3</sub><br>PCl<sub>5</sub> / SOCl<sub>2</sub> / conc. HCl, anhydrous ZnCl<sub>2</sub>, heat <br>(HCl produced) <br>HBr(g)</p>
+              </div>
+              <div class="col my-auto">
+                <h5 class="text-white">Carboxylic acid</h5>
+                <p>To Acyl Chloride <br>PCl<sub>3</sub><br>HCl produced: PCl<sub>5</sub> / SOCl<sub>2</sub></p>
+              </div>
+              <div class="col my-auto">
+                <h5 class="text-white">Amine</h5>
+                <p>Halogenoalkane, heat</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="div3">
+          <div class="card-grid p-3 displayed-content">
+            <div class="position-absolute top-50 start-50 translate-middle text-white text-center">
+              <h2 class="text-white">Nucleophilic Addition</h2>
+              <p>Aldehyde, Ketone</p>
+            </div>
+          </div>
+          <div class="card-grid hidden-content">
+            <div class="position-absolute mx-auto w-100 h-100 text-white text-center row">
+              <div class="col my-auto">
+                <h5 class="text-white">Aldehyde and Ketone</h5>
+                <p>CN and OH addition:<br>HCN, trace NaOH, cold</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="div4">
+          <div class="card-grid p-3 displayed-content">
+            <div class="position-absolute top-50 start-50 translate-middle text-white text-center">
+              <h2 class="text-white">Electrophilic Addition</h2>
+              <p>Alkenes</p>
+            </div>
+          </div>
+          <div class="card-grid hidden-content">
+            <div class="position-absolute mx-auto w-100 h-100 text-white text-center row">
+              <div class="col my-auto">
+                <h5 class="text-white">Alkenes</h5>
+                <p>Br<sub>2</sub> in CCl<sub>4</sub><br>HBr(g)<br>H<sub>2</sub>O(g), 300C, 60 atm, conc. H<sub>3</sub>PO<sub>4</sub></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="div5">
+          <div class="card-grid p-3 displayed-content">
+            <div class="position-absolute top-50 start-50 translate-middle text-white text-center">
+              <h2 class="text-white">Electrophilic Substitution</h2>
+              <p>Arenes, Halogenoarenes, Aromatic alcohol</p>
+            </div>
+          </div>
+          <div class="card-grid hidden-content">
+            <div class="position-absolute mx-auto w-100 h-100 text-white text-center row">
+              <div class="col my-auto">
+                <h5 class="text-white">Arenes and Halogenoarenes</h5>
+                <p>Conc. HNO<sub>3</sub>, H<sub>2</sub>SO<sub>4</sub><br>(55<sup>o</sup>C / 55-100<sup>o</sup>C / >100<sup>o</sup>C)<br>Br<sub>2</sub>, anhydrous FeBr3</p>
+              </div>
+              <div class="col my-auto">
+                <h5 class="text-white">Aromatic alcohol</h5>
+                <p>Br<sub>2</sub>(aq)<br>Br<sub>2</sub> in CCl<sub>4</sub><br>Conc. HNO<sub>3</sub><br>Dilute HNO<sub>3</sub></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="div6">
+          <div class="card-grid p-3 displayed-content">
+            <div class="position-absolute top-50 start-50 translate-middle text-white text-center">
+              <h2 class="text-white">Condensation (N.A.S)</h2>
+              <p>Aliphatic and aromatic alcohol, Carboxylic acid and Acyl chloride, Amine</p>
+            </div>
+          </div>
+          <div class="card-grid hidden-content">
+            <div class="position-absolute mx-auto w-100 h-100 text-white text-center row">
+              <div class="col my-auto">
+                <h5 class="text-white">Aliphatic alcohol + Carboxylic acid</h5>
+                <p>Conc. H<sub>2</sub>SO<sub>4</sub>, heat</p>
+              </div>
+              <div class="col my-auto">
+                <h5 class="text-white">Aliphatic/aromatic alcohol + Acyl chloride</h5>
+                <p>Aliphatic: r.t.</p>
+                <p>Aromatic: NaOH for faster reaction</p>
+              </div>
+              <div class="col my-auto">
+                <h5 class="text-white">Acyl chloride + Amine</h5>
+                <p>R.t.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="div7">
+          <div class="card-grid p-3 displayed-content">
+            <div class="position-absolute top-50 start-50 translate-middle text-white text-center">
+              <h2 class="text-white">Condensation</h2>
+              <p>Aldehyde and Ketone</p>
+            </div>
+          </div>
+          <div class="card-grid hidden-content">
+            <div class="position-absolute mx-auto w-100 h-100 text-white text-center row">
+              <div class="col my-auto">
+                <h5 class="text-white">Aldehyde and Ketone</h5>
+                <p>2,4-NADP, warm<sup>*</sup></p>
+                <p>Learn to draw structure!!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="div8">
+          <div class="card-grid p-3 displayed-content">
+            <div class="position-absolute top-50 start-50 translate-middle text-white text-center">
+              <h2 class="text-white">Elimination</h2>
+              <p>Halogenoalkane, Aliphatic alcohol</p>
+            </div>
+          </div>
+          <div class="card-grid hidden-content">
+            <div class="position-absolute mx-auto w-100 h-100 text-white text-center row">
+              <div class="col my-auto">
+                <h5 class="text-white">Halogenoalkane</h5>
+                <p>Ethanolic KOH, heat</p>
+              </div>
+              <div class="col my-auto">
+                <h5 class="text-white">Aliphatic alcohol</h5>
+                <p>Conc. excess H<sub>2</sub>SO<sub>4</sub>, heat</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="div9">
+          <div class="card-grid p-3 displayed-content">
+            <div class="position-absolute top-50 start-50 translate-middle text-white text-center">
+              <h2 class="text-white">Others</h2>
+              <p>Complex formation and FRS</p>
+            </div>
+          </div>
+          <div class="card-grid hidden-content">
+            <div class="position-absolute mx-auto w-100 h-100 text-white text-center row">
+              <div class="col my-auto">
+                <h5 class="text-white">Aromatic alcohol</h5>
+                <p>Neutral FeCl3(aq), purple coloration observed</p>
+              </div>
+              <div class="col my-auto">
+                <h5 class="text-white">Alkane</h5>
+                <p>X<sub>2</sub>(g), UV light</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="div10">
+          <div class="card-grid p-3 displayed-content">
+            <div class="position-absolute top-50 start-50 translate-middle text-white text-center">
+              <h2 class="text-white">Hydrolysis</h2>
+              <p>Cyanide, Esters, Amide, Acyl chloride</p>
+            </div>
+          </div>
+          <div class="card-grid hidden-content">
+            <div class="position-absolute mx-auto w-100 h-100 text-white text-center row">
+              <div class="col my-auto">
+                <h5 class="text-white">Acid hydrolysis</h5>
+                <p class="text-white">Cyanide, Esters<sup>*</sup>, Amide</p>
+                <p>Dilute acid, heat</p>
+              </div>
+              <div class="col my-auto">
+                <h5 class="text-white">base hydrolysis</h5>
+                <p class="text-white">Cyanide, Esters<sup>*</sup>, Amide</p>
+                <p>Dilute base, heat</p>
+              </div>
+              <div class="col my-auto">
+                <h5 class="text-white">Water hydrolysis</h5>
+                <h6 class="text-white">Acyl chloride</h6>
+                <p>H<sub>2</sub>O</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="div11">
+          <div class="card-grid p-3 displayed-content">
+            <div class="position-absolute top-50 start-50 translate-middle  text-center">
+              <h2>Oxidation</h2>
+              <p>Alkene, Aliphatic alcohol, Aldehyde and Ketone</p>
+            </div>
+          </div>
+          <div class="card-grid hidden-content">
+            <div class="position-absolute mx-auto w-100 h-100 text-center row">
+              <div class="col my-auto">
+                <h5>Alkenes</h5>
+                <p>KMnO<sub>4</sub>(aq), H<sub>2</sub>SO<sub>4</sub>(aq), heat (resistant to K<sub>2</sub>Cr<sub>2</sub>O<sub>7</sub>)</p>
+              </div>
+              <div class="col my-auto">
+                <h5>Aliphatic alcohol</h5>
+                <p>KMnO<sub>4</sub> / K<sub>2</sub>Cr<sub>2</sub>O<sub>7</sub>(aq), H<sub>2</sub>SO<sub>4</sub>(aq), heat with reflux</p>
+                <p>K<sub>2</sub>Cr<sub>2</sub>O<sub>7</sub>(aq), H<sub>2</sub>SO<sub>4</sub>(aq), heat with distillation</p>
+              </div>
+              <div class="col my-auto">
+                <h5>Aldehyde</h5>
+                <p>KMnO<sub>4</sub> / K<sub>2</sub>Cr<sub>2</sub>O<sub>7</sub>(aq), H<sub>2</sub>SO<sub>4</sub>(aq), heat</p>
+                <p>Tollens</p>
+                <p>Fehlings<sup>*</sup> (except aromatic)</p>
+                <p>Iodoform<sup>*</sup> (RCOCH<sub>3</sub>)</p>
+              </div>
+              <div class="col my-auto">
+                <h5>Ketone</h5>
+                <p>No α-hydrogen, resistant to oxidation</p>
+                <p>Iodoform<sup>*</sup> (RCOCH<sub>3</sub>)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="div12">
+          <div class="card-grid p-3 displayed-content">
+            <div class="position-absolute top-50 start-50 translate-middle text-center">
+              <h2>Mild oxidation</h2>
+              <p>Alkene and Aliphatic alcohol</p>
+            </div>
+          </div>
+          <div class="card-grid hidden-content">
+            <div class="position-absolute mx-auto w-100 h-100 text-center row">
+              <div class="col my-auto">
+                <h5>Alkenes</h5>
+                <p>KMnO<sub>4</sub>(aq), NaOH(aq), cold</p>
+              </div>
+              <div class="col my-auto">
+                <h5>Aliphatic alcohol</h5>
+                <p>Iodoform<sup>*</sup> (RC(OH)CH<sub>3</sub>)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="div13">
+          <div class="card-grid p-3 displayed-content">
+            <div class="position-absolute top-50 start-50 translate-middle  text-center">
+              <h2>Reduction</h2>
+              <p>Alkene, Cyanide, Aldehyde and Ketone, Carboxylic acid, Nitride</p>
+            </div>
+          </div>
+          <div class="card-grid hidden-content">
+            <div class="position-absolute mx-auto w-100 h-100 text-center row">
+              <div class="col my-auto">
+                <h5>Alkenes and Arenes</h5>
+                <p>H<sub>2</sub>, Ni/Pt, heat</p>
+              </div>
+              <div class="col my-auto">
+                <h5>Aldehyde and Ketone</h5>
+                <p>LiAlH<sub>4</sub> in dry ether<br>NaBH<sub>4</sub>, methanol<br>H<sub>2</sub>(g), Ni/Pt, heat</p>
+              </div>
+              <div class="col my-auto">
+                <h5>Carboxylic acid</h5>
+                <p>LiAlH<sub>4</sub> in dry ether</p>
+              </div>
+              <div class="col my-auto">
+                <h5>Nitride (NO2>>NH<sub>2</sub>)</h5>
+                <p>1. Sn, conc. HCl, heat<br>2. NaOH(aq)</p>
+                <p>H<sub>2</sub>, Ni/Pt, heat</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="div14">
+          <div class="card-grid p-3 displayed-content">
+            <div class="position-absolute top-50 start-50 translate-middle text-center">
+              <h2>Acid-base reactions</h2>
+              <p>Aliphatic and aromatic alcohol, Carboxylic acid, Amine</p>
+            </div>
+          </div>
+          <div class="card-grid hidden-content">
+            <div class="position-absolute mx-auto w-100 h-100 text-center row">
+              <div class="col my-auto">
+                <h5>Acid-metal</h5>
+                <p>Aliphatic and aromatic alcohol, Carboxylic acid</p>
+              </div>
+              <div class="col my-auto">
+                <h5>Acid-base</h5>
+                <p>Aromatic alcohol, Carboxylic acid, Amine<sup>*</sup> (Amine is base)</p>
+              </div>
+              <div class="col my-auto">
+                <h5>Acid-carbonate</h5>
+                <p>Carboxylic acid</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <hr class="m-0" />
+
+  </div>
+  <!-- Bootstrap core JS-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" referrerpolicy="no-referrer"></script>
+  <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap5.min.js" charset="utf-8"></script>
+  <!-- Core theme JS-->
+  <script src="js/scripts.js"></script>
+  <script src="js/chem-scripts.js"></script>
+
+</body>
+
+</html>
