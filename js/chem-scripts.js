@@ -332,11 +332,11 @@ new Chart(document.getElementById("bubble-chart"), {
   options: {
     aspectRatio: (function() {
       width = $(window).width()
-      if (width > 1200) {
+      if (width > 1400) {
         return 16 / 9
 
-      } else if (width > 768) {
-        return 9 / 16
+      } else if (width > 992) {
+        return 4 / 3
       } else {
         return 9 / 16
       }
@@ -366,6 +366,18 @@ new Chart(document.getElementById("bubble-chart"), {
             return types[types.length - value];
           },
           stepSize: 1,
+          fontSize: (function() {
+            width = $(window).width()
+            if (width > 1400) {
+              return 12
+            } else if (width > 1200) {
+              return 10
+            } else if (width > 992) {
+              return 8
+            } else {
+              return 5
+            }
+          })()
         },
         scaleLabel: {
           display: true,
@@ -381,7 +393,19 @@ new Chart(document.getElementById("bubble-chart"), {
             types = ['Alkane (1)', 'Alkene (6)', 'Arenes (2)', 'Halogens (9)', 'Hydroxyls (18)', 'Carbonyl (12)', 'Carboxylic Acid (13)', 'Nitrogen Compound (6)']
             return types[index];
           },
-          stepSize: 1
+          stepSize: 1,
+          fontSize: (function() {
+            width = $(window).width()
+            if (width > 1400) {
+              return 12
+            } else if (width > 1200) {
+              return 10
+            } else if (width > 992) {
+              return 8
+            } else {
+              return 5
+            }
+          })()
         },
         scaleLabel: {
           display: true,
