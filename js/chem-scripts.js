@@ -330,6 +330,18 @@ new Chart(document.getElementById("bubble-chart"), {
     ]
   },
   options: {
+    aspectRatio: (function() {
+      width = $(window).width()
+      console.log($(window).width())
+      if (width > 1200) {
+        return 16 / 9
+
+      } else if (width > 768) {
+        return 9 / 16
+      } else {
+        return 3 / 4
+      }
+    })(),
     tooltips: {
       callbacks: {
         label: function(t, d) {
