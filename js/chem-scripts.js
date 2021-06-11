@@ -332,7 +332,6 @@ new Chart(document.getElementById("bubble-chart"), {
   options: {
     aspectRatio: (function() {
       width = $(window).width()
-      console.log($(window).width())
       if (width > 1200) {
         return 16 / 9
 
