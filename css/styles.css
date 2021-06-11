@@ -640,12 +640,7 @@ section.resume-section-grid {
   display: flex;
   align-items: center;
   min-width: 100%;
-}
-
-@media (min-width: 768px) {
-  section.resume-section-grid {
-    min-height: 100vh;
-  }
+  min-height: 100vh;
 }
 
 @media (min-width: 576px) {

@@ -339,7 +339,7 @@ new Chart(document.getElementById("bubble-chart"), {
       } else if (width > 768) {
         return 9 / 16
       } else {
-        return 3 / 4
+        return 9 / 16
       }
     })(),
     tooltips: {
