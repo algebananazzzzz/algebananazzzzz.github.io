@@ -83,7 +83,7 @@ p {
   grid-template-rows: repeat(17, 1fr);
   grid-column-gap: 0px;
   grid-row-gap: 0px;
-  min-height: 120vh;
+  min-height: 150vh;
   min-width: inherit;
 }
 
