@@ -80,7 +80,7 @@ p {
 .chem-parent {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(16, 1fr);
+  grid-template-rows: repeat(17, 1fr);
   grid-column-gap: 0px;
   grid-row-gap: 0px;
   min-height: inherit;
@@ -251,7 +251,7 @@ p {
 }
 
 .chem-div11 {
-  grid-area: 12 / 3 / 15 / 5;
+  grid-area: 12 / 3 / 16 / 5;
   background-color: rgba(29, 233, 182, 0.8);
   background-image: linear-gradient(to top, rgba(29, 233, 182, 1) 50%, transparent 50%);
   background-size: 100% 200%;
@@ -269,7 +269,7 @@ p {
 }
 
 .chem-div13 {
-  grid-area: 15 / 1 / 17 / 3;
+  grid-area: 15 / 1 / 18 / 3;
   background-color: rgba(255, 234, 0, 0.8);
   background-image: linear-gradient(to top, rgba(255, 234, 0, 1) 50%, transparent 50%);
   background-size: 100% 200%;
@@ -278,7 +278,7 @@ p {
 }
 
 .chem-div14 {
-  grid-area: 15 / 3 / 17 / 5;
+  grid-area: 16 / 3 / 18 / 5;
   background-color: rgba(255, 145, 0, 0.8);
   background-image: linear-gradient(to top, rgba(255, 145, 0, 1) 50%, transparent 50%);
   background-size: 100% 200%;
