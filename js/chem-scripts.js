@@ -343,10 +343,7 @@ new Chart(document.getElementById("bubble-chart"), {
       },
       bodyFontSize: 14,
     },
-    title: {
-      display: true,
-      text: 'Reaction counts per compound type'
-    },
+
     legend: {
       display: true,
       labels: {
@@ -386,10 +383,7 @@ new Chart(document.getElementById("bubble-chart"), {
             }
           })()
         },
-        scaleLabel: {
-          display: true,
-          labelString: "Reaction type"
-        }
+
       }],
       xAxes: [{
         gridLines: {
@@ -414,10 +408,6 @@ new Chart(document.getElementById("bubble-chart"), {
             }
           })()
         },
-        scaleLabel: {
-          display: true,
-          labelString: "Compound type"
-        }
       }]
     }
   }

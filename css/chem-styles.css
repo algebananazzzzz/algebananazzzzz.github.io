@@ -83,7 +83,7 @@ p {
   grid-template-rows: repeat(17, 1fr);
   grid-column-gap: 0px;
   grid-row-gap: 0px;
-  min-height: inherit;
+  min-height: 120vh;
   min-width: inherit;
 }
 
@@ -91,6 +91,7 @@ p {
   .chem-parent {
     grid-template-columns: repeat(6, 1fr) !important;
     grid-template-rows: repeat(10, 1fr) !important;
+    min-height: inherit !important;
   }
 
   .chem-div1 {
