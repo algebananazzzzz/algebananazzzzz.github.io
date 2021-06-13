@@ -77,14 +77,77 @@ p {
   }
 }
 
-.parent {
+.chem-parent {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: repeat(10, 1fr);
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(16, 1fr);
   grid-column-gap: 0px;
   grid-row-gap: 0px;
   min-height: inherit;
   min-width: inherit;
+}
+
+@media (min-width: 576px) {
+  .chem-parent {
+    grid-template-columns: repeat(6, 1fr) !important;
+    grid-template-rows: repeat(10, 1fr) !important;
+  }
+
+  .chem-div1 {
+    grid-area: 1 / 1 / 3 / 3 !important;
+  }
+
+  .chem-div2 {
+    grid-area: 1 / 3 / 4 / 6 !important;
+  }
+
+  .chem-div3 {
+    grid-area: 1 / 6 / 4 / 7 !important;
+  }
+
+  .chem-div4 {
+    grid-area: 4 / 3 / 7 / 4 !important;
+  }
+
+  .chem-div5 {
+    grid-area: 4 / 4 / 7 / 7 !important;
+  }
+
+  .chem-div6 {
+    grid-area: 7 / 3 / 10 / 5 !important;
+  }
+
+  .chem-div7 {
+    grid-area: 7 / 5 / 9 / 6 !important;
+  }
+
+  .chem-div8 {
+    grid-area: 7 / 6 / 9 / 7 !important;
+  }
+
+  .chem-div9 {
+    grid-area: 9 / 5 / 10 / 7 !important;
+  }
+
+  .chem-div10 {
+    grid-area: 10 / 3 / 11 / 7 !important;
+  }
+
+  .chem-div11 {
+    grid-area: 3 / 1 / 6 / 3 !important;
+  }
+
+  .chem-div12 {
+    grid-area: 6 / 1 / 7 / 3 !important;
+  }
+
+  .chem-div13 {
+    grid-area: 7 / 1 / 9 / 3 !important;
+  }
+
+  .chem-div14 {
+    grid-area: 9 / 1 / 11 / 3 !important;
+  }
 }
 
 .card-grid {
@@ -102,12 +165,12 @@ p {
   transition: visibility 0s, opacity 0.5s linear;
 }
 
-.div1 {
-  grid-area: 1 / 1 / 3 / 3;
+.chem-div1 {
+  grid-area: 1 / 1 / 3 / 5;
 }
 
-.div2 {
-  grid-area: 1 / 3 / 4 / 6;
+.chem-div2 {
+  grid-area: 3 / 1 / 6 / 4;
   background: rgba(255, 23, 68, 0.8);
   background-image: linear-gradient(to top, rgba(255, 23, 68, 1) 50%, transparent 50%);
   background-size: 100% 200%;
@@ -115,8 +178,8 @@ p {
   transition: background-position 0.5s ease-in-out;
 }
 
-.div3 {
-  grid-area: 1 / 6 / 4 / 7;
+.chem-div3 {
+  grid-area: 3 / 4 / 6 / 5;
   background-color: rgba(255, 23, 68, 0.5);
   background-image: linear-gradient(to top, rgba(255, 23, 68, 1) 50%, transparent 50%);
   background-size: 100% 200%;
@@ -124,8 +187,8 @@ p {
   transition: background-position 0.5s ease-in-out;
 }
 
-.div4 {
-  grid-area: 4 / 3 / 7 / 4;
+.chem-div4 {
+  grid-area: 6 / 1 / 9 / 2;
   background-color: rgba(213, 0, 249, 0.5);
   background-image: linear-gradient(to top, rgba(213, 0, 249, 1) 50%, transparent 50%);
   background-size: 100% 200%;
@@ -133,8 +196,8 @@ p {
   transition: background-position 0.5s ease-in-out;
 }
 
-.div5 {
-  grid-area: 4 / 4 / 7 / 7;
+.chem-div5 {
+  grid-area: 6 / 2 / 9 / 5;
   background-color: rgba(213, 0, 249, 0.8);
   background-image: linear-gradient(to top, rgba(213, 0, 249, 1) 50%, transparent 50%);
   background-size: 100% 200%;
@@ -142,8 +205,8 @@ p {
   transition: background-position 0.5s ease-in-out;
 }
 
-.div6 {
-  grid-area: 7 / 3 / 10 / 5;
+.chem-div6 {
+  grid-area: 9 / 1 / 12 / 3;
   background-color: rgba(101, 31, 255, 0.8);
   background-image: linear-gradient(to top, rgba(101, 31, 255, 1) 50%, transparent 50%);
   background-size: 100% 200%;
@@ -151,8 +214,8 @@ p {
   transition: background-position 0.5s ease-in-out;
 }
 
-.div7 {
-  grid-area: 7 / 5 / 9 / 6;
+.chem-div7 {
+  grid-area: 9 / 3 / 11 / 4;
   background-color: rgba(41, 121, 255, 0.8);
   background-image: linear-gradient(to top, rgba(41, 121, 255, 1) 50%, transparent 50%);
   background-size: 100% 200%;
@@ -160,8 +223,8 @@ p {
   transition: background-position 0.5s ease-in-out;
 }
 
-.div8 {
-  grid-area: 7 / 6 / 9 / 7;
+.chem-div8 {
+  grid-area: 9 / 4 / 11 / 5;
   background-color: rgba(130, 177, 255, 0.8);
   background-image: linear-gradient(to top, rgba(130, 177, 255, 1) 50%, transparent 50%);
   background-size: 100% 200%;
@@ -169,8 +232,8 @@ p {
   transition: background-position 0.5s ease-in-out;
 }
 
-.div9 {
-  grid-area: 9 / 5 / 10 / 7;
+.chem-div9 {
+  grid-area: 11 / 3 / 12 / 5;
   background-color: rgba(128, 216, 255, 0.8);
   background-image: linear-gradient(to top, rgba(128, 216, 255, 1) 50%, transparent 50%);
   background-size: 100% 200%;
@@ -178,8 +241,8 @@ p {
   transition: background-position 0.5s ease-in-out;
 }
 
-.div10 {
-  grid-area: 10 / 3 / 11 / 7;
+.chem-div10 {
+  grid-area: 12 / 1 / 14 / 3;
   background-color: rgba(0, 229, 255, 0.8);
   background-image: linear-gradient(to top, rgba(0, 229, 255, 1) 50%, transparent 50%);
   background-size: 100% 200%;
@@ -187,8 +250,8 @@ p {
   transition: background-position 0.5s ease-in-out;
 }
 
-.div11 {
-  grid-area: 3 / 1 / 6 / 3;
+.chem-div11 {
+  grid-area: 12 / 3 / 15 / 5;
   background-color: rgba(29, 233, 182, 0.8);
   background-image: linear-gradient(to top, rgba(29, 233, 182, 1) 50%, transparent 50%);
   background-size: 100% 200%;
@@ -196,8 +259,8 @@ p {
   transition: background-position 0.5s ease-in-out;
 }
 
-.div12 {
-  grid-area: 6 / 1 / 7 / 3;
+.chem-div12 {
+  grid-area: 14 / 1 / 15 / 3;
   background-color: rgba(118, 255, 3, 0.8);
   background-image: linear-gradient(to top, rgba(118, 255, 3, 1) 50%, transparent 50%);
   background-size: 100% 200%;
@@ -205,8 +268,8 @@ p {
   transition: background-position 0.5s ease-in-out;
 }
 
-.div13 {
-  grid-area: 7 / 1 / 9 / 3;
+.chem-div13 {
+  grid-area: 15 / 1 / 17 / 3;
   background-color: rgba(255, 234, 0, 0.8);
   background-image: linear-gradient(to top, rgba(255, 234, 0, 1) 50%, transparent 50%);
   background-size: 100% 200%;
@@ -214,8 +277,8 @@ p {
   transition: background-position 0.5s ease-in-out;
 }
 
-.div14 {
-  grid-area: 9 / 1 / 11 / 3;
+.chem-div14 {
+  grid-area: 15 / 3 / 17 / 5;
   background-color: rgba(255, 145, 0, 0.8);
   background-image: linear-gradient(to top, rgba(255, 145, 0, 1) 50%, transparent 50%);
   background-size: 100% 200%;
@@ -223,171 +286,453 @@ p {
   transition: background-position 0.5s ease-in-out;
 }
 
-.div2:hover {
+.chem-div2:hover {
   background-position: bottom;
 }
 
-.div2:hover>.displayed-content {
+.chem-div2:hover>.displayed-content {
   display: none;
 }
 
-.div2:hover>.hidden-content {
+.chem-div2:hover>.hidden-content {
   visibility: visible;
   opacity: 1;
 }
 
-.div3:hover {
+.chem-div3:hover {
   background-position: bottom;
 }
 
-.div3:hover>.displayed-content {
+.chem-div3:hover>.displayed-content {
   display: none;
 }
 
-.div3:hover>.hidden-content {
+.chem-div3:hover>.hidden-content {
   visibility: visible;
   opacity: 1;
 }
 
-.div4:hover {
+.chem-div4:hover {
   background-position: bottom;
 }
 
-.div4:hover>.displayed-content {
+.chem-div4:hover>.displayed-content {
   display: none;
 }
 
-.div4:hover>.hidden-content {
+.chem-div4:hover>.hidden-content {
   visibility: visible;
   opacity: 1;
 }
 
-.div5:hover {
+.chem-div5:hover {
   background-position: bottom;
 }
 
-.div5:hover>.displayed-content {
+.chem-div5:hover>.displayed-content {
   display: none;
 }
 
-.div5:hover>.hidden-content {
+.chem-div5:hover>.hidden-content {
   visibility: visible;
   opacity: 1;
 }
 
-.div6:hover {
+.chem-div6:hover {
   background-position: bottom;
 }
 
-.div6:hover>.displayed-content {
+.chem-div6:hover>.displayed-content {
   display: none;
 }
 
-.div6:hover>.hidden-content {
+.chem-div6:hover>.hidden-content {
   visibility: visible;
   opacity: 1;
 }
 
-.div7:hover {
+.chem-div7:hover {
   background-position: bottom;
 }
 
-.div7:hover>.displayed-content {
+.chem-div7:hover>.displayed-content {
   display: none;
 }
 
-.div7:hover>.hidden-content {
+.chem-div7:hover>.hidden-content {
   visibility: visible;
   opacity: 1;
 }
 
-.div8:hover {
+.chem-div8:hover {
   background-position: bottom;
 }
 
-.div8:hover>.displayed-content {
+.chem-div8:hover>.displayed-content {
   display: none;
 }
 
-.div8:hover>.hidden-content {
+.chem-div8:hover>.hidden-content {
   visibility: visible;
   opacity: 1;
 }
 
-.div9:hover {
+.chem-div9:hover {
   background-position: bottom;
 }
 
-.div9:hover>.displayed-content {
+.chem-div9:hover>.displayed-content {
   display: none;
 }
 
-.div9:hover>.hidden-content {
+.chem-div9:hover>.hidden-content {
   visibility: visible;
   opacity: 1;
 }
 
-.div10:hover {
+.chem-div10:hover {
   background-position: bottom;
 }
 
-.div10:hover>.displayed-content {
+.chem-div10:hover>.displayed-content {
   display: none;
 }
 
-.div10:hover>.hidden-content {
+.chem-div10:hover>.hidden-content {
   visibility: visible;
   opacity: 1;
 }
 
-.div11:hover {
+.chem-div11:hover {
   background-position: bottom;
 }
 
-.div11:hover>.displayed-content {
+.chem-div11:hover>.displayed-content {
   display: none;
 }
 
-.div11:hover>.hidden-content {
+.chem-div11:hover>.hidden-content {
   visibility: visible;
   opacity: 1;
 }
 
-.div12:hover {
+.chem-div12:hover {
   background-position: bottom;
 }
 
-.div12:hover>.displayed-content {
+.chem-div12:hover>.displayed-content {
   display: none;
 }
 
-.div12:hover>.hidden-content {
+.chem-div12:hover>.hidden-content {
   visibility: visible;
   opacity: 1;
 }
 
-.div13:hover {
+.chem-div13:hover {
   background-position: bottom;
 }
 
-.div13:hover>.displayed-content {
+.chem-div13:hover>.displayed-content {
   display: none;
 }
 
-.div13:hover>.hidden-content {
+.chem-div13:hover>.hidden-content {
   visibility: visible;
   opacity: 1;
 }
 
-.div14:hover {
+.chem-div14:hover {
   background-position: bottom;
 }
 
-.div14:hover>.displayed-content {
+.chem-div14:hover>.displayed-content {
   display: none;
 }
 
-.div14:hover>.hidden-content {
+.chem-div14:hover>.hidden-content {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* small divs */
+.hidden-content {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s linear;
+}
+
+.chem-sm-div1 {}
+
+.chem-sm-div2 {
+  background: rgba(255, 23, 68, 0.8);
+  background-image: linear-gradient(to top, rgba(255, 23, 68, 1) 50%, transparent 50%);
+  background-size: 100% 200%;
+  background-position: top;
+  transition: background-position 0.5s ease-in-out;
+}
+
+.chem-sm-div3 {
+  background-color: rgba(255, 23, 68, 0.5);
+  background-image: linear-gradient(to top, rgba(255, 23, 68, 1) 50%, transparent 50%);
+  background-size: 100% 200%;
+  background-position: top;
+  transition: background-position 0.5s ease-in-out;
+}
+
+.chem-sm-div4 {
+  background-color: rgba(213, 0, 249, 0.5);
+  background-image: linear-gradient(to top, rgba(213, 0, 249, 1) 50%, transparent 50%);
+  background-size: 100% 200%;
+  background-position: top;
+  transition: background-position 0.5s ease-in-out;
+}
+
+.chem-sm-div5 {
+  background-color: rgba(213, 0, 249, 0.8);
+  background-image: linear-gradient(to top, rgba(213, 0, 249, 1) 50%, transparent 50%);
+  background-size: 100% 200%;
+  background-position: top;
+  transition: background-position 0.5s ease-in-out;
+}
+
+.chem-sm-div6 {
+  background-color: rgba(101, 31, 255, 0.8);
+  background-image: linear-gradient(to top, rgba(101, 31, 255, 1) 50%, transparent 50%);
+  background-size: 100% 200%;
+  background-position: top;
+  transition: background-position 0.5s ease-in-out;
+}
+
+.chem-sm-div7 {
+  background-color: rgba(41, 121, 255, 0.8);
+  background-image: linear-gradient(to top, rgba(41, 121, 255, 1) 50%, transparent 50%);
+  background-size: 100% 200%;
+  background-position: top;
+  transition: background-position 0.5s ease-in-out;
+}
+
+.chem-sm-div8 {
+  background-color: rgba(130, 177, 255, 0.8);
+  background-image: linear-gradient(to top, rgba(130, 177, 255, 1) 50%, transparent 50%);
+  background-size: 100% 200%;
+  background-position: top;
+  transition: background-position 0.5s ease-in-out;
+}
+
+.chem-sm-div9 {
+  background-color: rgba(128, 216, 255, 0.8);
+  background-image: linear-gradient(to top, rgba(128, 216, 255, 1) 50%, transparent 50%);
+  background-size: 100% 200%;
+  background-position: top;
+  transition: background-position 0.5s ease-in-out;
+}
+
+.chem-sm-div10 {
+  background-color: rgba(0, 229, 255, 0.8);
+  background-image: linear-gradient(to top, rgba(0, 229, 255, 1) 50%, transparent 50%);
+  background-size: 100% 200%;
+  background-position: top;
+  transition: background-position 0.5s ease-in-out;
+}
+
+.chem-sm-div11 {
+  background-color: rgba(29, 233, 182, 0.8);
+  background-image: linear-gradient(to top, rgba(29, 233, 182, 1) 50%, transparent 50%);
+  background-size: 100% 200%;
+  background-position: top;
+  transition: background-position 0.5s ease-in-out;
+}
+
+.chem-sm-div12 {
+  background-color: rgba(118, 255, 3, 0.8);
+  background-image: linear-gradient(to top, rgba(118, 255, 3, 1) 50%, transparent 50%);
+  background-size: 100% 200%;
+  background-position: top;
+  transition: background-position 0.5s ease-in-out;
+}
+
+.chem-sm-div13 {
+  background-color: rgba(255, 234, 0, 0.8);
+  background-image: linear-gradient(to top, rgba(255, 234, 0, 1) 50%, transparent 50%);
+  background-size: 100% 200%;
+  background-position: top;
+  transition: background-position 0.5s ease-in-out;
+}
+
+.chem-sm-div14 {
+  background-color: rgba(255, 145, 0, 0.8);
+  background-image: linear-gradient(to top, rgba(255, 145, 0, 1) 50%, transparent 50%);
+  background-size: 100% 200%;
+  background-position: top;
+  transition: background-position 0.5s ease-in-out;
+}
+
+.chem-sm-div2:hover {
+  background-position: bottom;
+}
+
+.chem-sm-div2:hover>.displayed-content {
+  display: none;
+}
+
+.chem-sm-div2:hover>.hidden-content {
+  visibility: visible;
+  opacity: 1;
+}
+
+.chem-sm-div3:hover {
+  background-position: bottom;
+}
+
+.chem-sm-div3:hover>.displayed-content {
+  display: none;
+}
+
+.chem-sm-div3:hover>.hidden-content {
+  visibility: visible;
+  opacity: 1;
+}
+
+.chem-sm-div4:hover {
+  background-position: bottom;
+}
+
+.chem-sm-div4:hover>.displayed-content {
+  display: none;
+}
+
+.chem-sm-div4:hover>.hidden-content {
+  visibility: visible;
+  opacity: 1;
+}
+
+.chem-sm-div5:hover {
+  background-position: bottom;
+}
+
+.chem-sm-div5:hover>.displayed-content {
+  display: none;
+}
+
+.chem-sm-div5:hover>.hidden-content {
+  visibility: visible;
+  opacity: 1;
+}
+
+.chem-sm-div6:hover {
+  background-position: bottom;
+}
+
+.chem-sm-div6:hover>.displayed-content {
+  display: none;
+}
+
+.chem-sm-div6:hover>.hidden-content {
+  visibility: visible;
+  opacity: 1;
+}
+
+.chem-sm-div7:hover {
+  background-position: bottom;
+}
+
+.chem-sm-div7:hover>.displayed-content {
+  display: none;
+}
+
+.chem-sm-div7:hover>.hidden-content {
+  visibility: visible;
+  opacity: 1;
+}
+
+.chem-sm-div8:hover {
+  background-position: bottom;
+}
+
+.chem-sm-div8:hover>.displayed-content {
+  display: none;
+}
+
+.chem-sm-div8:hover>.hidden-content {
+  visibility: visible;
+  opacity: 1;
+}
+
+.chem-sm-div9:hover {
+  background-position: bottom;
+}
+
+.chem-sm-div9:hover>.displayed-content {
+  display: none;
+}
+
+.chem-sm-div9:hover>.hidden-content {
+  visibility: visible;
+  opacity: 1;
+}
+
+.chem-sm-div10:hover {
+  background-position: bottom;
+}
+
+.chem-sm-div10:hover>.displayed-content {
+  display: none;
+}
+
+.chem-sm-div10:hover>.hidden-content {
+  visibility: visible;
+  opacity: 1;
+}
+
+.chem-sm-div11:hover {
+  background-position: bottom;
+}
+
+.chem-sm-div11:hover>.displayed-content {
+  display: none;
+}
+
+.chem-sm-div11:hover>.hidden-content {
+  visibility: visible;
+  opacity: 1;
+}
+
+.chem-sm-div12:hover {
+  background-position: bottom;
+}
+
+.chem-sm-div12:hover>.displayed-content {
+  display: none;
+}
+
+.chem-sm-div12:hover>.hidden-content {
+  visibility: visible;
+  opacity: 1;
+}
+
+.chem-sm-div13:hover {
+  background-position: bottom;
+}
+
+.chem-sm-div13:hover>.displayed-content {
+  display: none;
+}
+
+.chem-sm-div13:hover>.hidden-content {
+  visibility: visible;
+  opacity: 1;
+}
+
+.chem-sm-div14:hover {
+  background-position: bottom;
+}
+
+.chem-sm-div14:hover>.displayed-content {
+  display: none;
+}
+
+.chem-sm-div14:hover>.hidden-content {
   visibility: visible;
   opacity: 1;
 }

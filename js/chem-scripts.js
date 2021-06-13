@@ -330,17 +330,7 @@ new Chart(document.getElementById("bubble-chart"), {
     ]
   },
   options: {
-    aspectRatio: (function() {
-      width = $(window).width()
-      if (width > 1400) {
-        return 16 / 9
-
-      } else if (width > 992) {
-        return 4 / 3
-      } else {
-        return 9 / 16
-      }
-    })(),
+    aspectRatio: $(window).width() / $(window).height(),
     tooltips: {
       callbacks: {
         label: function(t, d) {
@@ -356,6 +346,23 @@ new Chart(document.getElementById("bubble-chart"), {
     title: {
       display: true,
       text: 'Reaction counts per compound type'
+    },
+    legend: {
+      display: true,
+      labels: {
+        fontSize: (function() {
+          width = $(window).width()
+          if (width > 1400) {
+            return 12
+          } else if (width > 1200) {
+            return 10
+          } else if (width > 992) {
+            return 8
+          } else {
+            return 5
+          }
+        })()
+      }
     },
     scales: {
       yAxes: [{
