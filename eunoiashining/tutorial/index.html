@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Sidebar 02</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <div class="wrapper d-flex align-items-stretch">
+    <nav id="sidebar">
+      <div class="custom-menu">
+        <button type="button" id="sidebarCollapse" class="btn btn-primary">
+          <i class="fa fa-bars"></i>
+          <span class="sr-only">Toggle Menu</span>
+        </button>
+      </div>
+      <div class="p-4 pt-5">
+        <h1><a href="index.html" class="logo">Tutorial</a></h1>
+        <ul class="list-unstyled components mb-5">
+          <li class="active">
+            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Part I</a>
+            <ul class="collapse list-unstyled" id="homeSubmenu">
+              <li>
+                <a href="#">Introduction</a>
+              </li>
+              <li>
+                <a href="advanced.html">Your resume</a>
+              </li>
+            </ul>
+          </li>
+          <li class="active">
+            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Tutorials</a>
+            <ul class="collapse list-unstyled" id="homeSubmenu">
+              <li>
+                <a href="basics.html">HTML basics</a>
+              </li>
+              <li>
+                <a href="cssbasics.html">CSS basics</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Deployment :o</a>
+            <ul class="collapse list-unstyled" id="pageSubmenu">
+              <li>
+                <a href="github.html">Github</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Page Content  -->
+    <div id="content" class="p-4 p-md-5 pt-5">
+      <h1 id="item-1" class="mt-4">Introduction</h1>
+      <p class="text-justify">In this section, you will learn how start developing your first webpage quickly and efficiently, as well as how to manipulate elements of the website (e.g. texts, images, font size, font style etc.) Really take ur time
+        and tryna explore on
+        how to encorporate your own style into your webpage, just go wild and be creative :) </p>
+      <h1 class="mt-4">Components of webpages/websites</h1>
+      <p>There are three components that builds up our modern websites: <code>Html</code>, <code>CSS</code> and <code>Javascript</code>. For this course, we will ignore Javascript because for our purpose, we don't really need any heavy
+        programming.
+      </p>
+      <p>If HTML is the skeleton of a person, CSS would be the skin and clothes of the person. Basically, a webpage with no HTML just doesn't exist, HTML without CSS is a mere skeleton, CSS with HTML gives you a whole person with clothes. If the CSS
+        is done well, the clothes will look nice, if you screw that up, you may get some variant of EJ uniform :/ (jk our uni is really nice, except for the boys we will end up looking like some coffee shop uncle with dem grey striped long pants).
+        Screw up the html on the other hand, you'll prolly get something like having a nose in the butt. You may have realized that we excluded JavaScript from our webpage. Why?? JavaScript makes the person move, makes it sentient. For the purpose of
+        a resume, we don't really require much intellect. In a sense, we're making a statue.
+      </p>
+      <img src="https://kinsta.com/wp-content/uploads/2020/08/html-vs-css.png" class="img-fluid" alt="">
+
+    </div>
+  </div>
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/popper.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+
+</html>

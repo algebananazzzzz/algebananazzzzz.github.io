@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Sidebar 02</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <div class="wrapper d-flex align-items-stretch">
+    <nav id="sidebar">
+      <div class="custom-menu">
+        <button type="button" id="sidebarCollapse" class="btn btn-primary">
+          <i class="fa fa-bars"></i>
+          <span class="sr-only">Toggle Menu</span>
+        </button>
+      </div>
+      <div class="p-4 pt-5">
+        <h1><a href="index.html" class="logo">Tutorial</a></h1>
+        <ul class="list-unstyled components mb-5">
+          <li class="active">
+            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Part I</a>
+            <ul class="collapse list-unstyled" id="homeSubmenu">
+              <li>
+                <a href="index.html">Introduction</a>
+              </li>
+              <li>
+                <a href="advanced.html">Your resume</a>
+              </li>
+            </ul>
+          </li>
+          <li class="active">
+            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Tutorials</a>
+            <ul class="collapse list-unstyled" id="homeSubmenu">
+              <li>
+                <a href="#">HTML basics</a>
+              </li>
+              <li>
+                <a href="cssbasics.html">CSS basics</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Deployment :o</a>
+            <ul class="collapse list-unstyled" id="pageSubmenu">
+              <li>
+                <a href="github.html">Github</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Page Content  -->
+    <div id="content" class="p-4 p-md-5 pt-5">
+      <h1 id="item-1" class="mt-4">HTML basics</h1>
+      <p class="text-justify">Most people consider <b> HTML and CSS as NOT a programming language</b>, those language has no logic, therefore its not programming. Simple. HTML is stupid, period. But one thing we
+        know for sure, is
+        that they are definitely a form of language, that the whole web architecture is based, be it chrome edge tor, all browsers must be able to interpret them to be even called browsers.</p>
+      <p>In this section, you will learn the basics of how HTML is structured.</p>
+      <h3>What is HTML?</h3>
+      <p>There are many descriptions of HTML, like how it stands for Hyper Text Markup Language, is the standard markup language for creating web pages and all that nonsense, I'll explain html by example.
+      </p>
+      <p>This is a basic HTML template. In the world of computer science, we usually start any programming language with "hello world". It's like the first step you take as a baby.</p>
+      <div class="alert alert-primary" role="alert">
+        <pre class="mb-0"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en" dir="ltr"&gt;
+  &lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;p&gt;Hello World!&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+      </div>
+
+      <p>Now I want you to do this,
+        <br>1. Open the notepad application in windows. Use the search feature.
+        <br>2. Copy and paste the above code segment into it.
+        <br>3. Save (control s) the file. We usually save our first file as index.html but anything with this syntax works: name.html. Save it in an easily accessible place like desktop.
+        <br>4. Go to a browser and open (control o) the exact same file. And drumrolls, you'll see a "Hello world" on your screen!
+        <br>5. Congratulate yourself, you are now a certified coder!!
+      </p>
+      <p>So this is basically how the browser works. It reads your html file, be it from your computer or from a server, which I will teach you how to deploy later, and translates it into the web interface. Now, what if we want something else, lets
+        say a image, or header etc? I want you to observe what we're doing here.</p>
+      <div class="alert alert-primary" role="alert">
+        <p>This is the exact code I use to express this sentence.</p>
+        <hr>
+        <code>
+          &lt;p&gt;This is the exact code I use to express this sentence.&lt;/p&gt;
+        </code>
+      </div>
+
+      <p>
+        So basically, the <code>&lt;p&gt;</code> opening tag tells your browser that I want a paragraph component here (denoted by p). Of course, when you start a sentence, you gotta finish it. The browser can't pick up periods, so you gotta close
+        the sentence
+        using the closing tag, <code>&lt;/p&gt;</code>
+      </p>
+      <p>Try changing the p tag in your hello world file into a h1 tag! See what happens now.</p>
+
+      <p class="text-justify">Now let's learn some other html components! Honestly, I prefer learning from experimenting, and that's the strategy I wanna employ here. I will provide code segments, and how they'll appear in the browser. Hopefully you
+        can, through
+        induction of what the code does, construct knowledge claim within the formalism of HTML. There is a computer science lingo: RTFM. I can't specify what it means here, but there's always
+        GIYF (Google is your friend). This documentation serves as your "manual", but there are many documentations on the web on html <a href="https://www.w3schools.com/">like this</a> which I encourage ya'll to employ. Since it may be your first
+        time you're doing this, you're more than welcomed to ask me for any assistance, I'll try my best to assist you!!
+      </p>
+      <h6>Title</h6>
+      <div class="alert alert-primary" role="alert">
+        <p>The title of the html is specified by this code segment. Copy paste/edit your webpage's one if you wanna change your website title, seen at the tab sections of your browser.</p>
+        <hr>
+        <code>
+          &lt;title&gt;title_name&lt;/title&gt;
+        </code>
+      </div>
+      <h6>Headers and text styling</h6>
+      <div class="alert alert-primary" role="alert">
+        <a href="https://www.w3schools.com/html/html_paragraphs.asp">
+          <h6>Headers</h6>
+        </a>
+        <hr>
+        <h1>Big daddy</h1>
+        <code>
+          &lt;h1&gt;Big daddy&lt;/h1&gt;
+        </code>
+        <hr>
+        <h6>h2, h3... to h6 (big baby)</h6>
+        <code>
+          &lt;h6&gt;h2, h3... to h6 (big baby)&lt;/h6&gt;
+        </code>
+        <hr>
+        <h6>Text styling</h6>
+        <hr>
+        <p>1. I want a breakline
+          <br>2. Here, and <b>bold</b>,
+          <br>3. And <i>Italics</i>,
+          <br>4. And <span>span (just a generic text component)</span>
+        </p>
+        <pre class="mb-0"><code>&lt;p&gt;1. I want a breakline
+  &lt;br&gt;2. Here, and &lt;b&gt;bold&lt;/b&gt;,
+  &lt;br&gt;3. And &lt;i&gt;Italics&lt;/i&gt;
+    &lt;br&gt;4. And &lt;span&gt;span (just a generic text component)&lt;/span&gt;
+&lt;/p&gt;
+          </code></pre>
+      </div>
+      <h6>Links</h6>
+      <div class="alert alert-primary" role="alert">
+        <p>Href basically means Hypertext REFerence, a basically means anchor.</p>
+        <hr>
+        <a href="https://github.com/">Click me</a> <br>
+
+        <code>
+          &lt;a href="https://github.com/"&gt;Click me&lt;/a&gt;
+        </code>
+        <hr>
+        <a href="https://github.com/" target="_blank">Click me</a> <br>
+
+        <code>
+          &lt;a href="https://github.com/" target="_blank"&gt;Click me&lt;/a&gt;
+        </code>
+        <hr>
+        <a href="https://github.com/">
+          <h5>This paragraph rocks</h5>
+        </a>
+        <code>
+          &lt;a href="https://github.com/" &gt;&lt;h5&gt;This header rocks&lt;/h5&gt&lt;/a&gt;
+        </code>
+      </div>
+      <p>At this point, I realised how limited my scope is to describe everything here. So I'll provide links for ya'll to learn it from w3schools, who provide better documentation.</p>
+      <h6>Favicon and Images</h6>
+      <div class="alert alert-primary">
+        <h6>For Images</h6>
+        <a href="https://www.w3schools.com/html/html_images.asp">
+          <p>Try this link!</p>
+        </a>
+        <hr>
+        <h6>For favicon</h6>
+        <p>Favicon is the small icon thingy at the tabs.</p>
+        <p>Generate your favicon <a href="https://favicon.io/">here</a></p>
+        <p>Then, replace the favicon.ico file with your generated favicon. Make sure the file name matches</p>
+      </div>
+      <h6></h6>
+    </div>
+  </div>
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/popper.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+
+</html>

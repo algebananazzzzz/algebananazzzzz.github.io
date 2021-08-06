@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Sidebar 02</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <div class="wrapper d-flex align-items-stretch">
+    <nav id="sidebar">
+      <div class="custom-menu">
+        <button type="button" id="sidebarCollapse" class="btn btn-primary">
+          <i class="fa fa-bars"></i>
+          <span class="sr-only">Toggle Menu</span>
+        </button>
+      </div>
+      <div class="p-4 pt-5">
+        <h1><a href="index.html" class="logo">Tutorial</a></h1>
+        <ul class="list-unstyled components mb-5">
+          <li class="active">
+            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Part I</a>
+            <ul class="collapse list-unstyled" id="homeSubmenu">
+              <li>
+                <a href="index.html">Introduction</a>
+              </li>
+              <li>
+                <a href="advanced.html">Your resume</a>
+              </li>
+            </ul>
+          </li>
+          <li class="active">
+            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Tutorials</a>
+            <ul class="collapse list-unstyled" id="homeSubmenu">
+              <li>
+                <a href="basics.html">HTML basics</a>
+              </li>
+              <li>
+                <a href="#">CSS basics</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Deployment :o</a>
+            <ul class="collapse list-unstyled" id="pageSubmenu">
+              <li>
+                <a href="github.html">Github</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Page Content  -->
+    <div id="content" class="p-4 p-md-5 pt-5">
+      <h1 id="item-1" class="mt-4">CSS basics</h1>
+      <p class="text-justify">Okay now, lets dive into styling yea?? I'll use the same approach I did wif html to teach ya'll.</p>
+      <p>This is a generic CSS code</p>
+      <div class="alert alert-primary" role="alert">
+        <pre class="mb-0"><code>.myclass {
+   font-size: 1rem;
+   color: #f50057
+}
+</code></pre>
+      </div>
+      <p>What happens is that we specified a class (myclass), and anything that has "myclass" specified in their class would take up the same style!</p>
+      <div class="alert alert-primary" role="alert">
+        <p style="font-size: 1rem;color:#f50057">Styled paragraph</p>
+        <pre class="mb-0"><code>&lt;p class="myclass"&gt;Styled paragraph&lt;/p&gt;
+        </code></pre>
+      </div>
+      <p>This is one way we can specify style. But, for our purpose, we are using a preset template, we won't be creating our own css probably because its just too hard (trust me I tried, but it only suceeds sometimes). We will be using this syntax
+        mainly.</p>
+      <div class="alert alert-primary" role="alert">
+        <p style="font-size: 1rem;color:#f50057">Styled paragraph</p>
+        <pre class="mb-0"><code>&lt;p style="font-size: 1rem; color:#f50057"&gt;Styled paragraph&lt;/p&gt;
+          </code></pre>
+      </div>
+      <h5>More attributes</h5>
+      <p>Here I will specify some attributes we can change, and how we can do it.</p>
+      <div class="alert alert-primary">
+        <p class="mb-0">You can find more ways to style <a href="https://www.w3schools.com/css/">here</a>
+        </p>
+      </div>
+      <h6>Font family</h6>
+      <p>This may be confusing to many people... To do this, we gotta edit the css stylesheet, as well as the head of the html.</p>
+      <p>1. Go to <a href="https://fonts.google.com/?query=arc&preview.text=hewwooo%20i%20hacked%20ur%20browser&preview.text_type=custom">this website</a> and choose a font style.</p>
+      <p>2. Add the font, then copy the styling link.</p>
+      <img class="img-fluid" src="images/fonts.png" alt="">
+      <p class="mt-3">3. Paste the styling link into the head of your html. Then, open the css file, search for the class that looks something like <br>body {
+        <br>...
+        <br>
+        },
+        <br>Add your specific style name into the font-family attribute, referring to the google site. So in my case,
+        <br>body {
+        <br>font-family: 'Architects Daughter', .....;
+        <br>...
+        <br>
+        },
+      </p>
+      <h6>Font color</h6>
+      <div class="alert alert-primary" role="alert">
+        <p style="color:#f50057">Styled paragraph</p>
+        <pre class="mb-0"><code>&lt;p style="color:#f50057"&gt;Styled paragraph&lt;/p&gt;
+          </code></pre>
+        <hr>
+        Here is an <a href="https://material.io/resources/color/#!/?view.left=0&view.right=0&primary.color=ff1744">awesome color tool</a> that I really like. And yes, Akila color!!
+      </div>
+      <h6>Justify paragraph</h6>
+      <div class="alert alert-primary" role="alert">
+        <p style="text-align: justify">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+          scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets
+          containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        <pre class="mb-0"><code>&lt;p style="text-align: justify"&gt;bunch of lorem ipsum bullshit&lt;/p&gt;
+          </code></pre>
+      </div>
+      <h6>Padding</h6>
+      <div class="alert alert-primary" role="alert">
+        <p style="padding-left:50px">Blehhhh</p>
+        <pre class="mb-0"><code>&lt;p style="padding-left:10px&gt;blehhh&lt;/p&gt;
+          </code></pre>
+        <p>(This works for padding(all rounded), padding-top, etc.)</p>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/popper.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+
+</html>
