@@ -253,7 +253,7 @@ p {
 
 .chem-div11 {
   grid-area: 12 / 3 / 16 / 5;
-  background-color: rgba(0, 184, 212, 0.8);
+  background-color: rgba(0, 191, 165, 0.8);
   background-image: linear-gradient(to top, rgba(0, 200, 83, 1) 50%, transparent 50%);
   background-size: 100% 200%;
   background-position: top;
@@ -262,7 +262,7 @@ p {
 
 .chem-div12 {
   grid-area: 14 / 1 / 15 / 3;
-  background-color: rgba(29, 233, 182, 0.8);
+  background-color: rgba(0, 230, 118, 0.8);
   background-image: linear-gradient(to top, rgba(0, 200, 83, 1) 50%, transparent 50%);
   background-size: 100% 200%;
   background-position: top;
