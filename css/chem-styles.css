@@ -208,8 +208,8 @@ p {
 
 .chem-div6 {
   grid-area: 9 / 1 / 12 / 3;
-  background-color: rgba(94, 53, 177, 0.8);
-  background-image: linear-gradient(to top, rgba(69, 39, 160, 1) 50%, transparent 50%);
+  background-color: rgba(101, 31, 255, 0.8);
+  background-image: linear-gradient(to top, rgba(48, 79, 254, 1) 50%, transparent 50%);
   background-size: 100% 200%;
   background-position: top;
   transition: background-position 0.5s ease-in-out;
@@ -217,8 +217,8 @@ p {
 
 .chem-div7 {
   grid-area: 9 / 3 / 11 / 4;
-  background-color: rgba(126, 87, 194, 0.8);
-  background-image: linear-gradient(to top, rgba(94, 53, 177, 1) 50%, transparent 50%);
+  background-color: rgba(124, 77, 255, 0.8);
+  background-image: linear-gradient(to top, rgba(48, 79, 254, 1) 50%, transparent 50%);
   background-size: 100% 200%;
   background-position: top;
   transition: background-position 0.5s ease-in-out;
@@ -226,8 +226,8 @@ p {
 
 .chem-div8 {
   grid-area: 9 / 4 / 11 / 5;
-  background-color: rgba(92, 107, 192, 0.8);
-  background-image: linear-gradient(to top, rgba(57, 73, 171, 1) 50%, transparent 50%);
+  background-color: rgba(61, 90, 254, 0.8);
+  background-image: linear-gradient(to top, rgba(48, 79, 254, 1) 50%, transparent 50%);
   background-size: 100% 200%;
   background-position: top;
   transition: background-position 0.5s ease-in-out;
@@ -235,8 +235,8 @@ p {
 
 .chem-div9 {
   grid-area: 11 / 3 / 12 / 5;
-  background-color: rgba(157, 73, 171, 0.8);
-  background-image: linear-gradient(to top, rgba(40, 53, 147, 1) 50%, transparent 50%);
+  background-color: rgba(48, 79, 254, 0.8);
+  background-image: linear-gradient(to top, rgba(48, 79, 254, 1) 50%, transparent 50%);
   background-size: 100% 200%;
   background-position: top;
   transition: background-position 0.5s ease-in-out;
@@ -244,8 +244,8 @@ p {
 
 .chem-div10 {
   grid-area: 12 / 1 / 14 / 3;
-  background-color: rgba(25, 118, 210, 0.8);
-  background-image: linear-gradient(to top, rgba(13, 71, 161, 1) 50%, transparent 50%);
+  background-color: rgba(41, 98, 255, 0.8);
+  background-image: linear-gradient(to top, rgba(48, 79, 254, 1) 50%, transparent 50%);
   background-size: 100% 200%;
   background-position: top;
   transition: background-position 0.5s ease-in-out;
@@ -253,8 +253,8 @@ p {
 
 .chem-div11 {
   grid-area: 12 / 3 / 16 / 5;
-  background-color: rgba(29, 233, 182, 0.8);
-  background-image: linear-gradient(to top, rgba(29, 233, 182, 1) 50%, transparent 50%);
+  background-color: rgba(0, 184, 212, 0.8);
+  background-image: linear-gradient(to top, rgba(0, 191, 165, 1) 50%, transparent 50%);
   background-size: 100% 200%;
   background-position: top;
   transition: background-position 0.5s ease-in-out;
@@ -262,8 +262,8 @@ p {
 
 .chem-div12 {
   grid-area: 14 / 1 / 15 / 3;
-  background-color: rgba(118, 255, 3, 0.8);
-  background-image: linear-gradient(to top, rgba(118, 255, 3, 1) 50%, transparent 50%);
+  background-color: rgba(29, 233, 182, 0.8);
+  background-image: linear-gradient(to top, rgba(0, 191, 165, 1) 50%, transparent 50%);
   background-size: 100% 200%;
   background-position: top;
   transition: background-position 0.5s ease-in-out;
@@ -271,8 +271,8 @@ p {
 
 .chem-div13 {
   grid-area: 15 / 1 / 18 / 3;
-  background-color: rgba(255, 234, 0, 0.8);
-  background-image: linear-gradient(to top, rgba(255, 234, 0, 1) 50%, transparent 50%);
+  background-color: rgba(255, 171, 0, 0.8);
+  background-image: linear-gradient(to top, rgba(255, 109, 0, 1) 50%, transparent 50%);
   background-size: 100% 200%;
   background-position: top;
   transition: background-position 0.5s ease-in-out;
@@ -281,7 +281,7 @@ p {
 .chem-div14 {
   grid-area: 16 / 3 / 18 / 5;
   background-color: rgba(255, 145, 0, 0.8);
-  background-image: linear-gradient(to top, rgba(255, 145, 0, 1) 50%, transparent 50%);
+  background-image: linear-gradient(to top, rgba(255, 109, 0, 1) 50%, transparent 50%);
   background-size: 100% 200%;
   background-position: top;
   transition: background-position 0.5s ease-in-out;
