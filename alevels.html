@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
+  <title></title>
+</head>
+
+<body style="font-family:'Architects Daughter'">
+
+  <h1>Practicals</h1>
+
+  <h2>Physics paper 4 (25 Oct, Monday) <span style="float:right">D-<span id="phyp4"></span></span></h2>
+  <h2>Chemistry paper 4 (20 Oct, Wednesday) <span style="float:right">D-<span id="chemp4"></span></span></h2>
+
+  <h1>General Paper</h1>
+  <h2>General paper 1 and 2 (8 Nov, Monday) <span style="float:right">D-<span id="gp"></span></span></h2>
+
+  <h1>Knowledge and Inquiry</h1>
+  <h2>KI paper 1 (8 Nov, Monday) <span style="float:right">D-<span id="kip1"></span></span></h2>
+  <h2>KI paper 2 (12 Nov, Friday) <span style="float:right">D-<span id="kip2"></span></span></h2>
+
+  <h1>Physucks</h1>
+  <h2>Physics paper 1 (1 Dec, Wednesday) <span style="float:right">D-<span id="phyp1"></span></span></h2>
+  <h2>Physics paper 2 (19 Nov, Friday) <span style="float:right">D-<span id="phyp2"></span></span></h2>
+  <h2>Physics paper 3 (23 Nov, Tuesday) <span style="float:right">D-<span id="phyp3"></span></span></h2>
+
+  <h1>Mathematics</h1>
+  <h2>Mathematics paper 1 (9 Nov, Tuesday) <span style="float:right">D-<span id="mathp1"></span></span></h2>
+  <h2>Mathematics paper 2 (12 Nov, Friday) <span style="float:right">D-<span id="mathp2"></span></span></h2>
+
+  <h1>Chemistry</h1>
+  <h2>Chemistry paper 1 (26 Nov, Friday) <span style="float:right">D-<span id="chemp1"></span></span></h2>
+  <h2>Chemistry paper 2 (11 Nov, Thursday) <span style="float:right">D-<span id="chemp2"></span></span></h2>
+  <h2>Chemistry paper 3 (17 Nov, Wednesday) <span style="float:right">D-<span id="chemp3"></span></span></h2>
+
+  <script>
+    const oneDay = 24 * 60 * 60 * 1000;
+    const todayDate = new Date()
+
+    const gpDate = new Date(2021, 10, 8)
+
+    const kip1Date = new Date(2021, 10, 8)
+    const kip2Date = new Date(2021, 10, 12)
+
+    const phyp1Date = new Date(2021, 11, 1)
+    const phyp2Date = new Date(2021, 10, 19)
+    const phyp3Date = new Date(2021, 10, 23)
+    const phyp4Date = new Date(2021, 9, 25)
+
+    const mathp1Date = new Date(2021, 10, 9)
+    const mathp2Date = new Date(2021, 10, 12)
+
+    const chemp1Date = new Date(2021, 10, 26)
+    const chemp2Date = new Date(2021, 10, 11)
+    const chemp3Date = new Date(2021, 10, 17)
+    const chemp4Date = new Date(2021, 9, 20)
+
+    const geogDate = new Date(2021, 10, 26)
+    const econsDate = new Date(2021, 10, 16)
+
+
+    document.getElementById('gp').innerHTML = Math.round(Math.abs((gpDate - todayDate) / oneDay))
+    document.getElementById('kip1').innerHTML = Math.round(Math.abs((kip1Date - todayDate) / oneDay))
+    document.getElementById('kip2').innerHTML = Math.round(Math.abs((kip2Date - todayDate) / oneDay))
+
+    document.getElementById('phyp1').innerHTML = Math.round(Math.abs((phyp1Date - todayDate) / oneDay))
+    document.getElementById('phyp2').innerHTML = Math.round(Math.abs((phyp2Date - todayDate) / oneDay))
+    document.getElementById('phyp3').innerHTML = Math.round(Math.abs((phyp3Date - todayDate) / oneDay))
+    document.getElementById('phyp4').innerHTML = Math.round(Math.abs((phyp4Date - todayDate) / oneDay))
+
+    document.getElementById('mathp1').innerHTML = Math.round(Math.abs((mathp1Date - todayDate) / oneDay))
+    document.getElementById('mathp2').innerHTML = Math.round(Math.abs((mathp2Date - todayDate) / oneDay))
+
+    document.getElementById('chemp1').innerHTML = Math.round(Math.abs((chemp1Date - todayDate) / oneDay))
+    document.getElementById('chemp2').innerHTML = Math.round(Math.abs((chemp2Date - todayDate) / oneDay))
+    document.getElementById('chemp3').innerHTML = Math.round(Math.abs((chemp3Date - todayDate) / oneDay))
+    document.getElementById('chemp4').innerHTML = Math.round(Math.abs((chemp4Date - todayDate) / oneDay))
+
+    document.getElementById('econs').innerHTML = Math.round(Math.abs((econsDate - todayDate) / oneDay))
+    document.getElementById('geog').innerHTML = Math.round(Math.abs((geogDate - todayDate) / oneDay))
+  </script>
+</body>
+
+</html>
