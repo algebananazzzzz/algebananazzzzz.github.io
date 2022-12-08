@@ -40,9 +40,8 @@
     elem.click();
   }, i * 50);
 })
-
 // For monthly only
-(Array.from(document.querySelectorAll(':not([data-testid="5ffd4c35209d9a0012c53075-right"])[aria-label="Yes option, unselected"] '))).forEach((elem, i) => {
+(Array.from(document.querySelectorAll(':not([data-testid="5ff571dfb3f0b4001141cabb-right"]):not([data-testid="5ffd4c35209d9a0012c53075-right"])[aria-label="Yes option, unselected"] '))).forEach((elem, i) => {
   setTimeout(() => {
     elem.click();
   }, i * 50);
@@ -56,7 +55,7 @@
 })
 
 // For daily only
-(Array.from(document.querySelectorAll(':not([data-testid="5ffd558ffbd2de0011902b0c-right"]):not([data-testid="5ffd4c35209d9a0012c53075-right"])[aria-label="Yes option, unselected"] '))).forEach((elem, i) => {
+(Array.from(document.querySelectorAll(':not([data-testid="5ff571dfb3f0b4001141cabb-right"]):not([data-testid="5ffd558ffbd2de0011902b0c-right"]):not([data-testid="5ffd4c35209d9a0012c53075-right"])[aria-label="Yes option, unselected"] '))).forEach((elem, i) => {
   setTimeout(() => {
     elem.click();
   }, i * 50);

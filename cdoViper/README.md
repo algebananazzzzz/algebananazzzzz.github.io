@@ -1,6 +1,6 @@
 # CdoViper
 
-ID10T instructions: **type** javascript: into browser, **then** copy paste code. **Do this twice.**
+ID10T instructions: **type** javascript: into browser, **then** copy paste code. **Do this twice. Thrice for resus**
 **You must manually type the string *javascript:* in browser first before copy paste code**
 
 
@@ -15,7 +15,7 @@ javascript: (Array.from ... )
 
 **Reason:**
 1. Browser auto remove "javascript:" as a security feature if we just copy paste so need type manually.
-2. Do this twice because after click, some follow up questions will pop up and thus code need to be executed again
+2. Do this twice/thrice because after click, some follow up questions will pop up and thus code need to be executed again
 
 
 # Ambulance checklist
@@ -67,7 +67,7 @@ javascript: (Array.from ... )
 
 ## For monthly only
 ```
-(Array.from(document.querySelectorAll(':not([data-testid="5ffd4c35209d9a0012c53075-right"])[aria-label="Yes option, unselected"] '))).forEach((elem, i) => {
+(Array.from(document.querySelectorAll(':not([data-testid="5ff571dfb3f0b4001141cabb-right"]):not([data-testid="5ffd4c35209d9a0012c53075-right"])[aria-label="Yes option, unselected"] '))).forEach((elem, i) => {
   setTimeout(() => {
     elem.click();
   }, i * 50);
@@ -85,7 +85,7 @@ javascript: (Array.from ... )
 
 ## For daily only
 ```
-(Array.from(document.querySelectorAll(':not([data-testid="5ffd558ffbd2de0011902b0c-right"]):not([data-testid="5ffd4c35209d9a0012c53075-right"])[aria-label="Yes option, unselected"] '))).forEach((elem, i) => {
+(Array.from(document.querySelectorAll(':not([data-testid="5ff571dfb3f0b4001141cabb-right"]):not([data-testid="5ffd558ffbd2de0011902b0c-right"]):not([data-testid="5ffd4c35209d9a0012c53075-right"])[aria-label="Yes option, unselected"] '))).forEach((elem, i) => {
   setTimeout(() => {
     elem.click();
   }, i * 50);
