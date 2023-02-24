@@ -1,6 +1,6 @@
 # Autoclicker for FormSG
 
-ID10T instructions: **type** javascript: into browser, **then** copy paste code. **Do this twice. Thrice for resus**
+ID10T instructions: type **javascript:** into browser, **then** copy paste code. **Do this multiple times till all checkboxes are clicked**
 
 **You must manually type the string *javascript:* in browser first before copy paste code**
 
@@ -16,13 +16,13 @@ javascript: (Array.from ... )
 
 **Reason:**
 1. Browser auto remove "javascript:" as a security feature if we just copy paste so need type manually.
-2. Do this twice/thrice because after click, some follow up questions will pop up and thus code need to be executed again
+2. After the first execution runs complete, follow up questions will pop up and thus code need to be executed again. E.g. after clicking item is present, a new checkbox to check expiry > 6 months away will pop up. 
 
 ![](demo.gif)
 
 # Ambulance checklist
 ## For monthly + weekly
-```
+```it
 (Array.from(document.querySelectorAll('[aria-label="Yes option, unselected"]'))).forEach((elem, i) => {
   setTimeout(() => {
     elem.click();
