@@ -18,6 +18,7 @@ javascript: (Array.from ... )
 1. Browser auto remove "javascript:" as a security feature if we just copy paste so need type manually.
 2. Do this twice/thrice because after click, some follow up questions will pop up and thus code need to be executed again
 
+![](demo.gif)
 
 # Ambulance checklist
 ## For monthly + weekly

@@ -172,119 +172,67 @@ p {
 
 .chem-div2 {
   grid-area: 3 / 1 / 6 / 4;
-  background: rgba(255, 23, 68, 0.8);
-  background-image: linear-gradient(to top, rgba(255, 23, 68, 1) 50%, transparent 50%);
-  background-size: 100% 200%;
-  background-position: top;
-  transition: background-position 0.5s ease-in-out;
+  background-color: #560027;
 }
 
 .chem-div3 {
   grid-area: 3 / 4 / 6 / 5;
-  background-color: rgba(255, 23, 68, 0.5);
-  background-image: linear-gradient(to top, rgba(255, 23, 68, 1) 50%, transparent 50%);
-  background-size: 100% 200%;
-  background-position: top;
-  transition: background-position 0.5s ease-in-out;
+  background-color: #880e4f;
 }
 
 .chem-div4 {
   grid-area: 6 / 1 / 9 / 2;
-  background-color: rgba(213, 0, 249, 0.5);
-  background-image: linear-gradient(to top, rgba(213, 0, 249, 1) 50%, transparent 50%);
-  background-size: 100% 200%;
-  background-position: top;
-  transition: background-position 0.5s ease-in-out;
+  background-color: #4a148c;
 }
 
 .chem-div5 {
   grid-area: 6 / 2 / 9 / 5;
-  background-color: rgba(213, 0, 249, 0.8);
-  background-image: linear-gradient(to top, rgba(213, 0, 249, 1) 50%, transparent 50%);
-  background-size: 100% 200%;
-  background-position: top;
-  transition: background-position 0.5s ease-in-out;
+  background-color: #12005e;
 }
 
 .chem-div6 {
   grid-area: 9 / 1 / 12 / 3;
-  background-color: rgba(101, 31, 255, 0.8);
-  background-image: linear-gradient(to top, rgba(48, 79, 254, 1) 50%, transparent 50%);
-  background-size: 100% 200%;
-  background-position: top;
-  transition: background-position 0.5s ease-in-out;
+  background-color: #002171;
 }
 
 .chem-div7 {
   grid-area: 9 / 3 / 11 / 4;
-  background-color: rgba(124, 77, 255, 0.8);
-  background-image: linear-gradient(to top, rgba(48, 79, 254, 1) 50%, transparent 50%);
-  background-size: 100% 200%;
-  background-position: top;
-  transition: background-position 0.5s ease-in-out;
+  background-color: #0d47a1;
 }
 
 .chem-div8 {
   grid-area: 9 / 4 / 11 / 5;
-  background-color: rgba(61, 90, 254, 0.8);
-  background-image: linear-gradient(to top, rgba(48, 79, 254, 1) 50%, transparent 50%);
-  background-size: 100% 200%;
-  background-position: top;
-  transition: background-position 0.5s ease-in-out;
+  background-color: #00363a;
 }
 
 .chem-div9 {
   grid-area: 11 / 3 / 12 / 5;
-  background-color: rgba(48, 79, 254, 0.8);
-  background-image: linear-gradient(to top, rgba(48, 79, 254, 1) 50%, transparent 50%);
-  background-size: 100% 200%;
-  background-position: top;
-  transition: background-position 0.5s ease-in-out;
+  background-color: #006064;
 }
 
 .chem-div10 {
   grid-area: 12 / 1 / 14 / 3;
-  background-color: rgba(41, 98, 255, 0.8);
-  background-image: linear-gradient(to top, rgba(48, 79, 254, 1) 50%, transparent 50%);
-  background-size: 100% 200%;
-  background-position: top;
-  transition: background-position 0.5s ease-in-out;
+  background-color: #003d00;
 }
 
 .chem-div11 {
   grid-area: 12 / 3 / 16 / 5;
-  background-color: rgba(0, 191, 165, 0.8);
-  background-image: linear-gradient(to top, rgba(0, 200, 83, 1) 50%, transparent 50%);
-  background-size: 100% 200%;
-  background-position: top;
-  transition: background-position 0.5s ease-in-out;
+  background-color: #f3e5f5;
 }
 
 .chem-div12 {
   grid-area: 14 / 1 / 15 / 3;
-  background-color: rgba(0, 230, 118, 0.8);
-  background-image: linear-gradient(to top, rgba(0, 200, 83, 1) 50%, transparent 50%);
-  background-size: 100% 200%;
-  background-position: top;
-  transition: background-position 0.5s ease-in-out;
+  background-color: #ede7f6;
 }
 
 .chem-div13 {
   grid-area: 15 / 1 / 18 / 3;
-  background-color: rgba(255, 171, 0, 0.8);
-  background-image: linear-gradient(to top, rgba(255, 109, 0, 1) 50%, transparent 50%);
-  background-size: 100% 200%;
-  background-position: top;
-  transition: background-position 0.5s ease-in-out;
+  background-color: #e3f2fd;
 }
 
 .chem-div14 {
   grid-area: 16 / 3 / 18 / 5;
-  background-color: rgba(255, 145, 0, 0.8);
-  background-image: linear-gradient(to top, rgba(255, 109, 0, 1) 50%, transparent 50%);
-  background-size: 100% 200%;
-  background-position: top;
-  transition: background-position 0.5s ease-in-out;
+  background-color: #e0f2f1;
 }
 
 .chem-div2:hover {
@@ -461,279 +409,4 @@ p {
   visibility: hidden;
   opacity: 0;
   transition: visibility 0s, opacity 0.5s linear;
-}
-
-.chem-sm-div1 {}
-
-.chem-sm-div2 {
-  background: rgba(255, 23, 68, 0.8);
-  background-image: linear-gradient(to top, rgba(255, 23, 68, 1) 50%, transparent 50%);
-  background-size: 100% 200%;
-  background-position: top;
-  transition: background-position 0.5s ease-in-out;
-}
-
-.chem-sm-div3 {
-  background-color: rgba(255, 23, 68, 0.5);
-  background-image: linear-gradient(to top, rgba(255, 23, 68, 1) 50%, transparent 50%);
-  background-size: 100% 200%;
-  background-position: top;
-  transition: background-position 0.5s ease-in-out;
-}
-
-.chem-sm-div4 {
-  background-color: rgba(213, 0, 249, 0.5);
-  background-image: linear-gradient(to top, rgba(213, 0, 249, 1) 50%, transparent 50%);
-  background-size: 100% 200%;
-  background-position: top;
-  transition: background-position 0.5s ease-in-out;
-}
-
-.chem-sm-div5 {
-  background-color: rgba(213, 0, 249, 0.8);
-  background-image: linear-gradient(to top, rgba(213, 0, 249, 1) 50%, transparent 50%);
-  background-size: 100% 200%;
-  background-position: top;
-  transition: background-position 0.5s ease-in-out;
-}
-
-.chem-sm-div6 {
-  background-color: rgba(101, 31, 255, 0.8);
-  background-image: linear-gradient(to top, rgba(101, 31, 255, 1) 50%, transparent 50%);
-  background-size: 100% 200%;
-  background-position: top;
-  transition: background-position 0.5s ease-in-out;
-}
-
-.chem-sm-div7 {
-  background-color: rgba(41, 121, 255, 0.8);
-  background-image: linear-gradient(to top, rgba(41, 121, 255, 1) 50%, transparent 50%);
-  background-size: 100% 200%;
-  background-position: top;
-  transition: background-position 0.5s ease-in-out;
-}
-
-.chem-sm-div8 {
-  background-color: rgba(130, 177, 255, 0.8);
-  background-image: linear-gradient(to top, rgba(130, 177, 255, 1) 50%, transparent 50%);
-  background-size: 100% 200%;
-  background-position: top;
-  transition: background-position 0.5s ease-in-out;
-}
-
-.chem-sm-div9 {
-  background-color: rgba(128, 216, 255, 0.8);
-  background-image: linear-gradient(to top, rgba(128, 216, 255, 1) 50%, transparent 50%);
-  background-size: 100% 200%;
-  background-position: top;
-  transition: background-position 0.5s ease-in-out;
-}
-
-.chem-sm-div10 {
-  background-color: rgba(0, 229, 255, 0.8);
-  background-image: linear-gradient(to top, rgba(0, 229, 255, 1) 50%, transparent 50%);
-  background-size: 100% 200%;
-  background-position: top;
-  transition: background-position 0.5s ease-in-out;
-}
-
-.chem-sm-div11 {
-  background-color: rgba(29, 233, 182, 0.8);
-  background-image: linear-gradient(to top, rgba(29, 233, 182, 1) 50%, transparent 50%);
-  background-size: 100% 200%;
-  background-position: top;
-  transition: background-position 0.5s ease-in-out;
-}
-
-.chem-sm-div12 {
-  background-color: rgba(118, 255, 3, 0.8);
-  background-image: linear-gradient(to top, rgba(118, 255, 3, 1) 50%, transparent 50%);
-  background-size: 100% 200%;
-  background-position: top;
-  transition: background-position 0.5s ease-in-out;
-}
-
-.chem-sm-div13 {
-  background-color: rgba(255, 234, 0, 0.8);
-  background-image: linear-gradient(to top, rgba(255, 234, 0, 1) 50%, transparent 50%);
-  background-size: 100% 200%;
-  background-position: top;
-  transition: background-position 0.5s ease-in-out;
-}
-
-.chem-sm-div14 {
-  background-color: rgba(255, 145, 0, 0.8);
-  background-image: linear-gradient(to top, rgba(255, 145, 0, 1) 50%, transparent 50%);
-  background-size: 100% 200%;
-  background-position: top;
-  transition: background-position 0.5s ease-in-out;
-}
-
-.chem-sm-div2:hover {
-  background-position: bottom;
-}
-
-.chem-sm-div2:hover>.displayed-content {
-  display: none;
-}
-
-.chem-sm-div2:hover>.hidden-content {
-  visibility: visible;
-  opacity: 1;
-}
-
-.chem-sm-div3:hover {
-  background-position: bottom;
-}
-
-.chem-sm-div3:hover>.displayed-content {
-  display: none;
-}
-
-.chem-sm-div3:hover>.hidden-content {
-  visibility: visible;
-  opacity: 1;
-}
-
-.chem-sm-div4:hover {
-  background-position: bottom;
-}
-
-.chem-sm-div4:hover>.displayed-content {
-  display: none;
-}
-
-.chem-sm-div4:hover>.hidden-content {
-  visibility: visible;
-  opacity: 1;
-}
-
-.chem-sm-div5:hover {
-  background-position: bottom;
-}
-
-.chem-sm-div5:hover>.displayed-content {
-  display: none;
-}
-
-.chem-sm-div5:hover>.hidden-content {
-  visibility: visible;
-  opacity: 1;
-}
-
-.chem-sm-div6:hover {
-  background-position: bottom;
-}
-
-.chem-sm-div6:hover>.displayed-content {
-  display: none;
-}
-
-.chem-sm-div6:hover>.hidden-content {
-  visibility: visible;
-  opacity: 1;
-}
-
-.chem-sm-div7:hover {
-  background-position: bottom;
-}
-
-.chem-sm-div7:hover>.displayed-content {
-  display: none;
-}
-
-.chem-sm-div7:hover>.hidden-content {
-  visibility: visible;
-  opacity: 1;
-}
-
-.chem-sm-div8:hover {
-  background-position: bottom;
-}
-
-.chem-sm-div8:hover>.displayed-content {
-  display: none;
-}
-
-.chem-sm-div8:hover>.hidden-content {
-  visibility: visible;
-  opacity: 1;
-}
-
-.chem-sm-div9:hover {
-  background-position: bottom;
-}
-
-.chem-sm-div9:hover>.displayed-content {
-  display: none;
-}
-
-.chem-sm-div9:hover>.hidden-content {
-  visibility: visible;
-  opacity: 1;
-}
-
-.chem-sm-div10:hover {
-  background-position: bottom;
-}
-
-.chem-sm-div10:hover>.displayed-content {
-  display: none;
-}
-
-.chem-sm-div10:hover>.hidden-content {
-  visibility: visible;
-  opacity: 1;
-}
-
-.chem-sm-div11:hover {
-  background-position: bottom;
-}
-
-.chem-sm-div11:hover>.displayed-content {
-  display: none;
-}
-
-.chem-sm-div11:hover>.hidden-content {
-  visibility: visible;
-  opacity: 1;
-}
-
-.chem-sm-div12:hover {
-  background-position: bottom;
-}
-
-.chem-sm-div12:hover>.displayed-content {
-  display: none;
-}
-
-.chem-sm-div12:hover>.hidden-content {
-  visibility: visible;
-  opacity: 1;
-}
-
-.chem-sm-div13:hover {
-  background-position: bottom;
-}
-
-.chem-sm-div13:hover>.displayed-content {
-  display: none;
-}
-
-.chem-sm-div13:hover>.hidden-content {
-  visibility: visible;
-  opacity: 1;
-}
-
-.chem-sm-div14:hover {
-  background-position: bottom;
-}
-
-.chem-sm-div14:hover>.displayed-content {
-  display: none;
-}
-
-.chem-sm-div14:hover>.hidden-content {
-  visibility: visible;
-  opacity: 1;
 }

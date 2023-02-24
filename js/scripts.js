@@ -1,12 +1,3 @@
-/*!
- * Start Bootstrap - Resume v7.0.0 (https://startbootstrap.com/theme/resume)
- * Copyright 2013-2021 Start Bootstrap
- * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-resume/blob/master/LICENSE)
- */
-//
-// Scripts
-//
-
 window.addEventListener('DOMContentLoaded', event => {
 
   // Activate Bootstrap scrollspy on the main nav element
@@ -120,4 +111,25 @@ function change_green_state() {
 
 function change_amber_state() {
   granimInstance.changeState('amber-state');
+}
+
+var project_view = 0
+
+function toggle_project_view() {
+  if (project_view === 0) {
+    var tempScrollTop = $(window).scrollTop();
+    $('#toggle_project_viewer').html('<i class="fa fa-eye"></i> Minimal view')
+    $('.max-display').removeClass('d-none')
+    $('.min-display').addClass('d-none')
+    $(window).scrollTop(tempScrollTop);
+    project_view = 1
+  } else {
+    var tempScrollTop = $(window).scrollTop();
+    $('#toggle_project_viewer').html('<i class="fa fa-eye"></i> Full view')
+    $('.min-display').removeClass('d-none')
+    $('.max-display').addClass('d-none')
+    $(window).scrollTop(tempScrollTop);
+    project_view = 0
+  }
+
 }
