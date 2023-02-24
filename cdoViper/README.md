@@ -1,4 +1,4 @@
-# CdoViper
+# Autoclicker for FormSG
 
 ID10T instructions: **type** javascript: into browser, **then** copy paste code. **Do this twice. Thrice for resus**
 
