@@ -23,7 +23,7 @@ javascript: (Array.from ... )
 # Ambulance checklist
 ## For monthly + weekly
 ```it
-(Array.from(document.querySelectorAll('[aria-label="Yes option, unselected"]'))).forEach((elem, i) => {
+(Array.from(document.querySelectorAll('[aria-label*="Yes option, unselected"]'))).forEach((elem, i) => {
   setTimeout(() => {
     elem.click();
   }, i * 50);
@@ -32,7 +32,7 @@ javascript: (Array.from ... )
 
 ## For monthly only
 ```
-(Array.from(document.querySelectorAll(':not([data-testid="6018c87318bee80011f0dc1a-right"])[aria-label="Yes option, unselected"] '))).forEach((elem, i) => {
+(Array.from(document.querySelectorAll(':not([data-testid="6018c87318bee80011f0dc1a-right"])[aria-label*="Yes option, unselected"] '))).forEach((elem, i) => {
   setTimeout(() => {
     elem.click();
   }, i * 50);
@@ -41,7 +41,7 @@ javascript: (Array.from ... )
 
 ## For weekly only
 ```
-(Array.from(document.querySelectorAll(':not([data-testid="6018c3fdd0bead0011ac7198-right"])[aria-label="Yes option, unselected"] '))).forEach((elem, i) => {
+(Array.from(document.querySelectorAll(':not([data-testid="6018c3fdd0bead0011ac7198-right"])[aria-label*="Yes option, unselected"] '))).forEach((elem, i) => {
   setTimeout(() => {
     elem.click();
   }, i * 50);
@@ -50,7 +50,7 @@ javascript: (Array.from ... )
 
 ## For daily only
 ```
-(Array.from(document.querySelectorAll(':not([data-testid="6018c3fdd0bead0011ac7198-right"]):not([data-testid="6018c87318bee80011f0dc1a-right"])[aria-label="Yes option, unselected"] '))).forEach((elem, i) => {
+(Array.from(document.querySelectorAll(':not([data-testid="6018c3fdd0bead0011ac7198-right"]):not([data-testid="6018c87318bee80011f0dc1a-right"])[aria-label*="Yes option, unselected"] '))).forEach((elem, i) => {
   setTimeout(() => {
     elem.click();
   }, i * 50);
@@ -60,7 +60,7 @@ javascript: (Array.from ... )
 # Resus checklist
 ## For monthly + weekly
 ```
-(Array.from(document.querySelectorAll('[aria-label="Yes option, unselected"]'))).forEach((elem, i) => {
+(Array.from(document.querySelectorAll('[aria-label*="Yes option, unselected"]'))).forEach((elem, i) => {
   setTimeout(() => {
     elem.click();
   }, i * 50);
@@ -69,7 +69,7 @@ javascript: (Array.from ... )
 
 ## For monthly only
 ```
-(Array.from(document.querySelectorAll(':not([data-testid="5ff571dfb3f0b4001141cabb-right"]):not([data-testid="5ffd4c35209d9a0012c53075-right"])[aria-label="Yes option, unselected"] '))).forEach((elem, i) => {
+(Array.from(document.querySelectorAll(':not([data-testid="5ff571dfb3f0b4001141cabb-right"]):not([data-testid="5ffd4c35209d9a0012c53075-right"])[aria-label*="Yes option, unselected"] '))).forEach((elem, i) => {
   setTimeout(() => {
     elem.click();
   }, i * 50);
@@ -78,7 +78,7 @@ javascript: (Array.from ... )
 
 ## For weekly only
 ```
-(Array.from(document.querySelectorAll(':not([data-testid="5ffd558ffbd2de0011902b0c-right"])[aria-label="Yes option, unselected"] '))).forEach((elem, i) => {
+(Array.from(document.querySelectorAll(':not([data-testid="5ffd558ffbd2de0011902b0c-right"])[aria-label*="Yes option, unselected"] '))).forEach((elem, i) => {
   setTimeout(() => {
     elem.click();
   }, i * 50);
@@ -87,7 +87,7 @@ javascript: (Array.from ... )
 
 ## For daily only
 ```
-(Array.from(document.querySelectorAll(':not([data-testid="5ff571dfb3f0b4001141cabb-right"]):not([data-testid="5ffd558ffbd2de0011902b0c-right"]):not([data-testid="5ffd4c35209d9a0012c53075-right"])[aria-label="Yes option, unselected"] '))).forEach((elem, i) => {
+(Array.from(document.querySelectorAll(':not([data-testid="5ff571dfb3f0b4001141cabb-right"]):not([data-testid="5ffd558ffbd2de0011902b0c-right"]):not([data-testid="5ffd4c35209d9a0012c53075-right"])[aria-label*="Yes option, unselected"] '))).forEach((elem, i) => {
   setTimeout(() => {
     elem.click();
   }, i * 50);
