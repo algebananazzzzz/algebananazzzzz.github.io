@@ -1,0 +1,169 @@
+{
+    "by_person": {
+        "Person 1": {
+            "Breacher": [
+                11,
+                22
+            ],
+            "Diver": [
+                15,
+                22,
+                25
+            ],
+            "total": 5
+        },
+        "Person 3": {
+            "Breacher": [
+                24,
+                25,
+                17
+            ],
+            "Diver": [
+                3,
+                16
+            ],
+            "total": 5
+        },
+        "Person 4": {
+            "Breacher": [
+                3,
+                1
+            ],
+            "Diver": [
+                17,
+                9,
+                10
+            ],
+            "total": 5
+        },
+        "Person 5": {
+            "Breacher": [
+                4,
+                23,
+                31
+            ],
+            "Diver": [
+                24,
+                2,
+                18
+            ],
+            "total": 6
+        },
+        "Person 2": {
+            "Breacher": [
+                10,
+                29,
+                2
+            ],
+            "Diver": [
+                4,
+                1,
+                29
+            ],
+            "total": 6
+        },
+        "Person 6": {
+            "Breacher": [
+                15,
+                16,
+                30
+            ],
+            "Diver": [
+                8,
+                30
+            ],
+            "total": 5
+        },
+        "Person 7": {
+            "Breacher": [
+                9,
+                8,
+                18
+            ],
+            "Diver": [
+                11,
+                23,
+                31
+            ],
+            "total": 6
+        }
+    },
+    "by_day": {
+        "1": {
+            "Breacher": "Person 4",
+            "Diver": "Person 2"
+        },
+        "2": {
+            "Breacher": "Person 2",
+            "Diver": "Person 5"
+        },
+        "3": {
+            "Breacher": "Person 4",
+            "Diver": "Person 3"
+        },
+        "4": {
+            "Breacher": "Person 5",
+            "Diver": "Person 2"
+        },
+        "8": {
+            "Breacher": "Person 7",
+            "Diver": "Person 6"
+        },
+        "9": {
+            "Breacher": "Person 7",
+            "Diver": "Person 4"
+        },
+        "10": {
+            "Breacher": "Person 2",
+            "Diver": "Person 4"
+        },
+        "11": {
+            "Breacher": "Person 1",
+            "Diver": "Person 7"
+        },
+        "15": {
+            "Breacher": "Person 6",
+            "Diver": "Person 1"
+        },
+        "16": {
+            "Breacher": "Person 6",
+            "Diver": "Person 3"
+        },
+        "17": {
+            "Breacher": "Person 3",
+            "Diver": "Person 4"
+        },
+        "18": {
+            "Breacher": "Person 7",
+            "Diver": "Person 5"
+        },
+        "22": {
+            "Breacher": "Person 1",
+            "Diver": "Person 1"
+        },
+        "23": {
+            "Breacher": "Person 5",
+            "Diver": "Person 7"
+        },
+        "24": {
+            "Breacher": "Person 3",
+            "Diver": "Person 5"
+        },
+        "25": {
+            "Breacher": "Person 3",
+            "Diver": "Person 1"
+        },
+        "29": {
+            "Breacher": "Person 2",
+            "Diver": "Person 2"
+        },
+        "30": {
+            "Breacher": "Person 6",
+            "Diver": "Person 6"
+        },
+        "31": {
+            "Breacher": "Person 5",
+            "Diver": "Person 7"
+        }
+    }
+}
