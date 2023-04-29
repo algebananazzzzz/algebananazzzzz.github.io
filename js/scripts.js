@@ -14,7 +14,7 @@ window.addEventListener('DOMContentLoaded', event => {
   const responsiveNavItems = [].slice.call(
     document.querySelectorAll('#navbarResponsive .nav-link')
   );
-  responsiveNavItems.map(function(responsiveNavItem) {
+  responsiveNavItems.map(function (responsiveNavItem) {
     responsiveNavItem.addEventListener('click', () => {
       if (window.getComputedStyle(navbarToggler).display !== 'none') {
         navbarToggler.click();
@@ -30,11 +30,16 @@ function set_gradient_state() {
   granimInstance.changeState(gradient_states[currentItem]);
 }
 
-$(document).ready(function() {
-  $(window).on("activate.bs.scrollspy", function() {
+$(document).ready(function () {
+  $(window).on("activate.bs.scrollspy", function () {
     set_gradient_state()
   })
 });
+
+const scrollToSection = (id) => {
+  const element = document.getElementById(id);
+  element.scrollIntoView()
+}
 
 var granimInstance = new Granim({
   element: '#canvas',
@@ -118,14 +123,14 @@ var project_view = 0
 function toggle_project_view() {
   if (project_view === 0) {
     var tempScrollTop = $(window).scrollTop();
-    $('#toggle_project_viewer').html('<i class="fa fa-eye"></i> Minimal view')
+    $('.toggle_project_viewer').html('<i class="fa fa-eye"></i> Minimal view')
     $('.max-display').removeClass('d-none')
     $('.min-display').addClass('d-none')
     $(window).scrollTop(tempScrollTop);
     project_view = 1
   } else {
     var tempScrollTop = $(window).scrollTop();
-    $('#toggle_project_viewer').html('<i class="fa fa-eye"></i> Full view')
+    $('.toggle_project_viewer').html('<i class="fa fa-eye"></i> Full view')
     $('.min-display').removeClass('d-none')
     $('.max-display').addClass('d-none')
     $(window).scrollTop(tempScrollTop);

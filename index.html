@@ -22,6 +22,7 @@
   <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
   <!-- Core theme CSS (includes Bootstrap)-->
   <link href="css/styles.css" rel="stylesheet" />
+  <link href="css/custom-portfolio-style.css" rel="stylesheet" />
 </head>
 
 <body id="page-top">
@@ -39,16 +40,16 @@
       <ul class="navbar-nav">
         <li class="nav-item"><a class="nav-link js-scroll-trigger" onclick="change_default_state()"
             onmouseover="change_default_state()" onmouseout="set_gradient_state()" href="#about">About</a></li>
-        <li class="nav-item"><a class="nav-link js-scroll-trigger" onclick="change_purple_state()"
-            onmouseover="change_purple_state()" onmouseout="set_gradient_state()" href="#experience">Experience</a></li>
+        <li class="nav-item"><a class="nav-link js-scroll-trigger" onclick="change_blue_state()"
+            onmouseover="change_purple_state()" onmouseout="set_gradient_state()" href="#skills">Skills</a></li>
         <li class="nav-item"><a class="nav-link js-scroll-trigger" onclick="change_dark_blue_state()"
             onmouseover="change_dark_blue_state()" onmouseout="set_gradient_state()" href="#projects">Projects</a></li>
-        <li class="nav-item"><a class="nav-link js-scroll-trigger" onclick="change_blue_state()"
-            onmouseover="change_blue_state()" onmouseout="set_gradient_state()" href="#skills">Skills</a></li>
-        <li class="nav-item"><a class="nav-link js-scroll-trigger" onclick="change_green_state()"
-            onmouseover="change_green_state()" onmouseout="set_gradient_state()" href="#education">Education</a></li>
+        <li class="nav-item"><a class="nav-link js-scroll-trigger" onclick="change_purple_state()"
+            onmouseover="change_blue_state()" onmouseout="set_gradient_state()" href="#experience">Experience</a></li>
         <li class="nav-item"><a class="nav-link js-scroll-trigger" onclick="change_amber_state()"
-            onmouseover="change_amber_state()" onmouseout="set_gradient_state()" href="#awards">Awards</a></li>
+            onmouseover="change_green_state()" onmouseout="set_gradient_state()" href="#awards">Awards</a></li>
+        <li class="nav-item"><a class="nav-link js-scroll-trigger" onclick="change_green_state()"
+            onmouseover="change_amber_state()" onmouseout="set_gradient_state()" href="#current">Ongoing</a></li>
       </ul>
     </div>
   </nav>
@@ -62,280 +63,28 @@
           <span class="text-primary">Daniel</span>
         </h1>
         <div class="subheading mb-5 white">
-          <a href="https://github.com/algebananazzzzz">Algebananazzzzz</a> ·
-          <a href="mailto:daniel.zhouqx@gmail.com">daniel.zhouqx@gmail.com</a>
+          <a href="https://github.com/algebananazzzzz">Algebananazzzzz</a>
         </div>
         <p class="lead mb-5 text-justify">
-          Welcome to my resume / portfolio page!! Feel free to browse my experiences and projects that shaped my journey
-          as a developer.
+          Welcome to my portfolio page! Please browse through my experiences and projects that have shaped my journey as
+          a developer.
         </p>
-        <p class="lead text-justify">I’m an aspiring software developer in Singapore. I develop softwares wherever life
-          leads, for myself and everyone. Besides that, I like ultimate frisbee, swimming and exploring new places. </p>
+        <p class="lead text-justify">As an aspiring software developer, I take on software development
+          projects wherever life takes me, for the benefit of myself and others.</p>
 
         <hr>
-        <p class="small mb-5 text-justify">
-          Algebananazzzzz is a wordplay on Algebra and banana (formulated when I was 11). It quickly became my coding
-          alias from then :p
+        <p class="small text-justify">
+          My coding alias is Algebananazzzzz, which is a fun wordplay on Algebra and banana!
         </p>
 
-        <div class="social-icons">
-          <a class="social-icon" target="_blank" href="https://github.com/algebananazzzzz"><i
-              class="fab fa-github"></i></a>
-          <a class="social-icon" target="_blank" href="https://github.com/algebananazzzzz"><i
-              class="fab fa-telegram"></i></a>
-          <a class="social-icon" target="_blank"
-            href="https://mail.google.com/mail/?view=cm&fs=1&to=daniel.zhouqx@gmail.com"><i
-              class="fa fa-envelope"></i></a>
-        </div>
-
+        <button onclick="scrollToSection('skills')" class="btn btn-primary">Scroll Down</button>
+      </div>
+      <div class="align-self-end position-absolute">
+        <a id="scrolldownDisplay" onclick="scrollToSection('skills')"><span></span><span></span><span></span>
+        </a>
       </div>
     </section>
     <hr class="m-0" />
-    <!-- Experience-->
-    <section class="resume-section" id="experience">
-      <div class="resume-section-content">
-        <h2 class="mb-5">Experience</h2>
-        <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-          <div class="flex-grow-1">
-            <h3 class="mb-0">Internship</h3>
-            <div class="subheading mb-3">Sustainable Lab Square</div>
-            <p class="text-justify">Development of sample AI software with Python’s NumPy, Pandas, Sklearn and Keras
-              libraries without aid, including a functional AI software that pulls JSON data from a weather forecast API
-              in a gardening watering
-              project.</p>
-            <p class="text-justify">
-              Also contributed to a project to accurately perform Facial and Image Recognition with utilising OpenVino
-              inference engine and Neural Compute Stick, and helped out in a hackathon organised for youths, guiding
-              older peers to the finals.</p>
-            <a href="assets/resume/reccltr_sl2.pdf" target="_blank" class="badge badge-pill badge-secondary"><i
-                class="fa fa-file-alt"></i>
-              View reccomendation letter
-            </a>
-          </div>
-          <div class="flex-shrink-0"><span class="text-primary">June 2018 - July 2018</span></div>
-        </div>
-      </div>
-    </section>
-    <hr class="m-0" />
-    <section class="resume-section" id="projects">
-      <div class="resume-section-content">
-        <div class="div-center mb-5">
-          <h2>Projects
-          </h2>
-          <span id="toggle_project_viewer" onclick="toggle_project_view()"
-            class="float-end badge-bigger badge badge-pill badge-tertiary my-auto"><i class="fa fa-eye"></i> View
-            more!!</span>
-        </div>
-        <div class="card-columns">
-          <div class="card">
-            <div class="card-body">
-              <h4 class="card-title">AnelaBot</h4>
-              <p class="min-display card-text">A NLP telegram reminder bot, a smarter "Chat with myself".</p>
-              <p class="max-display d-none card-text text-justify">A reminder telegram bot that allows you to create
-                reminders through natural language processing (NLP). </p>
-              <p class="max-display d-none card-text">
-                - Application hosted with <b>AWS Lambda + Api Gateway</b> stack<br>
-                - Deployed with <b>CI/CD</b> principles using <b>GitHub actions</b> and <b>Terraform</b> pipeline to
-                provision
-                stack<br>
-                - Other technologies: <b>AWS Dynamodb, Elasticache, Eventbridge</b>
-              </p>
-              <p class="card-text"><small class="text-primary">Nov 2022 - Jan 2023</small></p>
-              <a href="https://github.com/algebananazzzzz/AnelaBot" target="_blank"
-                class="badge badge-pill badge-primary"><i class="fab fa-github"></i>
-                Github
-              </a>
-              <a href="https://t.me/AnelaBot" target="_blank" class="badge badge-pill badge-secondary"><i
-                  class="fab fa-telegram"></i>
-                Telegram
-              </a>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-body">
-              <h4 class="card-title">EJC Unconference 2021</h4>
-              <p class="min-display card-text">A tutorial on HTML basics and architecture of webpages.</p>
-              <p class="max-display d-none card-text text-justify">Conducted an Unconference (lecture) in my JC with a
-                website tutorial</p>
-              <p class="max-display d-none card-text">
-                - Teaches the <b>role of HTML, CSS</b> in architecturing webpages<br>
-                - Participants then develops their own resumes, and deploy as static webpage in Github</p>
-              <p class="card-text"><small class="text-primary">Aug 2021</small></p>
-              <a href="https://algebananazzzzz.github.io/eunoiashining/tutorial/index.html" target="_blank"
-                class="badge badge-pill badge-primary"><i class="fa fa-chalkboard"></i>
-                Tutorial
-              </a>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-body">
-              <h4 class="card-title">Organic Chemistry Mindmap</h4>
-              <p class="min-display card-text">A chemistry mindmap of 69 reactions in H2 Chemistry.</p>
-              <p class="max-display d-none card-text text-justify">Created an interactive webpage that serves as a
-                chemistry mindmap for students studying H2 Chemistry in the A level examinations to memorise 69 organic
-                chemistry reactions.</p>
-              <p class="max-display d-none card-text text-justify">- Basic <b>CSS, HTML, JS</b> website</p>
-              <p class="card-text"><small class="text-primary">June 2021</small></p>
-              <a href="https://algebananazzzzz.github.io/organic-chemistry-mindmap.html" target="_blank"
-                class="badge badge-pill badge-secondary"><i class="fa fa-book"></i>
-                Website
-              </a>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-body">
-              <h4 class="card-title">Python Telegram Bot Quiz</h4>
-              <p class="min-display card-text">Bootstrappable code for scalable telegram quiz bots.</p>
-              <p class="max-display d-none card-text text-justify">With this repo, developers can easily boostrap
-                Telegram Quiz Bots using the python-telegram-bot (v20.1) framework.</p>
-              <p class="max-display d-none card-text">
-                - Created with <b>Code Reusability</b> in mind<br>
-                - From 1 <b>JSON file</b>, developers can define the questions and quantity of quizzes
-              </p>
-              <p class="card-text"><small class="text-primary">June 2021</small></p>
-              <a href="https://github.com/algebananazzzzz/python-telegram-bot-quiz" target="_blank"
-                class="badge badge-pill badge-primary"><i class="fab fa-github"></i>
-                Repository
-              </a>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-body">
-              <h4 class="card-title">ProjectBalls</h4>
-              <p class="min-display card-text">A video editing web application for coaches.</p>
-              <p class="max-display d-none card-text text-justify">Solo full stack development of a video editing web
-                application, ProjectBalls, used by EJC's PE department for editing gameplay videos.</p>
-              <p class="max-display d-none card-text">
-                - Uses <b>Python/Django framework</b><br>
-                - Redis <b>worker queue system</b> for video processing<br>
-                - <b>Bootstrap, Jquery and VideoJS</b> for frontend frameworks<br>
-                - Hosted using <b>Nginx, Docker and Docker-compose</b> in development</p>
-              <p class="card-text"><small class="text-primary">Nov 2020 - June 2021</small></p>
-              <a href="https://github.com/algebananazzzzz/ProjectBallsWeb" target="_blank"
-                class="badge badge-pill badge-primary"><i class="fab fa-github"></i>
-                Github
-              </a>
-              <a href="#" class="badge badge-pill badge-secondary"><i class="fab fa-octopus-deploy"></i>
-                Deployment
-              </a>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-body">
-              <h4 class="card-title">Misc. Projects</h4>
-              <p class="min-display card-text">Small projects worth mentioning. Really worth.</p>
-              <h5 class="max-display d-none card-text text-justify">JC life projects</h5>
-              <p class="max-display d-none card-text text-justify">For my PW team and my peers :)</p>
-              <a href="https://github.com/algebananazzzzz/wordcount_4_PW" target="_blank"
-                class="mb-1 max-display d-none badge badge-pill badge-primary"><i class="fab fa-github"></i> PW
-                AutoWordCounter
-              </a>
-              <a href="https://github.com/algebananazzzzz/algebananazzzzz.github.io/blob/main/alevels.html"
-                target="_blank" class="mb-1 max-display d-none badge badge-pill badge-secondary"><i
-                  class="fab fa-github"></i> Days to As
-              </a>
-              <p class="max-display d-none card-text"><small class="text-primary">Aug 2020</small></p>
-              <h5 class="max-display d-none card-text text-justify">Medic and CDO Viper projects (NS)</h5>
-              <p class="max-display d-none card-text text-justify">Projects to solve problems my Medic platoon and CMED
-                team face</p>
-              <a href="https://sites.google.com/view/cannotgobackthemalaysia" target="_blank"
-                class="mb-1 max-display d-none badge badge-pill badge-primary"><i class="fa fa-book"></i> PAM site</a>
-              <a href="https://github.com/algebananazzzzz/algebananazzzzz.github.io/blob/main/cdoViper/README.md"
-                target="_blank" class="mb-1 max-display d-none badge badge-pill badge-secondary"><i
-                  class="fab fa-github"></i> FormSG AutoYes</a>
-              <a href="https://github.com/algebananazzzzz/algebananazzzzz.github.io/blob/main/cdoViper/dutyPlanner/README.md"
-                target="_blank" class="mb-1 max-display d-none badge badge-pill badge-primary"><i
-                  class="fab fa-github"></i>Duty Planner</a>
-              <p class="max-display d-none card-text"><small class="text-primary">April 2022 and 2023, Nov 2022</small>
-              </p>
-              <p class="min-display card-text"><small class="text-primary">Aug 2020, Nov 2022, April 2022 and 2023
-                </small></p>
-              <span onclick="toggle_project_view()" class="min-display badge badge-pill badge-tertiary"><i
-                  class="fa fa-eye"></i> View
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <hr class="m-0" />
-    <section class="resume-section" id="projects">
-      <div class="resume-section-content">
-        <div class="div-center mb-5">
-          <h2>Future Projects
-          </h2>
-          <span id="toggle_project_viewer" onclick="toggle_project_view()"
-            class="float-end badge-bigger badge badge-pill badge-tertiary my-auto"><i class="fa fa-eye"></i> View
-            more!!</span>
-        </div>
-        <div class="card-columns">
-          <div class="card">
-            <div class="card-body">
-              <h4 class="card-title">Algebananazzzzz.io</h4>
-              <p class="min-display card-text">Migrate current site to using TailwindCSS, and Cloudfront distribution
-              </p>
-              <p class="max-display d-none card-text">With an increasing number of projects to display, an interactive
-                website is required, sorting projects
-                by importance and recency. TailwindCSS is a Atomic CSS framework that
-                facilitates such customisation and custom components. Hence the migration from Bootstrap to
-                TailwindCSS
-              </p>
-              <p class="max-display d-none card-text">
-                <b>Feature to expect: </b> <br>
-                - A even succint portfolio with option to display more information<br>
-                - Ability to sort projects by time and skills<br>
-                - A new "Blog" segment to share my takeaways from experiences<br>
-                - New interactive components<br>
-                - Custom domain name
-              </p>
-              <p class="card-text"><small class="text-primary">By Nov 2023</small></p>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-body">
-              <h4 class="card-title">Fuchsia</h4>
-              <p class="min-display card-text">Hacksingapore hackathon project (its a secret, still)</p>
-              <p class="max-display d-none card-text">
-                <b>Teasers:</b> <br>
-                - This will culminate our learning in the latest technologies<br>
-                - Will use React, AWS Cloud, Terraform<br>
-                - Tackles the last mission statement on empowering tech
-              </p>
-              <p class="card-text"><small class="text-primary">By June 2023</small></p>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-body">
-              <h4 class="card-title">Upgrade of dutyPlanner</h4>
-              <p class="min-display card-text">Addition of features to cater to increased demand</p>
-              <p class="max-display d-none card-text">
-                <b>Future upgrades:</b> <br>
-                1. On-the-fly schedule changes.<br>
-                2. Excel sheet adaptor<br>
-                3. Weighted duty distributions
-              </p>
-              <p class="card-text"><small class="text-primary">By June 2023</small></p>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-body">
-              <h4 class="card-title">ProjectBallsReform</h4>
-              <p class="min-display card-text">Migration of ProjectBalls to use latest cloud technologies</p>
-              <p class="max-display d-none card-text">
-                <b>Technologies to adopt</b>
-                - Monolithic to microservices architecture<br>
-                - Python-Django to Flask API backend<br>
-                - Django templating to React with Cloudfront<br>
-                - Redis-queue to SQS queue with Lambda worker
-              </p>
-              <p class="card-text"><small class="text-primary">By June 2023</small></p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <hr class="m-0" />
-    <!-- Education-->
     <section class="resume-section" id="skills">
       <div class="resume-section-content">
         <h2 class="mb-5">Skills</h2>
@@ -345,90 +94,399 @@
         <div class="subheading mb-3">Developer</div>
         <ul class="fa-ul mb-3">
           <li>
+            <span class="fa-li"><i class="fas fa-terminal"></i></span>
+            Robust coding experience of <b>more than 6 years</b> in <b>> 9</b> programming semantics, notably
+            in <b>Python,
+              Javascript</b>
+          </li>
+          <li>
+            <span class="fa-li"><i class="fas fa-layer-group"></i></span>
+            Develop <b>mature full-stack applications</b> with microservices like <b>Databases, Event/Queue workers</b>
+          </li>
+          <li>
             <span class="fa-li"><i class="fas fa-server"></i></span>
-            Experienced in building both Monolithic <b>Python-Django</b> and Distributed <b>React-Gatsby</b> Web
+            Experienced in building both Monolithic <b>Python-Django</b> and Distributed <b>React-Flask API</b> Web
             Applications
           </li>
           <li>
             <span class="fa-li"><i class="fas fa-laptop-code"></i></span>
-            Fluent in multiple <b>frontend</b> frameworks like <b>Bootstrap / Tailwindcss, Jquery, React</b>
-          </li>
-          <li>
-            <span class="fa-li"><i class="fas fa-layer-group"></i></span>
-            Developing full-stack by integrating <b>databases, event/queue-worker</b> microservice layers
-          </li>
-          <li>
-            <span class="fa-li"><i class="fa fa-cloud"></i></span>
-            Strong understanding of <b>AWS cloud infrastructures</b> in building highly-available, scalable
-            <b>microservices</b>
-          </li>
-          <li>
-            <span class="fa-li"><i class="fas fa-terminal"></i></span>
-            Strong coding foundation of <b>> 6 years</b> in > 9 programming semantics, mainly <b>Python, HTML,
-              Javascript </b>
+            Seasoned in multiple <b>frontend</b> frameworks like <b>Bootstrap, TailwindCSS, Jquery, React</b>
           </li>
           <li>
             <span class="fa-li"><i class="fas fa-robot"></i></span>
-            Basic understanding and experience in <b>AI and ML</b>
+            Experience in <b>AI and ML</b>, and data transmutation
           </li>
         </ul>
-        <div class="subheading mb-3">DevOps specialty</div>
-        <ul class="fa-ul mb-0">
+        <div class="subheading mb-3">DevOps</div>
+        <ul class="fa-ul mb-3">
+          <li>
+            <span class="fa-li"><i class="fa fa-cloud"></i></span>
+            Seasoned in <b>AWS Cloud Infrastructure</b> to integrate <b>scalable, reliable, tailored</b>
+            microservices to development
+          </li>
           <li>
             <span class="fa-li"><i class="fas fa-cubes-stacked"></i></span>
-            Utilising in <b>Terraform, Cloudformation</b> IaC frameworks to provision resources
+            Adept in <b>Terraform and Cloudformation IaC</b> (Infrastructure as Code) frameworks to provision
+            resources
           </li>
           <li>
             <span class="fa-li"><i class="fas fa-code-merge"></i></span>
-            Adoption of <b>CI/CD principles</b> to create staged <b>GitHub pipelines</b>
+            Integrate <b>CI/CD principles</b> to create collaborative <b>Git-enabled pipelines</b> with staging
+            environments
           </li>
         </ul>
-      </div>
-    </section>
-    <hr class="m-0" />
-
-    <section class="resume-section" id="education">
-      <div class="resume-section-content">
-        <h2 class="mb-5">Education</h2>
-        <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-          <div class="flex-grow-1">
-            <h3 class="mb-0">Eunoia Junior College</h3>
-            <div class="subheading mb-3">Pre-university course</div>
-            <p>Subject combination: PCM/KI<br>
-              Year 1 RP: 75/80 <br>
-              A level results: AAA/B</p>
-          </div>
-          <div class="flex-shrink-0"><span class="text-primary">January 2020 - December 2021</span></div>
-        </div>
-        <div class="d-flex flex-column flex-md-row justify-content-between">
-          <div class="flex-grow-1">
-            <h3 class="mb-0">Catholic High School</h3>
-            <div class="subheading mb-3">Secondary education</div>
-            <p>Subject combination: Triple Science, double Mathematics
-              <br>GPA: 4.00
-            </p>
-          </div>
-          <div class="flex-shrink-0"><span class="text-primary">January 2016 - December 2019</span></div>
-        </div>
-      </div>
-    </section>
-    <hr class="m-0" />
-
-    <!-- Awards-->
-    <section class="resume-section" id="awards">
-      <div class="resume-section-content">
-        <h2 class="mb-5">Awards & Certifications</h2>
         <div class="subheading mb-3">Certifications</div>
-        <ul class="fa-ul mb-3">
+        <ul class="fa-ul mb-0">
           <li>
-            <span class="fa-li"><i class="fas fa-certificate text-warning"></i></span>
+            <span class="fa-li"><svg class="svg-inline--fa" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
+                fill="none">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier">
+                  <path fill="#252F3E"
+                    d="M4.51 7.687c0 .197.02.357.058.475.042.117.096.245.17.384a.233.233 0 01.037.123c0 .053-.032.107-.1.16l-.336.224a.255.255 0 01-.138.048c-.054 0-.107-.026-.16-.074a1.652 1.652 0 01-.192-.251 4.137 4.137 0 01-.165-.315c-.415.491-.936.737-1.564.737-.447 0-.804-.129-1.064-.385-.261-.256-.394-.598-.394-1.025 0-.454.16-.822.484-1.1.325-.278.756-.416 1.304-.416.18 0 .367.016.564.042.197.027.4.07.612.118v-.39c0-.406-.085-.689-.25-.854-.17-.166-.458-.246-.868-.246-.186 0-.377.022-.574.07a4.23 4.23 0 00-.575.181 1.525 1.525 0 01-.186.07.326.326 0 01-.085.016c-.075 0-.112-.054-.112-.166v-.262c0-.085.01-.15.037-.186a.399.399 0 01.15-.113c.185-.096.409-.176.67-.24.26-.07.537-.101.83-.101.633 0 1.096.144 1.394.432.293.288.442.726.442 1.314v1.73h.01zm-2.161.811c.175 0 .356-.032.548-.096.191-.064.362-.182.505-.342a.848.848 0 00.181-.341c.032-.129.054-.283.054-.465V7.03a4.43 4.43 0 00-.49-.09 3.996 3.996 0 00-.5-.033c-.357 0-.618.07-.793.214-.176.144-.26.347-.26.614 0 .25.063.437.196.566.128.133.314.197.559.197zm4.273.577c-.096 0-.16-.016-.202-.054-.043-.032-.08-.106-.112-.208l-1.25-4.127a.938.938 0 01-.049-.214c0-.085.043-.133.128-.133h.522c.1 0 .17.016.207.053.043.032.075.107.107.208l.894 3.535.83-3.535c.026-.106.058-.176.1-.208a.365.365 0 01.214-.053h.425c.102 0 .17.016.213.053.043.032.08.107.101.208l.841 3.578.92-3.578a.458.458 0 01.107-.208.346.346 0 01.208-.053h.495c.085 0 .133.043.133.133 0 .027-.006.054-.01.086a.76.76 0 01-.038.133l-1.283 4.127c-.032.107-.069.177-.111.209a.34.34 0 01-.203.053h-.457c-.101 0-.17-.016-.213-.053-.043-.038-.08-.107-.101-.214L8.213 5.37l-.82 3.439c-.026.107-.058.176-.1.213-.043.038-.118.054-.213.054h-.458zm6.838.144a3.51 3.51 0 01-.82-.096c-.266-.064-.473-.134-.612-.214-.085-.048-.143-.101-.165-.15a.378.378 0 01-.031-.149v-.272c0-.112.042-.166.122-.166a.3.3 0 01.096.016c.032.011.08.032.133.054.18.08.378.144.585.187.213.042.42.064.633.064.336 0 .596-.059.777-.176a.575.575 0 00.277-.508.52.52 0 00-.144-.373c-.095-.102-.276-.193-.537-.278l-.772-.24c-.388-.123-.676-.305-.851-.545a1.275 1.275 0 01-.266-.774c0-.224.048-.422.143-.593.096-.17.224-.32.384-.438.16-.122.34-.213.553-.277.213-.064.436-.091.67-.091.118 0 .24.005.357.021.122.016.234.038.346.06.106.026.208.052.303.085.096.032.17.064.224.096a.46.46 0 01.16.133.289.289 0 01.047.176v.251c0 .112-.042.171-.122.171a.552.552 0 01-.202-.064 2.427 2.427 0 00-1.022-.208c-.303 0-.543.048-.708.15-.165.1-.25.256-.25.475 0 .149.053.277.16.379.106.101.303.202.585.293l.756.24c.383.123.66.294.825.513.165.219.244.47.244.748 0 .23-.047.437-.138.619a1.436 1.436 0 01-.388.47c-.165.133-.362.23-.591.299-.24.075-.49.112-.761.112z">
+                  </path>
+                  <g fill="#F90" fill-rule="evenodd" clip-rule="evenodd">
+                    <path
+                      d="M14.465 11.813c-1.75 1.297-4.294 1.986-6.481 1.986-3.065 0-5.827-1.137-7.913-3.027-.165-.15-.016-.353.18-.235 2.257 1.313 5.04 2.109 7.92 2.109 1.941 0 4.075-.406 6.039-1.239.293-.133.543.192.255.406z">
+                    </path>
+                    <path
+                      d="M15.194 10.98c-.223-.287-1.479-.138-2.048-.069-.17.022-.197-.128-.043-.24 1-.705 2.645-.502 2.836-.267.192.24-.053 1.89-.99 2.68-.143.123-.281.06-.218-.1.213-.53.687-1.72.463-2.003z">
+                    </path>
+                  </g>
+                </g>
+              </svg></span>
             AWS Certified Developer Associate
             <a href="https://www.credly.com/badges/3fcda81e-fe66-49d2-be22-cb2d46150987/public_url" target="_blank">
               (DVA-C02)
             </a>
           </li>
           <li>
-            <span class="fa-li"><i class="fas fa-certificate text-warning"></i></span>
+            <span class="fa-li"><svg class="svg-inline--fa" viewBox="-17.5 0 291 291" version="1.1"
+                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                preserveAspectRatio="xMidYMid" fill="#000000">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier">
+                  <g>
+                    <polygon fill="#4040B2"
+                      points="176.485057 188.994162 256.000302 143.127442 256.000302 51.2485453 176.485057 97.2122358">
+                    </polygon>
+                    <path
+                      d="M88.2425283,51.2485453 L167.757774,97.2122358 L167.757774,188.994162 L88.2425283,143.078957 M0,91.8304113 L79.5152453,137.745617 L79.5152453,45.9152057 L0,0 M88.2425283,244.994228 L167.757774,290.909434 L167.757774,199.079023 L88.2425283,153.163817"
+                      fill="#5C4EE5"> </path>
+                  </g>
+                </g>
+              </svg></span>
+            HashiCorp Certified: Terraform Associate <a
+              href="https://www.credly.com/badges/2b4e8e39-4354-4edb-98dc-d43d07cdc589/public_url"
+              target="_blank">(003)</a>
+          </li>
+        </ul>
+      </div>
+      <div class="align-self-end position-absolute">
+        <a id="scrolldownDisplay" onclick="scrollToSection('projects')"><span></span><span></span><span></span>
+        </a>
+      </div>
+    </section>
+    <hr class="m-0" />
+    <section class="resume-section" id="projects">
+      <div class="resume-section-content">
+        <div class="div-center mb-5">
+          <h2>Projects
+          </h2>
+          <span onclick="toggle_project_view()"
+            class="toggle_project_viewer float-end badge-bigger badge badge-pill badge-tertiary my-auto"><i
+              class="fa fa-eye"></i> View
+            more</span>
+        </div>
+        <div class="card-columns">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">AnelaBot</h4>
+              <p class="min-display card-text">A Natural Language Processing (NLP) telegram reminder bot.</p>
+              <p class="max-display d-none card-text text-justify">A reminder telegram bot that allows you to create
+                reminders through natural language processing (NLP). </p>
+              <p class="max-display d-none card-text text-justify">- Uses Named Entity Recognition (NER) and basic
+                Syntactic Analysis to extract date out of reminders</p>
+              <small class="min-display text-secondary" style="line-height: none;">AWS Stack, GitHub Actions and
+                Terraform</small>
+              <small class="max-display d-none text-secondary" style="line-height: none;">AWS
+                Lambda + ApiGateway, Dynamodb + Elasticache, Comprehend,
+                Eventbridge stack with GitHub Actions > Terraform CI/CD Pipeline
+              </small>
+              <p class="card-text"><small class="text-primary">Nov 2022 - Jan 2023</small></p>
+              <a href="https://github.com/algebananazzzzz/AnelaBot" target="_blank"
+                class="badge badge-pill badge-primary"><i class="fab fa-github"></i>
+                Github
+              </a>
+              <a href="https://t.me/AnelaBot" target="_blank" class="badge badge-pill badge-secondary"><i
+                  class="fab fa-telegram"></i>
+                Deployment
+              </a>
+              <a href="https://algebananazzzzz.github.io/DemoVideos/AnelaBot.mp4" target="_blank"
+                class="badge badge-pill badge-pulsing"><i class="fa fa-play"></i> Demo
+              </a>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">EJC Unconference 2021</h4>
+              <p class="min-display card-text">A workshop on HTML basics and architecture of webpages.</p>
+              <p class="max-display d-none card-text text-justify">Conducted an Unconference (workshop) in my JC with a
+                website tutorial</p>
+              <p class="max-display d-none card-text">
+                - Teaches the <b>role of HTML, CSS</b> in architecturing webpages<br>
+                - Participants then develop their own resumes, and deploy them as static webpage in Github</p>
+              <small class="text-secondary" style="line-height: none;">Frontend development with
+                Bootstrap
+              </small>
+              <p class="card-text"><small class="text-primary">Aug 2021</small></p>
+              <a href="https://algebananazzzzz.github.io/eunoiashining/tutorial/index.html" target="_blank"
+                class="badge badge-pill badge-primary"><i class="fa fa-chalkboard"></i>
+                Website Tutorial
+              </a>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Organic Chemistry Mindmap</h4>
+              <p class="min-display card-text">A Chemistry mindmap of 69 reactions in H2 Chemistry.</p>
+              <p class="max-display d-none card-text text-justify">Created an interactive webpage that serves as a
+                chemistry mindmap for students studying H2 Chemistry in the A level examinations to memorise 69 organic
+                chemistry reactions.</p>
+              <small class="text-secondary" style="line-height: none;">Frontend development with
+                Bootstrap
+              </small>
+              <p class="card-text"><small class="text-primary">June 2021</small></p>
+              <a href="https://algebananazzzzz.github.io/organic-chemistry-mindmap.html#anothersummary" target="_blank"
+                class="badge badge-pill badge-secondary"><i class="fa fa-book"></i>
+                Website
+              </a>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">ProjectBalls</h4>
+              <p class="min-display card-text">Full Stack video editing Web Application for coaches.</p>
+              <p class="max-display d-none card-text text-justify">Full stack development of a video editing web
+                application, ProjectBalls, used by EJC's PE department for editing gameplay videos.</p>
+              <p class="max-display d-none card-text text-justify">
+                - Boasts a intuitive interface to cut snippets from long videos on-the-fly</p>
+              <small class="text-secondary" style="line-height: none;">Nginx and Docker, Django and RQ, Jquery
+              </small>
+              <small class="max-display d-none text-secondary" style="line-height: none;">
+                Frontend: Bootstrap, Jquery and VideoJS<br>
+                Backend: Python/Django framework, Redis-queue worker system (video processing/crop)<br>
+                Deployment: Nginx, Docker + Compose
+              </small>
+              <p class="card-text"><small class="text-primary">Nov 2020 - June 2021</small></p>
+              <a href="https://github.com/algebananazzzzz/ProjectBallsWeb" target="_blank"
+                class="badge badge-pill badge-primary"><i class="fab fa-github"></i>
+                Github
+              </a>
+              <a href="https://youtu.be/KC2RUqIyHXA" target="_blank" class="badge badge-pill badge-pulsing"><i
+                  class="fa fa-play"></i> Demo
+              </a>
+              <!-- <a href="#" class="badge badge-pill badge-secondary"><i class="fab fa-octopus-deploy"></i>
+                Deployment
+              </a> -->
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">EqualiDuty</h4>
+              <p class="min-display card-text">Algorithm to automate unbiased distribution of duties.</p>
+              <p class="max-display d-none card-text text-justify">In my formation, there are various duties of
+                differing difficulty. Duty planning has always caused much conflict.</p>
+              <p class="max-display d-none card-text text-justify">Algorithm automatically distributes duties equally,
+                while deconflicting duties from personal schedules. This greatly helped my formation in planning duties.
+              </p>
+              <small class="text-secondary" style="line-height: none;">Python Object Oriented Programming
+              </small>
+              <p class="card-text"><small class="text-primary">April 2023</small></p>
+              <a href="https://github.com/algebananazzzzz/algebananazzzzz.github.io/blob/main/cdoViper/EqualiDuty/README.md"
+                target="_blank" class="badge badge-pill badge-primary"><i class="fab fa-github"></i> Algorithm</a>
+              <a href="https://user-images.githubusercontent.com/48286805/235229831-8f2e47b9-559c-4f70-8c71-d210d9b8d884.webm"
+                target="_blank" class="badge badge-pill badge-pulsing"><i class="fa fa-play"></i> Demo
+              </a>
+            </div>
+          </div>
+
+
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">PW_AutoWordCounter</h4>
+              <p class="card-text">Script to count words in Google Docs for H1 Project Work.</p>
+              <p class="max-display d-none card-text text-justify">Takes into account syntax (e.g. words in brackets,
+                citations) specific to PW, greatly reducing time in manual counting.</p>
+              <small class="text-secondary" style="line-height: none;">JavaScript plugin
+              </small>
+              <p class="card-text"><small class="text-primary">Nov 2020</small></p>
+              <a href="https://github.com/algebananazzzzz/wordcount_4_PW" target="_blank"
+                class="badge badge-pill badge-primary"><i class="fab fa-github"></i>
+                Script
+              </a>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Python Telegram Bot Quiz</h4>
+              <p class="min-display card-text">Bootstrap code for creating scalable telegram quiz bots.</p>
+              <p class="max-display d-none card-text text-justify">With this product, developers can easily boostrap
+                Telegram Quiz Bots with the python-telegram-bot (v20.1) framework.</p>
+              <p class="max-display d-none card-text">
+                - Created with <b>Code Reusability</b> in mind<br>
+                - From a <b>JSON config file</b>, developers can bootstrap a fully functional telegram quiz bot with
+                optional password protection<br>
+                - Used to create multiple quizzes for my medics to pass medical tests
+              </p>
+              <small class="min-display text-secondary" style="line-height: none;">AWS Lambda, APIGateway,
+                ElastiCache</small>
+              <small class="max-display d-none text-secondary" style="line-height: none;">Deployed on AWS Stack (like
+                AnelaBot). Upcoming upgrade: Terraform CI/CD Pipeline
+              </small>
+              <p class="card-text"><small class="text-primary">June 2021</small></p>
+              <a href="https://github.com/algebananazzzzz/python-telegram-bot-quiz" target="_blank"
+                class="badge badge-pill badge-primary"><i class="fab fa-github"></i>
+                Repository
+              </a>
+              <a href="https://algebananazzzzz.github.io/DemoVideos/PTBQ.mp4" target="_blank"
+                class="badge badge-pill badge-pulsing"><i class="fa fa-play"></i> Demo
+              </a>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">FormSG AutoYes</h4>
+              <p class="min-display card-text">Script to automatically complete a Daily Medical Checklist.</p>
+              <p class="max-display d-none card-text text-justify">My medics have to manually complete a 30-minute long
+                FormSG every day, that serves practically little purpose.</p>
+              <p class="max-display d-none card-text text-justify">Script automatically clicks "Yes" for relevant
+                sections (daily, monthly or weekly)</p>
+              <small class="text-secondary" style="line-height: none;">JavaScript
+              </small>
+              <p class="card-text"><small class="text-primary">Nov 2022</small></p>
+              <a href="https://github.com/algebananazzzzz/algebananazzzzz.github.io/blob/main/cdoViper/README.md"
+                target="_blank" class="badge badge-pill badge-secondary"><i class="fab fa-github"></i> Script</a>
+              <a href="https://algebananazzzzz.github.io/DemoVideos/AutoYesDemo.mp4" target="_blank"
+                class="badge badge-pill badge-pulsing"><i class="fa fa-play"></i> Demo
+              </a>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Misc. Projects</h4>
+              <p class="min-display card-text">Other miscellanous projects that benefited peers.</p>
+              <h5 class="max-display d-none card-text text-justify">Days to As</h5>
+              <p class="max-display d-none card-text">Script to list number of days to examinations,
+                to mental prepare students</p>
+              <a href="https://github.com/algebananazzzzz/algebananazzzzz.github.io/blob/main/alevels.html"
+                target="_blank" class="mb-1 max-display d-none badge badge-pill badge-secondary"><i
+                  class="fab fa-github"></i> Script
+              </a>
+              <p class="max-display d-none card-text"><small class="text-primary">Aug 2020</small></p>
+              <h5 class="max-display d-none card-text text-justify">PAM revision site</h5>
+              <p class="max-display d-none card-text">Website to facilitate revision for the infamous PAM
+                test</p>
+              <a href="https://sites.google.com/view/cannotgobackthemalaysia" target="_blank"
+                class="mb-1 max-display d-none badge badge-pill badge-primary"><i class="fa fa-book"></i> Site</a>
+              <p class="max-display d-none card-text"><small class="text-primary">April 2022</small>
+              </p>
+              <small class="text-secondary" style="line-height: none;">Javascript, Frontend development
+              </small>
+              <p class="min-display card-text"><small class="text-primary">Aug 2020, April 2022
+                </small></p>
+              <span onclick="toggle_project_view()" class="min-display badge badge-pill badge-tertiary"><i
+                  class="fa fa-eye"></i> View
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="align-self-end position-absolute">
+        <a id="scrolldownDisplay" onclick="scrollToSection('experience')"><span></span><span></span><span></span>
+        </a>
+      </div>
+    </section>
+    <hr class="m-0" />
+    <section class="resume-section" id="experience">
+      <div class="resume-section-content">
+        <h2 class="mb-5">Experience</h2>
+        <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+          <div class="flex-grow-1">
+            <h3 class="mb-0">Internship</h3>
+            <div class="subheading mb-3">Sustainable Lab Square</div>
+            <p class="text-justify">Developed sample AI software with Python’s NumPy, Pandas, Sklearn and Keras
+              libraries without aid, including a functional AI software that pulls JSON data from a weather forecast API
+              in a gardening watering
+              project.</p>
+            <p class="text-justify">
+              Collaborated in a project to accurately perform Facial and Image Recognition utilising OpenVino
+              inference engine and Neural Compute Stick, and mentored in a hackathon organised for youths, guiding
+              older peers to the finals.</p>
+            <a href="assets/resume/reccltr_sl2.pdf" target="_blank" class="badge badge-pill badge-secondary"><i
+                class="fa fa-file-alt"></i>
+              View reccomendation letter
+            </a>
+          </div>
+          <div class="flex-shrink-0"><span class="text-primary">June 2018 - July 2018</span></div>
+        </div>
+      </div>
+
+      <div class="align-self-end position-absolute">
+        <a id="scrolldownDisplay" onclick="scrollToSection('awards')"><span></span><span></span><span></span>
+        </a>
+      </div>
+    </section>
+    <hr class="m-0" />
+    <section class="resume-section" id="awards">
+      <div class="resume-section-content">
+        <h2 class="mb-5">Awards & Certifications</h2>
+        <div class="subheading mb-3">Certifications</div>
+        <ul class="fa-ul mb-3">
+          <li>
+            <span class="fa-li"><svg class="svg-inline--fa" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
+                fill="none">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier">
+                  <path fill="#252F3E"
+                    d="M4.51 7.687c0 .197.02.357.058.475.042.117.096.245.17.384a.233.233 0 01.037.123c0 .053-.032.107-.1.16l-.336.224a.255.255 0 01-.138.048c-.054 0-.107-.026-.16-.074a1.652 1.652 0 01-.192-.251 4.137 4.137 0 01-.165-.315c-.415.491-.936.737-1.564.737-.447 0-.804-.129-1.064-.385-.261-.256-.394-.598-.394-1.025 0-.454.16-.822.484-1.1.325-.278.756-.416 1.304-.416.18 0 .367.016.564.042.197.027.4.07.612.118v-.39c0-.406-.085-.689-.25-.854-.17-.166-.458-.246-.868-.246-.186 0-.377.022-.574.07a4.23 4.23 0 00-.575.181 1.525 1.525 0 01-.186.07.326.326 0 01-.085.016c-.075 0-.112-.054-.112-.166v-.262c0-.085.01-.15.037-.186a.399.399 0 01.15-.113c.185-.096.409-.176.67-.24.26-.07.537-.101.83-.101.633 0 1.096.144 1.394.432.293.288.442.726.442 1.314v1.73h.01zm-2.161.811c.175 0 .356-.032.548-.096.191-.064.362-.182.505-.342a.848.848 0 00.181-.341c.032-.129.054-.283.054-.465V7.03a4.43 4.43 0 00-.49-.09 3.996 3.996 0 00-.5-.033c-.357 0-.618.07-.793.214-.176.144-.26.347-.26.614 0 .25.063.437.196.566.128.133.314.197.559.197zm4.273.577c-.096 0-.16-.016-.202-.054-.043-.032-.08-.106-.112-.208l-1.25-4.127a.938.938 0 01-.049-.214c0-.085.043-.133.128-.133h.522c.1 0 .17.016.207.053.043.032.075.107.107.208l.894 3.535.83-3.535c.026-.106.058-.176.1-.208a.365.365 0 01.214-.053h.425c.102 0 .17.016.213.053.043.032.08.107.101.208l.841 3.578.92-3.578a.458.458 0 01.107-.208.346.346 0 01.208-.053h.495c.085 0 .133.043.133.133 0 .027-.006.054-.01.086a.76.76 0 01-.038.133l-1.283 4.127c-.032.107-.069.177-.111.209a.34.34 0 01-.203.053h-.457c-.101 0-.17-.016-.213-.053-.043-.038-.08-.107-.101-.214L8.213 5.37l-.82 3.439c-.026.107-.058.176-.1.213-.043.038-.118.054-.213.054h-.458zm6.838.144a3.51 3.51 0 01-.82-.096c-.266-.064-.473-.134-.612-.214-.085-.048-.143-.101-.165-.15a.378.378 0 01-.031-.149v-.272c0-.112.042-.166.122-.166a.3.3 0 01.096.016c.032.011.08.032.133.054.18.08.378.144.585.187.213.042.42.064.633.064.336 0 .596-.059.777-.176a.575.575 0 00.277-.508.52.52 0 00-.144-.373c-.095-.102-.276-.193-.537-.278l-.772-.24c-.388-.123-.676-.305-.851-.545a1.275 1.275 0 01-.266-.774c0-.224.048-.422.143-.593.096-.17.224-.32.384-.438.16-.122.34-.213.553-.277.213-.064.436-.091.67-.091.118 0 .24.005.357.021.122.016.234.038.346.06.106.026.208.052.303.085.096.032.17.064.224.096a.46.46 0 01.16.133.289.289 0 01.047.176v.251c0 .112-.042.171-.122.171a.552.552 0 01-.202-.064 2.427 2.427 0 00-1.022-.208c-.303 0-.543.048-.708.15-.165.1-.25.256-.25.475 0 .149.053.277.16.379.106.101.303.202.585.293l.756.24c.383.123.66.294.825.513.165.219.244.47.244.748 0 .23-.047.437-.138.619a1.436 1.436 0 01-.388.47c-.165.133-.362.23-.591.299-.24.075-.49.112-.761.112z">
+                  </path>
+                  <g fill="#F90" fill-rule="evenodd" clip-rule="evenodd">
+                    <path
+                      d="M14.465 11.813c-1.75 1.297-4.294 1.986-6.481 1.986-3.065 0-5.827-1.137-7.913-3.027-.165-.15-.016-.353.18-.235 2.257 1.313 5.04 2.109 7.92 2.109 1.941 0 4.075-.406 6.039-1.239.293-.133.543.192.255.406z">
+                    </path>
+                    <path
+                      d="M15.194 10.98c-.223-.287-1.479-.138-2.048-.069-.17.022-.197-.128-.043-.24 1-.705 2.645-.502 2.836-.267.192.24-.053 1.89-.99 2.68-.143.123-.281.06-.218-.1.213-.53.687-1.72.463-2.003z">
+                    </path>
+                  </g>
+                </g>
+              </svg></span>
+            AWS Certified Developer Associate
+            <a href="https://www.credly.com/badges/3fcda81e-fe66-49d2-be22-cb2d46150987/public_url" target="_blank">
+              (DVA-C02)
+            </a>
+          </li>
+          <li>
+            <span class="fa-li"><svg class="svg-inline--fa" viewBox="-17.5 0 291 291" version="1.1"
+                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                preserveAspectRatio="xMidYMid" fill="#000000">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier">
+                  <g>
+                    <polygon fill="#4040B2"
+                      points="176.485057 188.994162 256.000302 143.127442 256.000302 51.2485453 176.485057 97.2122358">
+                    </polygon>
+                    <path
+                      d="M88.2425283,51.2485453 L167.757774,97.2122358 L167.757774,188.994162 L88.2425283,143.078957 M0,91.8304113 L79.5152453,137.745617 L79.5152453,45.9152057 L0,0 M88.2425283,244.994228 L167.757774,290.909434 L167.757774,199.079023 L88.2425283,153.163817"
+                      fill="#5C4EE5"> </path>
+                  </g>
+                </g>
+              </svg></span>
             HashiCorp Certified: Terraform Associate <a
               href="https://www.credly.com/badges/2b4e8e39-4354-4edb-98dc-d43d07cdc589/public_url"
               target="_blank">(003)</a>
@@ -461,6 +519,85 @@
             Merit award in SJPO and SJChO
           </li>
         </ul>
+      </div>
+      <div class="align-self-end position-absolute">
+        <a id="scrolldownDisplay" onclick="scrollToSection('current')"><span></span><span></span><span></span>
+        </a>
+      </div>
+    </section>
+    <hr class="m-0" />
+    <section class="resume-section" id="current">
+      <div class="resume-section-content">
+        <div class="div-center mb-5">
+          <h2>Ongoing Projects
+          </h2>
+          <span onclick="toggle_project_view()"
+            class="toggle_project_viewer float-end badge-bigger badge badge-pill badge-tertiary my-auto"><i
+              class="fa fa-eye"></i> Full
+            view</span>
+        </div>
+        <div class="card-columns">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Algebananazzzzz.io</h4>
+              <p class="min-display card-text">Migration to serve dynamic React Tailwind sites with
+                Cloudfront
+              </p>
+              <p class="max-display d-none card-text">
+                With a rapidly increasing number of projects and greater detail of technology used to display, I felt
+                the greater need for a more customised
+                portfolio website. Tailwind is a Atomic CSS framework that best
+                facilitate creating greatly customised components, and React facilitates greater user interactivity.
+              </p>
+              <p class="max-display d-none card-text">
+                <b>Feature to expect: </b> <br>
+                - Succint interface with interesting sections<br>
+                - Greater interactivity to view projects by different dimensions<br>
+                - A new "Blog" segment to share my takeaways from experiences<br>
+                - Custom domain name
+              </p>
+              <p class="card-text"><small class="text-primary">By Nov 2023</small></p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Fuchsia</h4>
+              <p class="min-display card-text">Hacksingapore hackathon project</p>
+              <p class="max-display d-none card-text">
+                - Tackles the last mission statement on empowering tech<br>
+                - Technologies used include Terraform, React, AWS cloud services
+              </p>
+              <p class="card-text"><small class="text-primary">By June 2023</small></p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Upgrade of dutyPlanner</h4>
+              <p class="min-display card-text">Addition of features to cater to increased demand</p>
+              <p class="max-display d-none card-text">
+                <b>Feature upgrades:</b> <br>
+                1. On-the-fly schedule changes.<br>
+                2. Excel sheet adaptor<br>
+                3. Weighted duty distributions
+              </p>
+              <p class="card-text"><small class="text-primary">By July 2023</small></p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">ProjectBallsReform</h4>
+              <p class="min-display card-text">Migration of ProjectBalls to use latest cloud technologies</p>
+              <p class="max-display d-none card-text">
+                <b>Technologies to adapt to</b>
+                - Monolithic to microservices architecture<br>
+                - Python-Django to Flask API backend<br>
+                - Django templating to React with Cloudfront<br>
+                - Redis-queue to SQS queue with Lambda worker
+              </p>
+              <p class="card-text"><small class="text-primary">By Nov 2023</small></p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </div>
