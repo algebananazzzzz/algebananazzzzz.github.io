@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkalgebananazzzzz=self.webpackChunkalgebananazzzzz||[]).push([[788],{7788:function(a,b,e){e.r(b),b.default=e.p+"static/ptbq_demo-b5d45b16a8a30845b84fbf21e5dbd6bc.mp4"}}]);
-//# sourceMappingURL=788-b19233a18a2e95e94173.js.map
