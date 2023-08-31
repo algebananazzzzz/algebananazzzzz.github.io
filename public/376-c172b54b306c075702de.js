@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkalgebananazzzzz=self.webpackChunkalgebananazzzzz||[]).push([[376],{6376:function(a,c,e){e.r(c),c.default=e.p+"static/icon-634811849025ca1fce2990f417cc5fce.png"}}]);
+//# sourceMappingURL=376-c172b54b306c075702de.js.map

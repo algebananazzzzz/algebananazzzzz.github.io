@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkalgebananazzzzz=self.webpackChunkalgebananazzzzz||[]).push([[827],{2827:function(a,e,z){z.r(e),e.default=z.p+"static/reccltr_sl2-da18857032570cb279de087d7880b724.pdf"}}]);
+//# sourceMappingURL=827-fc78d69879a287b17b59.js.map
