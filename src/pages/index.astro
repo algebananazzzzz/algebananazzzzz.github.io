@@ -7,11 +7,14 @@ import NoteCard from '@/components/static/NoteCard.astro';
 import { getCollection } from 'astro:content';
 import nowData from '@/content/now.yaml';
 import Splash from '@/components/island/Splash';
+import Constellation from '@/components/island/Constellation';
 
 const projects = (await getCollection('projects')).map(p => p.data).slice(0, 3);
 const exps = (await getCollection('experience')).map(e => e.data).slice(0, 3);
 const notes = (await getCollection('notes')).map(n => n.data)
   .sort((a, b) => b.date.localeCompare(a.date)).slice(0, 4);
+const clusters = (await getCollection('clusters')).map(c => c.data);
+const allNotes = (await getCollection('notes')).map(n => n.data);
 
 const starColors: Record<string, string> = {
   neutron: '#A5B4FC', giant: '#F87171', subgiant: '#FBCFE8',
@@ -73,11 +76,11 @@ const starColors: Record<string, string> = {
     </ol>
   </section>
 
-  <!-- Milky Way preview (full interactive constellation lands in Phase 4) -->
+  <!-- Milky Way preview — Constellation island -->
   <section class="relative max-w-7xl mx-auto px-6 py-16" data-accent="cosmic">
     <SectionHead eyebrow="digital garden · the milky way" title="The" emTitle="milky way" linkHref="/milky-way" linkLabel="enter the milky way" />
-    <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4 mt-6">
-      {notes.map(n => <NoteCard note={n} />)}
+    <div class="mt-6 rounded-xl border border-slate-800/60 bg-slate-900/40 p-4">
+      <Constellation client:visible notes={allNotes} clusters={clusters} />
     </div>
   </section>
 </Base>
