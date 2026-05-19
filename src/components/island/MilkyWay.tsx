@@ -80,7 +80,7 @@ export default function MilkyWay({ notes, clusters }: Props) {
 
       <aside className="space-y-4">
         <div>
-          <h3 className="font-mono text-xs uppercase tracking-wider text-gray-500 mb-2">filter by cluster</h3>
+          <p className="font-mono text-xs uppercase tracking-wider text-gray-400 mb-2">filter by cluster</p>
           <ul className="space-y-1">
             <li>
               <button onClick={() => setActive('all')}

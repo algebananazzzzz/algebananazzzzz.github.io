@@ -25,7 +25,7 @@ export default function NotePanel({ note, onClose }: Props) {
       <aside role="dialog" aria-label={note.title}
         className="fixed right-0 top-0 z-50 h-screen w-full max-w-md bg-night-soft border-l border-slate-700 p-6 overflow-y-auto">
         <div className="flex justify-between items-start gap-4 mb-4">
-          <div className="font-mono text-[10px] uppercase tracking-wider text-gray-500">
+          <div className="font-mono text-[10px] uppercase tracking-wider text-gray-400">
             {note.cluster} · {note.status} · M {(6 - note.links * 0.5).toFixed(1)}
           </div>
           <button onClick={onClose} aria-label="close" className="text-gray-400 hover:text-gray-100 text-xl leading-none">×</button>
@@ -34,15 +34,15 @@ export default function NotePanel({ note, onClose }: Props) {
         <p className="text-gray-300 leading-relaxed mb-6">{note.excerpt}</p>
 
         <dl className="grid grid-cols-2 gap-y-2 text-xs font-mono mb-6">
-          <dt className="text-gray-500">date</dt><dd className="text-gray-300">{note.date}</dd>
-          <dt className="text-gray-500">read</dt><dd className="text-gray-300">{note.readTime}</dd>
-          <dt className="text-gray-500">words</dt><dd className="text-gray-300">{note.words}</dd>
-          <dt className="text-gray-500">links</dt><dd className="text-gray-300">{note.links}</dd>
+          <dt className="text-gray-400">date</dt><dd className="text-gray-300">{note.date}</dd>
+          <dt className="text-gray-400">read</dt><dd className="text-gray-300">{note.readTime}</dd>
+          <dt className="text-gray-400">words</dt><dd className="text-gray-300">{note.words}</dd>
+          <dt className="text-gray-400">links</dt><dd className="text-gray-300">{note.links}</dd>
         </dl>
 
         {note.backlinks.length > 0 && (
           <section className="mb-4">
-            <h3 className="text-xs font-mono uppercase tracking-wider text-gray-500 mb-2">backlinks</h3>
+            <p className="text-xs font-mono uppercase tracking-wider text-gray-400 mb-2">backlinks</p>
             <ul className="space-y-1">
               {note.backlinks.map(b => (
                 <li key={b}><a href={`#${b}`} className="text-sm text-star hover:text-star-bright">↳ {b}</a></li>

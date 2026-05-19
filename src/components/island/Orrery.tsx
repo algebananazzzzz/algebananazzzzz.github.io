@@ -52,7 +52,7 @@ export default function Orrery({ building, writing, obsessed }: Props) {
           <li key={b.key} className="flex gap-3 items-start">
             <span className="mt-1.5 w-2 h-2 rounded-full shrink-0" style={{ background: b.color }} aria-hidden="true" />
             <div>
-              <div className="font-mono text-[10px] uppercase tracking-wider text-gray-500">{b.key}</div>
+              <div className="font-mono text-[10px] uppercase tracking-wider text-gray-400">{b.key}</div>
               <div className="text-gray-100 font-medium">{b.item.title}</div>
               <div className="text-xs text-gray-400 leading-relaxed">{b.item.note}</div>
             </div>

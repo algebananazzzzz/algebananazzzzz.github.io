@@ -98,9 +98,9 @@ export default function Splash() {
            style={{ background: 'radial-gradient(ellipse at center bottom, rgba(126,34,206,0.4), transparent 70%)', opacity: 0 }} />
 
       <div ref={innerRef} className="relative z-10 text-center max-w-3xl">
-        <div ref={eyebrowRef} className="font-mono text-xs tracking-[0.32em] uppercase text-gray-500 mb-3 inline-flex items-center gap-2">
+        <div ref={eyebrowRef} className="font-mono text-xs tracking-[0.32em] uppercase text-gray-400 mb-3 inline-flex items-center gap-2">
           <span className="w-1 h-1 rounded-full bg-star inline-block" />
-          singapore · 1.3°n · stardate <span ref={stardateRef} className="text-star">{computeStardate()}</span>
+          singapore · 1.3°n · stardate <span ref={stardateRef} className="text-star" suppressHydrationWarning>{computeStardate()}</span>
         </div>
         <h1 ref={helloRef} className="text-5xl md:text-7xl font-medium tracking-tight">
           Hello, I'm <em className="not-italic text-grad-cosmic inline-block pe-[0.06em]">Daniel</em>
@@ -110,7 +110,7 @@ export default function Splash() {
         </div>
       </div>
 
-      <button ref={hintRef} onClick={onClickHint} aria-label="descend into the nebula"
+      <button ref={hintRef} onClick={onClickHint} aria-label="descent into the nebula"
         className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 inline-flex flex-col items-center gap-2 text-gray-400 hover:text-gray-100 transition-colors font-mono text-xs">
         <span>descent into the nebula</span>
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
