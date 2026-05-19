@@ -8,6 +8,7 @@ import { getCollection } from 'astro:content';
 import nowData from '@/content/now.yaml';
 import Splash from '@/components/island/Splash';
 import Constellation from '@/components/island/Constellation';
+import Orrery from '@/components/island/Orrery';
 
 const projects = (await getCollection('projects')).map(p => p.data).slice(0, 3);
 const exps = (await getCollection('experience')).map(e => e.data).slice(0, 3);
@@ -47,15 +48,7 @@ const starColors: Record<string, string> = {
   <!-- Now: placeholder until Orrery island in Phase 4 -->
   <section class="relative max-w-7xl mx-auto px-6 py-16" data-accent="aurora">
     <SectionHead eyebrow="now · this week" title="Right" emTitle="now" linkHref="/about" linkLabel="more about me" />
-    <div class="grid gap-4 md:grid-cols-3">
-      {Object.entries(nowData).slice(0, 6).map(([key, v]: [string, any]) => (
-        <div class="rounded-lg border border-slate-800/60 bg-slate-900/30 p-4">
-          <div class="font-mono text-[10px] uppercase tracking-wider text-gray-500 mb-2">{key}</div>
-          <div class="text-gray-100 font-medium">{v.title}</div>
-          {v.note && <p class="text-sm text-gray-400 mt-1 leading-relaxed">{v.note}</p>}
-        </div>
-      ))}
-    </div>
+    <Orrery client:visible building={nowData.building} writing={nowData.writing} obsessed={nowData.obsessed} />
   </section>
 
   <!-- Projects -->
