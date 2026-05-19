@@ -1,0 +1,23 @@
+---
+export interface Props {
+  eyebrow: string;
+  title: string;
+  emTitle?: string;
+  linkHref?: string;
+  linkLabel?: string;
+}
+const { eyebrow, title, emTitle, linkHref, linkLabel } = Astro.props;
+---
+<header class="flex items-end justify-between gap-6 mb-6 md:mb-8">
+  <div>
+    <div class="font-mono text-xs tracking-[0.18em] uppercase text-gray-500 mb-2">{eyebrow}</div>
+    <h2 class="text-3xl md:text-4xl font-medium text-gray-200 leading-tight">
+      {title}{emTitle && <> <em class="not-italic text-grad-cosmic inline-block pe-[0.06em]">{emTitle}</em></>}.
+    </h2>
+  </div>
+  {linkHref && linkLabel && (
+    <a href={linkHref} class="text-sm font-medium text-star hover:text-star-bright shrink-0">
+      {linkLabel} →
+    </a>
+  )}
+</header>
