@@ -1,0 +1,95 @@
+- id: sheares-app
+  title: "Sheares App v3"
+  tagline: "A real-time community app for 500+ hall residents."
+  tech: [aws, react, tailwindcss]
+  summary: |
+    A hall-wide noticeboard, room-booking, and event app I've maintained since freshman year. v3 swapped the old polling backend for a serverless WebSocket fan-out on AWS and cut p95 notification latency from 9s to 280ms.
+  bullets:
+    - "WebSocket fan-out via API Gateway + Lambda + DynamoDB streams."
+    - "Replaced WhatsApp announcements; spam down ~70%, notice retention up ~3×."
+    - "Deploys in one terraform apply; CI/CD via GitHub Actions + OIDC."
+  role: "Solo build · 2024 → ongoing"
+  impact: "500+ daily actives · 14 blocks"
+  cluster: cloud
+  accent: cosmic
+  href: "https://github.com/algebananazzzzz"
+
+- id: brewlog
+  title: "Brewlog"
+  tagline: "A home-brewing journal that nags me at the right times."
+  tech: [react, docker]
+  summary: |
+    What started as a Notion replacement became a self-hosted brewing log with gravity readings, pitching-rate math, and tasting flights. 12 batches tracked across saisons, IPAs, stouts.
+  bullets:
+    - "Astro frontend, SQLite backend, runs on a Raspberry Pi in my closet."
+    - "Custom pitching-rate calculator that finally agrees with my fermenter."
+    - "Tasting flights with rotating peer reviewers (my hall-mates)."
+  role: "Side project · 2025"
+  impact: "12 batches · 0 infections"
+  cluster: brewery
+  accent: sunset
+  href: "https://github.com/algebananazzzzz"
+
+- id: prompt-atlas
+  title: "Prompt-Atlas"
+  tagline: "A library of meta-prompt skeletons, each with eval cases attached."
+  tech: [react, terraform]
+  summary: |
+    An open-source catalogue of meta-prompt skeletons. Every template ships with eval cases — assertions you can actually run, not vibes you can argue with. 47 templates and counting.
+  bullets:
+    - "47 templates across planning, debate, summarisation, evaluation patterns."
+    - "Each template carries 8–20 eval cases. Templates that regress get red-flagged in CI."
+    - "Used by ~6 small teams I know of; PRs from 14 contributors."
+  role: "Open source · 2025 → ongoing"
+  impact: "47 templates · 14 contributors"
+  cluster: llm
+  accent: aurora
+  href: "https://github.com/algebananazzzzz"
+
+- id: constellate
+  title: "Constellate"
+  tagline: "This site. A digital garden that looks like the sky it lives under."
+  tech: [react, gatsby]
+  summary: |
+    A custom Quartz-style digital garden built on Astro + MDX. Notes are stars; wiki-links are constellations; bigger stars mean more backlinks. Self-referential by design.
+  bullets:
+    - "Hand-rolled D3 force layout for the global graph view."
+    - "Bidirectional [[wiki-links]] resolved at build time; backlinks generated automatically."
+    - "Every page typeset in the same design system you're looking at."
+  role: "Solo · 2026"
+  impact: "47 notes · 113 links"
+  cluster: general
+  accent: nebula
+  href: "https://github.com/algebananazzzzz"
+
+- id: pourover
+  title: "Pour-over Timer"
+  tagline: "A tiny iOS app for pour-over coffee."
+  tech: [react, docker]
+  summary: |
+    Multi-stage pour profiles with haptic-tap pacing. Built in a weekend after burning my fifth Ethiopian Yirgacheffe. Now lives quietly on my home-screen with ~40 friends using it.
+  bullets:
+    - "Profiles for 4-6, V60 02, Kalita Wave, with custom bloom/pour ratios."
+    - "Haptic pacing so you don't need to stare at a phone mid-pour."
+    - "Distributed via TestFlight; ~40 active testers."
+  role: "Side project · 2025"
+  impact: "40 active testers"
+  cluster: general
+  accent: sunset
+  href: "https://github.com/algebananazzzzz"
+
+- id: nocturnal
+  title: "NocturnalProject"
+  tagline: "The Gatsby + Tailwind portfolio template this site forks from."
+  tech: [gatsby, tailwindcss]
+  summary: |
+    A free, opinionated portfolio template I open-sourced after building mine. 200+ forks; opinionated about content separation, theme tokens, and a wine-red illustration palette.
+  bullets:
+    - "YAML-driven content. Add a project by editing a file, not a component."
+    - "Light / dark theme baked into the design tokens, not bolted on."
+    - "200+ forks, 30+ stars; PRs from 6 contributors."
+  role: "Open source · 2024"
+  impact: "200+ forks"
+  cluster: general
+  accent: aurora
+  href: "https://github.com/algebananazzzzz/NocturnalProject"

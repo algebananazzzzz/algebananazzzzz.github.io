@@ -1,0 +1,12 @@
+- { text: "Patience is the second yeast.",                     cluster: brewery, noteId: yeast }
+- { text: "Every batch is a confession.",                      cluster: brewery, noteId: saison }
+- { text: "Taste before you trust the gravity.",               cluster: brewery, noteId: hopping }
+- { text: "Prompt like you mean it.",                          cluster: llm,     noteId: metaprompt }
+- { text: "The map is not the model.",                         cluster: llm,     noteId: tool-design }
+- { text: "Evals before vibes.",                               cluster: llm,     noteId: eval }
+- { text: "If you can't deploy it twice, you don't own it.",   cluster: cloud,   noteId: iam }
+- { text: "Cache is a promise you keep tomorrow.",             cluster: cloud,   noteId: edge-cache }
+- { text: "Read like a magpie, link like a librarian.",        cluster: reading, noteId: reading-21 }
+- { text: "I keep a garden, not a blog.",                      cluster: general, noteId: garden }
+- { text: "Wonder is a renewable resource.",                   cluster: general, noteId: garden }
+- { text: "Learning is always free.",                          cluster: general, noteId: garden }
