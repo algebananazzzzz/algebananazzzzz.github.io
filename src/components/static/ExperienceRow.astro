@@ -1,0 +1,54 @@
+---
+export interface Props {
+  exp: {
+    span: string;
+    role: string;
+    org: string;
+    summary: string;
+    tags: string[];
+    star: { type: string; brightness: number };
+  };
+  starColor: string;
+  isLast?: boolean;
+}
+const { exp, starColor, isLast } = Astro.props;
+const starSize = Math.max(6, 14 - exp.star.brightness * 1.4);
+const haloOpacity = Math.max(0.15, 0.7 - exp.star.brightness * 0.1);
+---
+<li class="relative pl-10 pb-10" data-star-type={exp.star.type} data-star-brightness={exp.star.brightness}>
+  <!-- spine -->
+  {!isLast && (
+    <span
+      aria-hidden="true"
+      class="absolute left-[15px] top-[28px] bottom-[-28px] w-px"
+      style={`background: linear-gradient(to bottom, ${starColor}, transparent)`}
+    ></span>
+  )}
+  <!-- star -->
+  <span
+    aria-hidden="true"
+    class="absolute left-2 top-2 rounded-full"
+    style={`width:${starSize}px;height:${starSize}px;background:${starColor};box-shadow:0 0 ${starSize * 2}px ${starColor}${Math.round(haloOpacity * 255).toString(16).padStart(2, '0')}`}
+  ></span>
+
+  <header class="flex flex-wrap items-baseline justify-between gap-2 mb-1">
+    <div>
+      <h3 class="text-base md:text-lg font-medium text-gray-100">{exp.role}</h3>
+      <div class="text-sm text-gray-400">{exp.org}</div>
+    </div>
+    <div class="font-mono text-xs text-gray-500 uppercase tracking-wider">{exp.span}</div>
+  </header>
+
+  <p class="text-sm text-gray-300/90 leading-relaxed mb-2">{exp.summary}</p>
+
+  <div class="flex items-center justify-between gap-3">
+    <ul class="flex flex-wrap gap-1.5">
+      {exp.tags.map(t => (
+        <li class="px-2 py-0.5 rounded-full bg-slate-800/40 border border-slate-700/60 text-xs font-mono text-gray-400">{t}</li>
+      ))}
+    </ul>
+    <div class="font-mono text-[10px] text-gray-500 uppercase">
+      mag {exp.star.brightness.toFixed(1)} · {exp.star.type}
+    </div>
+  </div>
+</li>
