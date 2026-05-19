@@ -1,0 +1,17 @@
+---
+import Base from '@/layouts/Base.astro';
+import siteData from '@/content/site.yaml';
+---
+<Base>
+  <section class="min-h-screen flex items-center justify-center px-6">
+    <div class="text-center">
+      <p class="font-mono text-sm tracking-widest text-gray-500 uppercase mb-4">
+        scaffolding · v0
+      </p>
+      <h1 class="text-5xl md:text-6xl font-medium text-grad-cosmic">
+        {siteData.name}
+      </h1>
+      <p class="mt-4 text-gray-400">phase 1 skeleton — content + tokens wired.</p>
+    </div>
+  </section>
+</Base>
