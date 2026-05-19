@@ -1,0 +1,23 @@
+---
+import Base from '@/layouts/Base.astro';
+import siteData from '@/content/site.yaml';
+---
+<Base title="milky way" description="Daniel's digital garden — a constellation of notes." accent="cosmic">
+  <section class="max-w-7xl mx-auto px-6 pt-32 pb-16">
+    <p class="font-mono text-xs tracking-[0.18em] uppercase text-gray-500 mb-3">digital garden · the milky way</p>
+    <h1 class="text-4xl md:text-5xl font-medium mb-4">
+      The <span class="text-grad-cosmic inline-block pe-[0.06em]">milky way</span>.
+    </h1>
+    <p class="text-gray-400 max-w-2xl">A constellation of notes I'm tending. Bigger stars are more linked; clusters are colored by topic.</p>
+
+    {siteData.gardenUrl && (
+      <a href={siteData.gardenUrl} class="inline-flex items-center gap-2 mt-6 px-4 py-2 rounded-full bg-grad-cosmic text-white text-sm font-medium">
+        full digital garden →
+      </a>
+    )}
+
+    <div id="milky-way-mount" class="mt-12 min-h-[600px] rounded-xl border border-slate-800/60 bg-slate-900/30 grid place-items-center">
+      <p class="text-gray-500 font-mono text-sm">constellation loads here (Phase 4)</p>
+    </div>
+  </section>
+</Base>
