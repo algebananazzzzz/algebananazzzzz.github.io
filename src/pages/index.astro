@@ -3,7 +3,6 @@ import Base from '@/layouts/Base.astro';
 import SectionHead from '@/components/static/SectionHead.astro';
 import ProjectCard from '@/components/static/ProjectCard.astro';
 import ExperienceRow from '@/components/static/ExperienceRow.astro';
-import NoteCard from '@/components/static/NoteCard.astro';
 import { getCollection } from 'astro:content';
 import nowData from '@/content/now.yaml';
 import Splash from '@/components/island/Splash';
@@ -12,8 +11,6 @@ import Orrery from '@/components/island/Orrery';
 
 const projects = (await getCollection('projects')).map(p => p.data).slice(0, 3);
 const exps = (await getCollection('experience')).map(e => e.data).slice(0, 3);
-const notes = (await getCollection('notes')).map(n => n.data)
-  .sort((a, b) => b.date.localeCompare(a.date)).slice(0, 4);
 const clusters = (await getCollection('clusters')).map(c => c.data);
 const allNotes = (await getCollection('notes')).map(n => n.data);
 
