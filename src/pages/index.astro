@@ -6,6 +6,7 @@ import ExperienceRow from '@/components/static/ExperienceRow.astro';
 import NoteCard from '@/components/static/NoteCard.astro';
 import { getCollection } from 'astro:content';
 import nowData from '@/content/now.yaml';
+import Splash from '@/components/island/Splash';
 
 const projects = (await getCollection('projects')).map(p => p.data).slice(0, 3);
 const exps = (await getCollection('experience')).map(e => e.data).slice(0, 3);
@@ -18,24 +19,7 @@ const starColors: Record<string, string> = {
 };
 ---
 <Base>
-  <!-- Splash placeholder — full island lands in Phase 3 -->
-  <section
-    id="splash-mount"
-    class="relative min-h-screen flex items-center justify-center px-6"
-    data-accent="cosmic"
-  >
-    <div class="text-center max-w-3xl">
-      <p class="font-mono text-xs tracking-[0.32em] uppercase text-gray-500 mb-3">
-        singapore · 1.3°n · stardate <span id="stardate" data-stardate>computing…</span>
-      </p>
-      <h1 class="text-5xl md:text-7xl font-medium tracking-tight">
-        Hello, I'm <em class="not-italic text-grad-cosmic inline-block pe-[0.06em]">Daniel</em>
-      </h1>
-      <p class="mt-4 font-mono text-sm text-gray-400 tracking-[0.14em]">
-        NUS Computer Sciences · builder · brewer · stargazer
-      </p>
-    </div>
-  </section>
+  <Splash client:load />
 
   <!-- Hero proper -->
   <section class="relative max-w-4xl mx-auto px-6 py-24" data-accent="cosmic">
