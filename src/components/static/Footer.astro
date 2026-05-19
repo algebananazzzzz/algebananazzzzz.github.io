@@ -1,0 +1,38 @@
+---
+import siteData from '@/content/site.yaml';
+const { socials } = siteData;
+const iconMap = {
+  github: '/assets/icons/github-dark.svg',
+  gitlab: '/assets/icons/gitlab-dark.svg',
+  linkedin: '/assets/icons/linkedin-dark.svg',
+  email: '/assets/icons/email-dark.svg',
+};
+---
+<footer class="relative z-10 border-t border-slate-800/50 mt-24 px-6 py-12" data-accent="nebula">
+  <div class="max-w-7xl mx-auto grid gap-8 md:grid-cols-3 items-start">
+    <div>
+      <p class="italic text-gray-300 text-lg">"Learning is always free."</p>
+      <p class="mt-2 text-sm text-gray-500 font-mono">Daniel · Singapore · since 2021</p>
+    </div>
+    <div class="flex items-center justify-center gap-3">
+      {Object.entries(socials).map(([key, url]) => (
+        url && iconMap[key as keyof typeof iconMap] && (
+          <a
+            href={key === 'email' ? `mailto:${url}` : url}
+            class="w-10 h-10 inline-flex items-center justify-center rounded-full bg-slate-800/40 hover:bg-slate-700/60 transition-colors"
+            aria-label={key}
+            target={key === 'email' ? undefined : '_blank'}
+            rel={key === 'email' ? undefined : 'noopener noreferrer'}
+          >
+            <img src={iconMap[key as keyof typeof iconMap]} alt="" width="18" height="18" aria-hidden="true" />
+          </a>
+        )
+      ))}
+    </div>
+    <div class="text-right text-sm font-mono text-gray-500 space-y-1">
+      <div>theme · constellation explorer</div>
+      <div>source · {socials.github.replace('https://', '')}</div>
+      <div class="text-gray-400 mt-2">built with bananas <span aria-hidden="true">🍌</span></div>
+    </div>
+  </div>
+</footer>

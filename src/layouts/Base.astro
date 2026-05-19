@@ -2,6 +2,7 @@
 import '@/styles/global.css';
 import siteData from '@/content/site.yaml';
 import TopNav from '@/components/static/TopNav.astro';
+import Footer from '@/components/static/Footer.astro';
 
 export interface Props {
   title?: string;
@@ -51,6 +52,6 @@ const ogUrl = new URL(Astro.url.pathname, Astro.site).toString();
   <main id="main-content" class="relative z-10">
     <slot />
   </main>
-  <slot name="footer" />
+  <Footer />
 </body>
 </html>
