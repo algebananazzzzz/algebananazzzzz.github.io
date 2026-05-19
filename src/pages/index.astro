@@ -1,17 +1,99 @@
 ---
 import Base from '@/layouts/Base.astro';
-import siteData from '@/content/site.yaml';
+import SectionHead from '@/components/static/SectionHead.astro';
+import ProjectCard from '@/components/static/ProjectCard.astro';
+import ExperienceRow from '@/components/static/ExperienceRow.astro';
+import NoteCard from '@/components/static/NoteCard.astro';
+import { getCollection } from 'astro:content';
+import nowData from '@/content/now.yaml';
+
+const projects = (await getCollection('projects')).map(p => p.data).slice(0, 3);
+const exps = (await getCollection('experience')).map(e => e.data).slice(0, 3);
+const notes = (await getCollection('notes')).map(n => n.data)
+  .sort((a, b) => b.date.localeCompare(a.date)).slice(0, 4);
+
+const starColors: Record<string, string> = {
+  neutron: '#A5B4FC', giant: '#F87171', subgiant: '#FBCFE8',
+  mainseq: '#FDE047', protostar: '#67E8F9', whitedwarf: '#E0E7FF',
+};
 ---
 <Base>
-  <section class="min-h-screen flex items-center justify-center px-6">
-    <div class="text-center">
-      <p class="font-mono text-sm tracking-widest text-gray-500 uppercase mb-4">
-        scaffolding · v0
+  <!-- Splash placeholder — full island lands in Phase 3 -->
+  <section
+    id="splash-mount"
+    class="relative min-h-screen flex items-center justify-center px-6"
+    data-accent="cosmic"
+  >
+    <div class="text-center max-w-3xl">
+      <p class="font-mono text-xs tracking-[0.32em] uppercase text-gray-500 mb-3">
+        singapore · 1.3°n · stardate <span id="stardate" data-stardate>computing…</span>
       </p>
-      <h1 class="text-5xl md:text-6xl font-medium text-grad-cosmic">
-        {siteData.name}
+      <h1 class="text-5xl md:text-7xl font-medium tracking-tight">
+        Hello, I'm <em class="not-italic text-grad-cosmic inline-block pe-[0.06em]">Daniel</em>
       </h1>
-      <p class="mt-4 text-gray-400">phase 1 skeleton — content + tokens wired.</p>
+      <p class="mt-4 font-mono text-sm text-gray-400 tracking-[0.14em]">
+        NUS Computer Sciences · builder · brewer · stargazer
+      </p>
+    </div>
+  </section>
+
+  <!-- Hero proper -->
+  <section class="relative max-w-4xl mx-auto px-6 py-24" data-accent="cosmic">
+    <p class="font-mono text-xs tracking-[0.18em] uppercase text-gray-500 mb-3">v2026 · personal archive</p>
+    <h2 class="text-3xl md:text-5xl font-medium leading-tight mb-6">
+      Welcome to my <em class="not-italic text-grad-cosmic inline-block pe-[0.06em]">nebula</em>.
+    </h2>
+    <p class="text-lg text-gray-300 max-w-2xl leading-relaxed mb-8">
+      I'm an NUS Computer Sciences undergrad. Cloud, agents, craft brewing — a small constellation of obsessions and the projects they keep producing.
+    </p>
+    <p class="italic text-gray-400 mb-8">"Wonder is a renewable resource."</p>
+
+    <a href="/milky-way" class="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-grad-cosmic text-white font-medium shadow-lg shadow-purple-500/20 hover:scale-105 transition-transform">
+      <span class="w-2 h-2 rounded-full bg-star"></span>
+      Enter the Milky Way
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+      </svg>
+    </a>
+  </section>
+
+  <!-- Now: placeholder until Orrery island in Phase 4 -->
+  <section class="relative max-w-7xl mx-auto px-6 py-16" data-accent="aurora">
+    <SectionHead eyebrow="now · this week" title="Right" emTitle="now" linkHref="/about" linkLabel="more about me" />
+    <div class="grid gap-4 md:grid-cols-3">
+      {Object.entries(nowData).slice(0, 6).map(([key, v]: [string, any]) => (
+        <div class="rounded-lg border border-slate-800/60 bg-slate-900/30 p-4">
+          <div class="font-mono text-[10px] uppercase tracking-wider text-gray-500 mb-2">{key}</div>
+          <div class="text-gray-100 font-medium">{v.title}</div>
+          {v.note && <p class="text-sm text-gray-400 mt-1 leading-relaxed">{v.note}</p>}
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section class="relative max-w-7xl mx-auto px-6 py-16" data-accent="sunset">
+    <SectionHead eyebrow="things on the workbench" title="Recent" emTitle="builds" linkHref="/projects" linkLabel="all projects" />
+    <div class="grid gap-6 md:grid-cols-3">
+      {projects.map(p => <ProjectCard project={p} />)}
+    </div>
+  </section>
+
+  <!-- Career -->
+  <section class="relative max-w-3xl mx-auto px-6 py-16" data-accent="nebula">
+    <SectionHead eyebrow="where I've been" title="" emTitle="Trajectory" linkHref="/experience" linkLabel="full timeline" />
+    <ol class="list-none">
+      {exps.map((e, i) => (
+        <ExperienceRow exp={e} starColor={starColors[e.star.type] ?? '#FFC700'} isLast={i === exps.length - 1} />
+      ))}
+    </ol>
+  </section>
+
+  <!-- Milky Way preview (full interactive constellation lands in Phase 4) -->
+  <section class="relative max-w-7xl mx-auto px-6 py-16" data-accent="cosmic">
+    <SectionHead eyebrow="digital garden · the milky way" title="The" emTitle="milky way" linkHref="/milky-way" linkLabel="enter the milky way" />
+    <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4 mt-6">
+      {notes.map(n => <NoteCard note={n} />)}
     </div>
   </section>
 </Base>
