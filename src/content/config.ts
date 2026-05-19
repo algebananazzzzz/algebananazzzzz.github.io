@@ -26,6 +26,7 @@ const projects = defineCollection({
 const experience = defineCollection({
   loader: file('src/content/experience.yaml'),
   schema: z.object({
+    id: z.string(),
     span: z.string(),
     role: z.string(),
     org: z.string(),
@@ -61,7 +62,7 @@ const clusters = defineCollection({
 
 const mottos = defineCollection({
   loader: file('src/content/mottos.yaml'),
-  schema: z.object({ text: z.string(), cluster: ClusterId, noteId: z.string() }),
+  schema: z.object({ id: z.string(), text: z.string(), cluster: ClusterId, noteId: z.string() }),
 });
 
 export const collections = { projects, experience, notes, clusters, mottos };
