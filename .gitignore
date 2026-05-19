@@ -1,0 +1,12 @@
+node_modules/
+.DS_Store
+dist/
+.astro/
+.env
+.env.*
+!.env.example
+design.bin
+design-handoff/
+*.log
+.vscode/
+.idea/
