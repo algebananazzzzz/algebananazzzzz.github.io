@@ -1,6 +1,11 @@
 ---
 import Base from '@/layouts/Base.astro';
 import siteData from '@/content/site.yaml';
+import MilkyWay from '@/components/island/MilkyWay';
+import { getCollection } from 'astro:content';
+
+const notes = (await getCollection('notes')).map(n => n.data);
+const clusters = (await getCollection('clusters')).map(c => c.data);
 ---
 <Base title="milky way" description="Daniel's digital garden — a constellation of notes." accent="cosmic">
   <section class="max-w-7xl mx-auto px-6 pt-32 pb-16">
@@ -16,8 +21,8 @@ import siteData from '@/content/site.yaml';
       </a>
     )}
 
-    <div id="milky-way-mount" class="mt-12 min-h-[600px] rounded-xl border border-slate-800/60 bg-slate-900/30 grid place-items-center">
-      <p class="text-gray-500 font-mono text-sm">constellation loads here (Phase 4)</p>
+    <div class="mt-12">
+      <MilkyWay client:visible notes={notes} clusters={clusters} />
     </div>
   </section>
 </Base>
