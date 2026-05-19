@@ -4,6 +4,7 @@ import siteData from '@/content/site.yaml';
 import TopNav from '@/components/static/TopNav.astro';
 import Footer from '@/components/static/Footer.astro';
 import Cosmos from '@/components/island/Cosmos';
+import AccentOrb from '@/components/island/AccentOrb';
 
 export interface Props {
   title?: string;
@@ -50,6 +51,7 @@ const ogUrl = new URL(Astro.url.pathname, Astro.site).toString();
   </a>
   <TopNav />
   <Cosmos client:idle />
+  <AccentOrb client:idle />
   <main id="main-content" class="relative z-10">
     <slot />
   </main>
