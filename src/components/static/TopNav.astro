@@ -1,0 +1,47 @@
+---
+const { pathname } = Astro.url;
+const isActive = (href: string) =>
+  href === '/' ? pathname === '/' : pathname.startsWith(href);
+
+const links = [
+  { href: '/',           label: 'home' },
+  { href: '/about',      label: 'about' },
+  { href: '/projects',   label: 'projects' },
+  { href: '/experience', label: 'experience' },
+];
+---
+<nav aria-label="Primary" class="fixed top-0 inset-x-0 z-40 backdrop-blur-md bg-night/60 border-b border-slate-800/50">
+  <div class="max-w-7xl mx-auto px-6 py-3 flex items-center gap-6">
+    <a href="/" class="flex items-center gap-2 font-mono text-sm text-star hover:text-star-bright transition-colors">
+      <img src="/assets/banana.png" alt="" width="22" height="22" class="rounded-sm" aria-hidden="true" />
+      <span>algebananazzzzz</span>
+    </a>
+    <ul class="hidden md:flex items-center gap-1 ml-4">
+      {links.map(({ href, label }) => (
+        <li>
+          <a
+            href={href}
+            aria-current={isActive(href) ? 'page' : undefined}
+            class:list={[
+              'px-3 py-1.5 rounded text-sm font-medium transition-colors',
+              isActive(href)
+                ? 'text-star'
+                : 'text-gray-400 hover:text-gray-200',
+            ]}
+          >
+            {label}
+          </a>
+        </li>
+      ))}
+    </ul>
+    <div class="flex-1"></div>
+    <a
+      href="/milky-way"
+      class="group inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-medium bg-grad-cosmic text-white hover:scale-105 transition-transform"
+      aria-current={isActive('/milky-way') ? 'page' : undefined}
+    >
+      <span class="w-1.5 h-1.5 rounded-full bg-star"></span>
+      milky way
+    </a>
+  </div>
+</nav>

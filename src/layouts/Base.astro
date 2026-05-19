@@ -1,6 +1,7 @@
 ---
 import '@/styles/global.css';
 import siteData from '@/content/site.yaml';
+import TopNav from '@/components/static/TopNav.astro';
 
 export interface Props {
   title?: string;
@@ -45,7 +46,7 @@ const ogUrl = new URL(Astro.url.pathname, Astro.site).toString();
   <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:rounded focus:bg-star focus:px-3 focus:py-2 focus:text-night focus:font-medium">
     Skip to content
   </a>
-  <slot name="topnav" />
+  <TopNav />
   <slot name="background" />
   <main id="main-content" class="relative z-10">
     <slot />
