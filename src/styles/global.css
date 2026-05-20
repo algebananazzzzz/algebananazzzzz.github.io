@@ -7,28 +7,31 @@
 @import './pages.css';
 @import './page-bg.css';
 
+/* Tailwind @theme bridge — every color/font here references tokens.css.
+   tokens.css is the single source of truth for the palette and type stack;
+   this block exists only to expose those tokens as Tailwind color/font
+   utilities (bg-star, text-cyan, font-sans, etc.). */
 @theme {
-  --color-signal: #6c0000;
-  --color-signal-deep: #6b0204;
-  --color-star: #ffc700;
-  --color-star-bright: #ffec43;
-  --color-star-soft: #fef9c3;
-  --color-cyan: #00dfd5;
-  --color-cyan-bright: #22d3ee;
-  --color-cyan-soft: #99f6e4;
-  --color-ice: #bed5e9;
-  --color-sunset: #f97316;
-  --color-purple: #7e22ce;
-  --color-purple-bright: #b02eed;
-  --color-rose: #e11d48;
-  --color-fuchsia: #d946ef;
-  --color-night: #0f172a;
-  --color-night-deep: #020617;
-  --color-night-soft: #1e293b;
+  --color-signal: var(--signal);
+  --color-signal-deep: var(--signal-deep);
+  --color-star: var(--star);
+  --color-star-bright: var(--star-bright);
+  --color-star-soft: var(--star-soft);
+  --color-cyan: var(--cyan);
+  --color-cyan-bright: var(--cyan-bright);
+  --color-cyan-soft: var(--cyan-soft);
+  --color-ice: var(--ice);
+  --color-sunset: var(--sunset);
+  --color-purple: var(--purple);
+  --color-purple-bright: var(--purple-bright);
+  --color-rose: var(--rose);
+  --color-fuchsia: var(--fuchsia);
+  --color-night: var(--night);
+  --color-night-deep: var(--night-deep);
+  --color-night-soft: var(--night-soft);
 
-  --font-sans: 'Space Grotesk Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
-    'Helvetica Neue', Arial, sans-serif;
-  --font-mono: 'Space Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
 }
 
 @utility bg-grad-sunset {
