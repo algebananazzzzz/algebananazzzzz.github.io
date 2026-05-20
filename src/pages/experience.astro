@@ -21,7 +21,7 @@ const careerEntries = exps.map((e: any) => ({
   description="trajectory through cloud, agents, and teaching."
   accent="nebula"
 >
-  <main class="page" data-accent="nebula">
+  <div class="page">
     <div class="page-head">
       <div class="section-eyebrow">— experience —</div>
       <h1 class="page-title">
@@ -34,5 +34,5 @@ const careerEntries = exps.map((e: any) => ({
     </div>
 
     <CareerList client:idle entries={careerEntries} />
-  </main>
+  </div>
 </Base>

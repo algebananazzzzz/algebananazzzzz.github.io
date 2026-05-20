@@ -7,7 +7,7 @@ const projects = (await getCollection('projects')).map((p) => p.data);
 ---
 
 <Base title="projects" description="things on my workbench." accent="sunset">
-  <main class="page" data-accent="sunset">
+  <div class="page">
     <div class="page-head">
       <div class="section-eyebrow">— projects —</div>
       <h1 class="page-title">
@@ -20,5 +20,5 @@ const projects = (await getCollection('projects')).map((p) => p.data);
     </div>
 
     <ProjectsList client:idle projects={projects} />
-  </main>
+  </div>
 </Base>

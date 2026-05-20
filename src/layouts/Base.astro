@@ -67,8 +67,8 @@ const ogUrl = new URL(Astro.url.pathname, Astro.site).toString();
     </a>
     {!mwPage && <Cosmos client:idle isHome={isHome} />}
     {!mwPage && !isHome && <AccentOrb client:idle />}
-    <TopNav />
-    <main id="main-content" class="page">
+    <header><TopNav /></header>
+    <main id="main-content">
       <slot />
     </main>
     <Meteor client:idle />
