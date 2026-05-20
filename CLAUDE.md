@@ -34,6 +34,7 @@ Operational guide for Claude sessions working on this repo. Read this before tou
 2. **`<html data-accent="...">` is the single source of truth for accent.** Set by `<Base accent="...">`. CSS selectors key from `html[data-accent]`, not from the page wrapper. Do not put `data-accent` on the page wrapper.
 
 3. **Cosmos var contract is load-bearing.** `src/styles/portfolio/cosmos.css` exposes three custom properties:
+
    - `--layer-hue` — `hue-rotate` for colored nebula layers.
    - `--layer-sat-mul` — saturation multiplier for colored layers.
    - `--layer-dim` — opacity multiplier for colored layers ONLY (not the wrap, so the star canvas inside stays bright).
@@ -60,36 +61,36 @@ Operational guide for Claude sessions working on this repo. Read this before tou
 
 ## Component → CSS file map
 
-| Component | Styles in |
-|---|---|
-| `Cosmos.tsx` | `portfolio/cosmos.css` |
-| `Splash.tsx` | `portfolio/splash.css` |
-| `Meteor.tsx` | `portfolio/meteor.css` |
-| `Orrery.tsx` | `portfolio/orrery.css` |
-| `Constellation.tsx` | `portfolio/constellation.css` |
-| `MilkyWay.tsx`, `MilkyWayStreak.tsx` | `portfolio/mw.css`, `page-bg.css` |
-| `CareerList.tsx` | `portfolio/career.css` |
-| `ProjectsConst.tsx`, `ProjectsList.tsx` | `pages.css` (project rows), inline SVG for gravity grid |
-| `AccentOrb.tsx` | `portfolio/cosmos.css` (`.v3-accent-orb` selector) |
-| `TopNav.astro` | `portfolio/topnav.css` |
-| `Footer.astro` | `portfolio/footer.css` |
-| `NotePanel.tsx` | `portfolio/constellation.css` (rendered inside Constellation island) |
-| Hero on `/` | `portfolio/hero.css` |
-| `.section`, `.section-head`, `.eyebrow`, `.orbiting` | `portfolio/sections.css` |
-| `/about`, `/projects`, `/experience` page wrappers | `pages.css` |
-| Per-route accent wash + cosmos tint vars | `page-bg.css` |
+| Component                                            | Styles in                                                            |
+| ---------------------------------------------------- | -------------------------------------------------------------------- |
+| `Cosmos.tsx`                                         | `portfolio/cosmos.css`                                               |
+| `Splash.tsx`                                         | `portfolio/splash.css`                                               |
+| `Meteor.tsx`                                         | `portfolio/meteor.css`                                               |
+| `Orrery.tsx`                                         | `portfolio/orrery.css`                                               |
+| `Constellation.tsx`                                  | `portfolio/constellation.css`                                        |
+| `MilkyWay.tsx`, `MilkyWayStreak.tsx`                 | `portfolio/mw.css`, `page-bg.css`                                    |
+| `CareerList.tsx`                                     | `portfolio/career.css`                                               |
+| `ProjectsConst.tsx`, `ProjectsList.tsx`              | `pages.css` (project rows), inline SVG for gravity grid              |
+| `AccentOrb.tsx`                                      | `portfolio/cosmos.css` (`.v3-accent-orb` selector)                   |
+| `TopNav.astro`                                       | `portfolio/topnav.css`                                               |
+| `Footer.astro`                                       | `portfolio/footer.css`                                               |
+| `NotePanel.tsx`                                      | `portfolio/constellation.css` (rendered inside Constellation island) |
+| Hero on `/`                                          | `portfolio/hero.css`                                                 |
+| `.section`, `.section-head`, `.eyebrow`, `.orbiting` | `portfolio/sections.css`                                             |
+| `/about`, `/projects`, `/experience` page wrappers   | `pages.css`                                                          |
+| Per-route accent wash + cosmos tint vars             | `page-bg.css`                                                        |
 
 ## Content collections — how to add data
 
 Collections defined in `src/content/config.ts` (type `'data'`, file loaders, Zod schemas):
 
-| Collection | File | Schema fields |
-|---|---|---|
-| `projects` | `src/content/projects.yaml` | id, title, tagline, tech, summary, bullets, role, impact, cluster, accent, href |
-| `experience` | `src/content/experience.yaml` | id, span, role, org, summary, tags, star (type, brightness) |
-| `notes` | `src/content/notes.yaml` | id, title, excerpt, cluster, status, links, date, readTime, words, arm, t, backlinks, related |
-| `clusters` | `src/content/clusters.yaml` | id, label, dotColor |
-| `mottos` | `src/content/mottos.yaml` | id, text, cluster, noteId |
+| Collection   | File                          | Schema fields                                                                                 |
+| ------------ | ----------------------------- | --------------------------------------------------------------------------------------------- |
+| `projects`   | `src/content/projects.yaml`   | id, title, tagline, tech, summary, bullets, role, impact, cluster, accent, href               |
+| `experience` | `src/content/experience.yaml` | id, span, role, org, summary, tags, star (type, brightness)                                   |
+| `notes`      | `src/content/notes.yaml`      | id, title, excerpt, cluster, status, links, date, readTime, words, arm, t, backlinks, related |
+| `clusters`   | `src/content/clusters.yaml`   | id, label, dotColor                                                                           |
+| `mottos`     | `src/content/mottos.yaml`     | id, text, cluster, noteId                                                                     |
 
 To add a new project: append an entry to `src/content/projects.yaml` matching the schema. To add a field: update the schema in `config.ts`, then add the field to existing entries (or mark `.optional()` in the schema if not always present).
 
@@ -99,22 +100,22 @@ Standalone YAML imports (not collections) — `site.yaml`, `mottos.yaml` (also i
 
 ```ts
 import siteRaw from '@/content/site.yaml';
-type SiteData = { name: string; title: string; description: string; /* ... */ };
+type SiteData = { name: string; title: string; description: string /* ... */ };
 const siteData = siteRaw as SiteData;
 ```
 
 ## Workflows
 
-| Command | What it does |
-|---|---|
-| `npm run dev` | Astro dev server on `:4321`. |
-| `npm run build` | Static build to `dist/`. |
-| `npm run preview` | Serve the built `dist/`. |
-| `npm run check` | `astro check` — TypeScript + Astro diagnostics. **Must exit 0.** |
-| `npm test` | Vitest single-run. |
-| `npm run test:watch` | Vitest watch mode. |
-| `npm run format` | Prettier write. |
-| `npm run format:check` | Prettier check (CI gate). |
+| Command                | What it does                                                     |
+| ---------------------- | ---------------------------------------------------------------- |
+| `npm run dev`          | Astro dev server on `:4321`.                                     |
+| `npm run build`        | Static build to `dist/`.                                         |
+| `npm run preview`      | Serve the built `dist/`.                                         |
+| `npm run check`        | `astro check` — TypeScript + Astro diagnostics. **Must exit 0.** |
+| `npm test`             | Vitest single-run.                                               |
+| `npm run test:watch`   | Vitest watch mode.                                               |
+| `npm run format`       | Prettier write.                                                  |
+| `npm run format:check` | Prettier check (CI gate).                                        |
 
 ## CI
 

@@ -29,16 +29,16 @@ npm run dev   # http://localhost:4321
 
 ## Scripts
 
-| Command | Description |
-|---|---|
-| `npm run dev` | Astro dev server with HMR. |
-| `npm run build` | Static build to `dist/`. |
-| `npm run preview` | Serve the built `dist/`. |
-| `npm run check` | TypeScript + Astro diagnostics. |
-| `npm test` | Vitest single-run. |
-| `npm run test:watch` | Vitest watch mode. |
-| `npm run format` | Prettier write across all files. |
-| `npm run format:check` | Prettier check (CI gate). |
+| Command                | Description                      |
+| ---------------------- | -------------------------------- |
+| `npm run dev`          | Astro dev server with HMR.       |
+| `npm run build`        | Static build to `dist/`.         |
+| `npm run preview`      | Serve the built `dist/`.         |
+| `npm run check`        | TypeScript + Astro diagnostics.  |
+| `npm test`             | Vitest single-run.               |
+| `npm run test:watch`   | Vitest watch mode.               |
+| `npm run format`       | Prettier write across all files. |
+| `npm run format:check` | Prettier check (CI gate).        |
 
 ## Project structure
 
