@@ -1,7 +1,17 @@
 ---
-import siteData from '@/content/site.yaml';
+import siteRaw from '@/content/site.yaml';
 
-const socials = siteData.socials as Record<string, string>;
+type SiteData = {
+  name: string;
+  title: string;
+  description: string;
+  location: string;
+  gardenUrl: string;
+  socials: Record<string, string>;
+};
+
+const siteData = siteRaw as SiteData;
+const socials = siteData.socials;
 
 const ICONS = [
   { key: 'github', src: '/assets/icons/github-dark.svg', label: 'GitHub' },

@@ -1,6 +1,17 @@
 ---
 import '@/styles/global.css';
-import siteData from '@/content/site.yaml';
+import siteRaw from '@/content/site.yaml';
+
+type SiteData = {
+  name: string;
+  title: string;
+  description: string;
+  location: string;
+  gardenUrl: string;
+  socials: Record<string, string>;
+};
+
+const siteData = siteRaw as SiteData;
 import TopNav from '@/components/static/TopNav.astro';
 import Footer from '@/components/static/Footer.astro';
 import Cosmos from '@/components/island/Cosmos';

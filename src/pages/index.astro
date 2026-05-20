@@ -1,14 +1,29 @@
 ---
 import Base from '@/layouts/Base.astro';
 import { getCollection } from 'astro:content';
-import clustersData from '@/content/clusters.yaml';
-import mottosData from '@/content/mottos.yaml';
-import nowData from '@/content/now.yaml';
+import clustersRaw from '@/content/clusters.yaml';
+import mottosRaw from '@/content/mottos.yaml';
+import nowRaw from '@/content/now.yaml';
 import Splash from '@/components/island/Splash';
 import Orrery from '@/components/island/Orrery';
 import ProjectsConst from '@/components/island/ProjectsConst';
 import CareerList from '@/components/island/CareerList';
 import MilkyWay from '@/components/island/MilkyWay';
+
+type ClusterEntry = { id: string; label: string; dotColor: string };
+const clustersData = clustersRaw as ClusterEntry[];
+
+type Motto = { id: string; text: string; cluster: string; noteId: string };
+const mottosData = mottosRaw as Motto[];
+
+type NowItem = { title: string; note: string; tag: string };
+type NowData = {
+  building: NowItem & { since: string; status: string };
+  writing: NowItem & { progress: number; words: number; status: string };
+  obsessed: NowItem & { batch: number };
+  [k: string]: NowItem & Record<string, unknown>;
+};
+const nowData = nowRaw as NowData;
 
 const projects = (await getCollection('projects')).map((p) => p.data);
 const exps = (await getCollection('experience')).map((e) => e.data).slice(0, 3);
@@ -25,8 +40,8 @@ const careerEntries = exps.map((e: any) => ({
   starType: e.star?.type ?? 'mainseq',
 }));
 
-const orbitingClusters = clustersData.filter((c: any) => c.id !== 'general');
-const mottoEntry = (mottosData as any[]).find((m: any) => m.id === 'motto-11');
+const orbitingClusters = clustersData.filter((c) => c.id !== 'general');
+const mottoEntry = mottosData.find((m) => m.id === 'motto-11');
 const motto = mottoEntry?.text ?? 'Wonder is a renewable resource.';
 ---
 
@@ -73,7 +88,7 @@ const motto = mottoEntry?.text ?? 'Wonder is a renewable resource.';
       <div class="orbiting">
         <span class="label">currently orbiting</span>
         {
-          orbitingClusters.map((c: any) => (
+          orbitingClusters.map((c) => (
             <a
               href={`/milky-way?cluster=${c.id}`}
               class="orbiting-chip"

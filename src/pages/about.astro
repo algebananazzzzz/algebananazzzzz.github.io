@@ -1,6 +1,15 @@
 ---
 import Base from '@/layouts/Base.astro';
-import about from '@/content/about.yaml';
+import aboutRaw from '@/content/about.yaml';
+
+type AboutData = {
+  intro: string;
+  what: string;
+  values: { label: string; note: string }[];
+  factoids: { k: string; v: string }[];
+};
+
+const about = aboutRaw as AboutData;
 ---
 
 <Base title="about" description="who Daniel is and how he works." accent="aurora">
@@ -20,7 +29,7 @@ import about from '@/content/about.yaml';
         <h3 class="about-h3">A few working principles</h3>
         <ul class="about-values">
           {
-            about.values.map((v: any) => (
+            about.values.map((v) => (
               <li>
                 <strong>{v.label}.</strong> {v.note}
               </li>
@@ -34,7 +43,7 @@ import about from '@/content/about.yaml';
           <div class="now-label" style="margin-bottom: var(--space-3);">field card</div>
           <dl class="about-factoids">
             {
-              about.factoids.map((f: any) => (
+              about.factoids.map((f) => (
                 <div class="about-factoid">
                   <>
                     <dt>{f.k}</dt>
