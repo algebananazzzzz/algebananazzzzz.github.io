@@ -13,10 +13,10 @@ body {
 }
 
 /* This deliberately suppresses the v2 starfield/orb + page mascots */
-body .page-root>.starfield,
-body .page-root>.orb-layers,
-body .page-root>.satellite-path,
-body .page-root>.satellite,
+body .page-root > .starfield,
+body .page-root > .orb-layers,
+body .page-root > .satellite-path,
+body .page-root > .satellite,
 body .page-mascot {
   display: none !important;
 }
@@ -53,9 +53,8 @@ body .page-mascot {
   content: '';
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(ellipse 80% 60% at 50% 30%, rgba(67, 56, 202, 0.18), transparent 65%),
-    radial-gradient(ellipse 80% 50% at 30% 80%, rgba(190, 24, 93, 0.10), transparent 70%),
+  background: radial-gradient(ellipse 80% 60% at 50% 30%, rgba(67, 56, 202, 0.18), transparent 65%),
+    radial-gradient(ellipse 80% 50% at 30% 80%, rgba(190, 24, 93, 0.1), transparent 70%),
     radial-gradient(ellipse 60% 50% at 80% 60%, rgba(91, 33, 182, 0.12), transparent 60%);
   filter: blur(40px) saturate(var(--layer-sat-mul, 1)) hue-rotate(var(--layer-hue, 0deg));
   pointer-events: none;
@@ -86,31 +85,34 @@ body .page-mascot {
 /* Subtler pulse used by the sub-page accent wash so it breathes without
    wiping out text contrast when content scrolls through the wash zone. */
 @keyframes washPulse {
-
   0%,
   100% {
-    --wash-pulse: 0.70;
+    --wash-pulse: 0.7;
   }
 
   50% {
-    --wash-pulse: 1.00;
+    --wash-pulse: 1;
   }
 }
 
 .cosmos .nebula-far {
   --neb-pulse: 1;
   opacity: calc(var(--bloom, 1) * var(--neb-pulse) * var(--layer-dim, 1));
-  filter: blur(28px) saturate(calc(1.25 * var(--layer-sat-mul, 1))) hue-rotate(var(--layer-hue, 0deg));
-  animation: nebulaDrift1 24s ease-in-out infinite,
+  filter: blur(28px) saturate(calc(1.25 * var(--layer-sat-mul, 1)))
+    hue-rotate(var(--layer-hue, 0deg));
+  animation:
+    nebulaDrift1 24s ease-in-out infinite,
     nebulaPulse1 11s ease-in-out infinite;
 }
 
 .cosmos .nebula-mid {
   --neb-pulse: 1;
   opacity: calc(var(--bloom, 1) * var(--neb-pulse) * var(--layer-dim, 1));
-  filter: blur(14px) saturate(calc(1.3 * var(--layer-sat-mul, 1))) hue-rotate(var(--layer-hue, 0deg));
+  filter: blur(14px) saturate(calc(1.3 * var(--layer-sat-mul, 1)))
+    hue-rotate(var(--layer-hue, 0deg));
   mix-blend-mode: screen;
-  animation: nebulaDrift2 28s ease-in-out infinite,
+  animation:
+    nebulaDrift2 28s ease-in-out infinite,
     nebulaPulse2 14s ease-in-out infinite;
 }
 
@@ -120,7 +122,8 @@ body .page-mascot {
   filter: saturate(var(--layer-sat-mul, 1)) hue-rotate(var(--layer-hue, 0deg));
   mix-blend-mode: screen;
   will-change: transform, filter;
-  animation: nebulaDrift3 26s ease-in-out infinite,
+  animation:
+    nebulaDrift3 26s ease-in-out infinite,
     nebulaPulse3 9s ease-in-out infinite;
 }
 
@@ -129,24 +132,23 @@ body .page-mascot {
   opacity: calc(var(--bloom, 1) * var(--neb-pulse) * var(--layer-dim, 1));
   filter: blur(40px) saturate(var(--layer-sat-mul, 1)) hue-rotate(var(--layer-hue, 0deg));
   mix-blend-mode: screen;
-  animation: nebulaDrift4 32s ease-in-out infinite,
+  animation:
+    nebulaDrift4 32s ease-in-out infinite,
     nebulaPulse4 15s ease-in-out infinite;
 }
 
 @keyframes nebulaDrift1 {
-
   0%,
   100% {
     transform: translate3d(0, 0, 0) scale(1);
   }
 
   50% {
-    transform: translate3d(-4%, 3%, 0) scale(1.10);
+    transform: translate3d(-4%, 3%, 0) scale(1.1);
   }
 }
 
 @keyframes nebulaDrift2 {
-
   0%,
   100% {
     transform: translate3d(0, 0, 0) scale(1);
@@ -158,7 +160,6 @@ body .page-mascot {
 }
 
 @keyframes nebulaDrift3 {
-
   0%,
   100% {
     transform: translate3d(0, 0, 0) scale(1);
@@ -170,7 +171,6 @@ body .page-mascot {
 }
 
 @keyframes nebulaDrift4 {
-
   0%,
   100% {
     transform: translate3d(0, 0, 0);
@@ -182,19 +182,17 @@ body .page-mascot {
 }
 
 @keyframes nebulaPulse1 {
-
   0%,
   100% {
-    --neb-pulse: 0.50;
+    --neb-pulse: 0.5;
   }
 
   50% {
-    --neb-pulse: 1.10;
+    --neb-pulse: 1.1;
   }
 }
 
 @keyframes nebulaPulse2 {
-
   0%,
   100% {
     --neb-pulse: 1.05;
@@ -206,7 +204,6 @@ body .page-mascot {
 }
 
 @keyframes nebulaPulse3 {
-
   0%,
   100% {
     --neb-pulse: 0.55;
@@ -218,14 +215,13 @@ body .page-mascot {
 }
 
 @keyframes nebulaPulse4 {
-
   0%,
   100% {
     --neb-pulse: 0.65;
   }
 
   50% {
-    --neb-pulse: 1.00;
+    --neb-pulse: 1;
   }
 }
 
@@ -241,23 +237,20 @@ body .page-mascot {
    (which compose --layer-hue, --layer-sat-mul, --layer-dim) — do not
    re-declare them here or they'll override the var-composed values. */
 .cosmos .nebula-far {
-  background:
-    radial-gradient(ellipse 60% 50% at 18% 20%, rgba(91, 33, 182, 0.62), transparent 62%),
+  background: radial-gradient(ellipse 60% 50% at 18% 20%, rgba(91, 33, 182, 0.62), transparent 62%),
     radial-gradient(ellipse 65% 50% at 78% 30%, rgba(190, 24, 93, 0.48), transparent 64%),
     radial-gradient(ellipse 75% 60% at 60% 80%, rgba(67, 56, 202, 0.58), transparent 65%),
     radial-gradient(ellipse 55% 70% at 12% 78%, rgba(126, 34, 206, 0.42), transparent 62%);
 }
 
 .cosmos .nebula-mid {
-  background:
-    radial-gradient(ellipse 30% 35% at 30% 40%, rgba(217, 70, 239, 0.36), transparent 60%),
+  background: radial-gradient(ellipse 30% 35% at 30% 40%, rgba(217, 70, 239, 0.36), transparent 60%),
     radial-gradient(ellipse 40% 30% at 70% 60%, rgba(56, 189, 248, 0.28), transparent 62%),
     radial-gradient(ellipse 28% 28% at 55% 22%, rgba(244, 114, 182, 0.34), transparent 60%);
 }
 
 .cosmos .nebula-near {
-  background:
-    radial-gradient(circle at 22% 32%, rgba(255, 230, 200, 0.14), transparent 38%),
+  background: radial-gradient(circle at 22% 32%, rgba(255, 230, 200, 0.14), transparent 38%),
     radial-gradient(circle at 78% 68%, rgba(180, 220, 255, 0.12), transparent 40%),
     radial-gradient(ellipse 50% 55% at 50% 70%, rgba(244, 114, 182, 0.18), transparent 55%);
 }
@@ -266,13 +259,14 @@ body .page-mascot {
 .cosmos .mw-streak {
   position: absolute;
   inset: 0;
-  background:
-    linear-gradient(105deg,
-      transparent 38%,
-      rgba(167, 139, 250, 0.10) 45%,
-      rgba(244, 114, 182, 0.16) 50%,
-      rgba(125, 211, 252, 0.08) 55%,
-      transparent 62%);
+  background: linear-gradient(
+    105deg,
+    transparent 38%,
+    rgba(167, 139, 250, 0.1) 45%,
+    rgba(244, 114, 182, 0.16) 50%,
+    rgba(125, 211, 252, 0.08) 55%,
+    transparent 62%
+  );
   /* filter / mix-blend-mode / opacity are set by the .mw-streak rule above
      (which composes --layer-hue, --layer-sat-mul, --layer-dim). */
 }
@@ -285,7 +279,11 @@ body .page-mascot {
 
 /* Vignette so content has contrast against the nebula */
 .cosmos .vignette {
-  background: radial-gradient(ellipse 90% 80% at 50% 50%, transparent 40%, rgba(2, 3, 10, 0.55) 100%);
+  background: radial-gradient(
+    ellipse 90% 80% at 50% 50%,
+    transparent 40%,
+    rgba(2, 3, 10, 0.55) 100%
+  );
   mix-blend-mode: multiply;
 }
 
@@ -353,12 +351,14 @@ body .page-mascot {
   position: absolute;
   width: 1px;
   /* height set inline (28–46vh) */
-  background: linear-gradient(to bottom,
-      rgba(255, 255, 255, 0) 0%,
-      rgba(255, 255, 255, 0.95) 12%,
-      rgba(167, 139, 250, 0.85) 30%,
-      rgba(244, 114, 182, 0.45) 55%,
-      rgba(244, 114, 182, 0) 100%);
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.95) 12%,
+    rgba(167, 139, 250, 0.85) 30%,
+    rgba(244, 114, 182, 0.45) 55%,
+    rgba(244, 114, 182, 0) 100%
+  );
   filter: blur(0.4px);
   transform: translate(-50%, -50%);
 }
@@ -380,7 +380,7 @@ body .page-mascot {
   z-index: 2;
 }
 
-.splash-inner>* {
+.splash-inner > * {
   will-change: transform, opacity, letter-spacing;
 }
 
@@ -399,8 +399,10 @@ body .page-mascot {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #FFC700;
-  box-shadow: 0 0 12px #FFC700, 0 0 24px rgba(255, 199, 0, 0.5);
+  background: #ffc700;
+  box-shadow:
+    0 0 12px #ffc700,
+    0 0 24px rgba(255, 199, 0, 0.5);
   animation: pulse 2.4s ease-in-out infinite;
 }
 
@@ -413,7 +415,6 @@ body .page-mascot {
 }
 
 @keyframes pulse {
-
   0%,
   100% {
     opacity: 0.55;
@@ -494,7 +495,10 @@ body .page-mascot {
   padding: 0;
   cursor: pointer;
   border-radius: 0;
-  transition: color 220ms, background 220ms, transform 220ms;
+  transition:
+    color 220ms,
+    background 220ms,
+    transform 220ms;
 }
 
 .splash-scrollhint:hover,
@@ -537,7 +541,7 @@ body .page-mascot {
 
 /* Entry animation removed — was getting stuck mid-blur when iframe loads
    in a hidden tab. Cosmos + meteor carry the visual entrance. */
-.splash-inner>* {
+.splash-inner > * {
   opacity: 1;
 }
 
@@ -565,7 +569,7 @@ body .page-mascot {
   background: linear-gradient(to bottom, rgba(2, 3, 10, 0.55), rgba(2, 3, 10, 0.42));
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(148, 163, 184, 0.10);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
   transform: translateY(-100%);
   opacity: 0;
   pointer-events: none;
@@ -642,13 +646,14 @@ body .page-mascot {
   color: #ffffff;
   letter-spacing: 0.01em;
   position: relative;
-  background:
-    linear-gradient(110deg,
-      #4338ca 0%,
-      #7e22ce 28%,
-      #be185d 56%,
-      #6366f1 82%,
-      #4338ca 100%);
+  background: linear-gradient(
+    110deg,
+    #4338ca 0%,
+    #7e22ce 28%,
+    #be185d 56%,
+    #6366f1 82%,
+    #4338ca 100%
+  );
   background-size: 250% 100%;
   background-position: 0% 50%;
   border: 1px solid rgba(255, 255, 255, 0.12);
@@ -656,7 +661,10 @@ body .page-mascot {
     0 0 0 1px rgba(255, 255, 255, 0.04) inset,
     0 8px 24px -8px rgba(190, 24, 93, 0.45),
     0 4px 14px -4px rgba(79, 70, 229, 0.45);
-  transition: background-position 5s ease, box-shadow var(--dur-base), transform var(--dur-base);
+  transition:
+    background-position 5s ease,
+    box-shadow var(--dur-base),
+    transform var(--dur-base);
   animation: milkyShift 14s linear infinite;
   isolation: isolate;
 }
@@ -666,8 +674,11 @@ body .page-mascot {
   position: absolute;
   inset: 0;
   border-radius: 999px;
-  background:
-    radial-gradient(ellipse 60% 100% at 20% 50%, rgba(255, 255, 255, 0.20), transparent 60%),
+  background: radial-gradient(
+      ellipse 60% 100% at 20% 50%,
+      rgba(255, 255, 255, 0.2),
+      transparent 60%
+    ),
     radial-gradient(ellipse 50% 100% at 80% 50%, rgba(255, 230, 200, 0.15), transparent 60%);
   pointer-events: none;
   z-index: -1;
@@ -676,7 +687,7 @@ body .page-mascot {
 
 .milky-pill:hover {
   box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.10) inset,
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset,
     0 12px 30px -8px rgba(190, 24, 93, 0.65),
     0 6px 18px -4px rgba(79, 70, 229, 0.55);
 }
@@ -686,7 +697,9 @@ body .page-mascot {
   height: 8px;
   border-radius: 50%;
   background: #fff;
-  box-shadow: 0 0 8px #fff, 0 0 16px rgba(255, 255, 255, 0.65);
+  box-shadow:
+    0 0 8px #fff,
+    0 0 16px rgba(255, 255, 255, 0.65);
 }
 
 .milky-pill .arrow {
@@ -730,7 +743,11 @@ body .page-mascot {
   background: rgba(15, 23, 42, 0.5);
   border: 1px solid rgba(148, 163, 184, 0.18);
   cursor: default;
-  transition: color var(--dur-base), border-color var(--dur-base), background var(--dur-base), transform var(--dur-base);
+  transition:
+    color var(--dur-base),
+    border-color var(--dur-base),
+    background var(--dur-base),
+    transform var(--dur-base);
 }
 
 .meteor-counter .ico {
@@ -758,7 +775,7 @@ body .page-mascot {
 }
 
 .meteor-counter.zero .num {
-  background: rgba(148, 163, 184, 0.10);
+  background: rgba(148, 163, 184, 0.1);
   border-color: rgba(148, 163, 184, 0.25);
   color: rgba(241, 245, 249, 0.7);
 }
@@ -778,7 +795,6 @@ body .page-mascot {
 }
 
 @keyframes mc-breathe {
-
   0%,
   100% {
     box-shadow: 0 0 0 0 rgba(244, 114, 182, 0);
@@ -790,7 +806,6 @@ body .page-mascot {
 }
 
 @keyframes mc-icoTilt {
-
   0%,
   100% {
     transform: rotate(-8deg) translateX(0);
@@ -822,7 +837,7 @@ body .page-mascot {
   width: 2px;
 }
 
-.soundtoggle.in-nav[data-on="true"] {
+.soundtoggle.in-nav[data-on='true'] {
   border-color: rgba(167, 139, 250, 0.55);
   background: rgba(91, 33, 182, 0.18);
 }
@@ -839,7 +854,9 @@ body .page-mascot {
   font-size: var(--text-xs);
   color: rgba(241, 245, 249, 0.6);
   cursor: pointer;
-  transition: color var(--dur-base), border-color var(--dur-base);
+  transition:
+    color var(--dur-base),
+    border-color var(--dur-base);
 }
 
 .search-trigger:hover {
@@ -883,7 +900,7 @@ body .page-mascot {
 .eyebrow {
   font-family: var(--font-mono);
   font-size: var(--text-xs);
-  letter-spacing: 0.20em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: rgba(241, 245, 249, 0.45);
   display: inline-flex;
@@ -944,7 +961,9 @@ body .page-mascot {
   padding: 6px 0;
   border-bottom: 1px solid rgba(148, 163, 184, 0.25);
   white-space: nowrap;
-  transition: color var(--dur-base), border-color var(--dur-base);
+  transition:
+    color var(--dur-base),
+    border-color var(--dur-base);
 }
 
 .section-link:hover {
@@ -1032,7 +1051,9 @@ body .page-mascot {
   color: #0f172a;
   font-weight: 600;
   font-size: var(--text-sm);
-  transition: transform var(--dur-base), box-shadow var(--dur-base);
+  transition:
+    transform var(--dur-base),
+    box-shadow var(--dur-base);
   box-shadow: 0 8px 24px -8px rgba(255, 255, 255, 0.3);
 }
 
@@ -1052,7 +1073,9 @@ body .page-mascot {
   color: #f1f5f9;
   font-weight: 500;
   font-size: var(--text-sm);
-  transition: border-color var(--dur-base), color var(--dur-base);
+  transition:
+    border-color var(--dur-base),
+    color var(--dur-base);
 }
 
 .cta-secondary:hover {
@@ -1074,13 +1097,14 @@ body .page-mascot {
   font-weight: 600;
   letter-spacing: 0.005em;
   color: #ffffff;
-  background:
-    linear-gradient(110deg,
-      #4338ca 0%,
-      #7e22ce 28%,
-      #be185d 56%,
-      #6366f1 82%,
-      #4338ca 100%);
+  background: linear-gradient(
+    110deg,
+    #4338ca 0%,
+    #7e22ce 28%,
+    #be185d 56%,
+    #6366f1 82%,
+    #4338ca 100%
+  );
   background-size: 280% 100%;
   background-position: 0% 50%;
   border: 1px solid rgba(255, 255, 255, 0.14);
@@ -1092,7 +1116,9 @@ body .page-mascot {
   animation: cta-milky-shift 16s linear infinite;
   isolation: isolate;
   overflow: hidden;
-  transition: box-shadow var(--dur-base), transform var(--dur-base);
+  transition:
+    box-shadow var(--dur-base),
+    transform var(--dur-base);
 }
 
 .cta-milky::before {
@@ -1101,10 +1127,13 @@ body .page-mascot {
   position: absolute;
   inset: 0;
   border-radius: 999px;
-  background:
-    radial-gradient(ellipse 55% 100% at 18% 50%, rgba(255, 255, 255, 0.30), transparent 60%),
+  background: radial-gradient(
+      ellipse 55% 100% at 18% 50%,
+      rgba(255, 255, 255, 0.3),
+      transparent 60%
+    ),
     radial-gradient(ellipse 45% 100% at 82% 50%, rgba(255, 230, 200, 0.22), transparent 60%),
-    radial-gradient(ellipse 30% 70% at 50% 30%, rgba(244, 114, 182, 0.30), transparent 70%);
+    radial-gradient(ellipse 30% 70% at 50% 30%, rgba(244, 114, 182, 0.3), transparent 70%);
   z-index: -1;
   mix-blend-mode: screen;
 }
@@ -1115,8 +1144,7 @@ body .page-mascot {
   position: absolute;
   inset: 0;
   border-radius: 999px;
-  background:
-    radial-gradient(circle 0.7px at 18% 38%, #fff 100%, transparent),
+  background: radial-gradient(circle 0.7px at 18% 38%, #fff 100%, transparent),
     radial-gradient(circle 0.6px at 30% 70%, #fff 100%, transparent),
     radial-gradient(circle 0.8px at 42% 30%, #fde68a 100%, transparent),
     radial-gradient(circle 0.5px at 55% 65%, #fff 100%, transparent),
@@ -1174,7 +1202,6 @@ body .page-mascot {
 }
 
 @keyframes cta-milky-twinkle {
-
   0%,
   100% {
     opacity: 0.85;
@@ -1211,7 +1238,9 @@ body .page-mascot {
   cursor: pointer;
   padding: 3px 0;
   border-bottom: 1px solid transparent;
-  transition: color var(--dur-base), border-color var(--dur-base);
+  transition:
+    color var(--dur-base),
+    border-color var(--dur-base);
   background: none;
   border: 0;
   border-bottom: 1px solid transparent;
@@ -1247,16 +1276,17 @@ body .page-mascot {
 .hero-celestial .halo {
   position: absolute;
   inset: -10%;
-  background: radial-gradient(circle at 50% 50%,
-      rgba(244, 114, 182, 0.35) 0%,
-      rgba(167, 139, 250, 0.25) 30%,
-      transparent 65%);
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(244, 114, 182, 0.35) 0%,
+    rgba(167, 139, 250, 0.25) 30%,
+    transparent 65%
+  );
   filter: blur(36px);
   animation: haloPulse 9s ease-in-out infinite;
 }
 
 @keyframes haloPulse {
-
   0%,
   100% {
     transform: scale(1);
@@ -1274,13 +1304,12 @@ body .page-mascot {
   width: 80%;
   height: 80%;
   object-fit: contain;
-  filter:
-    drop-shadow(0 0 24px rgba(167, 139, 250, 0.45)) drop-shadow(0 16px 36px rgba(0, 0, 0, 0.6));
+  filter: drop-shadow(0 0 24px rgba(167, 139, 250, 0.45))
+    drop-shadow(0 16px 36px rgba(0, 0, 0, 0.6));
   animation: float 10s ease-in-out infinite;
 }
 
 @keyframes float {
-
   0%,
   100% {
     transform: translateY(0) rotate(-1.2deg);
@@ -1356,12 +1385,13 @@ body .page-mascot {
   position: absolute;
   inset: -8%;
   border-radius: 50%;
-  background:
-    radial-gradient(circle at 50% 50%,
-      rgba(167, 139, 250, 0.18) 0%,
-      rgba(190, 24, 93, 0.12) 35%,
-      rgba(67, 56, 202, 0.10) 60%,
-      transparent 80%);
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(167, 139, 250, 0.18) 0%,
+    rgba(190, 24, 93, 0.12) 35%,
+    rgba(67, 56, 202, 0.1) 60%,
+    transparent 80%
+  );
   filter: blur(28px);
   pointer-events: none;
   z-index: 0;
@@ -1369,23 +1399,25 @@ body .page-mascot {
 
 /* Sun + corona */
 .orrery .orrery-sun .sun-core {
-  filter: drop-shadow(0 0 6px rgba(255, 199, 0, 0.55)) drop-shadow(0 0 14px rgba(244, 114, 80, 0.45));
+  filter: drop-shadow(0 0 6px rgba(255, 199, 0, 0.55))
+    drop-shadow(0 0 14px rgba(244, 114, 80, 0.45));
   animation: sun-pulse 6s ease-in-out infinite;
   transform-box: fill-box;
   transform-origin: center;
 }
 
 @keyframes sun-pulse {
-
   0%,
   100% {
     transform: scale(1);
-    filter: drop-shadow(0 0 6px rgba(255, 199, 0, 0.55)) drop-shadow(0 0 14px rgba(244, 114, 80, 0.45));
+    filter: drop-shadow(0 0 6px rgba(255, 199, 0, 0.55))
+      drop-shadow(0 0 14px rgba(244, 114, 80, 0.45));
   }
 
   50% {
     transform: scale(1.04);
-    filter: drop-shadow(0 0 10px rgba(255, 199, 0, 0.75)) drop-shadow(0 0 22px rgba(244, 114, 80, 0.55));
+    filter: drop-shadow(0 0 10px rgba(255, 199, 0, 0.75))
+      drop-shadow(0 0 22px rgba(244, 114, 80, 0.55));
   }
 }
 
@@ -1395,7 +1427,6 @@ body .page-mascot {
 
 /* Background twinkle stars inside the orrery svg */
 @keyframes orrery-twinkle {
-
   0%,
   100% {
     opacity: var(--o, 0.3);
@@ -1420,9 +1451,11 @@ body .page-mascot {
 
 .orrery .orbit {
   fill: none;
-  stroke: rgba(148, 163, 184, 0.20);
+  stroke: rgba(148, 163, 184, 0.2);
   stroke-dasharray: 1.5 3;
-  transition: stroke var(--dur-base), opacity var(--dur-base);
+  transition:
+    stroke var(--dur-base),
+    opacity var(--dur-base);
 }
 
 /* Small chart-readout in the corner of the orrery box */
@@ -1461,11 +1494,14 @@ body .page-mascot {
   border: 1px solid rgba(148, 163, 184, 0.14);
   border-radius: var(--radius-md);
   padding: var(--space-3) var(--space-4);
-  transition: border-color var(--dur-base), background var(--dur-base), transform var(--dur-base);
+  transition:
+    border-color var(--dur-base),
+    background var(--dur-base),
+    transform var(--dur-base);
   cursor: default;
 }
 
-.orrery-card[data-active="true"] {
+.orrery-card[data-active='true'] {
   background: rgba(30, 41, 59, 0.7);
   border-color: rgba(244, 114, 182, 0.45);
   transform: translateX(4px);
@@ -1521,8 +1557,7 @@ body .page-mascot {
   position: relative;
   border: 1px solid rgba(148, 163, 184, 0.12);
   border-radius: var(--radius-md);
-  background:
-    radial-gradient(ellipse 70% 60% at 30% 30%, rgba(91, 33, 182, 0.18), transparent 60%),
+  background: radial-gradient(ellipse 70% 60% at 30% 30%, rgba(91, 33, 182, 0.18), transparent 60%),
     radial-gradient(ellipse 70% 60% at 75% 75%, rgba(190, 24, 93, 0.14), transparent 60%),
     rgba(15, 23, 42, 0.72);
   padding: var(--space-6);
@@ -1579,7 +1614,6 @@ body .page-mascot {
 }
 
 @keyframes starBreath {
-
   0%,
   100% {
     transform: scale(1);
@@ -1626,8 +1660,7 @@ body .page-mascot {
 
 /* Soft ambient tint so the dark grid sits on a slightly violet sky */
 .gravity svg {
-  background:
-    radial-gradient(ellipse 55% 65% at 30% 35%, rgba(124, 58, 237, 0.10), transparent 65%),
+  background: radial-gradient(ellipse 55% 65% at 30% 35%, rgba(124, 58, 237, 0.1), transparent 65%),
     radial-gradient(ellipse 50% 60% at 75% 70%, rgba(244, 114, 182, 0.08), transparent 70%);
 }
 
@@ -1644,7 +1677,6 @@ body .page-mascot {
 }
 
 @keyframes grav-breath {
-
   0%,
   100% {
     transform: scale(1);
@@ -1658,7 +1690,6 @@ body .page-mascot {
 /* Diffraction spikes breathe — subtle width/opacity flicker so each star feels
    alive, not stamped. Per-star delay set inline. */
 @keyframes proj-twinkle {
-
   0%,
   100% {
     opacity: 1;
@@ -1782,7 +1813,7 @@ body .page-mascot {
   appearance: none;
   background: transparent;
   border: 0;
-  border-bottom: 1px solid rgba(148, 163, 184, 0.10);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
   color: inherit;
   text-align: left;
   text-decoration: none;
@@ -1841,13 +1872,22 @@ body .page-mascot {
   transform: translateX(-50%);
   pointer-events: none;
   z-index: 0;
-  background: linear-gradient(to bottom,
-      color-mix(in srgb,
+  background: linear-gradient(
+    to bottom,
+    color-mix(
+        in srgb,
         var(--row-color, #fde047) calc(min(1, var(--star-bri, 1) * 0.5) * 100%),
-        transparent) 0%,
-      color-mix(in srgb,
-        var(--next-row-color, var(--row-color, #fde047)) calc(min(1, var(--next-star-bri, 0.5) * 0.5) * 100%),
-        transparent) 100%);
+        transparent
+      )
+      0%,
+    color-mix(
+        in srgb,
+        var(--next-row-color, var(--row-color, #fde047))
+          calc(min(1, var(--next-star-bri, 0.5) * 0.5) * 100%),
+        transparent
+      )
+      100%
+  );
   filter: blur(0.4px);
 }
 
@@ -1882,8 +1922,7 @@ body .page-mascot {
   width: var(--star-size, 11px);
   height: var(--star-size, 11px);
   border-radius: 50%;
-  background:
-    radial-gradient(circle at 35% 35%, #fff 0%, var(--row-color) 60%, transparent 100%);
+  background: radial-gradient(circle at 35% 35%, #fff 0%, var(--row-color) 60%, transparent 100%);
   /* Glow is driven by BRIGHTNESS, not size — a tiny neutron star can outshine
      a huge red giant. Multi-stop shadow gives a fat inner halo + a long
      outer flare that goes well past the row on intense stars. */
@@ -1929,9 +1968,11 @@ body .page-mascot {
   border-radius: 50%;
   background: radial-gradient(circle, var(--row-color) 0%, transparent 60%);
   /* Dim stars (protostar, white dwarf) have barely-there halos */
-  opacity: calc(0.20 + 0.30 * var(--star-bri, 1));
+  opacity: calc(0.2 + 0.3 * var(--star-bri, 1));
   filter: blur(2px);
-  transition: opacity 320ms var(--ease-standard), transform 320ms var(--ease-standard);
+  transition:
+    opacity 320ms var(--ease-standard),
+    transform 320ms var(--ease-standard);
 }
 
 .career-row.open .star::before {
@@ -1942,12 +1983,11 @@ body .page-mascot {
 .career-row.open .star-core {
   width: calc(var(--star-size, 11px) * 1.4);
   height: calc(var(--star-size, 11px) * 1.4);
-  filter: brightness(calc(1.0 + 0.3 * var(--star-bri, 1)));
+  filter: brightness(calc(1 + 0.3 * var(--star-bri, 1)));
   animation: starFlare 2.2s ease-in-out infinite;
 }
 
 @keyframes starFlare {
-
   0%,
   100% {
     transform: scale(1);
@@ -2000,7 +2040,9 @@ body .page-mascot {
 
 .career-row .chev {
   color: rgba(241, 245, 249, 0.4);
-  transition: transform var(--dur-base), color var(--dur-base);
+  transition:
+    transform var(--dur-base),
+    color var(--dur-base);
   flex-shrink: 0;
 }
 
@@ -2024,7 +2066,7 @@ body .page-mascot {
   grid-template-rows: 1fr;
 }
 
-.career-row .row-body>.body-inner {
+.career-row .row-body > .body-inner {
   overflow: hidden;
   min-height: 0;
 }
@@ -2033,7 +2075,9 @@ body .page-mascot {
   padding: 0 var(--space-5) 18px calc(var(--space-5) + 50px);
   opacity: 0;
   transform: translateY(-4px);
-  transition: opacity 240ms ease-out 80ms, transform 240ms ease-out 80ms;
+  transition:
+    opacity 240ms ease-out 80ms,
+    transform 240ms ease-out 80ms;
 }
 
 .career-row.open .body-inner {
@@ -2146,10 +2190,9 @@ body .page-mascot {
 .career-wrap {
   position: relative;
   padding: var(--space-8) var(--space-4);
-  border: 1px solid rgba(148, 163, 184, 0.10);
+  border: 1px solid rgba(148, 163, 184, 0.1);
   border-radius: var(--radius-md);
-  background:
-    linear-gradient(180deg, rgba(15, 23, 42, 0.35), rgba(2, 6, 23, 0.45));
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.35), rgba(2, 6, 23, 0.45));
   overflow: hidden;
 }
 
@@ -2386,7 +2429,9 @@ body .page-mascot {
   background: linear-gradient(110deg, #4338ca, #7e22ce, #be185d);
   background-size: 200% 100%;
   background-position: 0% 50%;
-  transition: background-position 500ms, transform var(--dur-base);
+  transition:
+    background-position 500ms,
+    transform var(--dur-base);
 }
 
 .hr-side .cta:hover {
@@ -2446,14 +2491,15 @@ body .page-mascot {
   position: absolute;
   inset: 0;
   z-index: -1;
-  background:
-    linear-gradient(102deg,
-      transparent 42%,
-      rgba(167, 139, 250, 0.10) 47%,
-      rgba(244, 114, 182, 0.14) 50%,
-      rgba(255, 236, 67, 0.08) 53%,
-      rgba(125, 211, 252, 0.10) 58%,
-      transparent 65%);
+  background: linear-gradient(
+    102deg,
+    transparent 42%,
+    rgba(167, 139, 250, 0.1) 47%,
+    rgba(244, 114, 182, 0.14) 50%,
+    rgba(255, 236, 67, 0.08) 53%,
+    rgba(125, 211, 252, 0.1) 58%,
+    transparent 65%
+  );
   filter: blur(48px);
   mix-blend-mode: screen;
   pointer-events: none;
@@ -2465,13 +2511,14 @@ body .page-mascot {
   content: '';
   position: absolute;
   inset: 0;
-  background:
-    linear-gradient(102deg,
-      transparent 47%,
-      rgba(255, 245, 220, 0.10) 49%,
-      rgba(255, 230, 170, 0.14) 51%,
-      rgba(255, 245, 220, 0.10) 53%,
-      transparent 56%);
+  background: linear-gradient(
+    102deg,
+    transparent 47%,
+    rgba(255, 245, 220, 0.1) 49%,
+    rgba(255, 230, 170, 0.14) 51%,
+    rgba(255, 245, 220, 0.1) 53%,
+    transparent 56%
+  );
   filter: blur(28px);
 }
 
@@ -2555,7 +2602,10 @@ body .page-mascot {
   color: rgba(241, 245, 249, 0.7);
   cursor: pointer;
   text-align: left;
-  transition: background var(--dur-base), color var(--dur-base), border-color var(--dur-base);
+  transition:
+    background var(--dur-base),
+    color var(--dur-base),
+    border-color var(--dur-base);
 }
 
 .mw-cluster-btn:hover {
@@ -2572,7 +2622,7 @@ body .page-mascot {
 }
 
 /* Suppress blue ring on constellation star click */
-.mw-frame g[role="button"]:focus:not(:focus-visible) {
+.mw-frame g[role='button']:focus:not(:focus-visible) {
   outline: none;
 }
 
@@ -2658,7 +2708,7 @@ body .page-mascot {
   justify-content: center;
 }
 
-.mw-frame>svg,
+.mw-frame > svg,
 .mw-frame .mw-svg {
   width: 100%;
   height: 100%;
@@ -2743,7 +2793,8 @@ body .page-mascot {
   transition:
     transform 280ms cubic-bezier(0.34, 1.56, 0.64, 1),
     box-shadow 260ms ease-out,
-    width 240ms ease-out, height 240ms ease-out;
+    width 240ms ease-out,
+    height 240ms ease-out;
 }
 
 /* Soft halo ring around the head — only visible on hover. Sits behind via
@@ -2753,7 +2804,12 @@ body .page-mascot {
   position: absolute;
   inset: -22px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(244, 114, 182, 0.55) 0%, rgba(167, 139, 250, 0.25) 45%, transparent 72%);
+  background: radial-gradient(
+    circle,
+    rgba(244, 114, 182, 0.55) 0%,
+    rgba(167, 139, 250, 0.25) 45%,
+    transparent 72%
+  );
   opacity: 0;
   pointer-events: none;
   transition: opacity 220ms ease-out;
@@ -2774,7 +2830,6 @@ body .page-mascot {
 }
 
 @keyframes meteorHaloPulse {
-
   0%,
   100% {
     transform: scale(0.85);
@@ -2795,15 +2850,20 @@ body .page-mascot {
   width: 100%;
   height: 2px;
   border-radius: 2px;
-  background: linear-gradient(to left,
-      rgba(255, 255, 255, 0.95),
-      rgba(253, 224, 71, 0.75) 16%,
-      rgba(244, 114, 182, 0.55) 42%,
-      rgba(167, 139, 250, 0.30) 70%,
-      rgba(167, 139, 250, 0) 100%);
+  background: linear-gradient(
+    to left,
+    rgba(255, 255, 255, 0.95),
+    rgba(253, 224, 71, 0.75) 16%,
+    rgba(244, 114, 182, 0.55) 42%,
+    rgba(167, 139, 250, 0.3) 70%,
+    rgba(167, 139, 250, 0) 100%
+  );
   filter: blur(0.3px);
   box-shadow: 0 0 6px rgba(244, 114, 182, 0.5);
-  transition: height 220ms ease-out, filter 220ms ease-out, box-shadow 220ms ease-out;
+  transition:
+    height 220ms ease-out,
+    filter 220ms ease-out,
+    box-shadow 220ms ease-out;
 }
 
 .meteor:hover .trail {
@@ -2826,7 +2886,9 @@ body .page-mascot {
     0 0 24px rgba(2, 3, 10, 0.65);
   /* sit just below the head */
   padding-left: 8px;
-  transition: color 220ms, text-shadow 220ms;
+  transition:
+    color 220ms,
+    text-shadow 220ms;
 }
 
 .meteor:hover .quote {
@@ -2847,7 +2909,9 @@ body .page-mascot {
   transition:
     opacity 220ms ease-out,
     transform 240ms cubic-bezier(0.34, 1.56, 0.64, 1),
-    background 220ms, color 220ms, box-shadow 220ms;
+    background 220ms,
+    color 220ms,
+    box-shadow 220ms;
   padding-left: 8px;
 }
 
@@ -2916,7 +2980,6 @@ body .page-mascot {
 }
 
 @keyframes caughtHeadPulse {
-
   0%,
   100% {
     filter: brightness(1);
@@ -3177,7 +3240,9 @@ body .page-mascot {
   text-transform: uppercase;
   color: rgba(229, 231, 235, 0.65);
   cursor: pointer;
-  transition: color var(--dur-base), border-color var(--dur-base);
+  transition:
+    color var(--dur-base),
+    border-color var(--dur-base);
 }
 
 .soundtoggle:hover {
@@ -3185,7 +3250,7 @@ body .page-mascot {
   border-color: rgba(244, 114, 182, 0.5);
 }
 
-.soundtoggle[data-on="true"] {
+.soundtoggle[data-on='true'] {
   color: #f1f5f9;
   border-color: rgba(167, 139, 250, 0.55);
   background: rgba(91, 33, 182, 0.18);
@@ -3207,20 +3272,19 @@ body .page-mascot {
   transition: height 300ms;
 }
 
-.soundtoggle[data-on="true"] .bars span {
+.soundtoggle[data-on='true'] .bars span {
   animation: soundbars 1.2s ease-in-out infinite;
 }
 
-.soundtoggle[data-on="true"] .bars span:nth-child(2) {
+.soundtoggle[data-on='true'] .bars span:nth-child(2) {
   animation-delay: 0.15s;
 }
 
-.soundtoggle[data-on="true"] .bars span:nth-child(3) {
-  animation-delay: 0.30s;
+.soundtoggle[data-on='true'] .bars span:nth-child(3) {
+  animation-delay: 0.3s;
 }
 
 @keyframes soundbars {
-
   0%,
   100% {
     height: 4px;
@@ -3235,7 +3299,6 @@ body .page-mascot {
    Mobile pass — phones & narrow tablets
    ============================================================ */
 @media (max-width: 980px) {
-
   /* Section padding tightens a touch */
   .section {
     padding: var(--space-12) var(--space-5);
@@ -3307,11 +3370,11 @@ body .page-mascot {
     justify-content: center;
   }
 
-  .search-trigger>span:not(.kbd) {
+  .search-trigger > span:not(.kbd) {
     display: none;
   }
 
-  .search-trigger>.kbd {
+  .search-trigger > .kbd {
     display: none;
   }
 
@@ -3532,7 +3595,6 @@ body .page-mascot {
 
 /* Reduced motion respect */
 @media (prefers-reduced-motion: reduce) {
-
   .cosmos canvas,
   .meteor-layer {
     display: none !important;
@@ -3553,13 +3615,13 @@ body .page-mascot {
 
 /* Override v2 constellation-svg animations that strand stars at opacity:0
    when the iframe is hidden during load. Same bug class as page-wrap. */
-.root .constellation-svg g[style*="cursor: pointer"] {
+.root .constellation-svg g[style*='cursor: pointer'] {
   animation: none !important;
   opacity: 1 !important;
   transform: none !important;
 }
 
-.root .constellation-svg g[style*="cursor: pointer"]>circle:nth-child(2) {
+.root .constellation-svg g[style*='cursor: pointer'] > circle:nth-child(2) {
   animation: none !important;
   transform: none !important;
 }
@@ -3572,7 +3634,6 @@ body .page-mascot {
 /* Active-cluster halo pulse — gentle breathing so lit nodes feel alive
    without distracting from the rest of the page. */
 @keyframes consPulse {
-
   0%,
   100% {
     transform: scale(1);
@@ -3603,8 +3664,7 @@ body .page-mascot {
   flex-direction: column;
   border: 1px solid rgba(148, 163, 184, 0.12);
   border-radius: var(--radius-md);
-  background:
-    radial-gradient(ellipse 70% 60% at 30% 30%, rgba(91, 33, 182, 0.18), transparent 60%),
+  background: radial-gradient(ellipse 70% 60% at 30% 30%, rgba(91, 33, 182, 0.18), transparent 60%),
     radial-gradient(ellipse 70% 60% at 75% 75%, rgba(190, 24, 93, 0.14), transparent 60%),
     rgba(15, 23, 42, 0.78);
   overflow: hidden;
@@ -3616,7 +3676,7 @@ body .page-mascot {
   gap: var(--space-5);
   align-items: center;
   padding: var(--space-5) var(--space-6);
-  border-bottom: 1px solid rgba(148, 163, 184, 0.10);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
   transition: background var(--dur-base);
 }
 
@@ -3641,9 +3701,14 @@ body .page-mascot {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #fff 0%, var(--p-color, #fde047) 60%, transparent 100%);
+  background: radial-gradient(
+    circle at 35% 35%,
+    #fff 0%,
+    var(--p-color, #fde047) 60%,
+    transparent 100%
+  );
   box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.10),
+    0 0 0 1px rgba(255, 255, 255, 0.1),
     0 0 8px var(--p-color, #fde047),
     0 0 22px color-mix(in srgb, var(--p-color, #fde047) 75%, transparent),
     0 0 42px color-mix(in srgb, var(--p-color, #fde047) 45%, transparent);
@@ -3654,7 +3719,11 @@ body .page-mascot {
   position: absolute;
   inset: -10%;
   border-radius: 50%;
-  background: radial-gradient(circle, color-mix(in srgb, var(--p-color, #fde047) 35%, transparent) 0%, transparent 65%);
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--p-color, #fde047) 35%, transparent) 0%,
+    transparent 65%
+  );
   filter: blur(6px);
   pointer-events: none;
 }
@@ -3730,7 +3799,10 @@ body .page-mascot {
   justify-content: center;
   color: rgba(241, 245, 249, 0.5);
   border-radius: 50%;
-  transition: color var(--dur-base), background var(--dur-base), transform var(--dur-base);
+  transition:
+    color var(--dur-base),
+    background var(--dur-base),
+    transform var(--dur-base);
 }
 
 .proj-row-link:hover {

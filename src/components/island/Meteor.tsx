@@ -90,12 +90,18 @@ export default function Meteor({ enabled = true, intervalMs = 30_000 }: Props) {
       const scheduleEndFade = (msLeft: number) => {
         if (fadeT) clearTimeout(fadeT);
         if (removeT) clearTimeout(removeT);
-        fadeT = setTimeout(() => {
-          if (!node.classList.contains('caught')) node.style.opacity = '0';
-        }, Math.max(0, msLeft - 1400));
-        removeT = setTimeout(() => {
-          if (!node.classList.contains('caught')) node.remove();
-        }, Math.max(0, msLeft + 200));
+        fadeT = setTimeout(
+          () => {
+            if (!node.classList.contains('caught')) node.style.opacity = '0';
+          },
+          Math.max(0, msLeft - 1400),
+        );
+        removeT = setTimeout(
+          () => {
+            if (!node.classList.contains('caught')) node.remove();
+          },
+          Math.max(0, msLeft + 200),
+        );
       };
       scheduleEndFade(duration);
 
@@ -196,8 +202,8 @@ export default function Meteor({ enabled = true, intervalMs = 30_000 }: Props) {
           // translate(0)→translate(remainDelta) animation — no matrix form,
           // no ambiguity, guaranteed to fire regardless of prior transform state.
           const m = new DOMMatrix(node.style.transform);
-          const remainDx = dx - m.e;  // remaining X displacement
-          const remainDy = dy - m.f;  // remaining Y displacement
+          const remainDx = dx - m.e; // remaining X displacement
+          const remainDy = dy - m.f; // remaining Y displacement
           node.style.transition = 'none';
           node.style.left = `${startX + m.e}px`;
           node.style.top = `${startY + m.f}px`;

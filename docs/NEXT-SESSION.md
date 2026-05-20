@@ -50,6 +50,7 @@ If the playwright MCP tools aren't in the deferred tool list, run `claude mcp li
 ### Step 2 — Read this doc + the spec + the prototype's v3-styles.css
 
 Don't re-do brainstorming. The user already approved:
+
 - Tech stack (Astro 5 / Tailwind v4 / React 18)
 - Architecture (static .astro + selective React islands)
 - Content model (YAML in `src/content/`)
@@ -67,6 +68,7 @@ What needs revisiting is the **visual implementation only**.
 5. Visually compare. Don't just enumerate text; describe what looks different.
 
 Suggested screenshot pairs (proto vs mine):
+
 - `http://localhost:5000/Portfolio%20v3.html` ↔ `http://localhost:4321/`
 - `…#/about` ↔ `…/about`
 - `…#/projects` ↔ `…/projects`
@@ -82,6 +84,7 @@ The new `frontend-design:frontend-design` skill is purpose-built for production-
 The 2257-line CSS in `design-handoff/algebananazzzzz-2-0/project/v3/v3-styles.css` is the source of most visual detail. Don't transcribe it into Tailwind utilities — copy the relevant blocks into `src/styles/v3.css` and reference the classnames directly in components. Tailwind utilities are great for layout; v3.css carries the cosmic specifics.
 
 Also worth pulling in:
+
 - `design-handoff/.../project/styles.css` (866 lines — site-level)
 - `design-handoff/.../project/page-styles.css` (235 lines — page-level)
 - `design-handoff/.../project/mw-styles.css` (497 lines — Milky Way page)
@@ -102,6 +105,7 @@ Also worth pulling in:
 ### Step 7 — Verify each section visually
 
 Use playwright MCP between each commit:
+
 1. Screenshot both versions of the route you just changed
 2. Compare — does it match?
 3. If yes, commit. If no, iterate.

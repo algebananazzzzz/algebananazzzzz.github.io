@@ -1,12 +1,22 @@
-- { id: motto-1,  text: "Patience is the second yeast.",                     cluster: brewery, noteId: yeast }
-- { id: motto-2,  text: "Every batch is a confession.",                      cluster: brewery, noteId: saison }
-- { id: motto-3,  text: "Taste before you trust the gravity.",               cluster: brewery, noteId: hopping }
-- { id: motto-4,  text: "Prompt like you mean it.",                          cluster: llm,     noteId: metaprompt }
-- { id: motto-5,  text: "The map is not the model.",                         cluster: llm,     noteId: tool-design }
-- { id: motto-6,  text: "Evals before vibes.",                               cluster: llm,     noteId: eval }
-- { id: motto-7,  text: "If you can't deploy it twice, you don't own it.",   cluster: cloud,   noteId: iam }
-- { id: motto-8,  text: "Cache is a promise you keep tomorrow.",             cluster: cloud,   noteId: edge-cache }
-- { id: motto-9,  text: "Read like a magpie, link like a librarian.",        cluster: reading, noteId: reading-21 }
-- { id: motto-10, text: "I keep a garden, not a blog.",                      cluster: general, noteId: garden }
-- { id: motto-11, text: "Wonder is a renewable resource.",                   cluster: general, noteId: garden }
-- { id: motto-12, text: "Learning is always free.",                          cluster: general, noteId: garden }
+- { id: motto-1, text: 'Patience is the second yeast.', cluster: brewery, noteId: yeast }
+- { id: motto-2, text: 'Every batch is a confession.', cluster: brewery, noteId: saison }
+- { id: motto-3, text: 'Taste before you trust the gravity.', cluster: brewery, noteId: hopping }
+- { id: motto-4, text: 'Prompt like you mean it.', cluster: llm, noteId: metaprompt }
+- { id: motto-5, text: 'The map is not the model.', cluster: llm, noteId: tool-design }
+- { id: motto-6, text: 'Evals before vibes.', cluster: llm, noteId: eval }
+- {
+    id: motto-7,
+    text: "If you can't deploy it twice, you don't own it.",
+    cluster: cloud,
+    noteId: iam,
+  }
+- { id: motto-8, text: 'Cache is a promise you keep tomorrow.', cluster: cloud, noteId: edge-cache }
+- {
+    id: motto-9,
+    text: 'Read like a magpie, link like a librarian.',
+    cluster: reading,
+    noteId: reading-21,
+  }
+- { id: motto-10, text: 'I keep a garden, not a blog.', cluster: general, noteId: garden }
+- { id: motto-11, text: 'Wonder is a renewable resource.', cluster: general, noteId: garden }
+- { id: motto-12, text: 'Learning is always free.', cluster: general, noteId: garden }

@@ -18,16 +18,21 @@ interface Props {
 }
 
 const FILTERS: { id: string; label: string }[] = [
-  { id: 'all',     label: 'all' },
-  { id: 'cloud',   label: 'cloud' },
-  { id: 'llm',     label: 'llm + agents' },
+  { id: 'all', label: 'all' },
+  { id: 'cloud', label: 'cloud' },
+  { id: 'llm', label: 'llm + agents' },
   { id: 'brewery', label: 'brewery' },
   { id: 'general', label: 'general' },
 ];
 
 const TECH_LABEL: Record<string, string> = {
-  aws: 'AWS', react: 'React', tailwindcss: 'Tailwind', gatsby: 'Gatsby',
-  docker: 'Docker', kubernetes: 'Kubernetes', terraform: 'Terraform',
+  aws: 'AWS',
+  react: 'React',
+  tailwindcss: 'Tailwind',
+  gatsby: 'Gatsby',
+  docker: 'Docker',
+  kubernetes: 'Kubernetes',
+  terraform: 'Terraform',
 };
 
 export default function ProjectsList({ projects }: Props) {
@@ -55,7 +60,9 @@ export default function ProjectsList({ projects }: Props) {
             <div className="project-row-side">
               <div className="project-tech" aria-label="stack">
                 {p.tech.map((t) => (
-                  <span key={t} className="tag">{TECH_LABEL[t] ?? t}</span>
+                  <span key={t} className="tag">
+                    {TECH_LABEL[t] ?? t}
+                  </span>
                 ))}
               </div>
               <div className="project-row-role">{p.role}</div>
@@ -73,7 +80,16 @@ export default function ProjectsList({ projects }: Props) {
               <div className="project-row-cta">
                 <a href={p.href} target="_blank" rel="noreferrer" className="cta-secondary">
                   source
-                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg
+                    width="11"
+                    height="11"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
                     <path d="M7 17L17 7" />
                     <path d="M7 7h10v10" />
                   </svg>

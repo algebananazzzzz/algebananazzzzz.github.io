@@ -4,14 +4,13 @@ import siteData from '@/content/site.yaml';
 const socials = siteData.socials as Record<string, string>;
 
 const ICONS = [
-  { key: 'github',   src: '/assets/icons/github-dark.svg',   label: 'GitHub' },
-  { key: 'gitlab',   src: '/assets/icons/gitlab-dark.svg',   label: 'GitLab' },
+  { key: 'github', src: '/assets/icons/github-dark.svg', label: 'GitHub' },
+  { key: 'gitlab', src: '/assets/icons/gitlab-dark.svg', label: 'GitLab' },
   { key: 'linkedin', src: '/assets/icons/linkedin-dark.svg', label: 'LinkedIn' },
-  { key: 'email',    src: '/assets/icons/email-dark.svg',    label: 'Email' },
+  { key: 'email', src: '/assets/icons/email-dark.svg', label: 'Email' },
 ];
 
-const iconLinks = ICONS
-  .map((i) => ({ ...i, url: socials[i.key] }))
+const iconLinks = ICONS.map((i) => ({ ...i, url: socials[i.key] }))
   .filter((i) => !!i.url)
   .map((i) => ({
     ...i,
@@ -22,27 +21,32 @@ const iconLinks = ICONS
 const githubUrl = socials.github ?? '';
 const sourceDisplay = githubUrl.replace(/^https?:\/\//, '');
 ---
+
 <footer class="footer" data-accent="nebula">
   <div class="col-left">
     <div class="quote">&ldquo;Learning is always free.&rdquo;</div>
     <div>Daniel · Singapore · since 2021</div>
   </div>
   <div class="icons">
-    {iconLinks.map((i) => (
-      <a
-        href={i.href}
-        class="icon-btn"
-        aria-label={i.label}
-        target={i.external ? '_blank' : undefined}
-        rel={i.external ? 'noopener noreferrer' : undefined}
-      >
-        <img src={i.src} alt="" width="18" height="18" aria-hidden="true" />
-      </a>
-    ))}
+    {
+      iconLinks.map((i) => (
+        <a
+          href={i.href}
+          class="icon-btn"
+          aria-label={i.label}
+          target={i.external ? '_blank' : undefined}
+          rel={i.external ? 'noopener noreferrer' : undefined}
+        >
+          <img src={i.src} alt="" width="18" height="18" aria-hidden="true" />
+        </a>
+      ))
+    }
   </div>
   <div class="col-right">
     <div>theme · constellation explorer</div>
     <div>source · {sourceDisplay}</div>
-    <div style="margin-top: 6px; color: rgba(229,231,235,0.7);">built with bananas <span aria-hidden="true">🍌</span></div>
+    <div style="margin-top: 6px; color: rgba(229,231,235,0.7);">
+      built with bananas <span aria-hidden="true">🍌</span>
+    </div>
   </div>
 </footer>

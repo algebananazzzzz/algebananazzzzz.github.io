@@ -1,22 +1,36 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useReducedComplexity } from '@/lib/useReducedComplexity';
 
-interface OrreryItem { title: string; note: string; tag: string; }
-interface Props { building: OrreryItem; writing: OrreryItem; obsessed: OrreryItem; }
+interface OrreryItem {
+  title: string;
+  note: string;
+  tag: string;
+}
+interface Props {
+  building: OrreryItem;
+  writing: OrreryItem;
+  obsessed: OrreryItem;
+}
 
 type Body = {
-  id: string; label: string;
-  name: string; note: string;
-  color: string; glow: string;
-  orbitR: number; speed: number; phase: number;
-  radius: number; ring?: boolean;
+  id: string;
+  label: string;
+  name: string;
+  note: string;
+  color: string;
+  glow: string;
+  orbitR: number;
+  speed: number;
+  phase: number;
+  radius: number;
+  ring?: boolean;
   meta: string[];
 };
 
 function mulberry32(seed: number) {
   let a = seed | 0;
   return () => {
-    a = (a + 0x6D2B79F5) | 0;
+    a = (a + 0x6d2b79f5) | 0;
     let t = Math.imul(a ^ (a >>> 15), 1 | a);
     t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
     return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
@@ -29,7 +43,7 @@ function makeRingParticles(id: string, radius: number) {
   const rnd = mulberry32(id.charCodeAt(0) * 173 + id.length);
   const N = 70;
   const inner = radius * 1.45;
-  const outer = radius * 2.40;
+  const outer = radius * 2.4;
   const cassiniInner = radius * 1.75;
   const cassiniOuter = radius * 1.88;
   const out: { R: number; baseAngle: number; speed: number; size: number; alpha: number }[] = [];
@@ -42,8 +56,8 @@ function makeRingParticles(id: string, radius: number) {
     out.push({
       R,
       baseAngle: rnd() * Math.PI * 2,
-      speed: 0.00040 * Math.pow((radius * 2.3) / R, 1.4) * (0.85 + rnd() * 0.3),
-      size: (inBrightBand ? 0.28 : 0.22) + rnd() * 0.30,
+      speed: 0.0004 * Math.pow((radius * 2.3) / R, 1.4) * (0.85 + rnd() * 0.3),
+      size: (inBrightBand ? 0.28 : 0.22) + rnd() * 0.3,
       alpha: (inBrightBand ? 0.78 : 0.55) + rnd() * 0.25,
     });
   }
@@ -51,7 +65,10 @@ function makeRingParticles(id: string, radius: number) {
 }
 
 // Sync a canvas element's pixel buffer to its current CSS size.
-function syncCanvas(canvas: HTMLCanvasElement, dpr: number): { w: number; h: number; scale: number; ox: number; oy: number } {
+function syncCanvas(
+  canvas: HTMLCanvasElement,
+  dpr: number,
+): { w: number; h: number; scale: number; ox: number; oy: number } {
   const w = canvas.clientWidth;
   const h = canvas.clientHeight;
   const cw = Math.round(w * dpr);
@@ -61,7 +78,7 @@ function syncCanvas(canvas: HTMLCanvasElement, dpr: number): { w: number; h: num
     canvas.height = ch;
   }
   // SVG viewBox 0 0 100 100 with xMidYMid meet — compute scale and centering offsets.
-  const scale = Math.min(w, h) / 100 * dpr;
+  const scale = (Math.min(w, h) / 100) * dpr;
   const ox = (w * dpr - 100 * scale) / 2;
   const oy = (h * dpr - 100 * scale) / 2;
   return { w: cw, h: ch, scale, ox, oy };
@@ -71,17 +88,58 @@ export default function Orrery({ building, writing, obsessed }: Props) {
   const reduced = useReducedComplexity();
   const [hoverId, setHoverId] = useState<string | null>(null);
 
-  const bodies: Body[] = useMemo(() => [
-    { id: 'building', label: 'Building', name: building.title, note: building.note, color: '#fbbf24', glow: 'rgba(251, 191, 36, 0.55)', orbitR: 0.23, speed: 0.00045, phase: 0.3, radius: 2.8, meta: ['since 2024-11', 'in flight'] },
-    { id: 'writing', label: 'Writing', name: writing.title, note: writing.note, color: '#a78bfa', glow: 'rgba(167, 139, 250, 0.55)', orbitR: 0.38, speed: 0.00028, phase: 1.6, radius: 4.0, ring: true, meta: ['budding', 'llm cluster'] },
-    { id: 'obsessed', label: 'Obsessed with', name: obsessed.title, note: obsessed.note, color: '#f472b6', glow: 'rgba(244, 114, 182, 0.55)', orbitR: 0.52, speed: 0.00018, phase: 2.9, radius: 3.2, meta: ['batch 03', 'brewery cluster'] },
-  ], [building, writing, obsessed]);
+  const bodies: Body[] = useMemo(
+    () => [
+      {
+        id: 'building',
+        label: 'Building',
+        name: building.title,
+        note: building.note,
+        color: '#fbbf24',
+        glow: 'rgba(251, 191, 36, 0.55)',
+        orbitR: 0.23,
+        speed: 0.00045,
+        phase: 0.3,
+        radius: 2.8,
+        meta: ['since 2024-11', 'in flight'],
+      },
+      {
+        id: 'writing',
+        label: 'Writing',
+        name: writing.title,
+        note: writing.note,
+        color: '#a78bfa',
+        glow: 'rgba(167, 139, 250, 0.55)',
+        orbitR: 0.38,
+        speed: 0.00028,
+        phase: 1.6,
+        radius: 4.0,
+        ring: true,
+        meta: ['budding', 'llm cluster'],
+      },
+      {
+        id: 'obsessed',
+        label: 'Obsessed with',
+        name: obsessed.title,
+        note: obsessed.note,
+        color: '#f472b6',
+        glow: 'rgba(244, 114, 182, 0.55)',
+        orbitR: 0.52,
+        speed: 0.00018,
+        phase: 2.9,
+        radius: 3.2,
+        meta: ['batch 03', 'brewery cluster'],
+      },
+    ],
+    [building, writing, obsessed],
+  );
 
   const stars = useMemo(() => {
     const rnd = mulberry32(11);
     return Array.from({ length: 72 }, (_, i) => ({
-      x: rnd() * 100, y: rnd() * 100,
-      r: 0.10 + rnd() * 0.40,
+      x: rnd() * 100,
+      y: rnd() * 100,
+      r: 0.1 + rnd() * 0.4,
       d: 1.6 + rnd() * 4.2,
       o: 0.18 + rnd() * 0.55,
       key: i,
@@ -90,7 +148,9 @@ export default function Orrery({ building, writing, obsessed }: Props) {
 
   const ringParticles = useMemo(() => {
     const out: Record<string, ReturnType<typeof makeRingParticles>> = {};
-    bodies.forEach(b => { if (b.ring) out[b.id] = makeRingParticles(b.id, b.radius); });
+    bodies.forEach((b) => {
+      if (b.ring) out[b.id] = makeRingParticles(b.id, b.radius);
+    });
     return out;
   }, [bodies]);
 
@@ -112,7 +172,7 @@ export default function Orrery({ building, writing, obsessed }: Props) {
     let raf = 0;
     let last = performance.now();
     let visible = true;
-    const phases = Object.fromEntries(bodies.map(b => [b.id, b.phase])) as Record<string, number>;
+    const phases = Object.fromEntries(bodies.map((b) => [b.id, b.phase])) as Record<string, number>;
     phases['moon1'] = 1.2;
     phases['moon2'] = 3.8;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -122,7 +182,9 @@ export default function Orrery({ building, writing, obsessed }: Props) {
       last = now;
 
       // Always advance phases so animation stays in sync off-screen.
-      bodies.forEach(b => { phases[b.id] += b.speed * dt; });
+      bodies.forEach((b) => {
+        phases[b.id] += b.speed * dt;
+      });
       phases['moon1'] += 0.0026 * dt;
       phases['moon2'] += 0.0016 * dt;
       const dialCur = parseFloat(dialRef.current?.dataset.rot || '0') + dt * 0.0015;
@@ -131,25 +193,38 @@ export default function Orrery({ building, writing, obsessed }: Props) {
       if (visible) {
         if (dialRef.current) dialRef.current.setAttribute('transform', `rotate(${dialCur} 50 50)`);
 
-        let obsessedX = 50, obsessedY = 50;
-        bodies.forEach(b => {
+        let obsessedX = 50,
+          obsessedY = 50;
+        bodies.forEach((b) => {
           const ph = phases[b.id];
           const r = b.orbitR * 100;
           const ry = b.orbitR * 62;
           const x = 50 + Math.cos(ph) * r;
           const y = 50 + Math.sin(ph) * ry;
-          if (b.id === 'obsessed') { obsessedX = x; obsessedY = y; }
+          if (b.id === 'obsessed') {
+            obsessedX = x;
+            obsessedY = y;
+          }
           const planet = planetRefs.current[b.id];
-          if (planet) { planet.setAttribute('cx', String(x)); planet.setAttribute('cy', String(y)); }
+          if (planet) {
+            planet.setAttribute('cx', String(x));
+            planet.setAttribute('cy', String(y));
+          }
         });
 
         // Two moons orbiting outer planet on different radii
         const m1x = obsessedX + Math.cos(phases['moon1']) * 5.5;
         const m1y = obsessedY + Math.sin(phases['moon1']) * 5.5 * 0.42;
-        if (moon1Ref.current) { moon1Ref.current.setAttribute('cx', String(m1x)); moon1Ref.current.setAttribute('cy', String(m1y)); }
+        if (moon1Ref.current) {
+          moon1Ref.current.setAttribute('cx', String(m1x));
+          moon1Ref.current.setAttribute('cy', String(m1y));
+        }
         const m2x = obsessedX + Math.cos(phases['moon2']) * 8.5;
         const m2y = obsessedY + Math.sin(phases['moon2']) * 8.5 * 0.42;
-        if (moon2Ref.current) { moon2Ref.current.setAttribute('cx', String(m2x)); moon2Ref.current.setAttribute('cy', String(m2y)); }
+        if (moon2Ref.current) {
+          moon2Ref.current.setAttribute('cx', String(m2x));
+          moon2Ref.current.setAttribute('cy', String(m2y));
+        }
 
         // Draw ring particles to the two canvases instead of writing SVG attributes.
         if (backCanvas && frontCanvas && backCtx && frontCtx) {
@@ -158,14 +233,14 @@ export default function Orrery({ building, writing, obsessed }: Props) {
           backCtx.clearRect(0, 0, back.w, back.h);
           frontCtx.clearRect(0, 0, front.w, front.h);
 
-          bodies.forEach(b => {
+          bodies.forEach((b) => {
             if (!b.ring) return;
             const ph = phases[b.id];
             const r = b.orbitR * 100;
             const ry = b.orbitR * 62;
             const planetX = 50 + Math.cos(ph) * r;
             const planetY = 50 + Math.sin(ph) * ry;
-            const rollRad = Math.sin(now * 0.00012) * 20 * Math.PI / 180;
+            const rollRad = (Math.sin(now * 0.00012) * 20 * Math.PI) / 180;
             const cosR = Math.cos(rollRad);
             const sinR = Math.sin(rollRad);
             const parts = ringParticles[b.id] ?? [];
@@ -198,13 +273,20 @@ export default function Orrery({ building, writing, obsessed }: Props) {
     // The IO just sets a visibility flag so draw calls are skipped without
     // stopping the RAF, which avoids the cold-start compositing cost on re-entry.
     const onVisibility = () => {
-      if (document.hidden) { cancelAnimationFrame(raf); raf = 0; }
-      else if (!raf) { last = performance.now(); raf = requestAnimationFrame(tick); }
+      if (document.hidden) {
+        cancelAnimationFrame(raf);
+        raf = 0;
+      } else if (!raf) {
+        last = performance.now();
+        raf = requestAnimationFrame(tick);
+      }
     };
     document.addEventListener('visibilitychange', onVisibility);
 
     const io = new IntersectionObserver(
-      (entries) => { visible = entries[0].isIntersecting; },
+      (entries) => {
+        visible = entries[0].isIntersecting;
+      },
       { threshold: 0.01 },
     );
     if (backCanvas) io.observe(backCanvas);
@@ -219,7 +301,11 @@ export default function Orrery({ building, writing, obsessed }: Props) {
   }, [bodies, ringParticles, reduced]);
 
   const canvasStyle: React.CSSProperties = {
-    position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none',
+    position: 'absolute',
+    inset: 0,
+    width: '100%',
+    height: '100%',
+    pointerEvents: 'none',
   };
 
   return (
@@ -239,7 +325,7 @@ export default function Orrery({ building, writing, obsessed }: Props) {
               <stop offset="50%" stopColor="rgba(244,114,80,0.18)" />
               <stop offset="100%" stopColor="rgba(244,114,80,0)" />
             </radialGradient>
-            {bodies.map(b => (
+            {bodies.map((b) => (
               <radialGradient key={b.id} id={`planet-${b.id}`}>
                 <stop offset="0%" stopColor="#ffffff" stopOpacity="0.95" />
                 <stop offset="32%" stopColor={b.color} stopOpacity="0.95" />
@@ -249,9 +335,20 @@ export default function Orrery({ building, writing, obsessed }: Props) {
           </defs>
 
           <g className="orrery-stars">
-            {stars.map(s => (
-              <circle key={s.key} cx={s.x} cy={s.y} r={s.r} fill="#fff"
-                style={{ opacity: s.o, animation: reduced ? undefined : `orrery-twinkle ${s.d}s ease-in-out ${s.key * 0.13}s infinite` }} />
+            {stars.map((s) => (
+              <circle
+                key={s.key}
+                cx={s.x}
+                cy={s.y}
+                r={s.r}
+                fill="#fff"
+                style={{
+                  opacity: s.o,
+                  animation: reduced
+                    ? undefined
+                    : `orrery-twinkle ${s.d}s ease-in-out ${s.key * 0.13}s infinite`,
+                }}
+              />
             ))}
           </g>
 
@@ -261,32 +358,68 @@ export default function Orrery({ building, writing, obsessed }: Props) {
               const r0 = 47.5;
               const r1 = i % 5 === 0 ? 49.2 : 48.5;
               return (
-                <line key={i}
-                  x1={50 + Math.cos(a) * r0} y1={50 + Math.sin(a) * r0}
-                  x2={50 + Math.cos(a) * r1} y2={50 + Math.sin(a) * r1}
-                  stroke="rgba(229,231,235,0.18)" strokeWidth={i % 5 === 0 ? 0.18 : 0.10} />
+                <line
+                  key={i}
+                  x1={50 + Math.cos(a) * r0}
+                  y1={50 + Math.sin(a) * r0}
+                  x2={50 + Math.cos(a) * r1}
+                  y2={50 + Math.sin(a) * r1}
+                  stroke="rgba(229,231,235,0.18)"
+                  strokeWidth={i % 5 === 0 ? 0.18 : 0.1}
+                />
               );
             })}
-            {[{ a: -90, t: 'N' }, { a: 0, t: 'E' }, { a: 90, t: 'S' }, { a: 180, t: 'W' }].map(({ a, t }) => {
-              const rad = a * Math.PI / 180;
+            {[
+              { a: -90, t: 'N' },
+              { a: 0, t: 'E' },
+              { a: 90, t: 'S' },
+              { a: 180, t: 'W' },
+            ].map(({ a, t }) => {
+              const rad = (a * Math.PI) / 180;
               return (
-                <text key={t}
-                  x={50 + Math.cos(rad) * 46.4} y={50 + Math.sin(rad) * 46.4 + 0.7}
-                  fontSize="1.8" textAnchor="middle"
-                  fill="rgba(229,231,235,0.32)" fontFamily="var(--font-mono)" letterSpacing="0.1em">{t}</text>
+                <text
+                  key={t}
+                  x={50 + Math.cos(rad) * 46.4}
+                  y={50 + Math.sin(rad) * 46.4 + 0.7}
+                  fontSize="1.8"
+                  textAnchor="middle"
+                  fill="rgba(229,231,235,0.32)"
+                  fontFamily="var(--font-mono)"
+                  letterSpacing="0.1em"
+                >
+                  {t}
+                </text>
               );
             })}
           </g>
 
           {[0.18, 0.63].map((rr, i) => (
-            <ellipse key={'pring-' + i} cx="50" cy="50" rx={rr * 100} ry={rr * 62}
-              fill="none" stroke="rgba(148, 163, 184, 0.09)" strokeWidth="0.18" />
+            <ellipse
+              key={'pring-' + i}
+              cx="50"
+              cy="50"
+              rx={rr * 100}
+              ry={rr * 62}
+              fill="none"
+              stroke="rgba(148, 163, 184, 0.09)"
+              strokeWidth="0.18"
+            />
           ))}
 
-          {bodies.map(b => (
-            <ellipse key={'orbit-' + b.id} className="orbit"
-              cx="50" cy="50" rx={b.orbitR * 100} ry={b.orbitR * 62}
-              style={hoverId === b.id ? { stroke: b.color, opacity: 0.7, strokeDasharray: '2 3' } : undefined} />
+          {bodies.map((b) => (
+            <ellipse
+              key={'orbit-' + b.id}
+              className="orbit"
+              cx="50"
+              cy="50"
+              rx={b.orbitR * 100}
+              ry={b.orbitR * 62}
+              style={
+                hoverId === b.id
+                  ? { stroke: b.color, opacity: 0.7, strokeDasharray: '2 3' }
+                  : undefined
+              }
+            />
           ))}
 
           <g className="orrery-sun">
@@ -296,13 +429,24 @@ export default function Orrery({ building, writing, obsessed }: Props) {
             <circle cx="48.2" cy="48.4" r="1.4" fill="rgba(255, 255, 255, 0.6)" />
           </g>
 
-          {bodies.map(b => (
-            <g key={'planet-' + b.id} className="planet-group" style={{ color: b.color }}
-              onMouseEnter={() => setHoverId(b.id)} onMouseLeave={() => setHoverId(null)}>
-              <circle ref={el => { planetRefs.current[b.id] = el; }} className="planet"
+          {bodies.map((b) => (
+            <g
+              key={'planet-' + b.id}
+              className="planet-group"
+              style={{ color: b.color }}
+              onMouseEnter={() => setHoverId(b.id)}
+              onMouseLeave={() => setHoverId(null)}
+            >
+              <circle
+                ref={(el) => {
+                  planetRefs.current[b.id] = el;
+                }}
+                className="planet"
                 cx={50 + Math.cos(b.phase) * b.orbitR * 100}
                 cy={50 + Math.sin(b.phase) * b.orbitR * 62}
-                r={b.radius} fill={`url(#planet-${b.id})`} />
+                r={b.radius}
+                fill={`url(#planet-${b.id})`}
+              />
             </g>
           ))}
           <circle ref={moon1Ref} cx="50" cy="50" r={0.64} fill="rgba(190,228,255,0.90)" />
@@ -317,9 +461,14 @@ export default function Orrery({ building, writing, obsessed }: Props) {
       </div>
 
       <div className="orrery-readout">
-        {bodies.map(b => (
-          <div key={b.id} className="orrery-card" data-active={hoverId === b.id ? 'true' : 'false'}
-            onMouseEnter={() => setHoverId(b.id)} onMouseLeave={() => setHoverId(null)}>
+        {bodies.map((b) => (
+          <div
+            key={b.id}
+            className="orrery-card"
+            data-active={hoverId === b.id ? 'true' : 'false'}
+            onMouseEnter={() => setHoverId(b.id)}
+            onMouseLeave={() => setHoverId(null)}
+          >
             <div className="label" style={{ color: b.color }}>
               <span className="dot" style={{ background: b.color }} />
               <span style={{ color: 'rgba(229,231,235,0.62)' }}>{b.label}</span>
@@ -327,7 +476,11 @@ export default function Orrery({ building, writing, obsessed }: Props) {
             <div className="name">{b.name}</div>
             <div className="note">{b.note}</div>
             <div className="meta">
-              {b.meta.map((m, i) => <span key={i}>{i > 0 ? '·' : ''} {m}</span>)}
+              {b.meta.map((m, i) => (
+                <span key={i}>
+                  {i > 0 ? '·' : ''} {m}
+                </span>
+              ))}
             </div>
           </div>
         ))}

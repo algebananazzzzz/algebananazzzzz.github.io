@@ -19,15 +19,19 @@ export default function AccentOrb() {
   useEffect(() => {
     const sections = Array.from(document.querySelectorAll<HTMLElement>('[data-accent]'));
     if (!sections.length) return;
-    const io = new IntersectionObserver((entries) => {
-      const visible = entries.filter(e => e.isIntersecting)
-        .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-      if (visible[0]) {
-        const a = visible[0].target.getAttribute('data-accent') as Accent;
-        if (a in layers) setAccent(a);
-      }
-    }, { threshold: [0.2, 0.5, 0.8] });
-    sections.forEach(s => io.observe(s));
+    const io = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (visible[0]) {
+          const a = visible[0].target.getAttribute('data-accent') as Accent;
+          if (a in layers) setAccent(a);
+        }
+      },
+      { threshold: [0.2, 0.5, 0.8] },
+    );
+    sections.forEach((s) => io.observe(s));
     return () => io.disconnect();
   }, []);
 
@@ -39,7 +43,7 @@ export default function AccentOrb() {
 
   return (
     <div className="accent-orb" aria-hidden="true">
-      {(Object.keys(layers) as Accent[]).map(k => (
+      {(Object.keys(layers) as Accent[]).map((k) => (
         <div
           key={k}
           className={`accent-layer ${k === accent ? 'active' : ''}`}

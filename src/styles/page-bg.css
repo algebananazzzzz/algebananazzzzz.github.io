@@ -12,7 +12,7 @@
   isolation: isolate;
 }
 .page[data-accent]::before {
-  content: "";
+  content: '';
   position: fixed;
   inset: -6%;
   z-index: 0;
@@ -28,48 +28,56 @@
      against the prototype screenshots. */
   opacity: calc(0.55 * var(--wash-pulse));
   filter: blur(60px) saturate(1.15);
-  animation: nebulaDrift1 24s ease-in-out infinite,
-             washPulse 11s ease-in-out infinite;
+  animation:
+    nebulaDrift1 24s ease-in-out infinite,
+    washPulse 11s ease-in-out infinite;
 }
 .page[data-accent]::after {
-  content: "";
+  content: '';
   position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  background: radial-gradient(ellipse 90% 80% at 50% 50%, transparent 30%, rgba(2,3,10,0.55) 100%);
+  background: radial-gradient(
+    ellipse 90% 80% at 50% 50%,
+    transparent 30%,
+    rgba(2, 3, 10, 0.55) 100%
+  );
 }
-.page[data-accent="sunset"]::before {
-  background:
-    radial-gradient(ellipse 70% 60% at 18% 22%, rgba(250, 204, 21, 0.55), transparent 65%),
+.page[data-accent='sunset']::before {
+  background: radial-gradient(ellipse 70% 60% at 18% 22%, rgba(250, 204, 21, 0.55), transparent 65%),
     radial-gradient(ellipse 80% 70% at 80% 75%, rgba(220, 38, 38, 0.55), transparent 65%),
     radial-gradient(ellipse 50% 40% at 50% 50%, rgba(249, 115, 22, 0.35), transparent 70%),
     linear-gradient(135deg, #2a1108 0%, #1a0710 50%, #0b0510 100%);
 }
-.page[data-accent="aurora"]::before {
-  background:
-    radial-gradient(ellipse 70% 60% at 18% 22%, rgba(74, 222, 128, 0.50), transparent 65%),
+.page[data-accent='aurora']::before {
+  background: radial-gradient(ellipse 70% 60% at 18% 22%, rgba(74, 222, 128, 0.5), transparent 65%),
     radial-gradient(ellipse 80% 70% at 80% 75%, rgba(34, 211, 238, 0.55), transparent 65%),
     radial-gradient(ellipse 50% 40% at 50% 50%, rgba(45, 212, 191, 0.32), transparent 70%),
     linear-gradient(135deg, #06201c 0%, #08151f 50%, #050c14 100%);
 }
-.page[data-accent="nebula"]::before {
-  background:
-    radial-gradient(ellipse 70% 60% at 18% 22%, rgba(244, 114, 182, 0.55), transparent 65%),
+.page[data-accent='nebula']::before {
+  background: radial-gradient(
+      ellipse 70% 60% at 18% 22%,
+      rgba(244, 114, 182, 0.55),
+      transparent 65%
+    ),
     radial-gradient(ellipse 80% 70% at 80% 75%, rgba(139, 92, 246, 0.55), transparent 65%),
     radial-gradient(ellipse 50% 40% at 50% 50%, rgba(190, 24, 93, 0.35), transparent 70%),
     linear-gradient(135deg, #1f0a1e 0%, #170820 50%, #0a0517 100%);
 }
-.page[data-accent="cosmic"]::before {
-  background:
-    radial-gradient(ellipse 70% 60% at 18% 22%, rgba(167, 139, 250, 0.50), transparent 65%),
+.page[data-accent='cosmic']::before {
+  background: radial-gradient(ellipse 70% 60% at 18% 22%, rgba(167, 139, 250, 0.5), transparent 65%),
     radial-gradient(ellipse 80% 70% at 80% 75%, rgba(99, 102, 241, 0.55), transparent 65%),
-    radial-gradient(ellipse 50% 40% at 50% 50%, rgba(126, 34, 206, 0.30), transparent 70%),
+    radial-gradient(ellipse 50% 40% at 50% 50%, rgba(126, 34, 206, 0.3), transparent 70%),
     linear-gradient(135deg, #0e0b2c 0%, #0a0a1f 50%, #050514 100%);
 }
 
 /* Sub-page content sits above the wash */
-.page[data-accent] > * { position: relative; z-index: 1; }
+.page[data-accent] > * {
+  position: relative;
+  z-index: 1;
+}
 
 /* ---------- Sub-page cosmos hue-rotate + dim ----------
    Set CSS custom properties that the per-layer rules in v3.css consume.
@@ -77,17 +85,17 @@
    inside .cosmos isn't a layer and isn't affected by these vars, so
    stars stay bright on sub-pages even while the colored nebulae take a
    back seat to each page's signature accent wash. */
-html[data-accent="aurora"] .cosmos {
+html[data-accent='aurora'] .cosmos {
   --layer-hue: 80deg;
   --layer-sat-mul: 0.5;
   --layer-dim: 0.35;
 }
-html[data-accent="sunset"] .cosmos {
+html[data-accent='sunset'] .cosmos {
   --layer-hue: -20deg;
   --layer-sat-mul: 0.6;
-  --layer-dim: 0.40;
+  --layer-dim: 0.4;
 }
-html[data-accent="nebula"] .cosmos {
+html[data-accent='nebula'] .cosmos {
   --layer-hue: -10deg;
   --layer-sat-mul: 0.7;
   --layer-dim: 0.45;
@@ -118,5 +126,8 @@ html[data-accent="nebula"] .cosmos {
   display: block;
 }
 @media (max-width: 720px) {
-  .mw-page-bg .mw-streak { transform: rotate(-16deg); top: 14%; }
+  .mw-page-bg .mw-streak {
+    transform: rotate(-16deg);
+    top: 14%;
+  }
 }

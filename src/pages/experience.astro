@@ -3,7 +3,7 @@ import Base from '@/layouts/Base.astro';
 import { getCollection } from 'astro:content';
 import CareerList from '@/components/island/CareerList';
 
-const exps = (await getCollection('experience')).map(e => e.data);
+const exps = (await getCollection('experience')).map((e) => e.data);
 
 const careerEntries = exps.map((e: any) => ({
   id: e.id,
@@ -15,7 +15,12 @@ const careerEntries = exps.map((e: any) => ({
   starType: e.star?.type ?? 'mainseq',
 }));
 ---
-<Base title="experience" description="trajectory through cloud, agents, and teaching." accent="nebula">
+
+<Base
+  title="experience"
+  description="trajectory through cloud, agents, and teaching."
+  accent="nebula"
+>
   <main class="page" data-accent="nebula">
     <div class="page-head">
       <div class="section-eyebrow">— experience —</div>
@@ -23,7 +28,8 @@ const careerEntries = exps.map((e: any) => ({
         A <span class="grad-text g-nebula">trajectory</span> in five stops.
       </h1>
       <p class="page-lead">
-        Internships, the hall I mostly live in, and the two years of NS that gave me a working knowledge of tcpdump and a deep respect for runbooks.
+        Internships, the hall I mostly live in, and the two years of NS that gave me a working
+        knowledge of tcpdump and a deep respect for runbooks.
       </p>
     </div>
 

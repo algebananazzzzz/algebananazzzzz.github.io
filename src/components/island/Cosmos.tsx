@@ -2,11 +2,16 @@ import { useEffect, useRef } from 'react';
 import { useReducedComplexity } from '@/lib/useReducedComplexity';
 
 type Star = {
-  x: number; y: number; r: number;
-  twinkleSeed: number; twinkleSpeed: number;
-  alpha: number; depth: number;
+  x: number;
+  y: number;
+  r: number;
+  twinkleSeed: number;
+  twinkleSpeed: number;
+  alpha: number;
+  depth: number;
   tint: 'warm' | 'cool' | 'neutral';
-  vx: number; vy: number;
+  vx: number;
+  vy: number;
 };
 
 type BloomState = { starBloom: number; descent: number; streak: number };
@@ -34,7 +39,7 @@ export default function Cosmos({ isHome = false }: { isHome?: boolean }) {
       if (p < 0.7) {
         const t = p / 0.7;
         const eased = 1 - Math.pow(1 - t, 1.5);
-        intensity = 0.20 + eased * 1.30;
+        intensity = 0.2 + eased * 1.3;
       } else {
         const t = Math.min(1, (p - 0.7) / 0.3);
         const eased = t * t * (3 - 2 * t);
@@ -52,7 +57,7 @@ export default function Cosmos({ isHome = false }: { isHome?: boolean }) {
       if (!isHome) streak = 0;
       else {
         const sIn = Math.max(0, Math.min(1, (p - 0.02) / 0.23));
-        const sOut = Math.max(0, Math.min(1, 1 - (p - 0.75) / 0.20));
+        const sOut = Math.max(0, Math.min(1, 1 - (p - 0.75) / 0.2));
         streak = Math.min(sIn, sOut);
       }
 
@@ -141,7 +146,9 @@ export default function Cosmos({ isHome = false }: { isHome?: boolean }) {
       return `rgba(241, 245, 249, ${a})`;
     };
 
-    const wake = () => { if (!raf) raf = requestAnimationFrame(draw); };
+    const wake = () => {
+      if (!raf) raf = requestAnimationFrame(draw);
+    };
     wakeCanvas.current = wake;
 
     const draw = (t: number) => {
@@ -202,7 +209,10 @@ export default function Cosmos({ isHome = false }: { isHome?: boolean }) {
     };
     const onVisibility = () => {
       if (document.hidden) {
-        if (raf) { cancelAnimationFrame(raf); raf = 0; }
+        if (raf) {
+          cancelAnimationFrame(raf);
+          raf = 0;
+        }
       } else {
         if (!raf && (bloomState.current.starBloom > 0.01 || bloomState.current.streak > 0.01)) {
           last = performance.now();

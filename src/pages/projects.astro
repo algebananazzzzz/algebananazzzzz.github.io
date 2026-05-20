@@ -3,8 +3,9 @@ import Base from '@/layouts/Base.astro';
 import { getCollection } from 'astro:content';
 import ProjectsList from '@/components/island/ProjectsList';
 
-const projects = (await getCollection('projects')).map(p => p.data);
+const projects = (await getCollection('projects')).map((p) => p.data);
 ---
+
 <Base title="projects" description="things on my workbench." accent="sunset">
   <main class="page" data-accent="sunset">
     <div class="page-head">
@@ -13,7 +14,8 @@ const projects = (await getCollection('projects')).map(p => p.data);
         Things I've <span class="grad-text g-sunset">put into the world</span>.
       </h1>
       <p class="page-lead">
-        Most live on a Pi in my closet or a small AWS account. A few have actual users. All have READMEs I'd let my mother read.
+        Most live on a Pi in my closet or a small AWS account. A few have actual users. All have
+        READMEs I'd let my mother read.
       </p>
     </div>
 

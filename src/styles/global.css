@@ -1,41 +1,48 @@
-@import "@fontsource-variable/space-grotesk";
-@import "@fontsource/space-mono/400.css";
-@import "@fontsource/space-mono/700.css";
-@import "tailwindcss";
-@import "./tokens.css";
-@import "./portfolio.css";
-@import "./pages.css";
-@import "./page-bg.css";
+@import '@fontsource-variable/space-grotesk';
+@import '@fontsource/space-mono/400.css';
+@import '@fontsource/space-mono/700.css';
+@import 'tailwindcss';
+@import './tokens.css';
+@import './portfolio.css';
+@import './pages.css';
+@import './page-bg.css';
 
 @theme {
-  --color-signal: #6C0000;
-  --color-signal-deep: #6B0204;
-  --color-star: #FFC700;
-  --color-star-bright: #FFEC43;
+  --color-signal: #6c0000;
+  --color-signal-deep: #6b0204;
+  --color-star: #ffc700;
+  --color-star-bright: #ffec43;
   --color-star-soft: #fef9c3;
-  --color-cyan: #00DFD5;
-  --color-cyan-bright: #22D3EE;
-  --color-cyan-soft: #99F6E4;
-  --color-ice: #BED5E9;
-  --color-sunset: #F97316;
-  --color-purple: #7E22CE;
-  --color-purple-bright: #B02EED;
-  --color-rose: #E11D48;
-  --color-fuchsia: #D946EF;
+  --color-cyan: #00dfd5;
+  --color-cyan-bright: #22d3ee;
+  --color-cyan-soft: #99f6e4;
+  --color-ice: #bed5e9;
+  --color-sunset: #f97316;
+  --color-purple: #7e22ce;
+  --color-purple-bright: #b02eed;
+  --color-rose: #e11d48;
+  --color-fuchsia: #d946ef;
   --color-night: #0f172a;
   --color-night-deep: #020617;
   --color-night-soft: #1e293b;
 
-  --font-sans: "Space Grotesk Variable", ui-sans-serif, system-ui, -apple-system,
-               "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-mono: "Space Mono", ui-monospace, SFMono-Regular, "SF Mono",
-               Menlo, Consolas, monospace;
+  --font-sans: 'Space Grotesk Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'Space Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
 }
 
-@utility bg-grad-sunset { background-image: var(--grad-sunset); }
-@utility bg-grad-aurora { background-image: var(--grad-aurora); }
-@utility bg-grad-cosmic { background-image: var(--grad-cosmic); }
-@utility bg-grad-nebula { background-image: var(--grad-nebula); }
+@utility bg-grad-sunset {
+  background-image: var(--grad-sunset);
+}
+@utility bg-grad-aurora {
+  background-image: var(--grad-aurora);
+}
+@utility bg-grad-cosmic {
+  background-image: var(--grad-cosmic);
+}
+@utility bg-grad-nebula {
+  background-image: var(--grad-nebula);
+}
 
 @utility text-grad-sunset {
   background-image: var(--grad-sunset);
@@ -66,9 +73,17 @@
   color: transparent;
 }
 
-html, body { background: #000; color: var(--fg-1); }
-html { font-family: var(--font-sans); }
-body { overflow-x: hidden; }
+html,
+body {
+  background: #000;
+  color: var(--fg-1);
+}
+html {
+  font-family: var(--font-sans);
+}
+body {
+  overflow-x: hidden;
+}
 
 /* Focus ring — global, yellow star, AA-passing on night-sky bg */
 :focus-visible {
@@ -79,7 +94,9 @@ body { overflow-x: hidden; }
 
 /* Reduced motion — universal opt-out for our continuous canvas/animations */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;

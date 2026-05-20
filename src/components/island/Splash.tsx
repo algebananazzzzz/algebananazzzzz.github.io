@@ -22,7 +22,9 @@ export default function Splash() {
   const snapRafRef = useRef(0);
 
   useEffect(() => {
-    const tick = () => { if (stardateRef.current) stardateRef.current.textContent = computeStardate(); };
+    const tick = () => {
+      if (stardateRef.current) stardateRef.current.textContent = computeStardate();
+    };
     tick();
     const id = setInterval(tick, 200);
     return () => clearInterval(id);
@@ -62,7 +64,7 @@ export default function Splash() {
       }
       if (warpRef.current) {
         const wIn = Math.max(0, Math.min(1, (p - 0.02) / 0.23));
-        const wOut = Math.max(0, Math.min(1, 1 - (p - 0.75) / 0.20));
+        const wOut = Math.max(0, Math.min(1, 1 - (p - 0.75) / 0.2));
         const wAmt = Math.min(wIn, wOut);
         warpRef.current.style.opacity = String(wAmt);
         warpRef.current.style.transform = `translateY(${-wIn * 28}vh)`;
@@ -72,7 +74,9 @@ export default function Splash() {
         hintRef.current.style.transform = `translateY(${p * 24}px)`;
       }
     };
-    const onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
     update();
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', update);
@@ -139,7 +143,10 @@ export default function Splash() {
     const target = heroEl
       ? heroEl.getBoundingClientRect().top + (window.scrollY || 0)
       : window.innerHeight || 800;
-    if (reduced) { window.scrollTo(0, target); return; }
+    if (reduced) {
+      window.scrollTo(0, target);
+      return;
+    }
     const startY = window.scrollY || 0;
     const dist = target - startY;
     if (Math.abs(dist) < 2) return;
@@ -160,9 +167,12 @@ export default function Splash() {
   return (
     <section className="splash" aria-label="welcome" data-accent="cosmic">
       <div ref={warpRef} className="splash-warp" aria-hidden="true">
-        {warpLines.map(l => (
-          <span key={l.key} className="warp-line"
-            style={{ left: `${l.x}%`, top: `calc(50% + ${l.yJitter}vh)`, height: `${l.len}vh` }} />
+        {warpLines.map((l) => (
+          <span
+            key={l.key}
+            className="warp-line"
+            style={{ left: `${l.x}%`, top: `calc(50% + ${l.yJitter}vh)`, height: `${l.len}vh` }}
+          />
         ))}
       </div>
 
@@ -171,7 +181,12 @@ export default function Splash() {
       <div ref={innerRef} className="splash-inner">
         <div ref={eyebrowRef} className="splash-eyebrow">
           <span className="dot" />
-          <span>singapore · 1.3°n · stardate <span className="stardate-num" ref={stardateRef} suppressHydrationWarning>{computeStardate()}</span></span>
+          <span>
+            singapore · 1.3°n · stardate{' '}
+            <span className="stardate-num" ref={stardateRef} suppressHydrationWarning>
+              {computeStardate()}
+            </span>
+          </span>
         </div>
         <h1 className="splash-hello">
           Hello, I'm <em>Daniel</em>
@@ -187,9 +202,26 @@ export default function Splash() {
         </div>
       </div>
 
-      <button ref={hintRef} onClick={onClickHint} className="splash-scrollhint" type="button" aria-label="descend into the nebula">
+      <button
+        ref={hintRef}
+        onClick={onClickHint}
+        className="splash-scrollhint"
+        type="button"
+        aria-label="descend into the nebula"
+      >
         <span>descent into the nebula</span>
-        <svg className="chev" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <svg
+          className="chev"
+          width="34"
+          height="34"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden="true"
+        >
           <path d="M6 9l6 6 6-6" />
         </svg>
       </button>

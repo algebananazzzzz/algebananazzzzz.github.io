@@ -11,16 +11,34 @@ const ROOT = '/Users/bytedance/algebananazzzzz2.0/shots';
 mkdirSync(ROOT, { recursive: true });
 
 const targets = [
-  { name: 'home', proto: 'http://localhost:5000/Portfolio%20v3.html', mine: 'http://localhost:4321/' },
-  { name: 'about', proto: 'http://localhost:5000/Portfolio%20v3.html#/about', mine: 'http://localhost:4321/about' },
-  { name: 'projects', proto: 'http://localhost:5000/Portfolio%20v3.html#/projects', mine: 'http://localhost:4321/projects' },
-  { name: 'experience', proto: 'http://localhost:5000/Portfolio%20v3.html#/experience', mine: 'http://localhost:4321/experience' },
-  { name: 'milky-way', proto: 'http://localhost:5000/Portfolio%20v3.html#/milky-way', mine: 'http://localhost:4321/milky-way' },
+  {
+    name: 'home',
+    proto: 'http://localhost:5000/Portfolio%20v3.html',
+    mine: 'http://localhost:4321/',
+  },
+  {
+    name: 'about',
+    proto: 'http://localhost:5000/Portfolio%20v3.html#/about',
+    mine: 'http://localhost:4321/about',
+  },
+  {
+    name: 'projects',
+    proto: 'http://localhost:5000/Portfolio%20v3.html#/projects',
+    mine: 'http://localhost:4321/projects',
+  },
+  {
+    name: 'experience',
+    proto: 'http://localhost:5000/Portfolio%20v3.html#/experience',
+    mine: 'http://localhost:4321/experience',
+  },
+  {
+    name: 'milky-way',
+    proto: 'http://localhost:5000/Portfolio%20v3.html#/milky-way',
+    mine: 'http://localhost:4321/milky-way',
+  },
 ];
 
-const viewports = [
-  { name: 'desktop', width: 1440, height: 900 },
-];
+const viewports = [{ name: 'desktop', width: 1440, height: 900 }];
 
 const browser = await chromium.launch();
 const ctx = await browser.newContext();

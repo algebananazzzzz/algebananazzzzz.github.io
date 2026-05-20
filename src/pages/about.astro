@@ -2,6 +2,7 @@
 import Base from '@/layouts/Base.astro';
 import about from '@/content/about.yaml';
 ---
+
 <Base title="about" description="who Daniel is and how he works." accent="aurora">
   <main class="page" data-accent="aurora">
     <div class="page-head">
@@ -18,11 +19,13 @@ import about from '@/content/about.yaml';
 
         <h3 class="about-h3">A few working principles</h3>
         <ul class="about-values">
-          {about.values.map((v: any) => (
-            <li>
-              <strong>{v.label}.</strong> {v.note}
-            </li>
-          ))}
+          {
+            about.values.map((v: any) => (
+              <li>
+                <strong>{v.label}.</strong> {v.note}
+              </li>
+            ))
+          }
         </ul>
       </div>
 
@@ -30,11 +33,16 @@ import about from '@/content/about.yaml';
         <div class="cosmic-card" style="padding: var(--space-5);">
           <div class="now-label" style="margin-bottom: var(--space-3);">field card</div>
           <dl class="about-factoids">
-            {about.factoids.map((f: any) => (
-              <div class="about-factoid">
-                <dt>{f.k}</dt><dd>{f.v}</dd>
-              </div>
-            ))}
+            {
+              about.factoids.map((f: any) => (
+                <div class="about-factoid">
+                  <>
+                    <dt>{f.k}</dt>
+                    <dd>{f.v}</dd>
+                  </>
+                </div>
+              ))
+            }
           </dl>
         </div>
       </aside>

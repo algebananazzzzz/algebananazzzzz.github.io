@@ -10,10 +10,10 @@ import ProjectsConst from '@/components/island/ProjectsConst';
 import CareerList from '@/components/island/CareerList';
 import MilkyWay from '@/components/island/MilkyWay';
 
-const projects = (await getCollection('projects')).map(p => p.data);
-const exps = (await getCollection('experience')).map(e => e.data).slice(0, 3);
-const clusters = (await getCollection('clusters')).map(c => c.data);
-const allNotes = (await getCollection('notes')).map(n => n.data);
+const projects = (await getCollection('projects')).map((p) => p.data);
+const exps = (await getCollection('experience')).map((e) => e.data).slice(0, 3);
+const clusters = (await getCollection('clusters')).map((c) => c.data);
+const allNotes = (await getCollection('notes')).map((n) => n.data);
 
 const careerEntries = exps.map((e: any) => ({
   id: e.id,
@@ -29,6 +29,7 @@ const orbitingClusters = clustersData.filter((c: any) => c.id !== 'general');
 const mottoEntry = (mottosData as any[]).find((m: any) => m.id === 'motto-11');
 const motto = mottoEntry?.text ?? 'Wonder is a renewable resource.';
 ---
+
 <Base isHome={true}>
   <Splash client:load />
 
@@ -40,7 +41,8 @@ const motto = mottoEntry?.text ?? 'Wonder is a renewable resource.';
         Welcome to my <em>nebula</em>.
       </h2>
       <p class="hero-sub">
-        I'm an NUS Computer Sciences undergrad. Cloud, agents, craft brewing — a small constellation of obsessions and the projects they keep producing.
+        I'm an NUS Computer Sciences undergrad. Cloud, agents, craft brewing — a small constellation
+        of obsessions and the projects they keep producing.
       </p>
 
       <div class="hero-motto">
@@ -51,28 +53,40 @@ const motto = mottoEntry?.text ?? 'Wonder is a renewable resource.';
         <a href="/milky-way" class="cta-milky" aria-label="enter the milky way">
           <span class="cta-star"></span>
           <span class="cta-label">Enter the Milky Way</span>
-          <svg class="cta-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+          <svg
+            class="cta-arrow"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path>
           </svg>
         </a>
       </div>
 
       <div class="orbiting">
         <span class="label">currently orbiting</span>
-        {orbitingClusters.map((c: any) => (
-          <a
-            href={`/milky-way?cluster=${c.id}`}
-            class="orbiting-chip"
-            style={`color: ${c.dotColor}66`}
-            title={`Notes in the ${c.label} cluster`}
-          >
-            <span class="dot" style={`background:${c.dotColor};color:${c.dotColor}`}></span>
-            {c.label}
-          </a>
-        ))}
+        {
+          orbitingClusters.map((c: any) => (
+            <a
+              href={`/milky-way?cluster=${c.id}`}
+              class="orbiting-chip"
+              style={`color: ${c.dotColor}66`}
+              title={`Notes in the ${c.label} cluster`}
+            >
+              <span class="dot" style={`background:${c.dotColor};color:${c.dotColor}`} />
+              {c.label}
+            </a>
+          ))
+        }
       </div>
     </div>
-
   </section>
 
   <!-- Now (orrery) -->
@@ -84,7 +98,12 @@ const motto = mottoEntry?.text ?? 'Wonder is a renewable resource.';
       </div>
       <a href="/about" class="section-link">more about me →</a>
     </div>
-    <Orrery client:idle building={nowData.building} writing={nowData.writing} obsessed={nowData.obsessed} />
+    <Orrery
+      client:idle
+      building={nowData.building}
+      writing={nowData.writing}
+      obsessed={nowData.obsessed}
+    />
   </section>
 
   <!-- Projects -->

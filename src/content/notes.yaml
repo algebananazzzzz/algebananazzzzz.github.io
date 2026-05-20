@@ -1,11 +1,11 @@
 - id: yeast
-  title: "Field notes: yeast pitching rates for small batches"
+  title: 'Field notes: yeast pitching rates for small batches'
   excerpt: "Three home-brews into a saison series. Textbook numbers lie at 5L. Here's what worked."
   cluster: brewery
   status: evergreen
   links: 7
-  date: "2026-05-09"
-  readTime: "6 min"
+  date: '2026-05-09'
+  readTime: '6 min'
   words: 1480
   arm: 0
   t: 0.35
@@ -13,13 +13,13 @@
   related: [saison, metaprompt]
 
 - id: saison
-  title: "Saison fermentation curve"
-  excerpt: "Two weeks of fermentation logs and what the slope actually tells you."
+  title: 'Saison fermentation curve'
+  excerpt: 'Two weeks of fermentation logs and what the slope actually tells you.'
   cluster: brewery
   status: budding
   links: 4
-  date: "2026-04-22"
-  readTime: "4 min"
+  date: '2026-04-22'
+  readTime: '4 min'
   words: 950
   arm: 0
   t: 0.55
@@ -27,13 +27,13 @@
   related: [yeast]
 
 - id: hopping
-  title: "Late hopping vs whirlpool: a small-batch comparison"
-  excerpt: "Two identical wort batches, two hop schedules, one weekend of taste tests."
+  title: 'Late hopping vs whirlpool: a small-batch comparison'
+  excerpt: 'Two identical wort batches, two hop schedules, one weekend of taste tests.'
   cluster: brewery
   status: seedling
   links: 3
-  date: "2026-04-08"
-  readTime: "3 min"
+  date: '2026-04-08'
+  readTime: '3 min'
   words: 720
   arm: 0
   t: 0.75
@@ -41,13 +41,13 @@
   related: [yeast, saison]
 
 - id: metaprompt
-  title: "Meta-prompt skeletons that actually transfer"
-  excerpt: "Four templates I keep reaching for — the planner, the debater, the historian, the proof-reader."
+  title: 'Meta-prompt skeletons that actually transfer'
+  excerpt: 'Four templates I keep reaching for — the planner, the debater, the historian, the proof-reader.'
   cluster: llm
   status: evergreen
   links: 9
-  date: "2026-05-14"
-  readTime: "9 min"
+  date: '2026-05-14'
+  readTime: '9 min'
   words: 2140
   arm: 1
   t: 0.30
@@ -55,13 +55,13 @@
   related: [tool-design, eval]
 
 - id: tool-design
-  title: "Designing tools for agents (and yourself)"
-  excerpt: "Tool surfaces are prompts in disguise. Naming, error messages, docstrings — all of it."
+  title: 'Designing tools for agents (and yourself)'
+  excerpt: 'Tool surfaces are prompts in disguise. Naming, error messages, docstrings — all of it.'
   cluster: llm
   status: budding
   links: 6
-  date: "2026-05-01"
-  readTime: "7 min"
+  date: '2026-05-01'
+  readTime: '7 min'
   words: 1620
   arm: 1
   t: 0.50
@@ -69,13 +69,13 @@
   related: [metaprompt, iam]
 
 - id: ctx-window
-  title: "Working with small context budgets"
-  excerpt: "When you have 8k tokens and want 80k. Compression strategies, summarisation policies."
+  title: 'Working with small context budgets'
+  excerpt: 'When you have 8k tokens and want 80k. Compression strategies, summarisation policies.'
   cluster: llm
   status: budding
   links: 4
-  date: "2026-04-19"
-  readTime: "5 min"
+  date: '2026-04-19'
+  readTime: '5 min'
   words: 1140
   arm: 1
   t: 0.68
@@ -83,13 +83,13 @@
   related: [metaprompt, eval]
 
 - id: eval
-  title: "Evals before vibes"
-  excerpt: "An assertion you can run beats a feeling you can argue. Cheap evals you can ship today."
+  title: 'Evals before vibes'
+  excerpt: 'An assertion you can run beats a feeling you can argue. Cheap evals you can ship today.'
   cluster: llm
   status: seedling
   links: 2
-  date: "2026-04-10"
-  readTime: "4 min"
+  date: '2026-04-10'
+  readTime: '4 min'
   words: 820
   arm: 1
   t: 0.84
@@ -97,13 +97,13 @@
   related: [metaprompt]
 
 - id: iam
-  title: "IAM patterns I keep forgetting"
-  excerpt: "Trust policies, service-linked roles, and the one detail that bites you every six months."
+  title: 'IAM patterns I keep forgetting'
+  excerpt: 'Trust policies, service-linked roles, and the one detail that bites you every six months.'
   cluster: cloud
   status: budding
   links: 5
-  date: "2026-03-28"
-  readTime: "6 min"
+  date: '2026-03-28'
+  readTime: '6 min'
   words: 1310
   arm: 2
   t: 0.32
@@ -111,13 +111,13 @@
   related: [edge-cache]
 
 - id: edge-cache
-  title: "Edge cache invalidation: a story in three CDNs"
+  title: 'Edge cache invalidation: a story in three CDNs'
   excerpt: "Why CloudFront, Cloudflare, and Fastly disagree on what 'cached' means."
   cluster: cloud
   status: seedling
   links: 3
-  date: "2026-03-12"
-  readTime: "5 min"
+  date: '2026-03-12'
+  readTime: '5 min'
   words: 1080
   arm: 2
   t: 0.55
@@ -125,13 +125,13 @@
   related: [iam]
 
 - id: reading-21
-  title: "Reading: How Buildings Learn"
+  title: 'Reading: How Buildings Learn'
   excerpt: "Stewart Brand's notes on how things age well. Notes for a house that isn't a house."
   cluster: reading
   status: seedling
   links: 2
-  date: "2026-04-30"
-  readTime: "3 min"
+  date: '2026-04-30'
+  readTime: '3 min'
   words: 640
   arm: 2
   t: 0.78
@@ -139,13 +139,13 @@
   related: [garden]
 
 - id: garden
-  title: "Why I keep a garden, not a blog"
+  title: 'Why I keep a garden, not a blog'
   excerpt: "A blog is for finished thoughts. A garden is for thoughts you'd be embarrassed to publish but can't stop tending."
   cluster: general
   status: evergreen
   links: 8
-  date: "2026-05-02"
-  readTime: "4 min"
+  date: '2026-05-02'
+  readTime: '4 min'
   words: 980
   arm: -1
   t: 0.5

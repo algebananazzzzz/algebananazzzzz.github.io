@@ -9,7 +9,7 @@ describe('magnitudeFor', () => {
   });
   it('penalises older notes (higher magnitude)', () => {
     const fresh = magnitudeFor({ links: 5, dateMs: Date.now() });
-    const aged  = magnitudeFor({ links: 5, dateMs: Date.now() - 365 * 86400_000 });
+    const aged = magnitudeFor({ links: 5, dateMs: Date.now() - 365 * 86400_000 });
     expect(aged).toBeGreaterThan(fresh);
   });
   it('clamps to a reasonable range', () => {

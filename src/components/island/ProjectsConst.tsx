@@ -62,7 +62,7 @@ const CLUSTER_COLOR: Record<string, string> = {
 function mulberry32(seed: number) {
   let a = seed | 0;
   return () => {
-    a = (a + 0x6D2B79F5) | 0;
+    a = (a + 0x6d2b79f5) | 0;
     let t = Math.imul(a ^ (a >>> 15), 1 | a);
     t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
     return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
@@ -104,13 +104,15 @@ function computeLayout(n: number, seed: number): { x: number; y: number }[] {
   //    We derive VY bounds from those flat limits so visual-space sampling
   //    stays within the simulation's safe range.
   // perspective constants (defined below in module scope but safe to read here at call-time)
-  const FH = 56.25;   // FIELD_H
-  const POW = 1.55;    // PERSP_VERT_POW
+  const FH = 56.25; // FIELD_H
+  const POW = 1.55; // PERSP_VERT_POW
 
-  const X_MIN = 16, X_MAX = 82;
-  const FY_MIN = 12, FY_MAX = 46;                              // flat-y pre-warp range
-  const VY_MIN = Math.pow(FY_MIN / FH, POW) * FH;             // ≈ 11.4 visual y
-  const VY_MAX = Math.pow(FY_MAX / FH, POW) * FH;             // ≈ 41.3 visual y
+  const X_MIN = 16,
+    X_MAX = 82;
+  const FY_MIN = 12,
+    FY_MAX = 46; // flat-y pre-warp range
+  const VY_MIN = Math.pow(FY_MIN / FH, POW) * FH; // ≈ 11.4 visual y
+  const VY_MAX = Math.pow(FY_MAX / FH, POW) * FH; // ≈ 41.3 visual y
   const VW = X_MAX - X_MIN;
   const VH = VY_MAX - VY_MIN;
   const AR = VW / VH; // aspect-ratio normalisation in visual space
@@ -129,16 +131,11 @@ function computeLayout(n: number, seed: number): { x: number; y: number }[] {
 
     for (let c = 0; c < K; c++) {
       const cx = X_MIN + rnd() * VW;
-      const vcy = VY_MIN + rnd() * VH;   // uniform in visual y
-      const cy = toFlatY(vcy);           // convert to flat y for storage
+      const vcy = VY_MIN + rnd() * VH; // uniform in visual y
+      const cy = toFlatY(vcy); // convert to flat y for storage
 
       // Score in visual space: min distance to all existing points and borders
-      let score = Math.min(
-        cx - X_MIN,
-        X_MAX - cx,
-        (vcy - VY_MIN) * AR,
-        (VY_MAX - vcy) * AR,
-      );
+      let score = Math.min(cx - X_MIN, X_MAX - cx, (vcy - VY_MIN) * AR, (VY_MAX - vcy) * AR);
       for (const p of pts) {
         const dx = cx - p.x;
         const dvy = (vcy - toVisualY(p.y)) * AR;
@@ -230,10 +227,10 @@ export default function ProjectsConst({ projects }: Props) {
     // Sort by ID so the seed — and therefore the layout — is independent of
     // the order projects arrive in. Same set of IDs → same positions always.
     const sorted = [...projects].sort((a, b) => a.id.localeCompare(b.id));
-    const positions = computeLayout(sorted.length, hashSeed(sorted.map(p => p.id)));
+    const positions = computeLayout(sorted.length, hashSeed(sorted.map((p) => p.id)));
     const posById = new Map(sorted.map((p, i) => [p.id, positions[i]]));
 
-    return projects.map(p => {
+    return projects.map((p) => {
       const vis = VISUAL_BY_ID[p.id];
       const pos = posById.get(p.id)!;
       return {
@@ -246,7 +243,7 @@ export default function ProjectsConst({ projects }: Props) {
         x: pos.x,
         y: pos.y,
         mass: vis?.mass ?? 2.2,
-        color: vis?.color ?? (CLUSTER_COLOR[p.cluster] ?? '#fde047'),
+        color: vis?.color ?? CLUSTER_COLOR[p.cluster] ?? '#fde047',
         spectralClass: vis?.spectralClass ?? 'G2 V',
       };
     });
@@ -290,7 +287,11 @@ export default function ProjectsConst({ projects }: Props) {
     return { px, py };
   };
 
-  const onStarPointerDown = (id: string, href: string | undefined, e: ReactPointerEvent<SVGGElement>) => {
+  const onStarPointerDown = (
+    id: string,
+    href: string | undefined,
+    e: ReactPointerEvent<SVGGElement>,
+  ) => {
     e.stopPropagation();
     const pt = eventToFieldCoords(e);
     if (!pt) return;
@@ -535,7 +536,9 @@ export default function ProjectsConst({ projects }: Props) {
           <div className="role">{hovered.role}</div>
           <div className="tech-row">
             {hovered.tech.map((t) => (
-              <span key={t} className="tag">{t}</span>
+              <span key={t} className="tag">
+                {t}
+              </span>
             ))}
           </div>
         </div>
