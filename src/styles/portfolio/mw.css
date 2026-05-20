@@ -51,10 +51,6 @@
   filter: blur(28px);
 }
 
-/* Dust speckle layer disabled — kept the noise tame. */
-.mw-streak-dust {
-  display: none;
-}
 
 .mw-inner {
   position: relative;
@@ -176,48 +172,6 @@
   border-radius: var(--radius-full);
 }
 
-.mw-side-legend ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  color: rgba(241, 245, 249, 0.55);
-}
-
-.mw-side-legend li {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.mw-side-legend .leg-star {
-  display: inline-block;
-  background: #fff;
-  border-radius: 50%;
-  box-shadow: 0 0 8px rgba(167, 139, 250, 0.5);
-}
-
-.mw-side-legend .leg-star.big {
-  width: 11px;
-  height: 11px;
-  box-shadow: 0 0 10px #fff;
-}
-
-.mw-side-legend .leg-star.med {
-  width: 7px;
-  height: 7px;
-}
-
-.mw-side-legend .leg-star.sm {
-  width: 4px;
-  height: 4px;
-  box-shadow: 0 0 4px #fff;
-}
-
 /* Frame holding the constellation — solid contrasting card on the streak bg */
 .mw-frame {
   position: relative;
@@ -257,10 +211,5 @@
        Remove forced portrait sizing; the SVG natural ratio drives height. */
     aspect-ratio: unset;
     min-height: 180px;
-  }
-
-  /* Constellation preview (Milky Way) */
-  .constellation-wrap {
-    padding: var(--space-3);
   }
 }
