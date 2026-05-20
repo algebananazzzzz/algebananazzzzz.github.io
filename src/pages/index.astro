@@ -127,7 +127,7 @@ const motto = mottoEntry?.text ?? 'Wonder is a renewable resource.';
       </div>
       <a href="/experience" class="section-link">full timeline →</a>
     </div>
-    <CareerList client:idle entries={careerEntries} />
+    <CareerList client:visible entries={careerEntries} />
   </section>
 
   <!-- Milky Way preview -->
@@ -139,6 +139,6 @@ const motto = mottoEntry?.text ?? 'Wonder is a renewable resource.';
       </div>
       <a href="/milky-way" class="section-link">enter the milky way →</a>
     </div>
-    <MilkyWay client:idle notes={allNotes} clusters={clusters} />
+    <MilkyWay client:visible notes={allNotes} clusters={clusters} />
   </section>
 </Base>
