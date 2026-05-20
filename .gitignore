@@ -10,3 +10,8 @@ design-handoff/
 *.log
 .vscode/
 .idea/
+.playwright-mcp/
+
+# Root-level debug screenshots
+/*.png
+!/public/**/*.png

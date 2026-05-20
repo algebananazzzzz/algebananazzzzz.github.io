@@ -9,7 +9,9 @@
     "preview": "astro preview --host",
     "check": "astro check",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
@@ -34,6 +36,9 @@
     "@vitejs/plugin-react": "^4.7.0",
     "@vitest/ui": "^4.1.6",
     "jsdom": "^29.1.1",
+    "playwright": "^1.60.0",
+    "prettier": "3.3.3",
+    "prettier-plugin-astro": "0.14.1",
     "vitest": "^2.1.8"
   }
 }
