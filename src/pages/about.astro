@@ -2,36 +2,42 @@
 import Base from '@/layouts/Base.astro';
 import about from '@/content/about.yaml';
 ---
-<Base title="about" description="who Daniel is and how he works.">
-  <section class="max-w-3xl mx-auto px-6 pt-32 pb-16">
-    <p class="font-mono text-xs tracking-[0.18em] uppercase text-gray-400 mb-3">about</p>
-    <h1 class="text-4xl md:text-5xl font-medium mb-8">
-      <span class="text-grad-aurora inline-block pe-[0.06em]">Daniel</span>, in long form.
-    </h1>
-
-    <div class="prose prose-invert max-w-none space-y-6">
-      <p class="text-lg leading-relaxed text-gray-200">{about.intro}</p>
-      <p class="text-base leading-relaxed text-gray-300">{about.what}</p>
+<Base title="about" description="who Daniel is and how he works." accent="aurora">
+  <main class="page" data-accent="aurora">
+    <div class="page-head">
+      <div class="section-eyebrow">— about —</div>
+      <h1 class="page-title">
+        A short letter <span class="grad-text g-aurora">from the desk</span>.
+      </h1>
     </div>
 
-    <h2 class="mt-12 text-xl font-medium text-gray-200 mb-4">How I work</h2>
-    <ul class="space-y-4">
-      {about.values.map(v => (
-        <li class="pl-4 border-l-2 border-star/40">
-          <div class="font-medium text-gray-100">{v.label}</div>
-          <div class="text-sm text-gray-400 leading-relaxed mt-0.5">{v.note}</div>
-        </li>
-      ))}
-    </ul>
+    <div class="about-grid">
+      <div class="about-main">
+        <p class="about-lead">{about.intro}</p>
+        <p class="about-body">{about.what}</p>
 
-    <h2 class="mt-12 text-xl font-medium text-gray-200 mb-4">Vitals</h2>
-    <dl class="grid sm:grid-cols-2 gap-x-8 gap-y-3 font-mono text-sm">
-      {about.factoids.map(f => (
-        <div class="flex justify-between gap-4 border-b border-slate-800/60 pb-2">
-          <dt class="text-gray-400 uppercase tracking-wider text-xs">{f.k}</dt>
-          <dd class="text-gray-300">{f.v}</dd>
+        <h3 class="about-h3">A few working principles</h3>
+        <ul class="about-values">
+          {about.values.map((v: any) => (
+            <li>
+              <strong>{v.label}.</strong> {v.note}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <aside class="about-side">
+        <div class="cosmic-card" style="padding: var(--space-5);">
+          <div class="now-label" style="margin-bottom: var(--space-3);">field card</div>
+          <dl class="about-factoids">
+            {about.factoids.map((f: any) => (
+              <div class="about-factoid">
+                <dt>{f.k}</dt><dd>{f.v}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
-      ))}
-    </dl>
-  </section>
+      </aside>
+    </div>
+  </main>
 </Base>

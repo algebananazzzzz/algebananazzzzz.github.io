@@ -1,28 +1,32 @@
 ---
 import Base from '@/layouts/Base.astro';
-import ExperienceRow from '@/components/static/ExperienceRow.astro';
 import { getCollection } from 'astro:content';
+import CareerList from '@/components/island/CareerList';
 
 const exps = (await getCollection('experience')).map(e => e.data);
-const starColors: Record<string, string> = {
-  neutron: '#A5B4FC',
-  giant: '#F87171',
-  subgiant: '#FBCFE8',
-  mainseq: '#FDE047',
-  protostar: '#67E8F9',
-  whitedwarf: '#E0E7FF',
-};
+
+const careerEntries = exps.map((e: any) => ({
+  id: e.id,
+  span: e.span,
+  role: e.role,
+  org: e.org,
+  summary: e.summary,
+  tags: e.tags ?? [],
+  starType: e.star?.type ?? 'mainseq',
+}));
 ---
 <Base title="experience" description="trajectory through cloud, agents, and teaching." accent="nebula">
-  <section class="max-w-3xl mx-auto px-6 pt-32 pb-16">
-    <p class="font-mono text-xs tracking-[0.18em] uppercase text-gray-400 mb-3">where I've been</p>
-    <h1 class="text-4xl md:text-5xl font-medium mb-10">
-      <span class="text-grad-nebula inline-block pe-[0.06em]">Trajectory</span>.
-    </h1>
-    <ol class="list-none">
-      {exps.map((e, i) => (
-        <ExperienceRow exp={e} starColor={starColors[e.star.type] ?? '#FFC700'} isLast={i === exps.length - 1} />
-      ))}
-    </ol>
-  </section>
+  <main class="page" data-accent="nebula">
+    <div class="page-head">
+      <div class="section-eyebrow">— experience —</div>
+      <h1 class="page-title">
+        A <span class="grad-text g-nebula">trajectory</span> in five stops.
+      </h1>
+      <p class="page-lead">
+        Internships, the hall I mostly live in, and the two years of NS that gave me a working knowledge of tcpdump and a deep respect for runbooks.
+      </p>
+    </div>
+
+    <CareerList client:idle entries={careerEntries} />
+  </main>
 </Base>

@@ -1,18 +1,22 @@
 ---
 import Base from '@/layouts/Base.astro';
-import ProjectCard from '@/components/static/ProjectCard.astro';
 import { getCollection } from 'astro:content';
+import ProjectsList from '@/components/island/ProjectsList';
 
 const projects = (await getCollection('projects')).map(p => p.data);
 ---
-<Base title="projects" description="things on the workbench." accent="sunset">
-  <section class="max-w-7xl mx-auto px-6 pt-32 pb-16">
-    <p class="font-mono text-xs tracking-[0.18em] uppercase text-gray-400 mb-3">things on the workbench</p>
-    <h1 class="text-4xl md:text-5xl font-medium mb-10">
-      Recent <span class="text-grad-sunset inline-block pe-[0.06em]">builds</span>.
-    </h1>
-    <div class="grid gap-6 md:grid-cols-2">
-      {projects.map(p => <ProjectCard project={p} />)}
+<Base title="projects" description="things on my workbench." accent="sunset">
+  <main class="page" data-accent="sunset">
+    <div class="page-head">
+      <div class="section-eyebrow">— projects —</div>
+      <h1 class="page-title">
+        Things I've <span class="grad-text g-sunset">put into the world</span>.
+      </h1>
+      <p class="page-lead">
+        Most live on a Pi in my closet or a small AWS account. A few have actual users. All have READMEs I'd let my mother read.
+      </p>
     </div>
-  </section>
+
+    <ProjectsList client:idle projects={projects} />
+  </main>
 </Base>

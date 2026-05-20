@@ -1,14 +1,20 @@
 import { useEffect, useState } from 'react';
 
-const palettes = {
-  cosmic: { a: '#7E22CE', b: '#4F46E5' },
-  sunset: { a: '#F97316', b: '#DC2626' },
-  aurora: { a: '#16A34A', b: '#0891B2' },
-  nebula: { a: '#BE185D', b: '#5B21B6' },
+type Accent = 'cosmic' | 'sunset' | 'aurora' | 'nebula';
+
+const layers: Record<Accent, string> = {
+  cosmic: `radial-gradient(ellipse 55% 45% at 50% 30%, rgba(91, 33, 182, 0.42), transparent 65%),
+           radial-gradient(ellipse 60% 50% at 30% 80%, rgba(67, 56, 202, 0.32), transparent 70%)`,
+  sunset: `radial-gradient(ellipse 55% 45% at 50% 30%, rgba(249, 115, 22, 0.32), transparent 65%),
+           radial-gradient(ellipse 60% 50% at 70% 80%, rgba(220, 38, 38, 0.28), transparent 70%)`,
+  aurora: `radial-gradient(ellipse 55% 45% at 50% 30%, rgba(22, 163, 74, 0.32), transparent 65%),
+           radial-gradient(ellipse 60% 50% at 30% 80%, rgba(8, 145, 178, 0.28), transparent 70%)`,
+  nebula: `radial-gradient(ellipse 55% 45% at 50% 30%, rgba(190, 24, 93, 0.38), transparent 65%),
+           radial-gradient(ellipse 60% 50% at 70% 80%, rgba(91, 33, 182, 0.32), transparent 70%)`,
 };
 
 export default function AccentOrb() {
-  const [accent, setAccent] = useState<keyof typeof palettes>('cosmic');
+  const [accent, setAccent] = useState<Accent>('cosmic');
 
   useEffect(() => {
     const sections = Array.from(document.querySelectorAll<HTMLElement>('[data-accent]'));
@@ -17,19 +23,29 @@ export default function AccentOrb() {
       const visible = entries.filter(e => e.isIntersecting)
         .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
       if (visible[0]) {
-        const a = visible[0].target.getAttribute('data-accent') as keyof typeof palettes;
-        if (a in palettes) setAccent(a);
+        const a = visible[0].target.getAttribute('data-accent') as Accent;
+        if (a in layers) setAccent(a);
       }
     }, { threshold: [0.2, 0.5, 0.8] });
     sections.forEach(s => io.observe(s));
     return () => io.disconnect();
   }, []);
 
-  const { a, b } = palettes[accent];
+  useEffect(() => {
+    if (typeof document !== 'undefined') {
+      document.documentElement.setAttribute('data-accent', accent);
+    }
+  }, [accent]);
+
   return (
-    <div aria-hidden="true" className="fixed inset-0 z-0 pointer-events-none transition-opacity duration-700">
-      <div className="absolute top-[-10%] right-[-10%] w-[60vw] h-[60vw] rounded-full opacity-20 blur-3xl transition-colors duration-1000" style={{ background: a }} />
-      <div className="absolute bottom-[-10%] left-[-10%] w-[60vw] h-[60vw] rounded-full opacity-15 blur-3xl transition-colors duration-1000" style={{ background: b }} />
+    <div className="accent-orb" aria-hidden="true">
+      {(Object.keys(layers) as Accent[]).map(k => (
+        <div
+          key={k}
+          className={`accent-layer ${k === accent ? 'active' : ''}`}
+          style={{ background: layers[k] }}
+        />
+      ))}
     </div>
   );
 }

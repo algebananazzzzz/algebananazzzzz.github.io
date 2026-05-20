@@ -3,7 +3,9 @@
 @import "@fontsource/space-mono/700.css";
 @import "tailwindcss";
 @import "./tokens.css";
-@import "./v3.css";
+@import "./portfolio.css";
+@import "./pages.css";
+@import "./page-bg.css";
 
 @theme {
   --color-signal: #6C0000;
@@ -64,8 +66,9 @@
   color: transparent;
 }
 
-html, body { background: var(--night); color: var(--fg-1); }
+html, body { background: #000; color: var(--fg-1); }
 html { font-family: var(--font-sans); }
+body { overflow-x: hidden; }
 
 /* Focus ring — global, yellow star, AA-passing on night-sky bg */
 :focus-visible {

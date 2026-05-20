@@ -88,11 +88,17 @@
   /* The brand sits on the platform system stack — keeps the look
      light, friendly, OS-native. No custom display face. */
 
-  --font-sans:        ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-                      "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
-                      sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-  --font-mono:        ui-monospace, SFMono-Regular, "SF Mono", Menlo,
-                      Consolas, "Liberation Mono", monospace;
+  /* The portfolio imports Space Grotesk (variable) + Space Mono via
+     @fontsource (see global.css). Putting them first here makes every
+     `font-family: var(--font-*)` rule actually pick them up — otherwise
+     the ds-tokens.css system stack wins and the page falls back to
+     ui-sans-serif / ui-monospace. */
+  --font-sans:        "Space Grotesk Variable", "Space Grotesk", ui-sans-serif,
+                      system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+                      Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+                      "Apple Color Emoji", "Segoe UI Emoji";
+  --font-mono:        "Space Mono", ui-monospace, SFMono-Regular, "SF Mono",
+                      Menlo, Consolas, "Liberation Mono", monospace;
 
   /* Scale (Tailwind base) */
   --text-xs:          0.75rem;        /* 12 */

@@ -1,0 +1,122 @@
+/* ============================================================
+   Per-page accent washes (sub-pages only).
+   Home-section washes intentionally removed: the home cosmos is meant to
+   feel like one continuous space that drifts subtly with scroll, not
+   one that switches palette per section. The drift is now driven by
+   Cosmos.tsx (continuous hue-rotate based on scroll progress).
+   ============================================================ */
+
+/* Full-page signature wash on sub-pages (.page only — not .mw-page) */
+.page[data-accent] {
+  position: relative;
+  isolation: isolate;
+}
+.page[data-accent]::before {
+  content: "";
+  position: fixed;
+  inset: -6%;
+  z-index: 0;
+  pointer-events: none;
+  /* Drift via the cosmos keyframe; pulse via a subtler keyframe (washPulse,
+     defined in v3.css) so the wash never goes opaque enough to wash text
+     out as project rows scroll past it. nebulaPulse1's 0.5-1.1 range would
+     peak at 0.94 opacity here and bleed orange into title text. */
+  --wash-pulse: 1;
+  /* Base 0.55 instead of 0.85 — at 0.85 the wash bleeds orange/green/pink
+     into headlines and bullets, which read as "off in color". Tuned by
+     comparing Playwright captures of /projects, /about, /experience
+     against the prototype screenshots. */
+  opacity: calc(0.55 * var(--wash-pulse));
+  filter: blur(60px) saturate(1.15);
+  animation: nebulaDrift1 24s ease-in-out infinite,
+             washPulse 11s ease-in-out infinite;
+}
+.page[data-accent]::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse 90% 80% at 50% 50%, transparent 30%, rgba(2,3,10,0.55) 100%);
+}
+.page[data-accent="sunset"]::before {
+  background:
+    radial-gradient(ellipse 70% 60% at 18% 22%, rgba(250, 204, 21, 0.55), transparent 65%),
+    radial-gradient(ellipse 80% 70% at 80% 75%, rgba(220, 38, 38, 0.55), transparent 65%),
+    radial-gradient(ellipse 50% 40% at 50% 50%, rgba(249, 115, 22, 0.35), transparent 70%),
+    linear-gradient(135deg, #2a1108 0%, #1a0710 50%, #0b0510 100%);
+}
+.page[data-accent="aurora"]::before {
+  background:
+    radial-gradient(ellipse 70% 60% at 18% 22%, rgba(74, 222, 128, 0.50), transparent 65%),
+    radial-gradient(ellipse 80% 70% at 80% 75%, rgba(34, 211, 238, 0.55), transparent 65%),
+    radial-gradient(ellipse 50% 40% at 50% 50%, rgba(45, 212, 191, 0.32), transparent 70%),
+    linear-gradient(135deg, #06201c 0%, #08151f 50%, #050c14 100%);
+}
+.page[data-accent="nebula"]::before {
+  background:
+    radial-gradient(ellipse 70% 60% at 18% 22%, rgba(244, 114, 182, 0.55), transparent 65%),
+    radial-gradient(ellipse 80% 70% at 80% 75%, rgba(139, 92, 246, 0.55), transparent 65%),
+    radial-gradient(ellipse 50% 40% at 50% 50%, rgba(190, 24, 93, 0.35), transparent 70%),
+    linear-gradient(135deg, #1f0a1e 0%, #170820 50%, #0a0517 100%);
+}
+.page[data-accent="cosmic"]::before {
+  background:
+    radial-gradient(ellipse 70% 60% at 18% 22%, rgba(167, 139, 250, 0.50), transparent 65%),
+    radial-gradient(ellipse 80% 70% at 80% 75%, rgba(99, 102, 241, 0.55), transparent 65%),
+    radial-gradient(ellipse 50% 40% at 50% 50%, rgba(126, 34, 206, 0.30), transparent 70%),
+    linear-gradient(135deg, #0e0b2c 0%, #0a0a1f 50%, #050514 100%);
+}
+
+/* Sub-page content sits above the wash */
+.page[data-accent] > * { position: relative; z-index: 1; }
+
+/* ---------- Sub-page cosmos hue-rotate + dim ----------
+   Set CSS custom properties that the per-layer rules in v3.css consume.
+   This dims and tints the COLORED nebula layers only — the star canvas
+   inside .cosmos isn't a layer and isn't affected by these vars, so
+   stars stay bright on sub-pages even while the colored nebulae take a
+   back seat to each page's signature accent wash. */
+html[data-accent="aurora"] .cosmos {
+  --layer-hue: 80deg;
+  --layer-sat-mul: 0.5;
+  --layer-dim: 0.35;
+}
+html[data-accent="sunset"] .cosmos {
+  --layer-hue: -20deg;
+  --layer-sat-mul: 0.6;
+  --layer-dim: 0.40;
+}
+html[data-accent="nebula"] .cosmos {
+  --layer-hue: -10deg;
+  --layer-sat-mul: 0.7;
+  --layer-dim: 0.45;
+}
+
+/* ---------- /milky-way: deep-void backdrop + painterly Milky Way streak SVG ----------
+   Cosmos and AccentOrb are not rendered at all on this route (see Base.astro
+   `mwPage` prop), so this file only owns the page background + streak placement.
+   The streak's painterly content lives in MilkyWayStreak.tsx — this rule only
+   anchors and tilts the SVG. */
+.mw-page-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+  background: #02030a;
+}
+.mw-page-bg .mw-streak {
+  position: absolute;
+  left: -10%;
+  right: -10%;
+  top: 2%;
+  width: 120%;
+  height: 90vh;
+  transform: rotate(-10deg);
+  opacity: 0.85;
+  display: block;
+}
+@media (max-width: 720px) {
+  .mw-page-bg .mw-streak { transform: rotate(-16deg); top: 14%; }
+}

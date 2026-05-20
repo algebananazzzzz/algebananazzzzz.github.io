@@ -1,76 +1,125 @@
 ---
 import Base from '@/layouts/Base.astro';
-import SectionHead from '@/components/static/SectionHead.astro';
-import ProjectCard from '@/components/static/ProjectCard.astro';
-import ExperienceRow from '@/components/static/ExperienceRow.astro';
 import { getCollection } from 'astro:content';
+import clustersData from '@/content/clusters.yaml';
+import mottosData from '@/content/mottos.yaml';
 import nowData from '@/content/now.yaml';
 import Splash from '@/components/island/Splash';
-import Constellation from '@/components/island/Constellation';
 import Orrery from '@/components/island/Orrery';
+import ProjectsConst from '@/components/island/ProjectsConst';
+import CareerList from '@/components/island/CareerList';
+import MilkyWay from '@/components/island/MilkyWay';
 
-const projects = (await getCollection('projects')).map(p => p.data).slice(0, 3);
+const projects = (await getCollection('projects')).map(p => p.data);
 const exps = (await getCollection('experience')).map(e => e.data).slice(0, 3);
 const clusters = (await getCollection('clusters')).map(c => c.data);
 const allNotes = (await getCollection('notes')).map(n => n.data);
 
-const starColors: Record<string, string> = {
-  neutron: '#A5B4FC', giant: '#F87171', subgiant: '#FBCFE8',
-  mainseq: '#FDE047', protostar: '#67E8F9', whitedwarf: '#E0E7FF',
-};
+const careerEntries = exps.map((e: any) => ({
+  id: e.id,
+  span: e.span,
+  role: e.role,
+  org: e.org,
+  summary: e.summary,
+  tags: e.tags ?? [],
+  starType: e.star?.type ?? 'mainseq',
+}));
+
+const orbitingClusters = clustersData.filter((c: any) => c.id !== 'general');
+const mottoEntry = (mottosData as any[]).find((m: any) => m.id === 'motto-11');
+const motto = mottoEntry?.text ?? 'Wonder is a renewable resource.';
 ---
-<Base>
+<Base isHome={true}>
   <Splash client:load />
 
   <!-- Hero proper -->
-  <section class="relative max-w-4xl mx-auto px-6 py-24" data-accent="cosmic">
-    <p class="font-mono text-xs tracking-[0.18em] uppercase text-gray-400 mb-3">v2026 · personal archive</p>
-    <h2 class="text-3xl md:text-5xl font-medium leading-tight mb-6">
-      Welcome to my <em class="not-italic text-grad-cosmic inline-block pe-[0.06em]">nebula</em>.
-    </h2>
-    <p class="text-lg text-gray-300 max-w-2xl leading-relaxed mb-8">
-      I'm an NUS Computer Sciences undergrad. Cloud, agents, craft brewing — a small constellation of obsessions and the projects they keep producing.
-    </p>
-    <p class="italic text-gray-400 mb-8">"Wonder is a renewable resource."</p>
+  <section class="hero hero-single" data-screen-label="01 Hero" data-accent="cosmic">
+    <div class="hero-content">
+      <div class="eyebrow">v2026 · personal archive</div>
+      <h2 class="hero-greeting">
+        Welcome to my <em>nebula</em>.
+      </h2>
+      <p class="hero-sub">
+        I'm an NUS Computer Sciences undergrad. Cloud, agents, craft brewing — a small constellation of obsessions and the projects they keep producing.
+      </p>
 
-    <a href="/milky-way" class="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-grad-cosmic text-white font-medium shadow-lg shadow-purple-500/20 hover:scale-105 transition-transform">
-      <span class="w-2 h-2 rounded-full bg-star"></span>
-      Enter the Milky Way
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
-      </svg>
-    </a>
+      <div class="hero-motto">
+        &ldquo;{motto}&rdquo;
+      </div>
+
+      <div class="hero-ctas">
+        <a href="/milky-way" class="cta-milky" aria-label="enter the milky way">
+          <span class="cta-star"></span>
+          <span class="cta-label">Enter the Milky Way</span>
+          <svg class="cta-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="orbiting">
+        <span class="label">currently orbiting</span>
+        {orbitingClusters.map((c: any) => (
+          <a
+            href={`/milky-way?cluster=${c.id}`}
+            class="orbiting-chip"
+            style={`color: ${c.dotColor}66`}
+            title={`Notes in the ${c.label} cluster`}
+          >
+            <span class="dot" style={`background:${c.dotColor};color:${c.dotColor}`}></span>
+            {c.label}
+          </a>
+        ))}
+      </div>
+    </div>
+
   </section>
 
-  <!-- Now: placeholder until Orrery island in Phase 4 -->
-  <section class="relative max-w-7xl mx-auto px-6 py-16" data-accent="aurora">
-    <SectionHead eyebrow="now · this week" title="Right" emTitle="now" linkHref="/about" linkLabel="more about me" />
-    <Orrery client:visible building={nowData.building} writing={nowData.writing} obsessed={nowData.obsessed} />
+  <!-- Now (orrery) -->
+  <section class="section" data-screen-label="02 Now" data-accent="aurora">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">what i'm doing now</div>
+        <h2 class="section-title"><em>Orrery</em></h2>
+      </div>
+      <a href="/about" class="section-link">more about me →</a>
+    </div>
+    <Orrery client:idle building={nowData.building} writing={nowData.writing} obsessed={nowData.obsessed} />
   </section>
 
   <!-- Projects -->
-  <section class="relative max-w-7xl mx-auto px-6 py-16" data-accent="sunset">
-    <SectionHead eyebrow="things on the workbench" title="Recent" emTitle="builds" linkHref="/projects" linkLabel="all projects" />
-    <div class="grid gap-6 md:grid-cols-3">
-      {projects.map(p => <ProjectCard project={p} />)}
+  <section class="section" data-screen-label="03 Projects" data-accent="sunset">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">things on my workbench</div>
+        <h2 class="section-title"><em>Spacetime</em></h2>
+      </div>
+      <a href="/projects" class="section-link">all projects →</a>
     </div>
+    <ProjectsConst client:idle projects={projects} />
   </section>
 
   <!-- Career -->
-  <section class="relative max-w-3xl mx-auto px-6 py-16" data-accent="nebula">
-    <SectionHead eyebrow="where I've been" title="" emTitle="Trajectory" linkHref="/experience" linkLabel="full timeline" />
-    <ol class="list-none">
-      {exps.map((e, i) => (
-        <ExperienceRow exp={e} starColor={starColors[e.star.type] ?? '#FFC700'} isLast={i === exps.length - 1} />
-      ))}
-    </ol>
+  <section class="section" data-screen-label="04 Experience" data-accent="nebula">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">where I've been</div>
+        <h2 class="section-title"><em>Trajectory</em></h2>
+      </div>
+      <a href="/experience" class="section-link">full timeline →</a>
+    </div>
+    <CareerList client:idle entries={careerEntries} />
   </section>
 
-  <!-- Milky Way preview — Constellation island -->
-  <section class="relative max-w-7xl mx-auto px-6 py-16" data-accent="cosmic">
-    <SectionHead eyebrow="digital garden · the milky way" title="The" emTitle="milky way" linkHref="/milky-way" linkLabel="enter the milky way" />
-    <div class="mt-6 rounded-xl border border-slate-800/60 bg-slate-900/40 p-4">
-      <Constellation client:visible notes={allNotes} clusters={clusters} />
+  <!-- Milky Way preview -->
+  <section class="section" data-screen-label="06 Milky Way" data-accent="cosmic">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">my digital garden</div>
+        <h2 class="section-title"><em>The milky way</em></h2>
+      </div>
+      <a href="/milky-way" class="section-link">enter the milky way →</a>
     </div>
+    <MilkyWay client:idle notes={allNotes} clusters={clusters} />
   </section>
 </Base>
