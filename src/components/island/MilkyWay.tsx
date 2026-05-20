@@ -2,13 +2,8 @@ import { useState } from 'react';
 import Constellation from './Constellation';
 import type { NotePanelData } from './NotePanel';
 
-interface NoteWithSpiral extends NotePanelData {
-  arm: number;
-  t: number;
-}
-
 interface Props {
-  notes: NoteWithSpiral[];
+  notes: NotePanelData[];
   clusters: { id: string; label: string; dotColor: string }[];
 }
 

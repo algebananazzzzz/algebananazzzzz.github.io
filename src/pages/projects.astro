@@ -1,9 +1,11 @@
 ---
 import Base from '@/layouts/Base.astro';
 import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
 import ProjectsList from '@/components/island/ProjectsList';
 
-const projects = (await getCollection('projects')).map((p) => p.data);
+const projectEntries = await getCollection('projects');
+const projects = projectEntries.map((p: CollectionEntry<'projects'>) => p.data);
 ---
 
 <Base title="projects" description="things on my workbench." accent="sunset">

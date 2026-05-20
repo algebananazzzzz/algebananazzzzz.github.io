@@ -3,21 +3,28 @@ import Base from '@/layouts/Base.astro';
 import MilkyWay from '@/components/island/MilkyWay';
 import MilkyWayStreak from '@/components/island/MilkyWayStreak';
 import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
 
-const notes = (await getCollection('notes')).map((n) => n.data);
-const clusters = (await getCollection('clusters')).map((c) => c.data);
+type NoteData = CollectionEntry<'notes'>['data'];
+type ClusterData = CollectionEntry<'clusters'>['data'];
+
+const noteEntries = await getCollection('notes');
+const notes = noteEntries.map((n: CollectionEntry<'notes'>) => n.data);
+
+const clusterEntries = await getCollection('clusters');
+const clusters = clusterEntries.map((c: CollectionEntry<'clusters'>) => c.data);
 
 const total = notes.length;
-const totalLinks = notes.reduce((s: number, n: any) => s + (n.links ?? 0), 0);
+const totalLinks = notes.reduce((s: number, n: NoteData) => s + (n.links ?? 0), 0);
 
-const recent = [...notes].sort((a: any, b: any) => b.date.localeCompare(a.date)).slice(0, 6);
+const recent = [...notes].sort((a: NoteData, b: NoteData) => b.date.localeCompare(a.date)).slice(0, 6);
 
 const clusterColorById: Record<string, string> = Object.fromEntries(
-  clusters.map((c: any) => [c.id, c.dotColor]),
+  clusters.map((c: ClusterData) => [c.id, c.dotColor]),
 );
 
 const buildDate = Date.now();
-function noteMagnitude(n: any): number {
+function noteMagnitude(n: NoteData): number {
   const linkBonus = (n.links ?? 0) * -0.35;
   let ageDays = 0;
   if (n.date && /^\d{4}-\d{2}-\d{2}/.test(n.date)) {
@@ -61,7 +68,7 @@ function formatMagnitude(m: number): string {
       <h2 class="mw-recent-title-row">The notes in motion this fortnight.</h2>
       <div class="mw-recent-list">
         {
-          recent.map((n: any) => (
+          recent.map((n) => (
             <button class="mw-recent-row" type="button">
               <span class="mw-recent-date">{n.date}</span>
               <span class="mw-recent-title">{n.title}</span>

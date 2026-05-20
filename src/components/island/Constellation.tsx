@@ -69,7 +69,7 @@ export default function Constellation({ notes, clusters, activeCluster = 'all' }
   const positioned: PositionedNote[] = useMemo(
     () =>
       notes.map((n) => {
-        const [cx, cy] = positionFor(n.id, (n as any).arm, (n as any).t);
+        const [cx, cy] = positionFor(n.id, n.arm, n.t);
         return { ...n, cx, cy, r: sizeFor(n.links) };
       }),
     [notes],

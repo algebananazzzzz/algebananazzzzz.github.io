@@ -1,11 +1,15 @@
 ---
 import Base from '@/layouts/Base.astro';
 import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
 import CareerList from '@/components/island/CareerList';
 
-const exps = (await getCollection('experience')).map((e) => e.data);
+const expEntries = await getCollection('experience');
+const exps: CollectionEntry<'experience'>['data'][] = expEntries.map(
+  (e: CollectionEntry<'experience'>) => e.data,
+);
 
-const careerEntries = exps.map((e: any) => ({
+const careerEntries = exps.map((e) => ({
   id: e.id,
   span: e.span,
   role: e.role,

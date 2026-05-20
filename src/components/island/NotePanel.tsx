@@ -11,6 +11,8 @@ export interface NotePanelData {
   date: string;
   readTime: string;
   words: number;
+  arm: number;
+  t: number;
   backlinks: string[];
   related: string[];
 }
