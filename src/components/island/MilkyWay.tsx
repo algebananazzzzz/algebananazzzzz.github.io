@@ -1,19 +1,20 @@
 import { useState } from 'react';
 import Constellation from './Constellation';
-import type { NotePanelData } from './NotePanel';
+import type { WikiPage, WikiTopic } from '@/types/wiki';
 
 interface Props {
-  notes: NotePanelData[];
-  clusters: { id: string; label: string; dotColor: string }[];
+  pages: WikiPage[];
+  topics: WikiTopic[];
+  baseUrl: string;
 }
 
-export default function MilkyWay({ notes, clusters }: Props) {
+export default function MilkyWay({ pages, topics, baseUrl }: Props) {
   const [active, setActive] = useState<string>('all');
 
   return (
     <div className="mw-layout">
-      <aside className="mw-side" aria-label="Filter by cluster">
-        <div className="mw-side-label">filter · cluster</div>
+      <aside className="mw-side" aria-label="Filter by topic">
+        <div className="mw-side-label">filter · topic</div>
         <div className="mw-cluster-list">
           <button
             type="button"
@@ -22,19 +23,19 @@ export default function MilkyWay({ notes, clusters }: Props) {
           >
             <span className="dot" style={{ background: '#e5e7eb' }} />
             <span className="label">all</span>
-            <span className="count">{notes.length}</span>
+            <span className="count">{pages.length}</span>
           </button>
-          {clusters.map((c) => {
-            const count = notes.filter((n) => n.cluster === c.id).length;
+          {topics.map((t) => {
+            const count = pages.filter((p) => p.topic === t.id).length;
             return (
               <button
-                key={c.id}
+                key={t.id}
                 type="button"
-                className={`mw-cluster-btn ${active === c.id ? 'active' : ''}`}
-                onClick={() => setActive(c.id)}
+                className={`mw-cluster-btn ${active === t.id ? 'active' : ''}`}
+                onClick={() => setActive(t.id)}
               >
-                <span className="dot" style={{ background: c.dotColor }} />
-                <span className="label">{c.label}</span>
+                <span className="dot" style={{ background: t.dotColor }} />
+                <span className="label">{t.label}</span>
                 <span className="count">{count}</span>
               </button>
             );
@@ -43,7 +44,7 @@ export default function MilkyWay({ notes, clusters }: Props) {
       </aside>
 
       <div className="mw-frame">
-        <Constellation notes={notes} clusters={clusters} activeCluster={active} />
+        <Constellation pages={pages} topics={topics} baseUrl={baseUrl} activeCluster={active} />
       </div>
     </div>
   );

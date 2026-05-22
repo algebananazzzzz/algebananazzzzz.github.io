@@ -3,7 +3,6 @@ import { file } from 'astro/loaders';
 
 const ClusterId = z.enum(['brewery', 'llm', 'cloud', 'reading', 'general']);
 const Accent = z.enum(['cosmic', 'sunset', 'aurora', 'nebula']);
-const Status = z.enum(['seedling', 'budding', 'evergreen']);
 const StarType = z.enum([
   'neutron',
   'giant',
@@ -48,33 +47,4 @@ const experience = defineCollection({
   }),
 });
 
-const notes = defineCollection({
-  loader: file('src/content/notes.yaml'),
-  schema: z.object({
-    id: z.string(),
-    title: z.string(),
-    excerpt: z.string(),
-    cluster: ClusterId,
-    status: Status,
-    links: z.number().int().nonnegative(),
-    date: z.string(),
-    readTime: z.string(),
-    words: z.number().int().nonnegative(),
-    arm: z.number().int(),
-    t: z.number().min(0).max(1),
-    backlinks: z.array(z.string()),
-    related: z.array(z.string()),
-  }),
-});
-
-const clusters = defineCollection({
-  loader: file('src/content/clusters.yaml'),
-  schema: z.object({ id: ClusterId, label: z.string(), dotColor: z.string() }),
-});
-
-const mottos = defineCollection({
-  loader: file('src/content/mottos.yaml'),
-  schema: z.object({ id: z.string(), text: z.string(), cluster: ClusterId, noteId: z.string() }),
-});
-
-export const collections = { projects, experience, notes, clusters, mottos };
+export const collections = { projects, experience };

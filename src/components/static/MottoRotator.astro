@@ -1,0 +1,36 @@
+---
+import manifest from '@/content/wiki-manifest.json';
+import type { WikiManifest } from '@/types/wiki';
+
+const wiki = manifest as WikiManifest;
+const mottos = wiki.mottos.map((m) => m.text);
+const initial = mottos[0];
+---
+
+<div class="hero-motto" id="hero-motto" data-mottos={JSON.stringify(mottos)}>
+  &ldquo;{initial}&rdquo;
+</div>
+
+<script>
+  const el = document.getElementById('hero-motto');
+  if (el) {
+    const mottos: string[] = JSON.parse(el.dataset.mottos || '[]');
+    if (mottos.length > 1) {
+      let idx = 0;
+
+      const DISPLAY = 12000;
+      const FADE = 2000;
+
+      const cycle = () => {
+        el.classList.add('fade-out');
+        setTimeout(() => {
+          idx = (idx + 1) % mottos.length;
+          el.textContent = `“${mottos[idx]}”`;
+          el.classList.remove('fade-out');
+        }, FADE);
+      };
+
+      setInterval(cycle, DISPLAY);
+    }
+  }
+</script>

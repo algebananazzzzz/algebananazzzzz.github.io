@@ -2,32 +2,30 @@
 import Base from '@/layouts/Base.astro';
 import MilkyWay from '@/components/island/MilkyWay';
 import MilkyWayStreak from '@/components/island/MilkyWayStreak';
-import { getCollection } from 'astro:content';
-import type { CollectionEntry } from 'astro:content';
+import manifest from '@/content/wiki-manifest.json';
+import type { WikiManifest, WikiPage } from '@/types/wiki';
 
-type NoteData = CollectionEntry<'notes'>['data'];
-type ClusterData = CollectionEntry<'clusters'>['data'];
+const wiki = manifest as WikiManifest;
+const { pages, topics, meta } = wiki;
 
-const noteEntries = await getCollection('notes');
-const notes = noteEntries.map((n: CollectionEntry<'notes'>) => n.data);
+const total = pages.length;
+const totalLinks = pages.reduce((s: number, p: WikiPage) => s + p.links.length, 0);
 
-const clusterEntries = await getCollection('clusters');
-const clusters = clusterEntries.map((c: CollectionEntry<'clusters'>) => c.data);
-
-const total = notes.length;
-const totalLinks = notes.reduce((s: number, n: NoteData) => s + (n.links ?? 0), 0);
-
-const recent = [...notes]
-  .sort((a: NoteData, b: NoteData) => b.date.localeCompare(a.date))
+const recent = [...pages]
+  .sort((a: WikiPage, b: WikiPage) => b.date.localeCompare(a.date))
   .slice(0, 6);
 
-const clusterColorById: Record<string, string> = Object.fromEntries(
-  clusters.map((c: ClusterData) => [c.id, c.dotColor]),
+const topicColorById: Record<string, string> = Object.fromEntries(
+  topics.map((t) => [t.id, t.dotColor]),
+);
+
+const topicLabelById: Record<string, string> = Object.fromEntries(
+  topics.map((t) => [t.id, t.label]),
 );
 
 const buildDate = Date.now();
-function noteMagnitude(n: NoteData): number {
-  const linkBonus = (n.links ?? 0) * -0.35;
+function noteMagnitude(n: WikiPage): number {
+  const linkBonus = n.links.length * -0.35;
   let ageDays = 0;
   if (n.date && /^\d{4}-\d{2}-\d{2}/.test(n.date)) {
     ageDays = Math.max(0, (buildDate - Date.parse(n.date)) / 86400000);
@@ -63,7 +61,7 @@ function formatMagnitude(m: number): string {
       </p>
     </div>
 
-    <MilkyWay client:idle notes={notes} clusters={clusters} />
+    <MilkyWay client:idle pages={pages} topics={topics} baseUrl={meta.baseUrl} />
 
     <section class="mw-recent">
       <div class="section-eyebrow">— recently watered —</div>
@@ -71,19 +69,24 @@ function formatMagnitude(m: number): string {
       <div class="mw-recent-list">
         {
           recent.map((n) => (
-            <button class="mw-recent-row" type="button">
+            <a
+              class="mw-recent-row"
+              href={`${meta.baseUrl}/${n.id}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <span class="mw-recent-date">{n.date}</span>
               <span class="mw-recent-title">{n.title}</span>
               <span class="mw-recent-meta">
-                <span class="dot" style={`background:${clusterColorById[n.cluster] ?? '#fff'}`} />
-                <span>{n.cluster}</span>
+                <span class="dot" style={`background:${topicColorById[n.topic] ?? '#fff'}`} />
+                <span>{topicLabelById[n.topic] ?? n.topic}</span>
                 <span class="magnitude" title="Magnitude — lower is brighter">
                   {formatMagnitude(noteMagnitude(n))}
                 </span>
-                <span class="muted">· {n.links} links</span>
+                <span class="muted">· {n.links.length} links</span>
               </span>
               <span class="mw-recent-arrow">→</span>
-            </button>
+            </a>
           ))
         }
       </div>

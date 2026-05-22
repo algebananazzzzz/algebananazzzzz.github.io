@@ -2,22 +2,19 @@
 import Base from '@/layouts/Base.astro';
 import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
-import clustersRaw from '@/content/clusters.yaml';
-import mottosRaw from '@/content/mottos.yaml';
 import nowRaw from '@/content/now.yaml';
 import aboutRaw from '@/content/about.yaml';
+import manifest from '@/content/wiki-manifest.json';
+import type { WikiManifest } from '@/types/wiki';
 import Splash from '@/components/island/Splash';
 import Orrery from '@/components/island/Orrery';
 import ProjectsConst from '@/components/island/ProjectsConst';
 import CareerList from '@/components/island/CareerList';
 import MilkyWay from '@/components/island/MilkyWay';
+import MottoRotator from '@/components/static/MottoRotator.astro';
 import { getCareerEntries } from '@/lib/getCareerEntries';
 
-type ClusterEntry = { id: string; label: string; dotColor: string };
-const clustersData = clustersRaw as ClusterEntry[];
-
-type Motto = { id: string; text: string; cluster: string; noteId: string };
-const mottosData = mottosRaw as Motto[];
+const wiki = manifest as WikiManifest;
 
 type NowItem = { title: string; note: string; tag: string };
 type NowData = {
@@ -36,15 +33,7 @@ const projects = projectEntries.map((p: CollectionEntry<'projects'>) => p.data);
 
 const careerEntries = await getCareerEntries(3);
 
-const clusterEntries = await getCollection('clusters');
-const clusters = clusterEntries.map((c: CollectionEntry<'clusters'>) => c.data);
-
-const noteEntries = await getCollection('notes');
-const allNotes = noteEntries.map((n: CollectionEntry<'notes'>) => n.data);
-
-const orbitingClusters = clustersData.filter((c) => c.id !== 'general');
-const mottoEntry = mottosData.find((m) => m.id === 'motto-11');
-const motto = mottoEntry?.text ?? 'Wonder is a renewable resource.';
+const orbitingTopics = wiki.topics.filter((t) => t.id !== 'field-notes');
 ---
 
 <Base isHome={true}>
@@ -61,9 +50,7 @@ const motto = mottoEntry?.text ?? 'Wonder is a renewable resource.';
         {about.heroSub}
       </p>
 
-      <div class="hero-motto">
-        &ldquo;{motto}&rdquo;
-      </div>
+      <MottoRotator />
 
       <div class="hero-ctas">
         <a href="/milky-way" class="cta-milky" aria-label="enter the milky way">
@@ -89,15 +76,14 @@ const motto = mottoEntry?.text ?? 'Wonder is a renewable resource.';
       <div class="orbiting">
         <span class="label">currently orbiting</span>
         {
-          orbitingClusters.map((c) => (
+          orbitingTopics.map((t) => (
             <a
-              href={`/milky-way?cluster=${c.id}`}
+              href={`/milky-way?cluster=${t.id}`}
               class="orbiting-chip"
-              style={`color: ${c.dotColor}66`}
-              title={`Notes in the ${c.label} cluster`}
+              title={`Notes in the ${t.label} cluster`}
             >
-              <span class="dot" style={`background:${c.dotColor};color:${c.dotColor}`} />
-              {c.label}
+              <span class="dot" style={`background:${t.dotColor};color:${t.dotColor}`} />
+              {t.label}
             </a>
           ))
         }
@@ -155,6 +141,11 @@ const motto = mottoEntry?.text ?? 'Wonder is a renewable resource.';
       </div>
       <a href="/milky-way" class="section-link">enter the milky way →</a>
     </div>
-    <MilkyWay client:visible notes={allNotes} clusters={clusters} />
+    <MilkyWay
+      client:visible
+      pages={wiki.pages}
+      topics={wiki.topics}
+      baseUrl={wiki.meta.baseUrl}
+    />
   </section>
 </Base>

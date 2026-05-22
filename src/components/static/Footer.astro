@@ -1,6 +1,7 @@
 ---
 import siteRaw from '@/content/site.yaml';
-import mottosRaw from '@/content/mottos.yaml';
+import manifest from '@/content/wiki-manifest.json';
+import type { WikiManifest } from '@/types/wiki';
 
 type SiteData = {
   name: string;
@@ -11,11 +12,10 @@ type SiteData = {
   socials: Record<string, string>;
 };
 
-type Motto = { id: string; text: string; cluster: string; noteId: string };
-
 const siteData = siteRaw as SiteData;
 const socials = siteData.socials;
-const mottos = (mottosRaw as Motto[]).map((m) => m.text);
+const wiki = manifest as WikiManifest;
+const mottos = wiki.mottos.map((m) => m.text);
 
 const ICONS = [
   { key: 'github', src: '/assets/icons/github-dark.svg', label: 'GitHub' },

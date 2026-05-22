@@ -1,97 +1,142 @@
 import { useMemo, useState } from 'react';
-import NotePanel, { type NotePanelData } from './NotePanel';
+import {
+  forceSimulation,
+  forceLink,
+  forceManyBody,
+  forceCollide,
+  forceX,
+  forceY,
+} from 'd3-force';
+import type { SimulationNodeDatum, SimulationLinkDatum } from 'd3-force';
+import type { WikiPage, WikiTopic } from '@/types/wiki';
 
 interface Props {
-  notes: NotePanelData[];
-  clusters: { id: string; label: string; dotColor: string }[];
+  pages: WikiPage[];
+  topics: WikiTopic[];
+  baseUrl: string;
   activeCluster?: string;
 }
 
-const VB_W = 200,
-  VB_H = 60;
+const VB_W = 200;
+const VB_H = 100;
 
-// Hand-tuned positions from handoff constellation.jsx — spread across the
-// 200x60 viewBox so the graph reads as a constellation, not a clump.
-const FIXED_XY: Record<string, [number, number]> = {
-  yeast: [36, 22],
-  saison: [64, 13],
-  hopping: [22, 41],
-  metaprompt: [116, 18],
-  'tool-design': [144, 32],
-  'ctx-window': [100, 38],
-  eval: [128, 48],
-  iam: [172, 14],
-  'edge-cache': [180, 42],
-  'reading-21': [56, 50],
-  garden: [88, 50],
-};
-
-// Hardcoded wiki-link edges (matches handoff).
-const EDGES: [string, string][] = [
-  ['yeast', 'saison'],
-  ['yeast', 'hopping'],
-  ['saison', 'hopping'],
-  ['metaprompt', 'tool-design'],
-  ['metaprompt', 'ctx-window'],
-  ['metaprompt', 'eval'],
-  ['tool-design', 'ctx-window'],
-  ['ctx-window', 'eval'],
-  ['iam', 'edge-cache'],
-  ['garden', 'yeast'],
-  ['garden', 'metaprompt'],
-  ['garden', 'reading-21'],
-  ['tool-design', 'iam'],
-];
-
-interface PositionedNote extends NotePanelData {
-  cx: number;
-  cy: number;
+interface GraphNode extends SimulationNodeDatum {
+  id: string;
+  page: WikiPage;
   r: number;
 }
 
-function sizeFor(links: number): number {
-  return 0.55 + ((Math.min(links, 9) - 2) / 7) * 1.45;
+interface GraphLink extends SimulationLinkDatum<GraphNode> {
+  source: string | GraphNode;
+  target: string | GraphNode;
 }
 
-function positionFor(id: string, arm: number | undefined, t: number | undefined): [number, number] {
-  const fixed = FIXED_XY[id];
-  if (fixed) return fixed;
-  const a = arm ?? 0;
-  const ti = t ?? 0.5;
-  const cx = a === -1 ? VB_W / 2 : 20 + a * 60 + ti * 40;
-  const cy = a === -1 ? VB_H / 2 : 15 + (a % 2) * 20 + (ti - 0.5) * 12;
-  return [cx, cy];
+function sizeFor(linkCount: number): number {
+  return 0.55 + ((Math.min(linkCount, 9) - 2) / 7) * 1.45;
 }
 
-export default function Constellation({ notes, clusters, activeCluster = 'all' }: Props) {
-  const clusterById = useMemo(() => Object.fromEntries(clusters.map((c) => [c.id, c])), [clusters]);
+function deriveEdges(pages: WikiPage[]): [string, string][] {
+  const pageIds = new Set(pages.map((p) => p.id));
+  const seen = new Set<string>();
+  const edges: [string, string][] = [];
+  for (const p of pages) {
+    for (const linkId of p.links) {
+      if (!pageIds.has(linkId)) continue;
+      const key = [p.id, linkId].sort().join('::');
+      if (seen.has(key)) continue;
+      seen.add(key);
+      edges.push([p.id, linkId]);
+    }
+  }
+  return edges;
+}
 
-  const positioned: PositionedNote[] = useMemo(
-    () =>
-      notes.map((n) => {
-        const [cx, cy] = positionFor(n.id, n.arm, n.t);
-        return { ...n, cx, cy, r: sizeFor(n.links) };
-      }),
-    [notes],
-  );
+function seededRandom(seed: number): number {
+  const x = Math.sin(seed * 9301 + 49297) * 49297;
+  return x - Math.floor(x);
+}
 
-  const byId = useMemo(() => Object.fromEntries(positioned.map((n) => [n.id, n])), [positioned]);
+function runSimulation(pages: WikiPage[], topics: WikiTopic[]): GraphNode[] {
+  const edges = deriveEdges(pages);
+  const topicIds = topics.map((t) => t.id);
+  const topicCount = topicIds.length || 1;
 
-  const [selected, setSelected] = useState<NotePanelData | null>(null);
+  const topicCenters = new Map<string, { x: number; y: number }>();
+  const margin = VB_W * 0.25;
+  const usable = VB_W - margin * 2;
+  topicIds.forEach((tid, i) => {
+    topicCenters.set(tid, {
+      x: margin + (topicCount === 1 ? usable / 2 : (i / (topicCount - 1)) * usable),
+      y: VB_H / 2,
+    });
+  });
+
+  const nodes: GraphNode[] = pages.map((p, i) => {
+    const center = topicCenters.get(p.topic) ?? { x: VB_W / 2, y: VB_H / 2 };
+    return {
+      id: p.id,
+      page: p,
+      r: sizeFor(p.links.length),
+      x: center.x + (seededRandom(i * 2) - 0.5) * 30,
+      y: center.y + (seededRandom(i * 2 + 1) - 0.5) * 30,
+    };
+  });
+
+  const links: GraphLink[] = edges.map(([s, t]) => ({ source: s, target: t }));
+
+  const sim = forceSimulation<GraphNode>(nodes)
+    .force(
+      'link',
+      forceLink<GraphNode, GraphLink>(links)
+        .id((d) => d.id)
+        .distance(16)
+        .strength(0.4),
+    )
+    .force('charge', forceManyBody<GraphNode>().strength(-65).distanceMax(50))
+    .force(
+      'topicX',
+      forceX<GraphNode>((d) => topicCenters.get(d.page.topic)?.x ?? VB_W / 2).strength(0.2),
+    )
+    .force(
+      'topicY',
+      forceY<GraphNode>((d) => topicCenters.get(d.page.topic)?.y ?? VB_H / 2).strength(0.2),
+    )
+    .force('collide', forceCollide<GraphNode>().radius((d) => d.r + 2.5))
+    .stop();
+
+  for (let i = 0; i < 300; i++) sim.tick();
+
+  const pad = 4;
+  const r4 = (v: number) => Math.round(v * 1e4) / 1e4;
+  for (const n of nodes) {
+    n.x = r4(Math.max(pad, Math.min(VB_W - pad, n.x ?? VB_W / 2)));
+    n.y = r4(Math.max(pad, Math.min(VB_H - pad, n.y ?? VB_H / 2)));
+  }
+
+  return nodes;
+}
+
+export default function Constellation({ pages, topics, baseUrl, activeCluster = 'all' }: Props) {
+  const topicById = useMemo(() => Object.fromEntries(topics.map((t) => [t.id, t])), [topics]);
+
+  const nodes = useMemo(() => runSimulation(pages, topics), [pages, topics]);
+  const byId = useMemo(() => Object.fromEntries(nodes.map((n) => [n.id, n])), [nodes]);
+  const edges = useMemo(() => deriveEdges(pages), [pages]);
+
   const [hover, setHover] = useState<string | null>(null);
 
   const hasActive = !!activeCluster && activeCluster !== 'all';
-  const activeColor = hasActive ? (clusterById[activeCluster]?.dotColor ?? '#fff') : null;
+  const activeColor = hasActive ? (topicById[activeCluster]?.dotColor ?? '#fff') : null;
 
-  const isDim = (n: PositionedNote) => hasActive && n.cluster !== activeCluster;
-  const isLit = (n: PositionedNote) => hasActive && n.cluster === activeCluster;
+  const isDim = (n: GraphNode) => hasActive && n.page.topic !== activeCluster;
+  const isLit = (n: GraphNode) => hasActive && n.page.topic === activeCluster;
 
   return (
     <div className="relative w-full">
       <svg
         viewBox={`0 0 ${VB_W} ${VB_H}`}
         className="w-full h-auto"
-        style={{ aspectRatio: '200/60', maxHeight: 420 }}
+        style={{ aspectRatio: '200/100', maxHeight: 520 }}
         role="img"
         aria-label="Constellation of notes"
       >
@@ -125,9 +170,9 @@ export default function Constellation({ notes, clusters, activeCluster = 'all' }
           </filter>
         </defs>
 
-        {/* Base edges */}
+        {/* Edges */}
         <g>
-          {EDGES.map(([a, b], i) => {
+          {edges.map(([a, b], i) => {
             const na = byId[a];
             const nb = byId[b];
             if (!na || !nb) return null;
@@ -146,10 +191,10 @@ export default function Constellation({ notes, clusters, activeCluster = 'all' }
             return (
               <line
                 key={`e-${i}`}
-                x1={na.cx}
-                y1={na.cy}
-                x2={nb.cx}
-                y2={nb.cy}
+                x1={na.x!}
+                y1={na.y!}
+                x2={nb.x!}
+                y2={nb.y!}
                 stroke={stroke}
                 strokeWidth={width}
                 strokeDasharray={dash}
@@ -160,86 +205,90 @@ export default function Constellation({ notes, clusters, activeCluster = 'all' }
           })}
         </g>
 
-        {/* Hover-highlighted edges from hovered node */}
+        {/* Hover-highlighted edges */}
         {hover && (
           <g>
-            {EDGES.filter(([a, b]) => a === hover || b === hover).map(([a, b], i) => {
-              const na = byId[a];
-              const nb = byId[b];
-              if (!na || !nb) return null;
-              return (
-                <line
-                  key={`he-${i}`}
-                  x1={na.cx}
-                  y1={na.cy}
-                  x2={nb.cx}
-                  y2={nb.cy}
-                  stroke="rgba(255,236,67,0.7)"
-                  strokeWidth="0.32"
-                />
-              );
-            })}
+            {edges
+              .filter(([a, b]) => a === hover || b === hover)
+              .map(([a, b], i) => {
+                const na = byId[a];
+                const nb = byId[b];
+                if (!na || !nb) return null;
+                return (
+                  <line
+                    key={`he-${i}`}
+                    x1={na.x!}
+                    y1={na.y!}
+                    x2={nb.x!}
+                    y2={nb.y!}
+                    stroke="rgba(255,236,67,0.7)"
+                    strokeWidth="0.32"
+                  />
+                );
+              })}
           </g>
         )}
 
         {/* Nodes */}
         <g>
-          {positioned.map((n) => {
-            const c = clusterById[n.cluster] ?? { dotColor: '#fff' };
+          {nodes.map((n) => {
+            const t = topicById[n.page.topic] ?? { dotColor: '#fff' };
             const dimmed = isDim(n);
             const lit = isLit(n);
             const isHover = hover === n.id;
             const rNode = lit ? n.r * 1.25 : n.r;
             return (
-              <g
+              <a
                 key={n.id}
-                onMouseEnter={() => setHover(n.id)}
-                onMouseLeave={() => setHover(null)}
-                onClick={() => setSelected(n)}
-                tabIndex={0}
-                role="button"
-                aria-label={n.title}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter') setSelected(n);
-                }}
-                style={{
-                  cursor: 'pointer',
-                  opacity: dimmed ? 0.15 : 1,
-                  transition: 'opacity 250ms',
-                }}
+                href={`${baseUrl}/${n.page.id}`}
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                {lit && (
+                <g
+                  onMouseEnter={() => setHover(n.id)}
+                  onMouseLeave={() => setHover(null)}
+                  tabIndex={0}
+                  role="link"
+                  aria-label={n.page.title}
+                  style={{
+                    cursor: 'pointer',
+                    opacity: dimmed ? 0.15 : 1,
+                    transition: 'opacity 250ms',
+                  }}
+                >
+                  {lit && (
+                    <circle
+                      cx={n.x!}
+                      cy={n.y!}
+                      r={n.r * 5.5}
+                      fill="url(#cons-haloActive)"
+                      style={{
+                        animation: 'cons-pulse 2.6s ease-in-out infinite',
+                        transformOrigin: `${n.x!}px ${n.y!}px`,
+                      }}
+                    />
+                  )}
+                  {!lit && n.r > 1.0 && (
+                    <circle
+                      cx={n.x!}
+                      cy={n.y!}
+                      r={n.r * 3.0}
+                      fill="url(#cons-haloGrad)"
+                      opacity={isHover ? 0.95 : 0.6}
+                    />
+                  )}
                   <circle
-                    cx={n.cx}
-                    cy={n.cy}
-                    r={n.r * 5.5}
-                    fill="url(#cons-haloActive)"
-                    style={{
-                      animation: 'cons-pulse 2.6s ease-in-out infinite',
-                      transformOrigin: `${n.cx}px ${n.cy}px`,
-                    }}
+                    cx={n.x!}
+                    cy={n.y!}
+                    r={rNode}
+                    fill={t.dotColor}
+                    filter={lit ? 'url(#cons-brightGlow)' : 'url(#cons-softGlow)'}
                   />
-                )}
-                {!lit && n.r > 1.0 && (
-                  <circle
-                    cx={n.cx}
-                    cy={n.cy}
-                    r={n.r * 3.0}
-                    fill="url(#cons-haloGrad)"
-                    opacity={isHover ? 0.95 : 0.6}
-                  />
-                )}
-                <circle
-                  cx={n.cx}
-                  cy={n.cy}
-                  r={rNode}
-                  fill={c.dotColor}
-                  filter={lit ? 'url(#cons-brightGlow)' : 'url(#cons-softGlow)'}
-                />
-                {(lit || n.r > 1.4) && (
-                  <circle cx={n.cx} cy={n.cy} r={rNode * 0.42} fill="rgba(255,255,255,0.98)" />
-                )}
-              </g>
+                  {(lit || n.r > 1.4) && (
+                    <circle cx={n.x!} cy={n.y!} r={rNode * 0.42} fill="rgba(255,255,255,0.98)" />
+                  )}
+                </g>
+              </a>
             );
           })}
         </g>
@@ -249,38 +298,36 @@ export default function Constellation({ notes, clusters, activeCluster = 'all' }
           (() => {
             const n = byId[hover];
             if (!n) return null;
-            const flip = n.cx > 140;
-            const lx = flip ? n.cx - 2.4 : n.cx + 2.4;
+            const flip = n.x! > 140;
+            const lx = flip ? n.x! - 2.4 : n.x! + 2.4;
             return (
               <g pointerEvents="none">
                 <text
                   x={lx}
-                  y={n.cy - 1.4}
+                  y={n.y! - 1.4}
                   fill="#e5e7eb"
                   fontSize="2.2"
                   fontFamily="ui-monospace, SFMono-Regular, monospace"
                   textAnchor={flip ? 'end' : 'start'}
                   style={{ paintOrder: 'stroke', stroke: '#0f172a', strokeWidth: 0.8 }}
                 >
-                  {n.title}
+                  {n.page.title}
                 </text>
                 <text
                   x={lx}
-                  y={n.cy + 1.8}
+                  y={n.y! + 1.8}
                   fill="#9ca3af"
                   fontSize="1.6"
                   fontFamily="ui-monospace, SFMono-Regular, monospace"
                   textAnchor={flip ? 'end' : 'start'}
                   style={{ paintOrder: 'stroke', stroke: '#0f172a', strokeWidth: 0.8 }}
                 >
-                  {n.links} links · {n.status}
+                  {n.page.links.length} links · {n.page.kind}
                 </text>
               </g>
             );
           })()}
       </svg>
-
-      <NotePanel note={selected} onClose={() => setSelected(null)} />
     </div>
   );
 }
