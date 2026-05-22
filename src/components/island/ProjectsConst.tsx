@@ -202,24 +202,45 @@ function round4(v: number): number {
   return Math.round(v * 10000) / 10000;
 }
 
+function nearStar(x: number, y: number, stars: Star[], threshold: number): boolean {
+  for (const s of stars) {
+    const dx = x - s.x;
+    const dy = y - s.y;
+    if (dx * dx + dy * dy < threshold * threshold) return true;
+  }
+  return false;
+}
+
 function pathH(y: number, stars: Star[]): string {
   let d = '';
+  let penDown = false;
   for (let x = -2; x <= FIELD_W + 2; x += 1.5) {
+    if (nearStar(x, y, stars, 8)) {
+      penDown = false;
+      continue;
+    }
     const [wx, wy] = warpPoint(x, y, stars);
     const [px, py] = persp(wx, wy);
-    d += (d === '' ? 'M' : ' L') + ' ' + px.toFixed(2) + ' ' + py.toFixed(2);
+    d += (penDown ? ' L' : ' M') + ' ' + px.toFixed(2) + ' ' + py.toFixed(2);
+    penDown = true;
   }
-  return d;
+  return d.trim();
 }
 
 function pathV(x: number, stars: Star[]): string {
   let d = '';
+  let penDown = false;
   for (let y = -2; y <= FIELD_H + 2; y += 1.0) {
+    if (nearStar(x, y, stars, 8)) {
+      penDown = false;
+      continue;
+    }
     const [wx, wy] = warpPoint(x, y, stars);
     const [px, py] = persp(wx, wy);
-    d += (d === '' ? 'M' : ' L') + ' ' + px.toFixed(2) + ' ' + py.toFixed(2);
+    d += (penDown ? ' L' : ' M') + ' ' + px.toFixed(2) + ' ' + py.toFixed(2);
+    penDown = true;
   }
-  return d;
+  return d.trim();
 }
 
 export default function ProjectsConst({ projects }: Props) {
@@ -373,7 +394,8 @@ export default function ProjectsConst({ projects }: Props) {
               <radialGradient key={s.id} id={`grav-halo-${s.id}`} cx="50%" cy="50%" r="50%">
                 <stop offset="0%" stopColor="#ffffff" stopOpacity="1" />
                 <stop offset="22%" stopColor={s.color} stopOpacity="0.95" />
-                <stop offset="65%" stopColor={s.color} stopOpacity="0.25" />
+                <stop offset="55%" stopColor={s.color} stopOpacity="0.2" />
+                <stop offset="80%" stopColor={s.color} stopOpacity="0.04" />
                 <stop offset="100%" stopColor={s.color} stopOpacity="0" />
               </radialGradient>
             ))}
@@ -384,7 +406,7 @@ export default function ProjectsConst({ projects }: Props) {
               <path
                 key={`v-${x}`}
                 d={pathV(x, stars)}
-                stroke="rgba(167, 139, 250, 0.18)"
+                stroke="rgba(167, 139, 250, 0.07)"
                 strokeWidth="0.12"
                 fill="none"
               />
@@ -393,7 +415,7 @@ export default function ProjectsConst({ projects }: Props) {
               <path
                 key={`h-${y}`}
                 d={pathH(y, stars)}
-                stroke="rgba(167, 139, 250, 0.18)"
+                stroke="rgba(167, 139, 250, 0.07)"
                 strokeWidth="0.12"
                 fill="none"
               />
@@ -475,7 +497,6 @@ export default function ProjectsConst({ projects }: Props) {
                   cy={dy}
                   r={r * (isHover ? 6.8 : 5.4)}
                   fill={`url(#grav-halo-${s.id})`}
-                  pointerEvents="none"
                   style={{ transition: 'r 240ms cubic-bezier(0.34, 1.56, 0.64, 1)' }}
                 />
                 <circle
@@ -488,7 +509,6 @@ export default function ProjectsConst({ projects }: Props) {
                   }}
                   pointerEvents="none"
                 />
-                <circle cx={dx} cy={dy} r={r * 4.5} fill="transparent" />
                 <text
                   x={dx + r + 1.0}
                   y={dy - r - 0.3}

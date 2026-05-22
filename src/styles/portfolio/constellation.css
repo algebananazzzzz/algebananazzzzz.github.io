@@ -230,16 +230,6 @@
   margin-top: 8px;
 }
 
-.proj-detail .tech-row .tag {
-  padding: 2px 8px;
-  border: 1px solid rgba(148, 163, 184, 0.2);
-  border-radius: 999px;
-  font-family: var(--font-mono);
-  font-size: 10px;
-  color: rgba(229, 231, 235, 0.7);
-  letter-spacing: 0.04em;
-}
-
 /* Active-cluster halo pulse — gentle breathing so lit nodes feel alive
    without distracting from the rest of the page. */
 @keyframes consPulse {

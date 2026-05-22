@@ -380,15 +380,6 @@
   gap: 6px;
 }
 
-.career-row .tag {
-  padding: 2px 8px;
-  border: 1px solid rgba(148, 163, 184, 0.2);
-  border-radius: 999px;
-  font-size: 10px;
-  color: rgba(229, 231, 235, 0.7);
-  letter-spacing: 0.02em;
-}
-
 @media (max-width: 720px) {
   .career-row .row-head {
     grid-template-columns: 28px 1fr auto;
