@@ -1,0 +1,289 @@
+/* ============================================================
+   Algebananazzzzz Design System — Colors & Type
+   --------------------------------------------------------------
+   The brand DNA is a hand-drawn cartoon "odyssey" — wine-red
+   outlines, flat fills, planets / stars / rockets / astronauts.
+   Foundations are Tailwind-rooted but spelled out as design tokens
+   so non-Tailwind consumers can wire them up directly.
+   ============================================================ */
+
+:root {
+  /* ---------- Base palette ---------- */
+
+  /* Paper (light mode bg) */
+  --paper: #ffffff;
+  --paper-dim: #f9fafb; /* gray-50 */
+
+  /* Night sky (dark mode bg) */
+  --night: #0f172a; /* slate-900 — canonical bg */
+  --night-deep: #020617; /* slate-950 */
+  --night-soft: #1e293b; /* slate-800 — elevated card */
+  --night-line: #334155; /* slate-700 — dark borders   */
+
+  /* ---------- Illustration palette ---------- */
+  /* These are the EXACT colors lifted from the brand's cartoon
+     planets / rockets / characters. Use them when building any
+     illustration, decorative element, or playful accent. */
+
+  /* Signal — the signature wine-red outline that holds every
+     cartoon illustration together. Use sparingly elsewhere. */
+  --signal: #6c0000;
+  --signal-deep: #6b0204;
+
+  /* Star — primary brand accent */
+  --star: #ffc700;
+  --star-bright: #ffec43;
+  --star-soft: #fef9c3; /* yellow-100 */
+
+  /* Cosmic cyan — secondary brand accent */
+  --cyan: #00dfd5;
+  --cyan-bright: #22d3ee; /* cyan-400 */
+  --cyan-soft: #99f6e4; /* mint-200 */
+  --cyan-deep: #5eb1be;
+
+  /* Ice — cool neutrals for atmospheres */
+  --ice: #bed5e9;
+  --ice-bright: #bfdbfe; /* blue-200 */
+  --ice-soft: #ecf3fe;
+
+  /* Sunset — warm accents */
+  --sunset: #f97316; /* orange-500 */
+  --sunset-soft: #fed7aa; /* orange-200 */
+
+  /* Cosmic purple — voids, distant moons */
+  --purple: #7e22ce; /* purple-700 */
+  --purple-bright: #b02eed;
+  --purple-deep: #5b21b6; /* violet-800 */
+
+  /* Rose / fuchsia — heat, dates, fragility */
+  --rose: #e11d48; /* rose-600 */
+  --fuchsia: #d946ef; /* fuchsia-500 — date accent */
+
+  /* ---------- Semantic — defaults to LIGHT theme ---------- */
+
+  --bg: var(--paper);
+  --bg-elev-1: var(--paper-dim);
+  --bg-elev-2: #e5e7eb; /* gray-200 — hover surface */
+  --border: #e5e7eb; /* gray-200 */
+
+  --fg-1: #1f2937; /* gray-800 — headings    */
+  --fg-2: #374151; /* gray-700 — body        */
+  --fg-3: #6b7280; /* gray-500 — muted       */
+  --fg-on-color: #ffffff; /* text on filled buttons */
+
+  --accent-date: var(--fuchsia);
+  --accent-link: #2563eb; /* blue-600 */
+
+  /* Signature TEXT gradients — four distinct 2-stop gradients.
+     Light-mode stops are darker (AA on white); the dark-mode
+     overrides below ship lighter stops (AA on slate-900). Use on
+     bg-clip-text ONLY (active nav, big headings) — never as
+     button or card backgrounds. */
+  --grad-sunset: linear-gradient(90deg, #facc15, #dc2626); /* solar flare      */
+  --grad-aurora: linear-gradient(90deg, #16a34a, #0891b2); /* northern lights  */
+  --grad-cosmic: linear-gradient(90deg, #7e22ce, #4f46e5); /* deep space void  */
+  --grad-nebula: linear-gradient(90deg, #be185d, #5b21b6); /* nebula           */
+
+  /* ---------- Type ---------- */
+  /* The brand sits on the platform system stack — keeps the look
+     light, friendly, OS-native. No custom display face. */
+
+  /* The portfolio imports Space Grotesk (variable) + Space Mono via
+     @fontsource (see global.css). Putting them first here makes every
+     `font-family: var(--font-*)` rule actually pick them up — otherwise
+     the ds-tokens.css system stack wins and the page falls back to
+     ui-sans-serif / ui-monospace. */
+  --font-sans: 'Space Grotesk Variable', 'Space Grotesk', ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji';
+  --font-mono: 'Space Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas,
+    'Liberation Mono', monospace;
+
+  /* Scale (Tailwind base) */
+  --text-xs: 0.75rem; /* 12 */
+  --text-sm: 0.875rem; /* 14 */
+  --text-base: 1rem; /* 16 */
+  --text-lg: 1.125rem; /* 18 */
+  --text-xl: 1.25rem; /* 20 */
+  --text-2xl: 1.5rem; /* 24 */
+  --text-3xl: 1.875rem; /* 30 */
+  --text-4xl: 2.25rem; /* 36 */
+  --text-5xl: 3rem; /* 48 */
+
+  --weight-normal: 400;
+  --weight-medium: 500; /* default for headings */
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  --leading-tight: 1.25;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+
+  /* ---------- Spacing, radii, shadows ---------- */
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  --radius-xs: 0.125rem; /* sm chip / pill action button */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem; /* card */
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-full: 9999px; /* circular icon button */
+
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-popover: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+  /* ---------- Motion ---------- */
+
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-fast: 150ms;
+  --dur-base: 250ms; /* default on hover transitions */
+  --dur-slow: 400ms;
+}
+
+/* ============================================================
+   Dark theme — toggled via .dark class on <html> or <body>.
+   Mirrors Tailwind's darkMode: 'class' setup.
+   ============================================================ */
+.dark,
+:root.dark,
+[data-theme='dark'] {
+  --bg: var(--night);
+  --bg-elev-1: var(--night-soft);
+  --bg-elev-2: #475569; /* slate-600 — hover surface */
+  --border: #374151; /* gray-700 */
+
+  --fg-1: #e5e7eb; /* gray-200 */
+  --fg-2: #9ca3af; /* gray-400 */
+  --fg-3: #94a3b8; /* slate-400 — muted, but AA-passing on deep-night bg */
+
+  --accent-link: #60a5fa; /* blue-400 */
+
+  /* Dark-mode gradient stops shift one step lighter so contrast
+     against the night-sky background stays AA. */
+  --grad-sunset: linear-gradient(90deg, #fde047, #f87171);
+  --grad-aurora: linear-gradient(90deg, #4ade80, #67e8f9);
+  --grad-cosmic: linear-gradient(90deg, #e9d5ff, #a5b4fc);
+  --grad-nebula: linear-gradient(90deg, #fbcfe8, #ddd6fe);
+}
+
+/* ============================================================
+   Semantic element defaults
+   Match the portfolio site's responsive type ramp.
+   ============================================================ */
+
+html {
+  font-family: var(--font-sans);
+  color: var(--fg-2);
+  background: var(--bg);
+}
+
+h1,
+.h1 {
+  font-size: var(--text-3xl);
+  font-weight: var(--weight-medium);
+  color: var(--fg-1);
+  line-height: var(--leading-tight);
+}
+@media (min-width: 768px) {
+  h1,
+  .h1 {
+    font-size: var(--text-4xl);
+  }
+}
+@media (min-width: 1024px) {
+  h1,
+  .h1 {
+    font-size: var(--text-5xl);
+  }
+}
+
+h2,
+.h2 {
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-medium);
+  color: var(--fg-1);
+  line-height: var(--leading-tight);
+}
+@media (min-width: 640px) {
+  h2,
+  .h2 {
+    font-size: var(--text-3xl);
+  }
+}
+@media (min-width: 1280px) {
+  h2,
+  .h2 {
+    font-size: var(--text-4xl);
+  }
+}
+
+h3,
+.h3 {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-medium);
+  color: var(--fg-1);
+}
+@media (min-width: 768px) {
+  h3,
+  .h3 {
+    font-size: var(--text-xl);
+  }
+}
+
+p,
+.body {
+  font-size: var(--text-base);
+  color: var(--fg-2);
+  line-height: var(--leading-normal);
+}
+@media (min-width: 768px) {
+  p,
+  .body {
+    font-size: var(--text-lg);
+  }
+}
+
+.date,
+.eyebrow {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--accent-date);
+}
+
+code,
+kbd,
+samp,
+.mono {
+  font-family: var(--font-mono);
+  font-size: 0.95em;
+}
+
+/* Three signature accent text gradients — clip to text to use. */
+.text-grad-sunset,
+.text-grad-aurora,
+.text-grad-cosmic {
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+.text-grad-sunset {
+  background-image: var(--grad-sunset);
+}
+.text-grad-aurora {
+  background-image: var(--grad-aurora);
+}
+.text-grad-cosmic {
+  background-image: var(--grad-cosmic);
+}

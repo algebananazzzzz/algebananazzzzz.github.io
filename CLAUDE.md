@@ -1,0 +1,151 @@
+# CLAUDE.md
+
+Operational guide for Claude sessions working on this repo. Read this before touching code.
+
+## Stack
+
+- **Astro 5** static site generator, `output: 'static'`, 5 pages.
+- **React 18** islands for interactive components, hydrated via Astro `client:*` directives.
+- **Tailwind v4** via `@tailwindcss/vite`. Color/font tokens live in `src/styles/tokens.css`; the `@theme` block in `global.css` is a thin bridge that references those tokens via `var()`.
+- **TypeScript 5.7**, strict via `astro/tsconfigs/strict`. Content collections typed with Zod schemas in `src/content/config.ts`. Direct YAML imports shimmed in `src/types/yaml.d.ts` and cast at the import site.
+- **Vitest** for unit tests.
+- **Prettier** with `prettier-plugin-astro`. Run `npm run format`. CI gates on `npm run format:check`.
+
+## Key paths
+
+- `src/layouts/Base.astro` — single source of layout chrome (Cosmos, AccentOrb, Meteor, TopNav inside `<header>`, Footer, the one `<main>`). Owns the `<html>` `data-accent` attribute.
+- `src/pages/*.astro` — five route entries: `/`, `/about`, `/projects`, `/experience`, `/milky-way`. Pages emit `<div class="page">` (or `<div class="mw-page">`) — never `<main>`.
+- `src/components/island/*.tsx` — interactive React components. Always require a hydration directive in the page that uses them.
+- `src/components/static/*.astro` — server-only components (TopNav, Footer).
+- `src/styles/tokens.css` — palette + type + spacing tokens. **Source of truth.**
+- `src/styles/global.css` — Tailwind import + `@theme` bridge + base resets.
+- `src/styles/portfolio.css` — barrel re-export. **Don't add rules here** — they go in the right themed file.
+- `src/styles/portfolio/*.css` — themed CSS modules: `cosmos`, `splash`, `topnav`, `hero`, `sections`, `orrery`, `career`, `constellation`, `mw`, `meteor`, `footer`, `legacy-resets`.
+- `src/styles/pages.css` — sub-page (`/about`, `/projects`, `/experience`) wrapper rules.
+- `src/styles/page-bg.css` — per-route accent washes + per-route cosmos tint variables.
+- `src/content/config.ts` — Zod schemas for content collections.
+- `src/types/yaml.d.ts` — `*.yaml` module shim (`unknown`, cast at import site).
+- `design-handoff/` — original prototype (gitignored).
+
+## Hard rules — DO NOT VIOLATE
+
+1. **One `<main>` per page.** `Base.astro` owns `<main id="main-content">`. Pages emit `<div class="page">`, never `<main class="page">`. Nested `<main>` is invalid HTML and breaks the skip-link.
+
+2. **`<html data-accent="...">` is the single source of truth for accent.** Set by `<Base accent="...">`. CSS selectors key from `html[data-accent]`, not from the page wrapper. Do not put `data-accent` on the page wrapper.
+
+3. **Cosmos var contract is load-bearing.** `src/styles/portfolio/cosmos.css` exposes three custom properties:
+
+   - `--layer-hue` — `hue-rotate` for colored nebula layers.
+   - `--layer-sat-mul` — saturation multiplier for colored layers.
+   - `--layer-dim` — opacity multiplier for colored layers ONLY (not the wrap, so the star canvas inside stays bright).
+
+   `page-bg.css` sets these per route via `html[data-accent="..."] .cosmos`. **Never reintroduce `.cosmos { opacity: ... }` on sub-pages — stars vanish.** Never overwrite a layer's `filter` with a raw value — the per-page tint stops working. Compose into the existing `filter` expression.
+
+4. **Sub-page wash opacity is `0.55` by design.** The handoff says `0.85`, but the pulse + AccentOrb stack pushes effective peak too high and text reads "off in color". If a page feels under-accented, increase the orb gradient alphas in `AccentOrb.tsx`, not the wash opacity.
+
+5. **`Meteor.tsx` double-rAF + forced reflow stays.** Under React+Vite the single-rAF pattern collapses the initial+target style flush and the animation never plays. Don't simplify.
+
+6. **`MilkyWayStreak` is `client:only="react"`.** The component renders ~480 random dust circles; SSR/CSR mismatch otherwise.
+
+7. **`ProjectsConst.tsx` `round4()` quantization is load-bearing.** Without it, server (Node) and client (V8) produce last-digit float drift in SVG attributes and React warns.
+
+8. **`prefers-reduced-motion` is handled globally** in `global.css`. Don't re-add per-component opt-outs.
+
+9. **Home cosmos drifts continuously**, NOT per-section. Daniel explicitly rejected per-section accent changes on the home — if you want section differentiation, do it via content/spacing, not backdrop palette.
+
+10. **`Cosmos.tsx` scroll-parallax uses individual `translate`/`scale`/`rotate` properties**, not `transform`. Don't merge them — keyframe `transform` would clobber the scroll value.
+
+11. **No `: any` annotations.** `npm run check` is at 0 errors. Type from `CollectionEntry<'name'>['data']` or a local named type; never `as any`.
+
+12. **Below-fold home islands use `client:visible`**, not `client:idle`. Hydration cost on first idle should not be spent on sections the user may never scroll to (`CareerList`, `MilkyWay` preview on home). Above-fold islands stay `client:idle`.
+
+## Component → CSS file map
+
+| Component                                            | Styles in                                                            |
+| ---------------------------------------------------- | -------------------------------------------------------------------- |
+| `Cosmos.tsx`                                         | `portfolio/cosmos.css`                                               |
+| `Splash.tsx`                                         | `portfolio/splash.css`                                               |
+| `Meteor.tsx`                                         | `portfolio/meteor.css`                                               |
+| `Orrery.tsx`                                         | `portfolio/orrery.css`                                               |
+| `Constellation.tsx`                                  | `portfolio/constellation.css`                                        |
+| `MilkyWay.tsx`, `MilkyWayStreak.tsx`                 | `portfolio/mw.css`, `page-bg.css`                                    |
+| `CareerList.tsx`                                     | `portfolio/career.css`                                               |
+| `ProjectsConst.tsx`, `ProjectsList.tsx`              | `pages.css` (project rows), inline SVG for gravity grid              |
+| `AccentOrb.tsx`                                      | `portfolio/cosmos.css` (`.v3-accent-orb` selector)                   |
+| `TopNav.astro`                                       | `portfolio/topnav.css`                                               |
+| `Footer.astro`                                       | `portfolio/footer.css`                                               |
+| `NotePanel.tsx`                                      | `portfolio/constellation.css` (rendered inside Constellation island) |
+| Hero on `/`                                          | `portfolio/hero.css`                                                 |
+| `.section`, `.section-head`, `.eyebrow`, `.orbiting` | `portfolio/sections.css`                                             |
+| `/about`, `/projects`, `/experience` page wrappers   | `pages.css`                                                          |
+| Per-route accent wash + cosmos tint vars             | `page-bg.css`                                                        |
+
+## Content collections — how to add data
+
+Collections defined in `src/content/config.ts` (type `'data'`, file loaders, Zod schemas):
+
+| Collection   | File                          | Schema fields                                                                                 |
+| ------------ | ----------------------------- | --------------------------------------------------------------------------------------------- |
+| `projects`   | `src/content/projects.yaml`   | id, title, tagline, tech, summary, bullets, role, impact, cluster, accent, href               |
+| `experience` | `src/content/experience.yaml` | id, span, role, org, summary, tags, star (type, brightness)                                   |
+| `notes`      | `src/content/notes.yaml`      | id, title, excerpt, cluster, status, links, date, readTime, words, arm, t, backlinks, related |
+| `clusters`   | `src/content/clusters.yaml`   | id, label, dotColor                                                                           |
+| `mottos`     | `src/content/mottos.yaml`     | id, text, cluster, noteId                                                                     |
+
+To add a new project: append an entry to `src/content/projects.yaml` matching the schema. To add a field: update the schema in `config.ts`, then add the field to existing entries (or mark `.optional()` in the schema if not always present).
+
+Type-side: import `CollectionEntry` from `astro:content` and use `CollectionEntry<'projects'>['data']` etc. Don't try to import types from `config.ts` — schemas are inline.
+
+Standalone YAML imports (not collections) — `site.yaml`, `mottos.yaml` (also imported directly in index.astro), `about.yaml`, `now.yaml`, `clusters.yaml` (direct in index.astro) — go through the `*.yaml` shim. Cast at the import site to a narrow named type:
+
+```ts
+import siteRaw from '@/content/site.yaml';
+type SiteData = { name: string; title: string; description: string /* ... */ };
+const siteData = siteRaw as SiteData;
+```
+
+## Workflows
+
+| Command                | What it does                                                     |
+| ---------------------- | ---------------------------------------------------------------- |
+| `npm run dev`          | Astro dev server on `:4321`.                                     |
+| `npm run build`        | Static build to `dist/`.                                         |
+| `npm run preview`      | Serve the built `dist/`.                                         |
+| `npm run check`        | `astro check` — TypeScript + Astro diagnostics. **Must exit 0.** |
+| `npm test`             | Vitest single-run.                                               |
+| `npm run test:watch`   | Vitest watch mode.                                               |
+| `npm run format`       | Prettier write.                                                  |
+| `npm run format:check` | Prettier check (CI gate).                                        |
+
+## CI
+
+Two workflows in `.github/workflows/`:
+
+- `1-feature-branch-ci.yml` — runs on PRs and non-`main` pushes. Gates: `format:check`, `astro check`, `vitest run`, `astro build`.
+- `2-preprod-deploy.yml` — runs on push to `main`. Builds and deploys to GitHub Pages.
+
+## Where the design handoff lives
+
+`design-handoff/algebananazzzzz-2-0/project/` — original prototype HTML/CSS/JSX from Claude Design. **Gitignored.** Serve via local static server when doing visual-parity comparisons. Key files:
+
+- `Portfolio v3.html` — the home page reference.
+- `v3/*.jsx` — component sources.
+- `assets/ds-tokens.css` — original tokens (already ported to `src/styles/tokens.css`).
+
+For any new visual work, render both prototype and dev build side-by-side via Playwright. Visual parity is the success criterion, not Lighthouse scores.
+
+## Anti-patterns observed in past sessions
+
+- Claiming "polish complete" without page-by-page Playwright comparison.
+- Adding `.cosmos { opacity: ... }` rules on sub-pages (kills stars).
+- Reintroducing `<main class="page">` wrappers on pages (nested `<main>`).
+- Putting `data-accent` on the page wrapper as well as `<html>` (two sources of truth).
+- Mock-fixing TS errors with `as any` instead of fixing schemas / casts.
+- Putting new CSS rules into the barrel `portfolio.css` instead of the themed file.
+- Adding new ESLint or formatter tooling without checking if Prettier already covers the case.
+
+## Specs and plans
+
+- `docs/superpowers/specs/` — design specs for past and current work.
+- `docs/superpowers/plans/` — implementation plans.
+- Latest audit: `docs/superpowers/plans/2026-05-20-astro-structure-audit.md`.

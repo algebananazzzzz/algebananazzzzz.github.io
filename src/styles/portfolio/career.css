@@ -1,0 +1,444 @@
+/* ============================================================
+   Career — timeline list, stellar class system, HR diagram.
+   Extracted from portfolio.css 2026-05-20.
+   ============================================================ */
+
+/* ============================================================
+   Career as a list (replaces the arc)
+   ============================================================ */
+.career-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: rgba(15, 23, 42, 0.78);
+  /* Sets up the vertical "spine of light" connecting each row's star */
+  position: relative;
+}
+
+/* Spine — runs from the top star's center down to the bottom star's center.
+   Built from per-row ::before segments so each segment fades between this
+   row's color/brightness and the next row's, giving an organic stellar
+   evolution arc. Top of list = newest (brightest, neutron), bottom = oldest. */
+/* (the global ::before spine is replaced by per-row segments below) */
+.career-row {
+  --row-color: #fde047;
+  --row-glow: rgba(253, 224, 71, 0.55);
+  display: block;
+  appearance: none;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+  color: inherit;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 0;
+  width: 100%;
+  font-family: inherit;
+  transition: background var(--dur-base);
+}
+
+.career-row:last-child {
+  border-bottom: 0;
+}
+
+.career-row:hover {
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.career-row.open {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* Suppress mouse-click focus ring — keyboard users still get :focus-visible */
+.career-row:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.career-row .row-head {
+  display: grid;
+  grid-template-columns: 36px 140px 1fr auto 16px;
+  align-items: center;
+  gap: 14px;
+  padding: 20px var(--space-5);
+}
+
+/* Spine segment — anchored on the ROW (not the row-head), so it reaches
+   into the next row regardless of body open/closed state. Each row's
+   spine extends from its star center (31px from row top) down to 31px
+   PAST the row's bottom edge, which lands exactly at the next row's
+   star center. Color fades from this row's color/brightness to the
+   next row's, giving a continuous stellar-evolution arc. */
+.career-row {
+  /* position: relative; was inherited via the button style above; pin it again
+     in case ::before is rendered before the row-head rule. Buttons accept
+     position:relative just fine. */
+  position: relative;
+}
+
+.career-row::before {
+  content: '';
+  position: absolute;
+  left: calc(var(--space-5) + 18px);
+  top: 38px;
+  bottom: -38px;
+  width: 2px;
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: 0;
+  background: linear-gradient(
+    to bottom,
+    color-mix(
+        in srgb,
+        var(--row-color, #fde047) calc(min(1, var(--star-bri, 1) * 0.5) * 100%),
+        transparent
+      )
+      0%,
+    color-mix(
+        in srgb,
+        var(--next-row-color, var(--row-color, #fde047))
+          calc(min(1, var(--next-star-bri, 0.5) * 0.5) * 100%),
+        transparent
+      )
+      100%
+  );
+  filter: blur(0.4px);
+}
+
+.career-row:last-child::before {
+  display: none;
+}
+
+@media (max-width: 720px) {
+  .career-row::before {
+    top: 25px;
+    bottom: -25px;
+    left: calc(14px + 10px);
+  }
+}
+
+.career-row .star {
+  position: relative;
+  width: 36px;
+  min-width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: center;
+  z-index: 1;
+  overflow: visible;
+  flex-shrink: 0;
+  aspect-ratio: 1;
+}
+
+.career-row .star::before {
+  display: none;
+}
+
+.career-row .star-core {
+  width: var(--star-size, 11px);
+  min-width: var(--star-size, 11px);
+  height: var(--star-size, 11px);
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--row-color) 0%, var(--row-color) 60%, transparent 100%);
+  box-shadow:
+    0 0 0 2px rgba(255, 255, 255, calc(0.05 + 0.06 * var(--star-bri, 1))),
+    0 0 calc(6px + 10px * var(--star-bri, 1)) var(--row-glow),
+    0 0 calc(14px + 24px * var(--star-bri, 1)) var(--row-glow),
+    0 0 calc(28px + 50px * var(--star-bri, 1)) var(--row-glow);
+  filter: brightness(calc(0.9 + 0.15 * min(var(--star-bri, 1), 3)));
+  position: relative;
+  z-index: 1;
+  transform-box: fill-box;
+  transform-origin: center;
+  transition:
+    width 320ms var(--ease-standard),
+    height 320ms var(--ease-standard),
+    transform 320ms var(--ease-standard),
+    filter 320ms var(--ease-standard);
+}
+
+.career-row .star-core::before {
+  content: '';
+  position: absolute;
+  top: 15%;
+  left: 15%;
+  width: 50%;
+  height: 50%;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff 0%, transparent 100%);
+  opacity: calc(0.3 + 0.1 * min(var(--star-bri, 1), 3));
+  filter: blur(1px);
+  pointer-events: none;
+  transition: opacity 320ms var(--ease-standard);
+}
+
+/* Outer atmosphere — a much larger soft halo that scales aggressively with
+   brightness. Invisible on dim stars (protostar), enormous on neutron. */
+.career-row .star-core::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(var(--star-size, 11px) * 6 * var(--star-bri, 1));
+  height: calc(var(--star-size, 11px) * 6 * var(--star-bri, 1));
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--row-glow) 0%, transparent 60%);
+  opacity: calc(-0.4 + 0.45 * var(--star-bri, 1));
+  filter: blur(6px);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.career-row .star::before {
+  content: '';
+  position: absolute;
+  inset: -25%;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--row-color) 0%, transparent 60%);
+  /* Dim stars (protostar, white dwarf) have barely-there halos */
+  opacity: calc(0.2 + 0.3 * var(--star-bri, 1));
+  filter: blur(2px);
+  transition:
+    opacity 320ms var(--ease-standard),
+    transform 320ms var(--ease-standard);
+}
+
+.career-row.open .star::before {
+  opacity: calc(0.6 + 0.4 * var(--star-bri, 1));
+  transform: scale(1.35);
+}
+
+.career-row.open .star-core {
+  width: calc(var(--star-size, 11px) * 1.4);
+  height: calc(var(--star-size, 11px) * 1.4);
+  animation: starFlare 2.2s ease-in-out infinite;
+}
+
+.career-row.open .star-core::before {
+  opacity: calc(0.5 + 0.1 * min(var(--star-bri, 1), 3));
+  animation: hotspotPulse 2.2s ease-in-out infinite;
+}
+
+@keyframes starFlare {
+  0%,
+  100% {
+    transform: scale(1);
+    filter: brightness(1.15);
+  }
+
+  50% {
+    transform: scale(1.12);
+    filter: brightness(1.45);
+  }
+}
+
+@keyframes hotspotPulse {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.7;
+    transform: scale(1.2);
+  }
+}
+
+.career-row .date {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  color: var(--fuchsia);
+  white-space: nowrap;
+  min-width: 140px;
+}
+
+.career-row .role {
+  font-size: var(--text-base);
+  color: #f1f5f9;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.career-row .role .org-sep {
+  margin: 0 8px;
+  color: rgba(241, 245, 249, 0.4);
+  font-weight: 400;
+}
+
+.career-row .role .org {
+  font-weight: 400;
+  color: rgba(241, 245, 249, 0.7);
+}
+
+.career-row .class {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--row-accent, var(--row-color));
+  padding: 3px 9px;
+  border-radius: 999px;
+  border: 1px solid;
+  border-color: color-mix(in srgb, var(--row-accent, var(--row-color)) 35%, transparent);
+  background: color-mix(in srgb, var(--row-accent, var(--row-color)) 8%, transparent);
+}
+
+.career-row .chev {
+  color: rgba(241, 245, 249, 0.4);
+  transition:
+    transform var(--dur-base),
+    color var(--dur-base);
+  flex-shrink: 0;
+}
+
+.career-row:hover .chev {
+  transform: translateX(3px);
+  color: rgba(241, 245, 249, 0.85);
+}
+
+.career-row.open .chev {
+  transform: rotate(90deg);
+  color: rgba(241, 245, 249, 0.85);
+}
+
+.career-row .row-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 380ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.career-row.open .row-body {
+  grid-template-rows: 1fr;
+}
+
+.career-row .row-body > .body-inner {
+  overflow: hidden;
+  min-height: 0;
+  padding: 0 var(--space-5) 0 calc(var(--space-5) + 50px);
+}
+
+.career-row.open .row-body > .body-inner {
+  padding-bottom: 18px;
+}
+
+.career-row .row-body .body-inner {
+  opacity: 0;
+  transform: translateY(-4px);
+  transition:
+    opacity 240ms ease-out 80ms,
+    transform 240ms ease-out 80ms;
+}
+
+.career-row.open .body-inner {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.career-row .summary {
+  font-size: var(--text-sm);
+  color: rgba(229, 231, 235, 0.78);
+  line-height: var(--leading-relaxed);
+  margin: 0;
+  max-width: 64ch;
+}
+
+.career-row .row-meta {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: rgba(229, 231, 235, 0.55);
+  letter-spacing: 0.04em;
+}
+
+.career-row .class-desc {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.career-row .class-desc .swatch {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  box-shadow: 0 0 6px currentColor;
+}
+
+.career-row .tags {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+@media (max-width: 720px) {
+  .career-row .row-head {
+    grid-template-columns: 28px 1fr auto;
+    gap: 12px;
+    padding: 14px;
+  }
+
+  .career-row .date {
+    grid-column: 2 / 3;
+    grid-row: 1;
+    min-width: unset;
+  }
+
+  .career-row .role {
+    grid-column: 2 / 4;
+    grid-row: 2;
+    font-size: var(--text-sm);
+  }
+
+  .career-row .role .org {
+    display: block;
+    margin-top: 2px;
+    font-size: var(--text-xs);
+  }
+
+  .career-row .role .org-sep {
+    display: none;
+  }
+
+  .career-row .class {
+    /* Class badge hidden in closed head on mobile — "auto" column sized by
+       long names like "main-sequence star" pushed the 1fr date column too
+       narrow, causing the date to wrap. The stellarClass info is still
+       accessible in the expanded body's class-desc. */
+    display: none;
+  }
+
+  .career-row .chev {
+    grid-column: 3 / 4;
+    grid-row: 1;
+    align-self: center;
+  }
+
+  .career-row .star {
+    grid-row: 1 / 3;
+    align-self: start;
+  }
+
+  .career-row .row-body .body-inner {
+    /* indent past the star+gap so body text aligns under the date column,
+       not behind the timeline spine: 14px padding + 28px star + 12px gap = 54px */
+    padding: 0 14px 14px 54px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 720px) {
+  /* Career list */
+  .career-list {
+    border-radius: var(--radius-md);
+  }
+}

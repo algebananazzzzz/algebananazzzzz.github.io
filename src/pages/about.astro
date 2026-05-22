@@ -1,0 +1,62 @@
+---
+import Base from '@/layouts/Base.astro';
+import aboutRaw from '@/content/about.yaml';
+
+type AboutData = {
+  heroSub: string;
+  valuesHeading: string;
+  intro: string;
+  what: string;
+  values: { label: string; note: string }[];
+  factoids: { k: string; v: string }[];
+};
+
+const about = aboutRaw as AboutData;
+---
+
+<Base title="about" description="about the pilot." accent="aurora">
+  <div class="page">
+    <div class="page-head">
+      <div class="section-eyebrow">— about —</div>
+      <h1 class="page-title">
+        About <span class="grad-text g-aurora">the pilot</span>.
+      </h1>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-main">
+        <p class="about-lead">{about.intro}</p>
+        <p class="about-body">{about.what}</p>
+
+        <h3 class="about-h3">{about.valuesHeading}</h3>
+        <ul class="about-values">
+          {
+            about.values.map((v) => (
+              <li>
+                <strong>{v.label}.</strong> {v.note}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <aside class="about-side">
+        <div class="cosmic-card" style="padding: var(--space-5);">
+          <div class="now-label" style="margin-bottom: var(--space-3);">field card</div>
+          <dl class="about-factoids">
+            {
+              about.factoids.map((f) => (
+                <div class="about-factoid">
+                  <>
+                    <dt>{f.k}</dt>
+                    <dd>{f.v}</dd>
+                  </>
+                </div>
+              ))
+            }
+          </dl>
+        </div>
+      </aside>
+    </div>
+  </div>
+</Base>

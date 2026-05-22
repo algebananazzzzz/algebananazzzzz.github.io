@@ -1,0 +1,160 @@
+---
+import Base from '@/layouts/Base.astro';
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import clustersRaw from '@/content/clusters.yaml';
+import mottosRaw from '@/content/mottos.yaml';
+import nowRaw from '@/content/now.yaml';
+import aboutRaw from '@/content/about.yaml';
+import Splash from '@/components/island/Splash';
+import Orrery from '@/components/island/Orrery';
+import ProjectsConst from '@/components/island/ProjectsConst';
+import CareerList from '@/components/island/CareerList';
+import MilkyWay from '@/components/island/MilkyWay';
+import { getCareerEntries } from '@/lib/getCareerEntries';
+
+type ClusterEntry = { id: string; label: string; dotColor: string };
+const clustersData = clustersRaw as ClusterEntry[];
+
+type Motto = { id: string; text: string; cluster: string; noteId: string };
+const mottosData = mottosRaw as Motto[];
+
+type NowItem = { title: string; note: string; tag: string };
+type NowData = {
+  building: NowItem & { since: string; status: string };
+  writing: NowItem & { progress: number; words: number; status: string };
+  obsessed: NowItem & { batch: number };
+  [k: string]: NowItem & Record<string, unknown>;
+};
+const nowData = nowRaw as NowData;
+
+type AboutData = { heroSub: string };
+const about = aboutRaw as AboutData;
+
+const projectEntries = await getCollection('projects');
+const projects = projectEntries.map((p: CollectionEntry<'projects'>) => p.data);
+
+const careerEntries = await getCareerEntries(3);
+
+const clusterEntries = await getCollection('clusters');
+const clusters = clusterEntries.map((c: CollectionEntry<'clusters'>) => c.data);
+
+const noteEntries = await getCollection('notes');
+const allNotes = noteEntries.map((n: CollectionEntry<'notes'>) => n.data);
+
+const orbitingClusters = clustersData.filter((c) => c.id !== 'general');
+const mottoEntry = mottosData.find((m) => m.id === 'motto-11');
+const motto = mottoEntry?.text ?? 'Wonder is a renewable resource.';
+---
+
+<Base isHome={true}>
+  <Splash client:load />
+
+  <!-- Hero proper -->
+  <section class="hero hero-single" data-screen-label="01 Hero" data-accent="cosmic">
+    <div class="hero-content">
+      <div class="eyebrow">v2026 · personal archive</div>
+      <h2 class="hero-greeting">
+        Welcome to my <em>nebula</em>.
+      </h2>
+      <p class="hero-sub">
+        {about.heroSub}
+      </p>
+
+      <div class="hero-motto">
+        &ldquo;{motto}&rdquo;
+      </div>
+
+      <div class="hero-ctas">
+        <a href="/milky-way" class="cta-milky" aria-label="enter the milky way">
+          <span class="cta-star"></span>
+          <span class="cta-label">Enter the Milky Way</span>
+          <svg
+            class="cta-arrow"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path>
+          </svg>
+        </a>
+      </div>
+
+      <div class="orbiting">
+        <span class="label">currently orbiting</span>
+        {
+          orbitingClusters.map((c) => (
+            <a
+              href={`/milky-way?cluster=${c.id}`}
+              class="orbiting-chip"
+              style={`color: ${c.dotColor}66`}
+              title={`Notes in the ${c.label} cluster`}
+            >
+              <span class="dot" style={`background:${c.dotColor};color:${c.dotColor}`} />
+              {c.label}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Now (orrery) -->
+  <section class="section" data-screen-label="02 Now" data-accent="aurora">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">what i'm doing now</div>
+        <h2 class="section-title"><em>Orrery</em></h2>
+      </div>
+      <a href="/about" class="section-link">more about me →</a>
+    </div>
+    <Orrery
+      client:idle
+      building={nowData.building}
+      writing={nowData.writing}
+      obsessed={nowData.obsessed}
+    />
+  </section>
+
+  <!-- Projects -->
+  <section class="section" data-screen-label="03 Projects" data-accent="sunset">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">things on my workbench</div>
+        <h2 class="section-title"><em>Spacetime</em></h2>
+      </div>
+      <a href="/projects" class="section-link">all projects →</a>
+    </div>
+    <ProjectsConst client:idle projects={projects} />
+  </section>
+
+  <!-- Career -->
+  <section class="section" data-screen-label="04 Experience" data-accent="nebula">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">where I've been</div>
+        <h2 class="section-title"><em>Trajectory</em></h2>
+      </div>
+      <a href="/experience" class="section-link">full timeline →</a>
+    </div>
+    <CareerList client:visible entries={careerEntries} />
+  </section>
+
+  <!-- Milky Way preview -->
+  <section class="section" data-screen-label="06 Milky Way" data-accent="cosmic">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">my digital garden</div>
+        <h2 class="section-title"><em>The milky way</em></h2>
+      </div>
+      <a href="/milky-way" class="section-link">enter the milky way →</a>
+    </div>
+    <MilkyWay client:visible notes={allNotes} clusters={clusters} />
+  </section>
+</Base>

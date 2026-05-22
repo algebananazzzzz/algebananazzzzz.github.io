@@ -1,0 +1,257 @@
+/* ============================================================
+   Splash — fullscreen "Hello, I'm Daniel" entry screen.
+   Extracted from portfolio.css 2026-05-20.
+   ============================================================ */
+
+.splash {
+  position: relative;
+  z-index: 5;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-8);
+  text-align: center;
+  /* Warp rays extend 70vmax — contain them. The nebula horizon escapes this
+     because it's position:fixed, so it bleeds into the page below freely. */
+  overflow: hidden;
+}
+
+/* Vertical streak tunnel — stars rushing UP past the viewer as we descend.
+   Each .warp-line is a 1px vertical bar with a top-bright → bottom-fade
+   gradient. Distributed by left/top inline styles. */
+.splash-warp {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: screen;
+  transform: translateY(0);
+  will-change: opacity, transform;
+}
+
+.splash-warp .warp-line {
+  position: absolute;
+  width: 1px;
+  /* height set inline (28–46vh) */
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.95) 12%,
+    rgba(167, 139, 250, 0.85) 30%,
+    rgba(244, 114, 182, 0.45) 55%,
+    rgba(244, 114, 182, 0) 100%
+  );
+  filter: blur(0.4px);
+  transform: translate(-50%, -50%);
+}
+
+/* Nebula horizon — disabled in favour of the scroll-driven cosmos bloom
+   (stars fade in, nebula brightens, descent peaks). Keep selector for safety. */
+.splash-horizon {
+  display: none;
+}
+
+.splash-inner {
+  max-width: 980px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-6);
+  will-change: transform, opacity;
+  position: relative;
+  z-index: 2;
+}
+
+.splash-inner > * {
+  will-change: transform, opacity, letter-spacing;
+}
+
+.splash-eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba(229, 231, 235, 0.55);
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.splash-eyebrow .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ffc700;
+  box-shadow:
+    0 0 12px #ffc700,
+    0 0 24px rgba(255, 199, 0, 0.5);
+  animation: pulse 2.4s ease-in-out infinite;
+}
+
+/* Live-ticking stardate readout — sub-digits in a muted color so the eye
+   notices only the meaningful drift, not noisy churn. */
+.splash-eyebrow .stardate-num {
+  font-variant-numeric: tabular-nums;
+  color: rgba(255, 230, 170, 0.92);
+  text-shadow: 0 0 8px rgba(255, 199, 0, 0.3);
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.9);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+.splash-hello {
+  font-size: clamp(3.4rem, 11vw, 9rem);
+  font-weight: 300;
+  letter-spacing: -0.045em;
+  line-height: 0.95;
+  color: #f8fafc;
+  margin: 0;
+  text-shadow: 0 0 60px rgba(167, 139, 250, 0.25);
+}
+
+.splash-hello em {
+  font-style: italic;
+  font-weight: 400;
+  background: linear-gradient(95deg, #f0abfc 0%, #c4b5fd 35%, #93c5fd 70%, #5eead4 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+}
+
+.splash-sub {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(229, 231, 235, 0.7);
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: center;
+}
+
+.splash-sub span {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.splash-sub .sep {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(229, 231, 235, 0.35);
+}
+
+.splash-scrollhint {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 15vh;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba(229, 231, 235, 0.55);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  /* Button reset + interactive affordance */
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 0;
+  transition:
+    color 220ms,
+    background 220ms,
+    transform 220ms;
+}
+
+.splash-scrollhint:hover,
+.splash-scrollhint:focus-visible {
+  color: #ffffff;
+  background: rgba(244, 114, 182, 0.08);
+  outline: none;
+}
+
+.splash-scrollhint:focus-visible {
+  box-shadow: 0 0 0 2px rgba(244, 114, 182, 0.55);
+}
+
+.splash-scrollhint .chev {
+  color: rgba(244, 114, 182, 0.85);
+  animation: scrollChev 3s ease-in-out infinite;
+  filter: drop-shadow(0 0 6px rgba(244, 114, 182, 0.45));
+}
+
+.splash-scrollhint:hover .chev {
+  color: #ffffff;
+}
+
+@keyframes scrollChev {
+  0% {
+    transform: translateY(-4px);
+    opacity: 0.5;
+  }
+
+  50% {
+    transform: translateY(4px);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(-4px);
+    opacity: 0.5;
+  }
+}
+
+/* Entry animation removed — was getting stuck mid-blur when iframe loads
+   in a hidden tab. Cosmos + meteor carry the visual entrance. */
+.splash-inner > * {
+  opacity: 1;
+}
+
+/* Mobile */
+@media (max-width: 720px) {
+  .splash {
+    padding: var(--space-6);
+  }
+
+  .splash-eyebrow {
+    letter-spacing: 0.22em;
+    font-size: 10px;
+  }
+
+  .splash-sub {
+    font-size: 11px;
+    gap: 10px;
+  }
+
+  .splash-scrollhint {
+    height: 15vh;
+  }
+}
+
+@media (max-width: 420px) {
+  .splash-hello {
+    font-size: clamp(2.4rem, 13vw, 3.6rem);
+  }
+}

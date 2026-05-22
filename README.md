@@ -1,18 +1,76 @@
-# 💫 About Me:
-🔭 I’m currently working on the Odyssey Framework<br>👯 I’m looking to collaborate on<br>🤝 I’m looking for help with<br>🌱 I’m currently learning more about Containerization technologies<br>💬 Ask me about <br>⚡ Fun fact: I play Ultimate Frisbee and loves craft beer!
+# algebananazzzzz — Personal Portfolio + Digital Garden
 
+A personal portfolio + digital garden built as an interactive cartoon cosmos. Five pages laid out like a star map: a splash hero, an orrery of what I'm doing now, a gravity-warped project board, a stellar trajectory of my work history, and a milky-way constellation of notes.
 
-## 🌐 Socials:
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://linkedin.com/in/danielzqx) 
+**Live:** https://algebananazzzzz.github.io
 
-# 💻 Tech Stack:
-![Go](https://img.shields.io/badge/go-%2300ADD8.svg?style=for-the-badge&logo=go&logoColor=white) ![GraphQL](https://img.shields.io/badge/-GraphQL-E10098?style=for-the-badge&logo=graphql&logoColor=white) ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white) ![YAML](https://img.shields.io/badge/yaml-%23ffffff.svg?style=for-the-badge&logo=yaml&logoColor=151515) ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) ![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white) ![GithubPages](https://img.shields.io/badge/github%20pages-121013?style=for-the-badge&logo=github&logoColor=white) ![Firebase](https://img.shields.io/badge/firebase-%23039BE5.svg?style=for-the-badge&logo=firebase) ![Apollo-GraphQL](https://img.shields.io/badge/-ApolloGraphQL-311C87?style=for-the-badge&logo=apollo-graphql) ![Gatsby](https://img.shields.io/badge/Gatsby-%23663399.svg?style=for-the-badge&logo=gatsby&logoColor=white) ![NPM](https://img.shields.io/badge/NPM-%23CB3837.svg?style=for-the-badge&logo=npm&logoColor=white) ![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white) ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white) ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white) ![Nginx](https://img.shields.io/badge/nginx-%23009639.svg?style=for-the-badge&logo=nginx&logoColor=white) ![AmazonDynamoDB](https://img.shields.io/badge/Amazon%20DynamoDB-4053D6?style=for-the-badge&logo=Amazon%20DynamoDB&logoColor=white) ![Firebase](https://img.shields.io/badge/firebase-a08021?style=for-the-badge&logo=firebase&logoColor=ffcd34) ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white) ![Redis](https://img.shields.io/badge/redis-%23DD0031.svg?style=for-the-badge&logo=redis&logoColor=white) ![SQLite](https://img.shields.io/badge/sqlite-%2307405e.svg?style=for-the-badge&logo=sqlite&logoColor=white) ![GitLab CI](https://img.shields.io/badge/gitlab%20CI-%23181717.svg?style=for-the-badge&logo=gitlab&logoColor=white) ![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white) ![Kubernetes](https://img.shields.io/badge/kubernetes-%23326ce5.svg?style=for-the-badge&logo=kubernetes&logoColor=white) ![Jira](https://img.shields.io/badge/jira-%230A0FFF.svg?style=for-the-badge&logo=jira&logoColor=white) ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white) ![Confluence](https://img.shields.io/badge/confluence-%23172BF4.svg?style=for-the-badge&logo=confluence&logoColor=white) ![Prometheus](https://img.shields.io/badge/Prometheus-E6522C?style=for-the-badge&logo=Prometheus&logoColor=white) ![Terraform](https://img.shields.io/badge/terraform-%235835CC.svg?style=for-the-badge&logo=terraform&logoColor=white) ![ElasticSearch](https://img.shields.io/badge/-ElasticSearch-005571?style=for-the-badge&logo=elasticsearch)
-# 📊 GitHub Stats:
-![](https://github-readme-stats.vercel.app/api?username=algebananazzzzz&theme=dark&hide_border=false&include_all_commits=true&count_private=true)<br/>
-![](https://github-readme-streak-stats.herokuapp.com/?user=algebananazzzzz&theme=dark&hide_border=false)<br/>
-![](https://github-readme-stats.vercel.app/api/top-langs/?username=algebananazzzzz&theme=dark&hide_border=false&include_all_commits=true&count_private=true&layout=compact)
+## Tech stack
 
----
-[![](https://visitcount.itsvg.in/api?id=algebananazzzzz&icon=0&color=0)](https://visitcount.itsvg.in)
+- [Astro 5](https://astro.build) — static site generator
+- [React 18](https://react.dev) — interactive islands
+- [Tailwind v4](https://tailwindcss.com) — utility CSS
+- [TypeScript 5.7](https://www.typescriptlang.org)
+- [Vitest](https://vitest.dev) — unit tests
+- [Prettier](https://prettier.io) with `prettier-plugin-astro`
+- [GitHub Pages](https://pages.github.com) — hosting via GitHub Actions
 
-<!-- Proudly created with GPRM ( https://gprm.itsvg.in ) -->
+## Local development
+
+```bash
+git clone https://github.com/algebananazzzzz/algebananazzzzz2.0.git
+cd algebananazzzzz2.0
+
+# node version (uses .nvmrc)
+nvm use
+
+npm install
+npm run dev   # http://localhost:4321
+```
+
+## Scripts
+
+| Command                | Description                      |
+| ---------------------- | -------------------------------- |
+| `npm run dev`          | Astro dev server with HMR.       |
+| `npm run build`        | Static build to `dist/`.         |
+| `npm run preview`      | Serve the built `dist/`.         |
+| `npm run check`        | TypeScript + Astro diagnostics.  |
+| `npm test`             | Vitest single-run.               |
+| `npm run test:watch`   | Vitest watch mode.               |
+| `npm run format`       | Prettier write across all files. |
+| `npm run format:check` | Prettier check (CI gate).        |
+
+## Project structure
+
+```
+src/
+├── components/
+│   ├── island/        React components, hydrated on the client
+│   └── static/        Astro components, server-only (TopNav, Footer)
+├── content/           YAML data + Zod schemas (projects, experience, notes, clusters, mottos)
+├── layouts/           Base.astro — chrome layout
+├── lib/               Pure utilities + tests (magnitude, stardate, routes)
+├── pages/             Route entries (5 routes)
+├── styles/
+│   ├── tokens.css     Palette + type tokens (source of truth)
+│   ├── global.css     Tailwind + @theme bridge + base resets
+│   ├── portfolio.css  Barrel re-export
+│   ├── portfolio/     Themed CSS modules (cosmos, splash, hero, ...)
+│   ├── pages.css      Sub-page wrappers
+│   └── page-bg.css    Per-route accent washes
+└── types/             *.yaml module shim
+```
+
+## Deployment
+
+Pushes to `main` build and deploy automatically via `.github/workflows/2-preprod-deploy.yml`.
+
+Pull requests and non-`main` branches run CI via `.github/workflows/1-feature-branch-ci.yml` — format check, type check, tests, build.
+
+## Credits
+
+Design system + visual language hand-rolled with Claude Design assistance. Fonts: [Space Grotesk](https://fonts.google.com/specimen/Space+Grotesk) (variable) + [Space Mono](https://fonts.google.com/specimen/Space+Mono) via `@fontsource`. Icons: inline SVG.
+
+## License
+
+Source code: MIT. Content (notes, copy, project descriptions) is not licensed for reuse.

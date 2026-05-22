@@ -1,0 +1,343 @@
+/* ============================================================
+   Cosmos — fixed multi-layer nebula background.
+   Extracted from portfolio.css 2026-05-20.
+   ============================================================ */
+
+/* ============================================================
+   Cosmos layer system — LOAD-BEARING CONTRACT
+   ------------------------------------------------------------
+   The cosmos uses three CSS custom properties to handle per-page
+   accent tinting WITHOUT killing star brightness:
+
+     --layer-hue       hue-rotate applied to colored nebula layers
+     --layer-sat-mul   saturation multiplier for colored layers
+     --layer-dim       opacity multiplier for colored layers ONLY
+                       (NOT the wrap — wrap stays at opacity 1 so
+                       the star canvas inside it stays bright)
+
+   Sub-pages set these via `html[data-accent="..."] .cosmos` rules
+   in page-bg.css. The star canvas is not a layer, so it bypasses
+   --layer-dim. NEVER reintroduce `.cosmos { opacity: ... }` on
+   sub-pages — stars vanish.
+
+   Per-layer `filter` composes the three vars together. NEVER
+   overwrite a layer's `filter` with a raw value — the per-page
+   tint will stop working.
+
+   The pulse value comes from `--neb-pulse` (a registered <number>
+   so it interpolates smoothly). Each layer has its own
+   drift+pulse keyframe pair at non-aligned periods so the cosmos
+   never settles into a synchronized loop.
+   ============================================================ */
+
+.cosmos {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background: #000;
+  /* --bloom is set by JS on scroll: 0 at top (void), 1 past first viewport. */
+  --bloom: 0;
+  /* Per-page tinting hooks. Defaults = no tint, no dim. page-bg.css overrides
+     these for /about /projects /experience so the colored nebula layers shift
+     toward the page accent and dim — but the star canvas (not a colored layer)
+     stays at full brightness because the wrap itself isn't dimmed. */
+  --layer-hue: 0deg;
+  --layer-sat-mul: 1;
+  --layer-dim: 1;
+}
+
+.cosmos .layer {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+}
+
+/* Always-on faint gradient — only ever shows past the splash */
+.cosmos::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 30%, rgba(67, 56, 202, 0.18), transparent 65%),
+    radial-gradient(ellipse 80% 50% at 30% 80%, rgba(190, 24, 93, 0.1), transparent 70%),
+    radial-gradient(ellipse 60% 50% at 80% 60%, rgba(91, 33, 182, 0.12), transparent 60%);
+  filter: blur(40px) saturate(var(--layer-sat-mul, 1)) hue-rotate(var(--layer-hue, 0deg));
+  pointer-events: none;
+  opacity: calc(var(--bloom, 1) * var(--layer-dim, 1));
+  transition: opacity 200ms linear;
+}
+
+/* Continuous "alive cosmos" — each nebula layer drifts and pulses on its
+   own period so the cosmos never settles into a synchronized loop. The drift
+   uses `transform`; Cosmos.tsx scroll-parallax now uses the individual
+   `translate`/`scale`/`rotate` properties, so they compose without clobbering.
+   The pulse animates a registered <number> custom property so it interpolates
+   smoothly (regular vars would snap between keyframe values). Opacity is the
+   product of three factors: --bloom (splash → cosmos fade, home only),
+   --neb-pulse (per-layer breath), --layer-dim (per-page accent dim). */
+@property --neb-pulse {
+  syntax: '<number>';
+  initial-value: 1;
+  inherits: false;
+}
+
+@property --wash-pulse {
+  syntax: '<number>';
+  initial-value: 1;
+  inherits: false;
+}
+
+/* Subtler pulse used by the sub-page accent wash so it breathes without
+   wiping out text contrast when content scrolls through the wash zone. */
+@keyframes washPulse {
+  0%,
+  100% {
+    --wash-pulse: 0.7;
+  }
+
+  50% {
+    --wash-pulse: 1;
+  }
+}
+
+.cosmos .nebula-far {
+  --neb-pulse: 1;
+  opacity: calc(var(--bloom, 1) * var(--neb-pulse) * var(--layer-dim, 1));
+  filter: blur(28px) saturate(calc(1.25 * var(--layer-sat-mul, 1)))
+    hue-rotate(var(--layer-hue, 0deg));
+  animation:
+    nebulaDrift1 24s ease-in-out infinite,
+    nebulaPulse1 11s ease-in-out infinite;
+}
+
+.cosmos .nebula-mid {
+  --neb-pulse: 1;
+  opacity: calc(var(--bloom, 1) * var(--neb-pulse) * var(--layer-dim, 1));
+  filter: blur(14px) saturate(calc(1.3 * var(--layer-sat-mul, 1)))
+    hue-rotate(var(--layer-hue, 0deg));
+  mix-blend-mode: screen;
+  animation:
+    nebulaDrift2 28s ease-in-out infinite,
+    nebulaPulse2 14s ease-in-out infinite;
+}
+
+.cosmos .nebula-near {
+  --neb-pulse: 1;
+  opacity: calc(var(--bloom, 1) * var(--neb-pulse) * var(--layer-dim, 1));
+  filter: saturate(var(--layer-sat-mul, 1)) hue-rotate(var(--layer-hue, 0deg));
+  mix-blend-mode: screen;
+  will-change: transform, filter;
+  animation:
+    nebulaDrift3 26s ease-in-out infinite,
+    nebulaPulse3 9s ease-in-out infinite;
+}
+
+.cosmos .mw-streak {
+  --neb-pulse: 1;
+  opacity: calc(var(--bloom, 1) * var(--neb-pulse) * var(--layer-dim, 1));
+  filter: blur(40px) saturate(var(--layer-sat-mul, 1)) hue-rotate(var(--layer-hue, 0deg));
+  mix-blend-mode: screen;
+  animation:
+    nebulaDrift4 32s ease-in-out infinite,
+    nebulaPulse4 15s ease-in-out infinite;
+}
+
+@keyframes nebulaDrift1 {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(-4%, 3%, 0) scale(1.1);
+  }
+}
+
+@keyframes nebulaDrift2 {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(3.5%, -3.5%, 0) scale(1.08);
+  }
+}
+
+@keyframes nebulaDrift3 {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(2.5%, 4%, 0) scale(1.12);
+  }
+}
+
+@keyframes nebulaDrift4 {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(-2%, -2.5%, 0);
+  }
+}
+
+@keyframes nebulaPulse1 {
+  0%,
+  100% {
+    --neb-pulse: 0.5;
+  }
+
+  50% {
+    --neb-pulse: 1.1;
+  }
+}
+
+@keyframes nebulaPulse2 {
+  0%,
+  100% {
+    --neb-pulse: 1.05;
+  }
+
+  50% {
+    --neb-pulse: 0.35;
+  }
+}
+
+@keyframes nebulaPulse3 {
+  0%,
+  100% {
+    --neb-pulse: 0.55;
+  }
+
+  50% {
+    --neb-pulse: 1.15;
+  }
+}
+
+@keyframes nebulaPulse4 {
+  0%,
+  100% {
+    --neb-pulse: 0.65;
+  }
+
+  50% {
+    --neb-pulse: 1;
+  }
+}
+
+/* Layers are oversized so scroll-parallax can shift them without exposing
+   the void at the viewport edge. */
+.cosmos .layer {
+  inset: -25vh -10vw;
+}
+
+/* Deepest nebula clouds — JWST-style indigo+violet+magenta.
+   Alphas tuned so peak bloom feels genuinely lit, not just present.
+   Filter / mix-blend-mode / opacity are set by the per-layer rules above
+   (which compose --layer-hue, --layer-sat-mul, --layer-dim) — do not
+   re-declare them here or they'll override the var-composed values. */
+.cosmos .nebula-far {
+  background: radial-gradient(ellipse 60% 50% at 18% 20%, rgba(91, 33, 182, 0.62), transparent 62%),
+    radial-gradient(ellipse 65% 50% at 78% 30%, rgba(190, 24, 93, 0.48), transparent 64%),
+    radial-gradient(ellipse 75% 60% at 60% 80%, rgba(67, 56, 202, 0.58), transparent 65%),
+    radial-gradient(ellipse 55% 70% at 12% 78%, rgba(126, 34, 206, 0.42), transparent 62%);
+}
+
+.cosmos .nebula-mid {
+  background: radial-gradient(ellipse 30% 35% at 30% 40%, rgba(217, 70, 239, 0.36), transparent 60%),
+    radial-gradient(ellipse 40% 30% at 70% 60%, rgba(56, 189, 248, 0.28), transparent 62%),
+    radial-gradient(ellipse 28% 28% at 55% 22%, rgba(244, 114, 182, 0.34), transparent 60%);
+}
+
+.cosmos .nebula-near {
+  background: radial-gradient(circle at 22% 32%, rgba(255, 230, 200, 0.14), transparent 38%),
+    radial-gradient(circle at 78% 68%, rgba(180, 220, 255, 0.12), transparent 40%),
+    radial-gradient(ellipse 50% 55% at 50% 70%, rgba(244, 114, 182, 0.18), transparent 55%);
+}
+
+/* Milky-Way streak across the top third (subtle, painterly) */
+.cosmos .mw-streak {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 38%,
+    rgba(167, 139, 250, 0.1) 45%,
+    rgba(244, 114, 182, 0.16) 50%,
+    rgba(125, 211, 252, 0.08) 55%,
+    transparent 62%
+  );
+  /* filter / mix-blend-mode / opacity are set by the .mw-streak rule above
+     (which composes --layer-hue, --layer-sat-mul, --layer-dim). */
+}
+
+.cosmos canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Vignette so content has contrast against the nebula */
+.cosmos .vignette {
+  background: radial-gradient(
+    ellipse 90% 80% at 50% 50%,
+    transparent 40%,
+    rgba(2, 3, 10, 0.55) 100%
+  );
+  mix-blend-mode: multiply;
+}
+
+/* AccentOrb is rendered only on sub-pages (see Base.astro). On home, the
+   cosmos drifts via Cosmos.tsx scroll handler instead of switching palette
+   per section. */
+.accent-orb {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  opacity: 1;
+}
+
+.accent-orb .accent-layer {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1200ms cubic-bezier(0.4, 0, 0.2, 1);
+  filter: blur(8px) saturate(1.05);
+}
+
+.accent-orb .accent-layer.active {
+  opacity: 1;
+}
+
+/* The per-frame JS filter on cosmos shouldn't fight CSS easing. */
+.cosmos {
+  transition: none;
+}
+
+/* Page chrome — content sits above cosmos */
+.page {
+  position: relative;
+  z-index: 2;
+}
+
+/* Reduced motion — freeze all cosmos layers */
+@media (prefers-reduced-motion: reduce) {
+  .cosmos canvas {
+    display: none !important;
+  }
+
+  .cosmos .nebula-far,
+  .cosmos .nebula-mid,
+  .cosmos .nebula-near,
+  .cosmos .mw-streak {
+    transform: none !important;
+  }
+}

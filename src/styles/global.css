@@ -1,0 +1,107 @@
+@import '@fontsource-variable/space-grotesk';
+@import '@fontsource/space-mono/400.css';
+@import '@fontsource/space-mono/700.css';
+@import 'tailwindcss';
+@import './tokens.css';
+@import './portfolio.css';
+@import './pages.css';
+@import './page-bg.css';
+
+/* Tailwind @theme bridge — every color/font here references tokens.css.
+   tokens.css is the single source of truth for the palette and type stack;
+   this block exists only to expose those tokens as Tailwind color/font
+   utilities (bg-star, text-cyan, font-sans, etc.). */
+@theme {
+  --color-signal: var(--signal);
+  --color-signal-deep: var(--signal-deep);
+  --color-star: var(--star);
+  --color-star-bright: var(--star-bright);
+  --color-star-soft: var(--star-soft);
+  --color-cyan: var(--cyan);
+  --color-cyan-bright: var(--cyan-bright);
+  --color-cyan-soft: var(--cyan-soft);
+  --color-ice: var(--ice);
+  --color-sunset: var(--sunset);
+  --color-purple: var(--purple);
+  --color-purple-bright: var(--purple-bright);
+  --color-rose: var(--rose);
+  --color-fuchsia: var(--fuchsia);
+  --color-night: var(--night);
+  --color-night-deep: var(--night-deep);
+  --color-night-soft: var(--night-soft);
+
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+}
+
+@utility bg-grad-sunset {
+  background-image: var(--grad-sunset);
+}
+@utility bg-grad-aurora {
+  background-image: var(--grad-aurora);
+}
+@utility bg-grad-cosmic {
+  background-image: var(--grad-cosmic);
+}
+@utility bg-grad-nebula {
+  background-image: var(--grad-nebula);
+}
+
+@utility text-grad-sunset {
+  background-image: var(--grad-sunset);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+@utility text-grad-aurora {
+  background-image: var(--grad-aurora);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+@utility text-grad-cosmic {
+  background-image: var(--grad-cosmic);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+@utility text-grad-nebula {
+  background-image: var(--grad-nebula);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+html,
+body {
+  background: #000;
+  color: var(--fg-1);
+}
+html {
+  font-family: var(--font-sans);
+}
+body {
+  overflow-x: hidden;
+}
+
+/* Focus ring — global, yellow star, AA-passing on night-sky bg */
+:focus-visible {
+  outline: 2px solid var(--star);
+  outline-offset: 2px;
+  border-radius: var(--radius-xs);
+}
+
+/* Reduced motion — universal opt-out for our continuous canvas/animations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

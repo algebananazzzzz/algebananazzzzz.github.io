@@ -1,0 +1,31 @@
+---
+import Base from '@/layouts/Base.astro';
+import CareerList from '@/components/island/CareerList';
+import { getCareerEntries } from '@/lib/getCareerEntries';
+import siteRaw from '@/content/site.yaml';
+
+type SiteData = { pages: { experience: { lead: string } } };
+const site = siteRaw as SiteData;
+
+const careerEntries = await getCareerEntries();
+---
+
+<Base
+  title="experience"
+  description="experience in light-years."
+  accent="nebula"
+>
+  <div class="page">
+    <div class="page-head">
+      <div class="section-eyebrow">— experience —</div>
+      <h1 class="page-title">
+        Experience <span class="grad-text g-nebula">in light-years</span>.
+      </h1>
+      <p class="page-lead">
+        {site.pages.experience.lead}
+      </p>
+    </div>
+
+    <CareerList client:idle entries={careerEntries} />
+  </div>
+</Base>

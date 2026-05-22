@@ -1,0 +1,88 @@
+---
+import '@/styles/global.css';
+import siteRaw from '@/content/site.yaml';
+
+type SiteData = {
+  name: string;
+  title: string;
+  description: string;
+  location: string;
+  gardenUrl: string;
+  socials: Record<string, string>;
+};
+
+const siteData = siteRaw as SiteData;
+import TopNav from '@/components/static/TopNav.astro';
+import Footer from '@/components/static/Footer.astro';
+import Cosmos from '@/components/island/Cosmos';
+import AccentOrb from '@/components/island/AccentOrb';
+import Meteor from '@/components/island/Meteor';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  accent?: 'cosmic' | 'sunset' | 'aurora' | 'nebula';
+  isHome?: boolean;
+  mwPage?: boolean;
+}
+
+const { title, description, accent = 'cosmic', isHome = false, mwPage = false } = Astro.props;
+const fullTitle = title ? `${title} · ${siteData.name}` : siteData.title;
+const desc = description ?? siteData.description;
+const ogUrl = new URL(Astro.url.pathname, Astro.site).toString();
+---
+
+<!doctype html>
+<html
+  lang="en"
+  class="dark"
+  data-theme="dark"
+  data-accent={accent}
+  data-home={isHome ? 'true' : 'false'}
+>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={desc} />
+    <link rel="icon" href="/assets/banana.png" />
+    <link rel="canonical" href={ogUrl} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={desc} />
+    <meta property="og:url" content={ogUrl} />
+    <meta property="og:image" content="/assets/banana.png" />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={desc} />
+
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Person',
+        name: 'Daniel',
+        url: Astro.site?.toString(),
+        sameAs: Object.values(siteData.socials).filter((u: string) => u.startsWith('http')),
+      })}
+    />
+  </head>
+  <body data-mw-page={mwPage ? 'true' : 'false'}>
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:rounded focus:bg-star focus:px-3 focus:py-2 focus:text-night focus:font-medium"
+    >
+      Skip to content
+    </a>
+    {!mwPage && <Cosmos client:idle isHome={isHome} />}
+    {!mwPage && !isHome && <AccentOrb client:idle />}
+    <header><TopNav /></header>
+    <main id="main-content">
+      <slot />
+    </main>
+    <Meteor client:idle />
+    <Footer />
+  </body>
+</html>

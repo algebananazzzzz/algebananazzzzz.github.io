@@ -1,0 +1,19 @@
+heroSub: "I'm an NUS Computer Sciences undergrad. Cloud, agents, craft brewing — a small constellation of obsessions and the projects they keep producing."
+valuesHeading: 'A few working principles'
+
+intro: "I'm Daniel — a Computer Sciences undergrad at NUS, a hall-tech-club president, and a serial side-projector. I build mostly on AWS, write mostly in TypeScript and Java, and I've been quietly running brew batches out of a closet since 2024."
+what: "Right now I'm mostly interested in the seam between cloud platforms and language-model agents — what does developer infrastructure look like when half your users are LLMs? Adjacent obsessions: small-batch fermentation, fountain pens, and Tigran Hamasyan."
+values:
+  - label: "Build like nobody's watching"
+    note: 'Most of my best work runs on hardware in a closet for an audience of eight.'
+  - label: 'Write to think'
+    note: 'Most of my arguments with myself only resolve in a markdown file.'
+  - label: 'Leave the codebase warmer'
+    note: "If a teammate is faster after my PR, the PR was good. If only the linter is happier, it wasn't."
+factoids:
+  - { k: 'Based in', v: 'Singapore' }
+  - { k: 'Currently at', v: 'NUS Computer Sciences' }
+  - { k: 'Currently brewing', v: 'Saison batch 03' }
+  - { k: 'Currently reading', v: 'How Buildings Learn — S. Brand' }
+  - { k: 'Last cert', v: 'AWS Solutions Architect Associate' }
+  - { k: 'Next cert', v: 'CKA, July 2026' }

@@ -1,0 +1,134 @@
+---
+const { pathname } = Astro.url;
+const isActive = (href: string) => (href === '/' ? pathname === '/' : pathname.startsWith(href));
+
+const links = [
+  { href: '/', label: 'Home', key: 'home' },
+  { href: '/about', label: 'About', key: 'about' },
+  { href: '/projects', label: 'Projects', key: 'projects' },
+  { href: '/experience', label: 'Experience', key: 'experience' },
+];
+---
+
+<header class="topnav" id="topnav" aria-label="Primary">
+  <div class="topnav-inner">
+    <a href="/" class="brand" aria-label="home">
+      <img src="/assets/banana.png" alt="" width="22" height="22" aria-hidden="true" />
+      <span>algebananazzzzz</span>
+    </a>
+
+    <nav class="nav-links" aria-label="primary">
+      {
+        links.map(({ href, label, key }) => (
+          <a
+            href={href}
+            aria-current={isActive(href) ? 'page' : undefined}
+            class:list={['nav-link', isActive(href) ? 'active' : '']}
+            data-nav-key={key}
+          >
+            {label}
+          </a>
+        ))
+      }
+      <a
+        href="/milky-way"
+        class="milky-pill"
+        aria-current={isActive('/milky-way') ? 'page' : undefined}
+        aria-label="enter the milky way"
+      >
+        <span class="star" aria-hidden="true"></span>
+        <span>Milky Way</span>
+        <svg
+          class="arrow"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path>
+        </svg>
+      </a>
+    </nav>
+
+    <div class="topnav-tools">
+      <div
+        class="meteor-counter zero"
+        id="meteor-counter"
+        title="Watch for shooting stars — click one to catch it"
+        aria-label="Challenge: catch a meteor"
+      >
+        <svg
+          class="ico"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M3 21 L13 11"></path>
+          <path d="M14 4 L20 10"></path>
+          <path d="M18 4 L21 7" opacity=".6"></path>
+          <circle cx="13.5" cy="10.5" r="2.2" fill="currentColor" stroke="none"></circle>
+        </svg>
+        <span class="lbl">catch a meteor</span>
+        <span class="num">0</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  const nav = document.getElementById('topnav');
+  const counter = document.getElementById('meteor-counter');
+  if (nav) {
+    const isHome = document.documentElement.dataset.home === 'true';
+
+    if (!isHome) {
+      // Non-home pages: nav is visible immediately, no scroll gate.
+      nav.classList.add('is-visible');
+    } else {
+      // Home: reveal once we're past the splash (~80% of viewport).
+      const update = () => {
+        const y = window.scrollY || 0;
+        nav.classList.toggle('is-visible', y > window.innerHeight * 0.8);
+      };
+      update();
+      window.addEventListener('scroll', update, { passive: true });
+      window.addEventListener('resize', update);
+    }
+  }
+
+  if (counter) {
+    const KEY = 'meteors-caught';
+    const numEl = counter.querySelector('.num');
+    const lblEl = counter.querySelector('.lbl');
+    const read = () => {
+      try {
+        return parseInt(localStorage.getItem(KEY) ?? '0', 10) || 0;
+      } catch {
+        return 0;
+      }
+    };
+    const render = (n: number) => {
+      if (numEl) numEl.textContent = String(n);
+      if (lblEl) lblEl.textContent = n === 0 ? 'catch a meteor' : 'meteors caught';
+      counter.classList.toggle('zero', n === 0);
+      counter.classList.toggle('have', n > 0);
+    };
+    render(read());
+    window.addEventListener('meteor-caught', () => {
+      const next = read() + 1;
+      try {
+        localStorage.setItem(KEY, String(next));
+      } catch {}
+      counter.classList.add('bump');
+      setTimeout(() => counter.classList.remove('bump'), 900);
+      render(next);
+    });
+  }
+</script>

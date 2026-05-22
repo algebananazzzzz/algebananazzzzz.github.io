@@ -1,0 +1,29 @@
+---
+import Base from '@/layouts/Base.astro';
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import ProjectsList from '@/components/island/ProjectsList';
+import siteRaw from '@/content/site.yaml';
+
+type SiteData = { pages: { projects: { lead: string } } };
+const site = siteRaw as SiteData;
+
+const projectEntries = await getCollection('projects');
+const projects = projectEntries.map((p: CollectionEntry<'projects'>) => p.data);
+---
+
+<Base title="projects" description="projects in orbit." accent="sunset">
+  <div class="page projects-page">
+    <div class="page-head">
+      <div class="section-eyebrow">— projects —</div>
+      <h1 class="page-title">
+        Projects <span class="grad-text g-sunset">in orbit</span>.
+      </h1>
+      <p class="page-lead">
+        {site.pages.projects.lead}
+      </p>
+    </div>
+
+    <ProjectsList client:idle projects={projects} />
+  </div>
+</Base>

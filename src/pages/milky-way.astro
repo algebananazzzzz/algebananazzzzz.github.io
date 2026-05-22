@@ -1,0 +1,92 @@
+---
+import Base from '@/layouts/Base.astro';
+import MilkyWay from '@/components/island/MilkyWay';
+import MilkyWayStreak from '@/components/island/MilkyWayStreak';
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+
+type NoteData = CollectionEntry<'notes'>['data'];
+type ClusterData = CollectionEntry<'clusters'>['data'];
+
+const noteEntries = await getCollection('notes');
+const notes = noteEntries.map((n: CollectionEntry<'notes'>) => n.data);
+
+const clusterEntries = await getCollection('clusters');
+const clusters = clusterEntries.map((c: CollectionEntry<'clusters'>) => c.data);
+
+const total = notes.length;
+const totalLinks = notes.reduce((s: number, n: NoteData) => s + (n.links ?? 0), 0);
+
+const recent = [...notes]
+  .sort((a: NoteData, b: NoteData) => b.date.localeCompare(a.date))
+  .slice(0, 6);
+
+const clusterColorById: Record<string, string> = Object.fromEntries(
+  clusters.map((c: ClusterData) => [c.id, c.dotColor]),
+);
+
+const buildDate = Date.now();
+function noteMagnitude(n: NoteData): number {
+  const linkBonus = (n.links ?? 0) * -0.35;
+  let ageDays = 0;
+  if (n.date && /^\d{4}-\d{2}-\d{2}/.test(n.date)) {
+    ageDays = Math.max(0, (buildDate - Date.parse(n.date)) / 86400000);
+  }
+  const agePenalty = Math.log(Math.max(1, ageDays)) * 0.45;
+  return -2.0 + linkBonus + agePenalty;
+}
+function formatMagnitude(m: number): string {
+  const sign = m >= 0 ? '+' : '';
+  return `M ${sign}${m.toFixed(1)}`;
+}
+---
+
+<Base
+  title="milky way"
+  description="a sky of half-formed thoughts."
+  accent="cosmic"
+  mwPage={true}
+>
+  <div class="mw-page-bg" aria-hidden="true">
+    <MilkyWayStreak client:only="react" />
+  </div>
+
+  <div class="mw-page">
+    <div class="mw-head">
+      <div class="section-eyebrow">— digital garden · the milky way —</div>
+      <h1 class="mw-title">
+        <span class="grad-text g-cosmic">A whole sky</span> of half-formed thoughts.
+      </h1>
+      <p class="mw-sub">
+        {total} notes laid out along the band. {totalLinks} wiki-links between them. Bigger stars mean
+        more backlinks. Hover any to read the title, click to open the note.
+      </p>
+    </div>
+
+    <MilkyWay client:idle notes={notes} clusters={clusters} />
+
+    <section class="mw-recent">
+      <div class="section-eyebrow">— recently watered —</div>
+      <h2 class="mw-recent-title-row">The notes in motion this fortnight.</h2>
+      <div class="mw-recent-list">
+        {
+          recent.map((n) => (
+            <button class="mw-recent-row" type="button">
+              <span class="mw-recent-date">{n.date}</span>
+              <span class="mw-recent-title">{n.title}</span>
+              <span class="mw-recent-meta">
+                <span class="dot" style={`background:${clusterColorById[n.cluster] ?? '#fff'}`} />
+                <span>{n.cluster}</span>
+                <span class="magnitude" title="Magnitude — lower is brighter">
+                  {formatMagnitude(noteMagnitude(n))}
+                </span>
+                <span class="muted">· {n.links} links</span>
+              </span>
+              <span class="mw-recent-arrow">→</span>
+            </button>
+          ))
+        }
+      </div>
+    </section>
+  </div>
+</Base>

@@ -1,0 +1,5 @@
+- { id: brewery, label: 'craft brewery', dotColor: '#F97316' }
+- { id: llm, label: 'llm meta-prompting', dotColor: '#22D3EE' }
+- { id: cloud, label: 'cloud architecture', dotColor: '#B02EED' }
+- { id: reading, label: 'reading & reflection', dotColor: '#FFC700' }
+- { id: general, label: 'field notes', dotColor: '#9ca3af' }
