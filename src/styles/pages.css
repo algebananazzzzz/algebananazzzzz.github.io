@@ -229,6 +229,10 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-8);
+  background: rgba(2, 6, 23, 0.45);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  border: 1px solid rgba(148, 163, 184, 0.08);
 }
 .project-row {
   display: grid;
@@ -257,13 +261,13 @@
   gap: 6px;
 }
 .project-row-side .project-tech .tag {
-  padding: 2px 9px;
-  border: 1px solid rgba(148, 163, 184, 0.2);
+  padding: 2px 8px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
   border-radius: 999px;
   font-family: var(--font-mono);
   font-size: 10px;
-  color: rgba(229, 231, 235, 0.7);
-  letter-spacing: 0.04em;
+  color: #f1f5f9;
+  letter-spacing: 0.02em;
 }
 .project-row-role,
 .project-row-impact {
@@ -272,26 +276,25 @@
   color: var(--fg-3);
   letter-spacing: 0.04em;
 }
-.project-row-impact {
-  color: var(--fuchsia);
-}
 .project-row-title {
   font-size: var(--text-3xl);
   font-weight: var(--weight-medium);
-  color: var(--fg-1);
+  color: #ffffff;
   margin: 0;
   letter-spacing: -0.02em;
   line-height: 1.05;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
 }
 .project-row-tagline {
   font-size: var(--text-lg);
-  color: var(--fg-1);
+  color: #e2e8f0;
   margin: 8px 0 var(--space-4);
   line-height: var(--leading-normal);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 .project-row-summary {
   font-size: var(--text-base);
-  color: var(--fg-1);
+  color: var(--fg-2);
   line-height: var(--leading-relaxed);
   margin: 0 0 var(--space-4);
   max-width: 64ch;
@@ -315,7 +318,7 @@
   content: '·';
   position: absolute;
   left: 8px;
-  top: -2px;
+  top: 2px;
   color: var(--star);
   font-size: 18px;
   line-height: 1;

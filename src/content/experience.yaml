@@ -1,39 +1,39 @@
 - id: stripe-intern
-  span: '2025-06 — 2025-08'
+  date: '2025-06 — 2025-08'
   role: 'Cloud Engineer Intern'
   org: 'Stripe (Singapore)'
   summary: "On the internal platform team. Built a Terraform module library other product teams now pull from — halved time-to-deploy for one 14-service mesh. Wrote the IAM hardening guide that's now part of new-hire onboarding."
   tags: [aws, terraform, kubernetes]
-  star: { type: neutron, brightness: 2 }
+  star: blackhole
 
 - id: grab-intern
-  span: '2024-06 — 2024-08'
+  date: '2024-06 — 2024-08'
   role: 'Software Engineer Intern'
   org: 'Grab'
   summary: "Shipped two production features on the merchant analytics surface end-to-end, and quietly rewrote the integration-test harness — went from 18 minutes to 4. Got the harness into the team's default CI template before I left."
   tags: [typescript, 'next.js', postgres]
-  star: { type: giant, brightness: 3 }
+  star: giant
 
 - id: nus-ta
-  span: '2024-01 — present'
+  date: '2024-01 — present'
   role: 'Teaching Assistant · CS2030'
   org: 'National University of Singapore'
   summary: "TA-ing Programming Methodology II — 60 students per semester. Wrote a side-pack of practice problems that's become unofficial-canon among the next cohorts of TAs."
   tags: [teaching, java, fp]
-  star: { type: subgiant, brightness: 4 }
+  star: subgiant
 
 - id: nus-undergrad
-  span: '2023 — present'
+  date: '2023 — present'
   role: 'Computer Sciences Undergrad'
   org: 'National University of Singapore'
   summary: 'Specialising in distributed systems and programming languages. GPA 4.6/5.0. President of the Sheares Hall tech club; we ship one thing every semester whether anyone asks for it or not.'
   tags: [systems, PL, distributed]
-  star: { type: mainseq, brightness: 5 }
+  star: mainseq
 
 - id: saf-cyber
-  span: '2021 — 2023'
+  date: '2021 — 2023'
   role: 'Cyber Specialist (NS)'
   org: 'Singapore Armed Forces · Digital and Intelligence Service'
   summary: 'Two years on a small Linux-and-Python team. Wrote the on-call runbook the unit still uses, learned more about packet captures than any 19-year-old needs to.'
   tags: [linux, python, security]
-  star: { type: protostar, brightness: 6 }
+  star: protostar

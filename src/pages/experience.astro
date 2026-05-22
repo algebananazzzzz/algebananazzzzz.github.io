@@ -1,39 +1,28 @@
 ---
 import Base from '@/layouts/Base.astro';
-import { getCollection } from 'astro:content';
-import type { CollectionEntry } from 'astro:content';
 import CareerList from '@/components/island/CareerList';
+import { getCareerEntries } from '@/lib/getCareerEntries';
+import siteRaw from '@/content/site.yaml';
 
-const expEntries = await getCollection('experience');
-const exps: CollectionEntry<'experience'>['data'][] = expEntries.map(
-  (e: CollectionEntry<'experience'>) => e.data,
-);
+type SiteData = { pages: { experience: { lead: string } } };
+const site = siteRaw as SiteData;
 
-const careerEntries = exps.map((e) => ({
-  id: e.id,
-  span: e.span,
-  role: e.role,
-  org: e.org,
-  summary: e.summary,
-  tags: e.tags ?? [],
-  starType: e.star?.type ?? 'mainseq',
-}));
+const careerEntries = await getCareerEntries();
 ---
 
 <Base
   title="experience"
-  description="trajectory through cloud, agents, and teaching."
+  description="experience in light-years."
   accent="nebula"
 >
   <div class="page">
     <div class="page-head">
       <div class="section-eyebrow">— experience —</div>
       <h1 class="page-title">
-        A <span class="grad-text g-nebula">trajectory</span> in five stops.
+        Experience <span class="grad-text g-nebula">in light-years</span>.
       </h1>
       <p class="page-lead">
-        Internships, the hall I mostly live in, and the two years of NS that gave me a working
-        knowledge of tcpdump and a deep respect for runbooks.
+        {site.pages.experience.lead}
       </p>
     </div>
 

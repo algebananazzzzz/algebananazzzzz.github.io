@@ -25,16 +25,6 @@ const FILTERS: { id: string; label: string }[] = [
   { id: 'general', label: 'general' },
 ];
 
-const TECH_LABEL: Record<string, string> = {
-  aws: 'AWS',
-  react: 'React',
-  tailwindcss: 'Tailwind',
-  gatsby: 'Gatsby',
-  docker: 'Docker',
-  kubernetes: 'Kubernetes',
-  terraform: 'Terraform',
-};
-
 export default function ProjectsList({ projects }: Props) {
   const [filter, setFilter] = useState<string>('all');
   const filtered = filter === 'all' ? projects : projects.filter((p) => p.cluster === filter);
@@ -61,7 +51,7 @@ export default function ProjectsList({ projects }: Props) {
               <div className="project-tech" aria-label="stack">
                 {p.tech.map((t) => (
                   <span key={t} className="tag">
-                    {TECH_LABEL[t] ?? t}
+                    {t}
                   </span>
                 ))}
               </div>

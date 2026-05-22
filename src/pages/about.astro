@@ -3,6 +3,8 @@ import Base from '@/layouts/Base.astro';
 import aboutRaw from '@/content/about.yaml';
 
 type AboutData = {
+  heroSub: string;
+  valuesHeading: string;
   intro: string;
   what: string;
   values: { label: string; note: string }[];
@@ -12,12 +14,12 @@ type AboutData = {
 const about = aboutRaw as AboutData;
 ---
 
-<Base title="about" description="who Daniel is and how he works." accent="aurora">
+<Base title="about" description="about the pilot." accent="aurora">
   <div class="page">
     <div class="page-head">
       <div class="section-eyebrow">— about —</div>
       <h1 class="page-title">
-        A short letter <span class="grad-text g-aurora">from the desk</span>.
+        About <span class="grad-text g-aurora">the pilot</span>.
       </h1>
     </div>
 
@@ -26,7 +28,7 @@ const about = aboutRaw as AboutData;
         <p class="about-lead">{about.intro}</p>
         <p class="about-body">{about.what}</p>
 
-        <h3 class="about-h3">A few working principles</h3>
+        <h3 class="about-h3">{about.valuesHeading}</h3>
         <ul class="about-values">
           {
             about.values.map((v) => (

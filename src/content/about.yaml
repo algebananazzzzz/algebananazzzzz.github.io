@@ -1,3 +1,6 @@
+heroSub: "I'm an NUS Computer Sciences undergrad. Cloud, agents, craft brewing — a small constellation of obsessions and the projects they keep producing."
+valuesHeading: 'A few working principles'
+
 intro: "I'm Daniel — a Computer Sciences undergrad at NUS, a hall-tech-club president, and a serial side-projector. I build mostly on AWS, write mostly in TypeScript and Java, and I've been quietly running brew batches out of a closet since 2024."
 what: "Right now I'm mostly interested in the seam between cloud platforms and language-model agents — what does developer infrastructure look like when half your users are LLMs? Adjacent obsessions: small-batch fermentation, fountain pens, and Tigran Hamasyan."
 values:

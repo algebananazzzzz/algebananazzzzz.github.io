@@ -4,7 +4,19 @@ import { file } from 'astro/loaders';
 const ClusterId = z.enum(['brewery', 'llm', 'cloud', 'reading', 'general']);
 const Accent = z.enum(['cosmic', 'sunset', 'aurora', 'nebula']);
 const Status = z.enum(['seedling', 'budding', 'evergreen']);
-const StarType = z.enum(['neutron', 'giant', 'subgiant', 'mainseq', 'protostar', 'whitedwarf']);
+const StarType = z.enum([
+  'neutron',
+  'giant',
+  'subgiant',
+  'mainseq',
+  'protostar',
+  'whitedwarf',
+  'dwarf',
+  'kmain',
+  'gmain',
+  'bgiant',
+  'blackhole',
+]);
 
 const projects = defineCollection({
   loader: file('src/content/projects.yaml'),
@@ -27,12 +39,12 @@ const experience = defineCollection({
   loader: file('src/content/experience.yaml'),
   schema: z.object({
     id: z.string(),
-    span: z.string(),
+    date: z.string(),
     role: z.string(),
     org: z.string(),
     summary: z.string(),
     tags: z.array(z.string()),
-    star: z.object({ type: StarType, brightness: z.number() }),
+    star: StarType,
   }),
 });
 

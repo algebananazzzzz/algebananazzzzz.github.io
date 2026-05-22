@@ -1,4 +1,4 @@
-# algebananazzzzz — Constellation Explorer
+# algebananazzzzz — Personal Portfolio + Digital Garden
 
 A personal portfolio + digital garden built as an interactive cartoon cosmos. Five pages laid out like a star map: a splash hero, an orrery of what I'm doing now, a gravity-warped project board, a stellar trajectory of my work history, and a milky-way constellation of notes.
 

@@ -1,5 +1,6 @@
 ---
 import siteRaw from '@/content/site.yaml';
+import mottosRaw from '@/content/mottos.yaml';
 
 type SiteData = {
   name: string;
@@ -10,12 +11,14 @@ type SiteData = {
   socials: Record<string, string>;
 };
 
+type Motto = { id: string; text: string; cluster: string; noteId: string };
+
 const siteData = siteRaw as SiteData;
 const socials = siteData.socials;
+const mottos = (mottosRaw as Motto[]).map((m) => m.text);
 
 const ICONS = [
   { key: 'github', src: '/assets/icons/github-dark.svg', label: 'GitHub' },
-  { key: 'gitlab', src: '/assets/icons/gitlab-dark.svg', label: 'GitLab' },
   { key: 'linkedin', src: '/assets/icons/linkedin-dark.svg', label: 'LinkedIn' },
   { key: 'email', src: '/assets/icons/email-dark.svg', label: 'Email' },
 ];
@@ -30,12 +33,17 @@ const iconLinks = ICONS.map((i) => ({ ...i, url: socials[i.key] }))
 
 const githubUrl = socials.github ?? '';
 const sourceDisplay = githubUrl.replace(/^https?:\/\//, '');
+
+const buildDate = new Date();
+const updatedStr = `updated ${buildDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}`;
 ---
 
 <footer class="footer" data-accent="nebula">
   <div class="col-left">
-    <div class="quote">&ldquo;Learning is always free.&rdquo;</div>
-    <div>Daniel · Singapore · since 2021</div>
+    <div class="quote" id="footer-quote" data-mottos={JSON.stringify(mottos)}>
+      &ldquo;Learning is always free.&rdquo;
+    </div>
+    <div>Daniel · Singapore · {updatedStr}</div>
   </div>
   <div class="icons">
     {
@@ -53,10 +61,35 @@ const sourceDisplay = githubUrl.replace(/^https?:\/\//, '');
     }
   </div>
   <div class="col-right">
-    <div>theme · constellation explorer</div>
+    <div>theme · nebulae</div>
     <div>source · {sourceDisplay}</div>
     <div style="margin-top: 6px; color: rgba(229,231,235,0.7);">
-      built with bananas <span aria-hidden="true">🍌</span>
+      built with love <span aria-hidden="true">❤</span>
     </div>
   </div>
 </footer>
+
+<script>
+  const el = document.getElementById('footer-quote');
+  if (el) {
+    const mottos: string[] = JSON.parse(el.dataset.mottos || '[]');
+    if (mottos.length > 1) {
+      let idx = mottos.indexOf('Learning is always free.');
+      if (idx === -1) idx = 0;
+
+      const DISPLAY = 12000;
+      const FADE = 2000;
+
+      const cycle = () => {
+        el.classList.add('fade-out');
+        setTimeout(() => {
+          idx = (idx + 1) % mottos.length;
+          el.textContent = `\u201C${mottos[idx]}\u201D`;
+          el.classList.remove('fade-out');
+        }, FADE);
+      };
+
+      setInterval(cycle, DISPLAY);
+    }
+  }
+</script>

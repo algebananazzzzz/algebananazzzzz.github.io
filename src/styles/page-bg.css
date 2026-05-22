@@ -45,9 +45,9 @@ html[data-accent] .page::after {
   );
 }
 html[data-accent='sunset'] .page::before {
-  background: radial-gradient(ellipse 70% 60% at 18% 22%, rgba(250, 204, 21, 0.55), transparent 65%),
-    radial-gradient(ellipse 80% 70% at 80% 75%, rgba(220, 38, 38, 0.55), transparent 65%),
-    radial-gradient(ellipse 50% 40% at 50% 50%, rgba(249, 115, 22, 0.35), transparent 70%),
+  background: radial-gradient(ellipse 70% 60% at 18% 22%, rgba(250, 204, 21, 0.35), transparent 65%),
+    radial-gradient(ellipse 80% 70% at 80% 75%, rgba(220, 38, 38, 0.35), transparent 65%),
+    radial-gradient(ellipse 50% 40% at 50% 50%, rgba(249, 115, 22, 0.2), transparent 70%),
     linear-gradient(135deg, #2a1108 0%, #1a0710 50%, #0b0510 100%);
 }
 html[data-accent='aurora'] .page::before {
@@ -106,6 +106,10 @@ html[data-accent='nebula'] .cosmos {
    `mwPage` prop), so this file only owns the page background + streak placement.
    The streak's painterly content lives in MilkyWayStreak.tsx — this rule only
    anchors and tilts the SVG. */
+body[data-mw-page='true'],
+html:has(body[data-mw-page='true']) {
+  background: transparent;
+}
 .mw-page-bg {
   position: fixed;
   inset: 0;

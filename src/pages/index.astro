@@ -5,11 +5,13 @@ import type { CollectionEntry } from 'astro:content';
 import clustersRaw from '@/content/clusters.yaml';
 import mottosRaw from '@/content/mottos.yaml';
 import nowRaw from '@/content/now.yaml';
+import aboutRaw from '@/content/about.yaml';
 import Splash from '@/components/island/Splash';
 import Orrery from '@/components/island/Orrery';
 import ProjectsConst from '@/components/island/ProjectsConst';
 import CareerList from '@/components/island/CareerList';
 import MilkyWay from '@/components/island/MilkyWay';
+import { getCareerEntries } from '@/lib/getCareerEntries';
 
 type ClusterEntry = { id: string; label: string; dotColor: string };
 const clustersData = clustersRaw as ClusterEntry[];
@@ -26,29 +28,19 @@ type NowData = {
 };
 const nowData = nowRaw as NowData;
 
+type AboutData = { heroSub: string };
+const about = aboutRaw as AboutData;
+
 const projectEntries = await getCollection('projects');
 const projects = projectEntries.map((p: CollectionEntry<'projects'>) => p.data);
 
-const expEntries = await getCollection('experience');
-const exps: CollectionEntry<'experience'>['data'][] = expEntries
-  .map((e: CollectionEntry<'experience'>) => e.data)
-  .slice(0, 3);
+const careerEntries = await getCareerEntries(3);
 
 const clusterEntries = await getCollection('clusters');
 const clusters = clusterEntries.map((c: CollectionEntry<'clusters'>) => c.data);
 
 const noteEntries = await getCollection('notes');
 const allNotes = noteEntries.map((n: CollectionEntry<'notes'>) => n.data);
-
-const careerEntries = exps.map((e) => ({
-  id: e.id,
-  span: e.span,
-  role: e.role,
-  org: e.org,
-  summary: e.summary,
-  tags: e.tags ?? [],
-  starType: e.star?.type ?? 'mainseq',
-}));
 
 const orbitingClusters = clustersData.filter((c) => c.id !== 'general');
 const mottoEntry = mottosData.find((m) => m.id === 'motto-11');
@@ -66,8 +58,7 @@ const motto = mottoEntry?.text ?? 'Wonder is a renewable resource.';
         Welcome to my <em>nebula</em>.
       </h2>
       <p class="hero-sub">
-        I'm an NUS Computer Sciences undergrad. Cloud, agents, craft brewing — a small constellation
-        of obsessions and the projects they keep producing.
+        {about.heroSub}
       </p>
 
       <div class="hero-motto">

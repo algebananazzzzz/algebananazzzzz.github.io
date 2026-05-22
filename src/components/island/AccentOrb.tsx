@@ -14,11 +14,21 @@ const layers: Record<Accent, string> = {
 };
 
 export default function AccentOrb() {
-  const [accent, setAccent] = useState<Accent>('cosmic');
+  const [accent, setAccent] = useState<Accent>(() => {
+    if (typeof document === 'undefined') return 'cosmic';
+    const initial = document.documentElement.getAttribute('data-accent');
+    return initial && initial in layers ? (initial as Accent) : 'cosmic';
+  });
+  const [drivenBySections, setDrivenBySections] = useState(false);
 
   useEffect(() => {
-    const sections = Array.from(document.querySelectorAll<HTMLElement>('[data-accent]'));
+    // Only observe in-flow content sections (home page). Excludes <html>
+    // (page-level accent set by Base.astro) and <footer data-accent="nebula">
+    // (a sibling of <main>) so sub-pages don't get their accent hijacked when
+    // the footer scrolls into view.
+    const sections = Array.from(document.querySelectorAll<HTMLElement>('main [data-accent]'));
     if (!sections.length) return;
+    setDrivenBySections(true);
     const io = new IntersectionObserver(
       (entries) => {
         const visible = entries
@@ -36,10 +46,14 @@ export default function AccentOrb() {
   }, []);
 
   useEffect(() => {
+    // Only write back to <html data-accent> on pages that actually drive the
+    // accent from observed sections (home). On sub-pages Base.astro is the
+    // sole source of truth.
+    if (!drivenBySections) return;
     if (typeof document !== 'undefined') {
       document.documentElement.setAttribute('data-accent', accent);
     }
-  }, [accent]);
+  }, [accent, drivenBySections]);
 
   return (
     <div className="accent-orb" aria-hidden="true">

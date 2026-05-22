@@ -40,6 +40,17 @@
 .footer .col-left .quote {
   color: rgba(229, 231, 235, 0.78);
   font-style: italic;
+  transition: opacity 2000ms ease;
+}
+
+.footer .col-left .quote.fade-out {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footer .col-left .quote {
+    transition: none;
+  }
 }
 
 .footer .icons {
