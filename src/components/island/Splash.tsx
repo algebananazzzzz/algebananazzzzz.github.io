@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { computeStardate } from '@/lib/stardate';
 import { useReducedComplexity } from '@/lib/useReducedComplexity';
+import s from './Splash.module.css';
 
 const warpLines = Array.from({ length: 38 }, (_, i) => {
   const x = (i * 27.7) % 100;
@@ -165,39 +166,39 @@ export default function Splash() {
   };
 
   return (
-    <section className="splash" aria-label="welcome" data-accent="cosmic">
-      <div ref={warpRef} className="splash-warp" aria-hidden="true">
+    <section className={s.splash} aria-label="welcome" data-accent="cosmic">
+      <div ref={warpRef} className={s.splashWarp} aria-hidden="true">
         {warpLines.map((l) => (
           <span
             key={l.key}
-            className="warp-line"
+            className={s.warpLine}
             style={{ left: `${l.x}%`, top: `calc(50% + ${l.yJitter}vh)`, height: `${l.len}vh` }}
           />
         ))}
       </div>
 
-      <div ref={horizonRef} className="splash-horizon" aria-hidden="true" />
+      <div ref={horizonRef} className={s.splashHorizon} aria-hidden="true" />
 
-      <div ref={innerRef} className="splash-inner">
-        <div ref={eyebrowRef} className="splash-eyebrow">
-          <span className="dot" />
+      <div ref={innerRef} className={s.splashInner}>
+        <div ref={eyebrowRef} className={s.splashEyebrow}>
+          <span className={s.dot} />
           <span>
             singapore · 1.3°n · stardate{' '}
-            <span className="stardate-num" ref={stardateRef} suppressHydrationWarning>
+            <span className={s.stardateNum} ref={stardateRef} suppressHydrationWarning>
               {computeStardate()}
             </span>
           </span>
         </div>
-        <h1 className="splash-hello">
+        <h1 className={s.splashHello}>
           Hello, I'm <em>Daniel</em>
         </h1>
-        <div ref={subRef} className="splash-sub">
+        <div ref={subRef} className={s.splashSub}>
           <span>NUS Computer Sciences</span>
-          <span className="sep" />
+          <span className={s.sep} />
           <span>builder</span>
-          <span className="sep" />
+          <span className={s.sep} />
           <span>brewer</span>
-          <span className="sep" />
+          <span className={s.sep} />
           <span>stargazer</span>
         </div>
       </div>
@@ -205,13 +206,13 @@ export default function Splash() {
       <button
         ref={hintRef}
         onClick={onClickHint}
-        className="splash-scrollhint"
+        className={s.splashScrollhint}
         type="button"
         aria-label="descend into the nebula"
       >
         <span>descent into the nebula</span>
         <svg
-          className="chev"
+          className={s.chev}
           width="34"
           height="34"
           viewBox="0 0 24 24"

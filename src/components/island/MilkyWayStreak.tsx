@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import './MilkyWay.module.css';
 
 type Dust = { x: number; y: number; r: number; op: number; warm: boolean };
 

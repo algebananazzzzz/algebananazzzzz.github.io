@@ -11,6 +11,9 @@ export default defineConfig({
   output: 'static',
   trailingSlash: 'ignore',
   integrations: [react(), mdx(), sitemap()],
-  vite: { plugins: [yaml(), tailwindcss()] },
+  vite: {
+    plugins: [yaml(), tailwindcss()],
+    css: { modules: { localsConvention: 'camelCase' } },
+  },
   build: { inlineStylesheets: 'auto' },
 });

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import s from './ProjectsList.module.css';
 
 export interface ProjectItem {
   id: string;
@@ -31,12 +32,12 @@ export default function ProjectsList({ projects }: Props) {
 
   return (
     <>
-      <div className="page-filter">
+      <div className={s.pageFilter}>
         {FILTERS.map((f) => (
           <button
             key={f.id}
             type="button"
-            className={`page-filter-btn ${filter === f.id ? 'active' : ''}`}
+            className={`${s.pageFilterBtn} ${filter === f.id ? s.active : ''}`}
             onClick={() => setFilter(f.id)}
           >
             {f.label}
@@ -44,30 +45,30 @@ export default function ProjectsList({ projects }: Props) {
         ))}
       </div>
 
-      <div className="projects-list">
+      <div className={s.projectsList}>
         {filtered.map((p) => (
-          <article key={p.id} className="project-row">
-            <div className="project-row-side">
-              <div className="project-tech" aria-label="stack">
+          <article key={p.id} className={s.projectRow}>
+            <div className={s.projectRowSide}>
+              <div className={s.projectTech} aria-label="stack">
                 {p.tech.map((t) => (
                   <span key={t} className="tag">
                     {t}
                   </span>
                 ))}
               </div>
-              <div className="project-row-role">{p.role}</div>
-              <div className="project-row-impact">{p.impact}</div>
+              <div className={s.projectRowRole}>{p.role}</div>
+              <div className={s.projectRowImpact}>{p.impact}</div>
             </div>
-            <div className="project-row-body">
-              <h2 className="project-row-title">{p.title}</h2>
-              <p className="project-row-tagline">{p.tagline}</p>
-              <p className="project-row-summary">{p.summary}</p>
-              <ul className="project-row-bullets">
+            <div>
+              <h2 className={s.projectRowTitle}>{p.title}</h2>
+              <p className={s.projectRowTagline}>{p.tagline}</p>
+              <p className={s.projectRowSummary}>{p.summary}</p>
+              <ul className={s.projectRowBullets}>
                 {p.bullets.map((b, i) => (
                   <li key={i}>{b}</li>
                 ))}
               </ul>
-              <div className="project-row-cta">
+              <div className={s.projectRowCta}>
                 <a href={p.href} target="_blank" rel="noreferrer" className="cta-secondary">
                   source
                   <svg

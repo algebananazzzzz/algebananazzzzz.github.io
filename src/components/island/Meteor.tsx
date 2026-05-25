@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { computeStardate } from '@/lib/stardate';
 import { useReducedComplexity } from '@/lib/useReducedComplexity';
+import s from './Meteor.module.css';
 
 type Quote = { text: string; cluster: string };
 
@@ -52,7 +53,7 @@ export default function Meteor({ enabled = true, intervalMs = 30_000 }: Props) {
       indexRef.current++;
 
       const node = document.createElement('div');
-      node.className = 'meteor';
+      node.className = s.meteor;
       node.setAttribute('role', 'button');
       node.setAttribute('tabindex', '0');
       node.setAttribute('aria-label', `Meteor: "${q.text}". Click to keep it.`);
@@ -62,12 +63,12 @@ export default function Meteor({ enabled = true, intervalMs = 30_000 }: Props) {
       const angle = (Math.atan2(dy, dx) * 180) / Math.PI;
 
       node.innerHTML = `
-        <div class="meteor-rotor" style="transform: rotate(${angle}deg)">
-          <span class="trail"></span>
-          <span class="head"></span>
+        <div class="${s.meteorRotor}" style="transform: rotate(${angle}deg)">
+          <span class="${s.trail}"></span>
+          <span class="${s.head}"></span>
         </div>
-        <span class="quote">${escapeHtml(q.text)}</span>
-        <span class="catch-hint" aria-hidden="true">click to keep</span>
+        <span class="${s.quote}">${escapeHtml(q.text)}</span>
+        <span class="${s.catchHint}" aria-hidden="true">click to keep</span>
       `;
 
       node.style.left = startX + 'px';
@@ -92,13 +93,13 @@ export default function Meteor({ enabled = true, intervalMs = 30_000 }: Props) {
         if (removeT) clearTimeout(removeT);
         fadeT = setTimeout(
           () => {
-            if (!node.classList.contains('caught')) node.style.opacity = '0';
+            if (!node.classList.contains(s.caught)) node.style.opacity = '0';
           },
           Math.max(0, msLeft - 1400),
         );
         removeT = setTimeout(
           () => {
-            if (!node.classList.contains('caught')) node.remove();
+            if (!node.classList.contains(s.caught)) node.remove();
           },
           Math.max(0, msLeft + 200),
         );
@@ -107,11 +108,11 @@ export default function Meteor({ enabled = true, intervalMs = 30_000 }: Props) {
 
       const onCatch = (ev: Event) => {
         ev.stopPropagation();
-        if (released || node.classList.contains('caught')) return;
+        if (released || node.classList.contains(s.caught)) return;
 
         // Measure head viewport position NOW — before caught CSS changes the layout.
         // getBoundingClientRect forces a sync layout, giving the exact flying position.
-        const headEl = node.querySelector('.head') as HTMLElement | null;
+        const headEl = node.querySelector(`.${s.head}`) as HTMLElement | null;
         const anchor = headEl ? headEl.getBoundingClientRect() : node.getBoundingClientRect();
         const headCX = anchor.left + anchor.width / 2;
         const headCY = anchor.top + anchor.height / 2;
@@ -124,7 +125,7 @@ export default function Meteor({ enabled = true, intervalMs = 30_000 }: Props) {
         node.style.transition = 'none';
         node.style.transform = currentTransform;
         node.style.opacity = '1';
-        node.classList.add('caught');
+        node.classList.add(s.caught);
         const pausedAt = performance.now();
         pausedFraction = Math.min(1, Math.max(0, (pausedAt - traversalStartT) / duration));
         if (fadeT) {
@@ -146,19 +147,19 @@ export default function Meteor({ enabled = true, intervalMs = 30_000 }: Props) {
         // Create callout as a layer sibling (not child of node) so it can be
         // positioned freely in viewport space without being clipped by the node.
         const callout = document.createElement('div');
-        callout.className = 'meteor-callout';
+        callout.className = s.meteorCallout;
         // Park off-screen + invisible while we measure callout dimensions.
         callout.style.cssText =
           'position:absolute;top:-9999px;left:-9999px;margin:0;visibility:hidden;pointer-events:auto;z-index:6;';
         const sd = computeStardate();
         callout.innerHTML = `
-          <div class="callout-quote">&ldquo;${escapeHtml(q.text)}&rdquo;</div>
-          <div class="callout-meta">
+          <div class="${s.calloutQuote}">&ldquo;${escapeHtml(q.text)}&rdquo;</div>
+          <div class="${s.calloutMeta}">
             <span class="dim">caught at stardate · ${sd}</span>
           </div>
-          <div class="callout-actions">
-            <button type="button" class="callout-dismiss">release</button>
-            <a class="callout-link" href="/milky-way">read more like this <span class="arr">→</span></a>
+          <div class="${s.calloutActions}">
+            <button type="button" class="${s.calloutDismiss}">release</button>
+            <a class="${s.calloutLink}" href="/milky-way">read more like this <span class="${s.arr}">→</span></a>
           </div>
         `;
         layer.appendChild(callout);
@@ -188,13 +189,13 @@ export default function Meteor({ enabled = true, intervalMs = 30_000 }: Props) {
         });
 
         const release = () => {
-          if (!node.classList.contains('caught')) return;
+          if (!node.classList.contains(s.caught)) return;
           released = true;
           node.style.pointerEvents = 'none';
           node.style.cursor = 'default';
-          callout.classList.add('releasing');
+          callout.classList.add(s.releasing);
           setTimeout(() => callout.remove(), 320);
-          node.classList.remove('caught');
+          node.classList.remove(s.caught);
           const remaining = Math.max(duration * (1 - pausedFraction), 5_000);
 
           // Rebase: move left/top to the current viewport position and reset
@@ -218,7 +219,7 @@ export default function Meteor({ enabled = true, intervalMs = 30_000 }: Props) {
 
           scheduleEndFade(remaining);
         };
-        const dismiss = callout.querySelector('.callout-dismiss');
+        const dismiss = callout.querySelector(`.${s.calloutDismiss}`);
         dismiss?.addEventListener('click', (e) => {
           e.stopPropagation();
           release();
@@ -259,7 +260,7 @@ export default function Meteor({ enabled = true, intervalMs = 30_000 }: Props) {
     };
   }, [enabled, intervalMs, reduced]);
 
-  return <div ref={layerRef} className="meteor-layer" aria-hidden="false" />;
+  return <div ref={layerRef} className={s.meteorLayer} aria-hidden="false" />;
 }
 
 function escapeHtml(s: string): string {

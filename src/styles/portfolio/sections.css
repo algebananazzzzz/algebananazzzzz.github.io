@@ -63,9 +63,8 @@
   margin-inline-end: -0.15em;
 }
 
-.splash-hello em,
 .hero-greeting em {
-  /* same fix applied wherever a gradient-clip italic sits next to a period */
+  /* gradient-clip italic overhang fix — .splash-hello em moved to Splash.module.css */
   display: inline-block;
   padding-inline-end: 0.15em;
   margin-inline-end: -0.15em;

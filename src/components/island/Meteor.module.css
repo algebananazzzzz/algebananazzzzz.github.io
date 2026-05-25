@@ -289,7 +289,9 @@
   }
 }
 
-@keyframes calloutIn-down {
+/* These two keyframes are referenced by name in JS (callout.style.animation),
+   so they must stay global to avoid scoped-name mismatch. */
+@keyframes :global(calloutIn-down) {
   from {
     opacity: 0;
     transform: translateY(8px) scale(0.96);
@@ -301,7 +303,7 @@
   }
 }
 
-@keyframes calloutIn-up {
+@keyframes :global(calloutIn-up) {
   from {
     opacity: 0;
     transform: translateY(-8px) scale(0.96);
@@ -389,8 +391,9 @@
   }
 }
 
-/* Note panel slide-in (used by NotePanel.tsx portal) */
-@keyframes noteSlideIn {
+/* Note panel slide-in (used by NotePanel.tsx portal) — global because it is
+   referenced from a different component. */
+@keyframes :global(noteSlideIn) {
   from {
     transform: translateX(100%);
     opacity: 0;

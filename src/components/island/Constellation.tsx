@@ -1,12 +1,6 @@
 import { useMemo, useState } from 'react';
-import {
-  forceSimulation,
-  forceLink,
-  forceManyBody,
-  forceCollide,
-  forceX,
-  forceY,
-} from 'd3-force';
+import css from './Constellation.module.css';
+import { forceSimulation, forceLink, forceManyBody, forceCollide, forceX, forceY } from 'd3-force';
 import type { SimulationNodeDatum, SimulationLinkDatum } from 'd3-force';
 import type { WikiPage, WikiTopic } from '@/types/wiki';
 
@@ -101,7 +95,10 @@ function runSimulation(pages: WikiPage[], topics: WikiTopic[]): GraphNode[] {
       'topicY',
       forceY<GraphNode>((d) => topicCenters.get(d.page.topic)?.y ?? VB_H / 2).strength(0.2),
     )
-    .force('collide', forceCollide<GraphNode>().radius((d) => d.r + 2.5))
+    .force(
+      'collide',
+      forceCollide<GraphNode>().radius((d) => d.r + 2.5),
+    )
     .stop();
 
   for (let i = 0; i < 300; i++) sim.tick();

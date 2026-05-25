@@ -15,7 +15,8 @@ type SiteData = {
 const siteData = siteRaw as SiteData;
 const socials = siteData.socials;
 const wiki = manifest as WikiManifest;
-const mottos = wiki.mottos.map((m) => m.text);
+const baseUrl = wiki.meta.baseUrl;
+const mottos = wiki.mottos.map((m) => ({ text: m.text, href: `${baseUrl}/${m.pageId}` }));
 
 const ICONS = [
   { key: 'github', src: '/assets/icons/github-dark.svg', label: 'GitHub' },
@@ -40,9 +41,16 @@ const updatedStr = `updated ${buildDate.toLocaleDateString('en-US', { month: 'sh
 
 <footer class="footer" data-accent="nebula">
   <div class="col-left">
-    <div class="quote" id="footer-quote" data-mottos={JSON.stringify(mottos)}>
-      &ldquo;Learning is always free.&rdquo;
-    </div>
+    <a
+      class="quote"
+      id="footer-quote"
+      href={mottos[0].href}
+      target="_blank"
+      rel="noopener noreferrer"
+      data-mottos={JSON.stringify(mottos)}
+    >
+      &ldquo;{mottos[0].text}&rdquo;
+    </a>
     <div>Daniel · Singapore · {updatedStr}</div>
   </div>
   <div class="icons">
@@ -70,12 +78,11 @@ const updatedStr = `updated ${buildDate.toLocaleDateString('en-US', { month: 'sh
 </footer>
 
 <script>
-  const el = document.getElementById('footer-quote');
+  const el = document.getElementById('footer-quote') as HTMLAnchorElement | null;
   if (el) {
-    const mottos: string[] = JSON.parse(el.dataset.mottos || '[]');
+    const mottos: { text: string; href: string }[] = JSON.parse(el.dataset.mottos || '[]');
     if (mottos.length > 1) {
-      let idx = mottos.indexOf('Learning is always free.');
-      if (idx === -1) idx = 0;
+      let idx = 0;
 
       const DISPLAY = 12000;
       const FADE = 2000;
@@ -84,7 +91,8 @@ const updatedStr = `updated ${buildDate.toLocaleDateString('en-US', { month: 'sh
         el.classList.add('fade-out');
         setTimeout(() => {
           idx = (idx + 1) % mottos.length;
-          el.textContent = `\u201C${mottos[idx]}\u201D`;
+          el.textContent = `\u201C${mottos[idx].text}\u201D`;
+          el.href = mottos[idx].href;
           el.classList.remove('fade-out');
         }, FADE);
       };
@@ -93,3 +101,123 @@ const updatedStr = `updated ${buildDate.toLocaleDateString('en-US', { month: 'sh
     }
   }
 </script>
+
+<style>
+  /* ============================================================
+     Footer — bottom navigation + social links.
+     Migrated from src/styles/portfolio/footer.css.
+     ============================================================ */
+
+  .footer {
+    position: relative;
+    z-index: 2;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: var(--space-12) var(--space-6) var(--space-16);
+    border-top: 1px solid rgba(148, 163, 184, 0.12);
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: var(--space-8);
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: rgba(229, 231, 235, 0.5);
+    letter-spacing: 0.04em;
+  }
+
+  @media (max-width: 720px) {
+    .footer {
+      grid-template-columns: 1fr;
+      text-align: left;
+      padding: var(--space-8) var(--space-4) var(--space-10);
+    }
+  }
+
+  .footer .col-left {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .footer .col-left .quote {
+    color: rgba(229, 231, 235, 0.78);
+    font-style: italic;
+    white-space: nowrap;
+    text-decoration: none;
+    transition: opacity 2000ms ease;
+  }
+
+  .footer .col-left .quote:hover {
+    color: rgba(229, 231, 235, 1);
+  }
+
+  .footer .col-left .quote.fade-out {
+    opacity: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .footer .col-left .quote {
+      transition: none;
+    }
+  }
+
+  .footer .icons {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+  }
+
+  .footer .icon-btn {
+    width: 38px;
+    height: 38px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background var(--dur-base);
+  }
+
+  .footer .icon-btn:hover {
+    background: rgba(148, 163, 184, 0.12);
+  }
+
+  .footer .icon-btn img {
+    width: 18px;
+    height: 18px;
+    opacity: 0.7;
+  }
+
+  .footer .icon-btn:hover img {
+    opacity: 1;
+  }
+
+  .footer .col-right {
+    text-align: right;
+  }
+
+  @media (max-width: 720px) {
+    .footer .col-right {
+      text-align: left;
+    }
+
+    .footer .icons {
+      justify-content: flex-start;
+    }
+
+    /* Footer */
+    .footer {
+      grid-template-columns: 1fr;
+      gap: var(--space-5);
+      padding: var(--space-8) var(--space-4) var(--space-10);
+      text-align: left;
+    }
+
+    .footer .icons {
+      justify-content: flex-start;
+    }
+
+    .footer .col-right {
+      text-align: left;
+    }
+  }
+</style>

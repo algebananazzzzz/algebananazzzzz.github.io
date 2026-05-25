@@ -16,7 +16,7 @@
 /* The painterly streak — narrow diagonal band of light through the section.
    Toned down to match the prototype's subtle MilkyWayStreak SVG (was too
    saturated and washed the /milky-way page in heavy purple). */
-.mw-streak {
+:global(.mw-streak) {
   position: absolute;
   inset: 0;
   z-index: -1;
@@ -36,7 +36,7 @@
 }
 
 /* Brighter core band */
-.mw-streak::after {
+:global(.mw-streak)::after {
   content: '';
   position: absolute;
   inset: 0;

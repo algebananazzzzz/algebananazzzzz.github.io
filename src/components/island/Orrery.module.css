@@ -82,7 +82,7 @@
 }
 
 /* Background twinkle stars inside the orrery svg */
-@keyframes orrery-twinkle {
+@keyframes :global(orrery-twinkle) {
   0%,
   100% {
     opacity: var(--o, 0.3);

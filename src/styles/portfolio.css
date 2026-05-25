@@ -1,18 +1,10 @@
 /* ============================================================
-   Portfolio styles — barrel re-export.
-   The cosmic styling lives in src/styles/portfolio/*.css; this
-   file imports them in load order. Don't add new rules here —
-   put them in the right themed file or create a new one.
+   Portfolio styles — barrel re-export (global-only).
+   Component-scoped styles live as .module.css next to their
+   React islands, or as <style> blocks in Astro components.
+   Only cross-cutting / shared styles remain here.
    ============================================================ */
 @import './portfolio/legacy-resets.css';
 @import './portfolio/cosmos.css';
-@import './portfolio/splash.css';
-@import './portfolio/topnav.css';
 @import './portfolio/hero.css';
 @import './portfolio/sections.css';
-@import './portfolio/orrery.css';
-@import './portfolio/career.css';
-@import './portfolio/constellation.css';
-@import './portfolio/mw.css';
-@import './portfolio/meteor.css';
-@import './portfolio/footer.css';

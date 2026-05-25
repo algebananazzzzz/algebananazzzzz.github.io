@@ -1,39 +1,36 @@
-- id: stripe-intern
-  date: '2025-06 — 2025-08'
-  role: 'Cloud Engineer Intern'
-  org: 'Stripe (Singapore)'
-  summary: "On the internal platform team. Built a Terraform module library other product teams now pull from — halved time-to-deploy for one 14-service mesh. Wrote the IAM hardening guide that's now part of new-hire onboarding."
-  tags: [aws, terraform, kubernetes]
+- id: bytedance-intern
+  date: '2025-02 — present'
+  role: 'Backend SWE Intern'
+  org: 'ByteDance'
+  summary: 'Backend engineer on the data infrastructure team.'
+  tags: [golang, infrastructure]
   star: blackhole
 
-- id: grab-intern
-  date: '2024-06 — 2024-08'
-  role: 'Software Engineer Intern'
-  org: 'Grab'
-  summary: "Shipped two production features on the merchant analytics surface end-to-end, and quietly rewrote the integration-test harness — went from 18 minutes to 4. Got the harness into the team's default CI template before I left."
-  tags: [typescript, 'next.js', postgres]
+- id: govtech-intern
+  date: '2023-11 — 2024-08'
+  role: 'DevOps Intern'
+  org: 'GovTech'
+  summary: 'Architected cloud solutions and automation across government infrastructure.'
+  bullets:
+    - 'Orchestrated 20+ AWS services and refactored GitLab CI/CD pipelines across 15+ projects, reducing pipeline execution time by ~40%'
+    - 'Built a centralized Terraform module repository, cutting code duplication by ~40% across 10+ projects'
+    - 'Developed a Golang ChatOps platform automating critical operational tasks, cutting ~20 man-hours per week'
+    - 'Designed a multi-region, fault-tolerant synthetic monitoring system tracking uptime across 5,000+ government websites'
+    - 'Led adoption of AWS Security Hub and Prowler, boosting CIS security scores by 20%+ across 3 environments'
+    - 'Implemented an EKS platform with Prometheus, Linkerd, OpenFaaS, and ArgoCD + Crossplane GitOps pipelines'
+  tags: [aws, golang, terraform, kubernetes]
   star: giant
 
-- id: nus-ta
-  date: '2024-01 — present'
-  role: 'Teaching Assistant · CS2030'
-  org: 'National University of Singapore'
-  summary: "TA-ing Programming Methodology II — 60 students per semester. Wrote a side-pack of practice problems that's become unofficial-canon among the next cohorts of TAs."
-  tags: [teaching, java, fp]
+- id: sheares-web
+  date: '2025-05 — present'
+  role: 'Chairperson'
+  org: 'Sheares Web'
+  summary: 'Leading development and operations for 500 active hall residents.'
+  bullets:
+    - 'Engineered a Liquibase + Golang pipeline to declaratively process 1,000+ rows of data, cutting change failure rate from 75% to 5%'
+    - 'Migrated legacy monolithic systems to AWS microservices, cutting costs by ~86%'
+    - 'Architected a scalable PostgreSQL schema with indexes, materialized views, triggers and procedures'
+    - 'Built an automated Gale-Shapley CCA allocation system, saving ~50 man-hours per semester'
+    - 'Led development of the Sheares App with React Native and Expo, used by 500 residents monthly'
+  tags: [golang, react-native, aws, postgres]
   star: subgiant
-
-- id: nus-undergrad
-  date: '2023 — present'
-  role: 'Computer Sciences Undergrad'
-  org: 'National University of Singapore'
-  summary: 'Specialising in distributed systems and programming languages. GPA 4.6/5.0. President of the Sheares Hall tech club; we ship one thing every semester whether anyone asks for it or not.'
-  tags: [systems, PL, distributed]
-  star: mainseq
-
-- id: saf-cyber
-  date: '2021 — 2023'
-  role: 'Cyber Specialist (NS)'
-  org: 'Singapore Armed Forces · Digital and Intelligence Service'
-  summary: 'Two years on a small Linux-and-Python team. Wrote the on-call runbook the unit still uses, learned more about packet captures than any 19-year-old needs to.'
-  tags: [linux, python, security]
-  star: protostar

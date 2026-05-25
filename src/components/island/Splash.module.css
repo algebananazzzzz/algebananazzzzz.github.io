@@ -131,6 +131,14 @@
   position: relative;
 }
 
+/* Gradient-clip italic padding fix (moved from sections.css — needs to be
+   co-located since the class name is now hashed). */
+.splash-hello em {
+  display: inline-block;
+  padding-inline-end: 0.15em;
+  margin-inline-end: -0.15em;
+}
+
 .splash-sub {
   font-family: var(--font-mono);
   font-size: var(--text-sm);

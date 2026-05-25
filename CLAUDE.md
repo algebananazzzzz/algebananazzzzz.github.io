@@ -19,9 +19,10 @@ Operational guide for Claude sessions working on this repo. Read this before tou
 - `src/components/static/*.astro` — server-only components (TopNav, Footer).
 - `src/styles/tokens.css` — palette + type + spacing tokens. **Source of truth.**
 - `src/styles/global.css` — Tailwind import + `@theme` bridge + base resets.
-- `src/styles/portfolio.css` — barrel re-export. **Don't add rules here** — they go in the right themed file.
-- `src/styles/portfolio/*.css` — themed CSS modules: `cosmos`, `splash`, `topnav`, `hero`, `sections`, `orrery`, `career`, `constellation`, `mw`, `meteor`, `footer`, `legacy-resets`.
-- `src/styles/pages.css` — sub-page (`/about`, `/projects`, `/experience`) wrapper rules.
+- `src/styles/portfolio.css` — barrel re-export for **global-only** CSS (`legacy-resets`, `cosmos`, `hero`, `sections`).
+- `src/styles/portfolio/*.css` — global cross-cutting CSS: `cosmos`, `hero`, `sections`, `legacy-resets`.
+- `src/components/island/*.module.css` — co-located CSS Modules for React islands. Import as `import s from './X.module.css'` and access via `s.camelCase`.
+- `src/styles/pages.css` — sub-page (`/about`, `/projects`, `/experience`) wrapper rules + shared utilities (`.tag`, `.cta-secondary`).
 - `src/styles/page-bg.css` — per-route accent washes + per-route cosmos tint variables.
 - `src/content/config.ts` — Zod schemas for content collections.
 - `src/types/yaml.d.ts` — `*.yaml` module shim (`unknown`, cast at import site).
@@ -61,33 +62,47 @@ Operational guide for Claude sessions working on this repo. Read this before tou
 
 ## Component → CSS file map
 
-| Component                                            | Styles in                                                            |
-| ---------------------------------------------------- | -------------------------------------------------------------------- |
-| `Cosmos.tsx`                                         | `portfolio/cosmos.css`                                               |
-| `Splash.tsx`                                         | `portfolio/splash.css`                                               |
-| `Meteor.tsx`                                         | `portfolio/meteor.css`                                               |
-| `Orrery.tsx`                                         | `portfolio/orrery.css`                                               |
-| `Constellation.tsx`                                  | `portfolio/constellation.css`                                        |
-| `MilkyWay.tsx`, `MilkyWayStreak.tsx`                 | `portfolio/mw.css`, `page-bg.css`                                    |
-| `CareerList.tsx`                                     | `portfolio/career.css`                                               |
-| `ProjectsConst.tsx`, `ProjectsList.tsx`              | `pages.css` (project rows), inline SVG for gravity grid              |
-| `AccentOrb.tsx`                                      | `portfolio/cosmos.css` (`.v3-accent-orb` selector)                   |
-| `TopNav.astro`                                       | `portfolio/topnav.css`                                               |
-| `Footer.astro`                                       | `portfolio/footer.css`                                               |
-| `NotePanel.tsx`                                      | `portfolio/constellation.css` (rendered inside Constellation island) |
-| Hero on `/`                                          | `portfolio/hero.css`                                                 |
-| `.section`, `.section-head`, `.eyebrow`, `.orbiting` | `portfolio/sections.css`                                             |
-| `/about`, `/projects`, `/experience` page wrappers   | `pages.css`                                                          |
-| Per-route accent wash + cosmos tint vars             | `page-bg.css`                                                        |
+CSS is split between **CSS Modules** (co-located `.module.css` per React island), **Astro scoped `<style>`** (for `.astro` components), and **global CSS** (cross-cutting systems). Vite is configured with `css.modules.localsConvention: 'camelCase'`.
+
+### CSS Modules (import as `s` or `css`, access via `s.camelCase`)
+
+| Component                                | Module file                        |
+| ---------------------------------------- | ---------------------------------- |
+| `Splash.tsx`                             | `island/Splash.module.css`         |
+| `Meteor.tsx`                             | `island/Meteor.module.css`         |
+| `Orrery.tsx`                             | `island/Orrery.module.css`         |
+| `CareerList.tsx`                         | `island/CareerList.module.css`     |
+| `Constellation.tsx`, `ProjectsConst.tsx` | `island/Constellation.module.css`  |
+| `MilkyWay.tsx`, `MilkyWayStreak.tsx`     | `island/MilkyWay.module.css`       |
+| `ProjectsList.tsx`                       | `island/ProjectsList.module.css`   |
+
+### Astro scoped styles (inline `<style>` block)
+
+| Component      | Notes                                                    |
+| -------------- | -------------------------------------------------------- |
+| `TopNav.astro` | All topnav CSS in `<style>` block, JS class toggles work |
+| `Footer.astro` | All footer CSS in `<style>` block, JS class toggles work |
+
+### Global CSS (in `src/styles/`)
+
+| Scope                                                | File                      |
+| ---------------------------------------------------- | ------------------------- |
+| `Cosmos.tsx`, `AccentOrb.tsx`                        | `portfolio/cosmos.css`    |
+| Hero on `/`                                          | `portfolio/hero.css`      |
+| `.section`, `.section-head`, `.eyebrow`, `.orbiting` | `portfolio/sections.css`  |
+| v2 suppression, animation resets                     | `portfolio/legacy-resets.css` |
+| `/about`, `/projects`, `/experience` page wrappers   | `pages.css`               |
+| Per-route accent wash + cosmos tint vars             | `page-bg.css`             |
+| `.tag`, `.cta-secondary`, `.cosmic-card` (shared)    | `pages.css`               |
 
 ## Content collections — how to add data
 
 Collections defined in `src/content/config.ts` (type `'data'`, file loaders, Zod schemas):
 
-| Collection   | File                          | Schema fields                                                       |
-| ------------ | ----------------------------- | ------------------------------------------------------------------- |
+| Collection   | File                          | Schema fields                                                                   |
+| ------------ | ----------------------------- | ------------------------------------------------------------------------------- |
 | `projects`   | `src/content/projects.yaml`   | id, title, tagline, tech, summary, bullets, role, impact, cluster, accent, href |
-| `experience` | `src/content/experience.yaml` | id, span, role, org, summary, tags, star (type, brightness)         |
+| `experience` | `src/content/experience.yaml` | id, span, role, org, summary, tags, star (type, brightness)                     |
 
 ### Wiki manifest — notes, topics, mottos
 
@@ -102,6 +117,7 @@ const wiki = manifest as WikiManifest;
 ```
 
 The manifest contains:
+
 - `meta.baseUrl` — wiki site origin for constructing page links (`${baseUrl}/${page.id}`)
 - `topics[]` — id, label, dotColor (drives constellation clusters + orbiting chips)
 - `pages[]` — id, title, kind, topic, status, excerpt, date, words, links (array of connected page IDs)

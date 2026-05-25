@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useReducedComplexity } from '@/lib/useReducedComplexity';
+import s from './Orrery.module.css';
 
 interface OrreryItem {
   title: string;
@@ -309,9 +310,9 @@ export default function Orrery({ building, writing, obsessed }: Props) {
   };
 
   return (
-    <div className="orrery-wrap">
-      <div className="orrery" aria-hidden="true" style={{ position: 'relative' }}>
-        <div className="orrery-bgglow" />
+    <div className={s.orreryWrap}>
+      <div className={s.orrery} aria-hidden="true" style={{ position: 'relative' }}>
+        <div className={s.orreryBgglow} />
         <canvas ref={ringBackCanvasRef} style={canvasStyle} aria-hidden="true" />
         <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
           <defs>
@@ -334,25 +335,25 @@ export default function Orrery({ building, writing, obsessed }: Props) {
             ))}
           </defs>
 
-          <g className="orrery-stars">
-            {stars.map((s) => (
+          <g className={s.orreryStars}>
+            {stars.map((star) => (
               <circle
-                key={s.key}
-                cx={s.x}
-                cy={s.y}
-                r={s.r}
+                key={star.key}
+                cx={star.x}
+                cy={star.y}
+                r={star.r}
                 fill="#fff"
                 style={{
-                  opacity: s.o,
+                  opacity: star.o,
                   animation: reduced
                     ? undefined
-                    : `orrery-twinkle ${s.d}s ease-in-out ${s.key * 0.13}s infinite`,
+                    : `orrery-twinkle ${star.d}s ease-in-out ${star.key * 0.13}s infinite`,
                 }}
               />
             ))}
           </g>
 
-          <g ref={dialRef} className="orrery-dial" transform="rotate(0 50 50)">
+          <g ref={dialRef} className={s.orreryDial} transform="rotate(0 50 50)">
             {Array.from({ length: 60 }, (_, i) => {
               const a = (i / 60) * Math.PI * 2;
               const r0 = 47.5;
@@ -409,7 +410,7 @@ export default function Orrery({ building, writing, obsessed }: Props) {
           {bodies.map((b) => (
             <ellipse
               key={'orbit-' + b.id}
-              className="orbit"
+              className={s.orbit}
               cx="50"
               cy="50"
               rx={b.orbitR * 100}
@@ -422,17 +423,17 @@ export default function Orrery({ building, writing, obsessed }: Props) {
             />
           ))}
 
-          <g className="orrery-sun">
+          <g className={s.orrerySun}>
             <circle cx="50" cy="50" r="16" fill="url(#sun-flare)" opacity="0.7" />
             <circle cx="50" cy="50" r="11" fill="url(#sun-flare)" opacity="0.85" />
-            <circle className="sun-core" cx="50" cy="50" r="5.4" fill="url(#sun-core)" />
+            <circle className={s.sunCore} cx="50" cy="50" r="5.4" fill="url(#sun-core)" />
             <circle cx="48.2" cy="48.4" r="1.4" fill="rgba(255, 255, 255, 0.6)" />
           </g>
 
           {bodies.map((b) => (
             <g
               key={'planet-' + b.id}
-              className="planet-group"
+              className={s.planetGroup}
               style={{ color: b.color }}
               onMouseEnter={() => setHoverId(b.id)}
               onMouseLeave={() => setHoverId(null)}
@@ -441,7 +442,7 @@ export default function Orrery({ building, writing, obsessed }: Props) {
                 ref={(el) => {
                   planetRefs.current[b.id] = el;
                 }}
-                className="planet"
+                className={s.planet}
                 cx={50 + Math.cos(b.phase) * b.orbitR * 100}
                 cy={50 + Math.sin(b.phase) * b.orbitR * 62}
                 r={b.radius}
@@ -453,29 +454,29 @@ export default function Orrery({ building, writing, obsessed }: Props) {
           <circle ref={moon2Ref} cx="50" cy="50" r={0.88} fill="rgba(190,228,255,0.82)" />
         </svg>
         <canvas ref={ringFrontCanvasRef} style={canvasStyle} aria-hidden="true" />
-        <div className="orrery-readout-corner">
+        <div className={s.orreryReadoutCorner}>
           <span>orrery / now</span>
-          <span className="dot" />
+          <span className={s.dot} />
           <span>sun + 3 bodies</span>
         </div>
       </div>
 
-      <div className="orrery-readout">
+      <div className={s.orreryReadout}>
         {bodies.map((b) => (
           <div
             key={b.id}
-            className="orrery-card"
+            className={s.orreryCard}
             data-active={hoverId === b.id ? 'true' : 'false'}
             onMouseEnter={() => setHoverId(b.id)}
             onMouseLeave={() => setHoverId(null)}
           >
-            <div className="label" style={{ color: b.color }}>
-              <span className="dot" style={{ background: b.color }} />
+            <div className={s.label} style={{ color: b.color }}>
+              <span className={s.dot} style={{ background: b.color }} />
               <span style={{ color: 'rgba(229,231,235,0.62)' }}>{b.label}</span>
             </div>
-            <div className="name">{b.name}</div>
-            <div className="note">{b.note}</div>
-            <div className="meta">
+            <div className={s.name}>{b.name}</div>
+            <div className={s.note}>{b.note}</div>
+            <div className={s.meta}>
               {b.meta.map((m, i) => (
                 <span key={i}>
                   {i > 0 ? '·' : ''} {m}

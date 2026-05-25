@@ -1,4 +1,5 @@
 import { useState, type CSSProperties } from 'react';
+import s from './CareerList.module.css';
 
 export interface StarData {
   type: string;
@@ -17,6 +18,7 @@ export interface CareerEntry {
   role: string;
   org: string;
   summary: string;
+  bullets?: string[];
   tags: string[];
   star: StarData;
 }
@@ -37,7 +39,7 @@ export default function CareerList({ entries, defaultOpenIndex = 0 }: Props) {
   }));
 
   return (
-    <div className="career-list">
+    <div className={s.careerList}>
       {list.map((e, idx) => {
         const isOpen = idx === openIndex;
         const starSize = Math.round(BASE_SIZE * e.sizeMul);
@@ -60,22 +62,22 @@ export default function CareerList({ entries, defaultOpenIndex = 0 }: Props) {
             type="button"
             onClick={() => setOpenIndex(isOpen ? null : idx)}
             aria-expanded={isOpen}
-            className={`career-row ${isOpen ? 'open' : ''}`}
+            className={`${s.careerRow} ${isOpen ? s.open : ''}`}
             style={style}
           >
-            <div className="row-head">
-              <span className="star" aria-hidden="true">
-                <span className="star-core" />
+            <div className={s.rowHead}>
+              <span className={s.star} aria-hidden="true">
+                <span className={s.starCore} />
               </span>
-              <span className="date">{e.date}</span>
-              <span className="role">
+              <span className={s.date}>{e.date}</span>
+              <span className={s.role}>
                 {e.role}
-                <span className="org-sep">·</span>
-                <span className="org">{e.org}</span>
+                <span className={s.orgSep}>·</span>
+                <span className={s.org}>{e.org}</span>
               </span>
-              <span className="class">{e.stellarClass.toLowerCase()}</span>
+              <span className={s.class}>{e.stellarClass.toLowerCase()}</span>
               <svg
-                className="chev"
+                className={s.chev}
                 width="14"
                 height="14"
                 viewBox="0 0 24 24"
@@ -90,16 +92,23 @@ export default function CareerList({ entries, defaultOpenIndex = 0 }: Props) {
                 <path d="m12 5 7 7-7 7" />
               </svg>
             </div>
-            <div className="row-body">
-              <div className="body-inner">
-                <p className="summary">{e.summary}</p>
-                <div className="row-meta">
-                  <span className="class-desc">
-                    <span className="swatch" style={{ background: e.color, color: e.color }} />
+            <div className={s.rowBody}>
+              <div className={s.bodyInner}>
+                <p className={s.summary}>{e.summary}</p>
+                {e.bullets && e.bullets.length > 0 && (
+                  <ul className={s.careerBullets}>
+                    {e.bullets.map((b, i) => (
+                      <li key={i}>{b}</li>
+                    ))}
+                  </ul>
+                )}
+                <div className={s.rowMeta}>
+                  <span className={s.classDesc}>
+                    <span className={s.swatch} style={{ background: e.color, color: e.color }} />
                     {e.classDesc}
                   </span>
                   {e.tags.length > 0 && (
-                    <div className="tags">
+                    <div className={s.tags}>
                       {e.tags.map((tag) => (
                         <span key={tag} className="tag">
                           {tag}

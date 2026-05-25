@@ -42,6 +42,7 @@ const experience = defineCollection({
     role: z.string(),
     org: z.string(),
     summary: z.string(),
+    bullets: z.array(z.string()).optional(),
     tags: z.array(z.string()),
     star: StarType,
   }),

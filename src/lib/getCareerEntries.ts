@@ -5,9 +5,7 @@ import starsData from './stars.json';
 
 type StarRecord = (typeof starsData)[number];
 
-const starsById: Record<string, StarRecord> = Object.fromEntries(
-  starsData.map((s) => [s.name, s]),
-);
+const starsById: Record<string, StarRecord> = Object.fromEntries(starsData.map((s) => [s.name, s]));
 
 const fallback = starsById['mainseq'];
 
@@ -29,6 +27,7 @@ export async function getCareerEntries(limit?: number): Promise<CareerEntry[]> {
       role: e.role,
       org: e.org,
       summary: e.summary,
+      bullets: e.bullets,
       tags: e.tags ?? [],
       star: {
         type: e.star,

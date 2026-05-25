@@ -6,6 +6,7 @@ import {
   type CSSProperties,
   type PointerEvent as ReactPointerEvent,
 } from 'react';
+import css from './Constellation.module.css';
 
 export interface ProjectInput {
   id: string;
@@ -379,8 +380,8 @@ export default function ProjectsConst({ projects }: Props) {
   const hovered = hover && !dragId ? starById(hover) : undefined;
 
   return (
-    <div className="proj-const-wrap gravity-wrap" ref={wrapRef}>
-      <div className="proj-const gravity">
+    <div className={`${css.projConstWrap} ${css.gravityWrap}`} ref={wrapRef}>
+      <div className={`${css.projConst} ${css.gravity}`}>
         <svg
           viewBox={`0 0 ${FIELD_W} ${FIELD_H}`}
           preserveAspectRatio="xMidYMid meet"
@@ -482,7 +483,7 @@ export default function ProjectsConst({ projects }: Props) {
             return (
               <g
                 key={s.id}
-                className={`grav-star ${isDrag ? 'is-dragging' : ''}`}
+                className={`${css.gravStar} ${isDrag ? css.isDragging : ''}`}
                 style={{ cursor: isDrag ? 'grabbing' : 'grab' }}
                 onPointerDown={(e) => onStarPointerDown(s.id, s.href, e)}
                 onMouseEnter={() => {
@@ -550,11 +551,11 @@ export default function ProjectsConst({ projects }: Props) {
       </div>
 
       {hovered && (
-        <div className="proj-detail" style={detailStyle}>
-          <div className="title">{hovered.title}</div>
-          <div className="summary">{hovered.summary}</div>
-          <div className="role">{hovered.role}</div>
-          <div className="tech-row">
+        <div className={css.projDetail} style={detailStyle}>
+          <div className={css.title}>{hovered.title}</div>
+          <div className={css.summary}>{hovered.summary}</div>
+          <div className={css.role}>{hovered.role}</div>
+          <div className={css.techRow}>
             {hovered.tech.map((t) => (
               <span key={t} className="tag">
                 {t}
