@@ -66,15 +66,15 @@ CSS is split between **CSS Modules** (co-located `.module.css` per React island)
 
 ### CSS Modules (import as `s` or `css`, access via `s.camelCase`)
 
-| Component                                | Module file                        |
-| ---------------------------------------- | ---------------------------------- |
-| `Splash.tsx`                             | `island/Splash.module.css`         |
-| `Meteor.tsx`                             | `island/Meteor.module.css`         |
-| `Orrery.tsx`                             | `island/Orrery.module.css`         |
-| `CareerList.tsx`                         | `island/CareerList.module.css`     |
-| `Constellation.tsx`, `ProjectsConst.tsx` | `island/Constellation.module.css`  |
-| `MilkyWay.tsx`, `MilkyWayStreak.tsx`     | `island/MilkyWay.module.css`       |
-| `ProjectsList.tsx`                       | `island/ProjectsList.module.css`   |
+| Component                                | Module file                       |
+| ---------------------------------------- | --------------------------------- |
+| `Splash.tsx`                             | `island/Splash.module.css`        |
+| `Meteor.tsx`                             | `island/Meteor.module.css`        |
+| `Orrery.tsx`                             | `island/Orrery.module.css`        |
+| `CareerList.tsx`                         | `island/CareerList.module.css`    |
+| `Constellation.tsx`, `ProjectsConst.tsx` | `island/Constellation.module.css` |
+| `MilkyWay.tsx`, `MilkyWayStreak.tsx`     | `island/MilkyWay.module.css`      |
+| `ProjectsList.tsx`                       | `island/ProjectsList.module.css`  |
 
 ### Astro scoped styles (inline `<style>` block)
 
@@ -85,15 +85,15 @@ CSS is split between **CSS Modules** (co-located `.module.css` per React island)
 
 ### Global CSS (in `src/styles/`)
 
-| Scope                                                | File                      |
-| ---------------------------------------------------- | ------------------------- |
-| `Cosmos.tsx`, `AccentOrb.tsx`                        | `portfolio/cosmos.css`    |
-| Hero on `/`                                          | `portfolio/hero.css`      |
-| `.section`, `.section-head`, `.eyebrow`, `.orbiting` | `portfolio/sections.css`  |
+| Scope                                                | File                          |
+| ---------------------------------------------------- | ----------------------------- |
+| `Cosmos.tsx`, `AccentOrb.tsx`                        | `portfolio/cosmos.css`        |
+| Hero on `/`                                          | `portfolio/hero.css`          |
+| `.section`, `.section-head`, `.eyebrow`, `.orbiting` | `portfolio/sections.css`      |
 | v2 suppression, animation resets                     | `portfolio/legacy-resets.css` |
-| `/about`, `/projects`, `/experience` page wrappers   | `pages.css`               |
-| Per-route accent wash + cosmos tint vars             | `page-bg.css`             |
-| `.tag`, `.cta-secondary`, `.cosmic-card` (shared)    | `pages.css`               |
+| `/about`, `/projects`, `/experience` page wrappers   | `pages.css`                   |
+| Per-route accent wash + cosmos tint vars             | `page-bg.css`                 |
+| `.tag`, `.cta-secondary`, `.cosmic-card` (shared)    | `pages.css`                   |
 
 ## Content collections — how to add data
 
