@@ -208,7 +208,7 @@ export default function Splash() {
         onClick={onClickHint}
         className={s.splashScrollhint}
         type="button"
-        aria-label="descend into the nebula"
+        aria-label="descent into the nebula"
       >
         <span>descent into the nebula</span>
         <svg
