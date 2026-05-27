@@ -24,7 +24,7 @@
   font-size: var(--text-xs);
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(241, 245, 249, 0.45);
+  color: rgba(241, 245, 249, 0.55);
   display: inline-flex;
   align-items: center;
   gap: 12px;
