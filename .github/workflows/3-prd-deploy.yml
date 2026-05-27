@@ -1,0 +1,59 @@
+name: 3. Production Deploy
+
+on:
+  push:
+    tags: ['v*']
+
+concurrency:
+  group: prd-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: ${{ !contains(github.ref_name, '-') }}
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Terraform Init
+        working-directory: infra
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+        run: |
+          cat > backend.hcl <<EOF
+          key = "prd/terraform.tfstate"
+          endpoints = {
+            s3 = "https://${{ secrets.CLOUDFLARE_ACCOUNT_ID }}.r2.cloudflarestorage.com"
+          }
+          EOF
+          terraform init -backend-config=backend.hcl
+
+      - name: Terraform Apply
+        working-directory: infra
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+        run: terraform apply -var-file=config/prd.tfvars -var="cloudflare_api_token=${{ secrets.CLOUDFLARE_API_TOKEN }}" -var="cloudflare_account_id=${{ secrets.CLOUDFLARE_ACCOUNT_ID }}" -auto-approve
+
+      - name: Build
+        run: npm run build
+        env:
+          SITE_URL: https://www.algebananazzzzz.com
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist/ --project-name=prd-web-pages-algebananazzzzz

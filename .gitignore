@@ -12,6 +12,18 @@ design-handoff/
 .idea/
 .playwright-mcp/
 
+# Tool artifacts
+.agents/
+skills-lock.json
+
 # Root-level debug screenshots
 /*.png
 !/public/**/*.png
+
+# Terraform
+infra/.terraform/
+infra/*.tfstate
+infra/*.tfstate.backup
+infra/*.tfplan
+infra/.terraform.lock.hcl
+infra/backend.hcl

@@ -150,12 +150,17 @@ const siteData = siteRaw as SiteData;
 | `npm run format`       | Prettier write.                                                  |
 | `npm run format:check` | Prettier check (CI gate).                                        |
 
-## CI
+## CI & Deployment
 
-Two workflows in `.github/workflows/`:
+Three workflows in `.github/workflows/`, plus Terraform in `infra/`:
 
-- `1-feature-branch-ci.yml` — runs on PRs and non-`main` pushes. Gates: `format:check`, `astro check`, `vitest run`, `astro build`.
-- `2-preprod-deploy.yml` — runs on push to `main`. Builds and deploys to GitHub Pages.
+- `1-feature-branch-ci.yml` — runs on PRs to `main`. Gates: `format:check`, `astro check`, `vitest run`, `astro build`.
+- `2-preprod-deploy.yml` — runs on push to `main`. Auto-tags `vx.x.x-beta`, runs checks, optionally applies Terraform (`infra/` changes), builds with `SITE_URL=https://beta.algebananazzzzz.com`, deploys to `preprod-web-pages-algebananazzzzz`. On success, creates `vx.x.x` production tag.
+- `3-prd-deploy.yml` — runs on production tags (`v*` without `-`). Applies Terraform, builds with `SITE_URL=https://www.algebananazzzzz.com`, deploys to `prd-web-pages-algebananazzzzz`.
+
+Terraform resources live in `infra/`. Per-env config in `infra/config/preprod.tfvars` and `infra/config/prd.tfvars`. State stored in Cloudflare R2 (`com-infra-tfstate-cloudflare`) with separate keys per environment.
+
+Secrets required in GitHub repo settings (per-environment): `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`, `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`.
 
 ## Where the design handoff lives
 
