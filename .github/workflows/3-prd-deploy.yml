@@ -12,7 +12,7 @@ jobs:
   deploy:
     if: ${{ !contains(github.ref_name, '-') }}
     runs-on: ubuntu-latest
-    environment: production
+    environment: prd
     steps:
       - uses: actions/checkout@v4
 
@@ -31,13 +31,10 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
         run: |
-          cat > backend.hcl <<EOF
-          key = "prd/terraform.tfstate"
-          endpoints = {
-            s3 = "https://${{ secrets.CLOUDFLARE_ACCOUNT_ID }}.r2.cloudflarestorage.com"
-          }
-          EOF
-          terraform init -backend-config=backend.hcl
+          terraform init \
+            -backend-config=backend.tfbackend \
+            -backend-config="endpoints={s3=\"https://${{ secrets.CLOUDFLARE_ACCOUNT_ID }}.r2.cloudflarestorage.com\"}"
+          terraform workspace select -or-create prd
 
       - name: Terraform Apply
         working-directory: infra

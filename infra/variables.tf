@@ -14,16 +14,6 @@ variable "custom_domain" {
   type        = string
 }
 
-variable "environment" {
-  description = "Environment name (preprod or prd)"
-  type        = string
-
-  validation {
-    condition     = contains(["preprod", "prd"], var.environment)
-    error_message = "Environment must be preprod or prd."
-  }
-}
-
 variable "production_branch" {
   description = "Git branch that triggers production deployments for this Pages project"
   type        = string

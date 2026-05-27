@@ -1,8 +1,9 @@
 locals {
-  pages_project_name = "${var.environment}-web-pages-${var.project_name}"
+  environment        = terraform.workspace
+  pages_project_name = "${local.environment}-web-pages-${var.project_name}"
 
   common_tags = {
-    Environment = var.environment
+    Environment = local.environment
     ManagedBy   = "terraform"
     Project     = var.project_name
   }
