@@ -11,5 +11,4 @@ resource "cloudflare_dns_record" "pages_cname" {
   content = "${cloudflare_pages_project.main.name}.pages.dev"
   ttl     = 1
   proxied = true
-  tags    = toset([for k, v in local.common_tags : "${lower(k)}:${v}"])
 }
